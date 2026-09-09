@@ -1,4 +1,4 @@
-functional-requirements.md # Requisitos funcionais
+# Requisitos funcionais
 
 O que o produto faz, derivado do Product Backlog. Cada requisito rastreia a user story de origem.
 
