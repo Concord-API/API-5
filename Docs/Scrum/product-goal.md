@@ -1,4 +1,4 @@
-## 1. Product Goal
+# Product Goal
 
 Permitir que advogados e juízes descubram, em minutos e com procedência auditável, **como um tema vem sendo decidido** no TJSP, TJRJ e TJMG, com uma medida objetiva de quão firme é o entendimento, em vez de garimpar acórdão por acórdão.
 
