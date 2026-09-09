@@ -3,7 +3,7 @@
 > (latim: razão, fundamento). De ratio decidendi — o fundamento determinante de
 > uma decisão judicial, aquilo que de fato se repete e vira padrão.
 
-![home](assets/home.jpeg)
+![home](Assets/home.jpeg)
 
 ## Índice
 - [Introdução](#introdução)
@@ -36,7 +36,7 @@ O Ratio tem como objetivo eliminar o trabalho manual e fragmentado da análise j
     </thead>
     <tbody>
           <tr>
-        <td align="center">Vinicius P. de Pádua</td>
+        <td align="center">Vinicius de Pádua</td>
         <td align="center">Product Owner</td>
         <td align="center"><a href="https://github.com/orgs/vp-p"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="22" /></a></td>
       </tr>
@@ -56,7 +56,7 @@ O Ratio tem como objetivo eliminar o trabalho manual e fragmentado da análise j
         <td align="center"><a href="https://github.com/victorgsnogueira"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="22" /></a></td>
       </tr>
       <tr>
-        <td align="center">Richard Leonardo Cordeiro</td>
+        <td align="center">Richard Cordeiro</td>
         <td align="center">Developer</td>
         <td align="center"><a href="https://github.com/RichardCordeiro"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="22" /></a></td>
       </tr>
@@ -64,6 +64,11 @@ O Ratio tem como objetivo eliminar o trabalho manual e fragmentado da análise j
         <td align="center">Isaac Oliveira</td>
         <td align="center">Developer</td>
         <td align="center"><a href="https://github.com/IsaacOliveiraSouza"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="22" /></a></td>
+      </tr>
+      <tr>
+        <td align="center">Thiago Abreu</td>
+        <td align="center">Developer</td>
+        <td align="center"><a href="https://github.com/thiagosabreu"><img src="https://cdn.simpleicons.org/github/181717" alt="GitHub" width="22" /></a></td>
       </tr>
     </tbody>
   </table>
