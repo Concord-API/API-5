@@ -24,7 +24,7 @@ O Ratio tem como objetivo eliminar o trabalho manual e fragmentado da análise j
 - Cobertura multi-tribunal — dados centralizados de TJSP, TJRJ e TJMG, os três tribunais com maior volume processual do país.
 - Acesso a precedentes e doutrina relacionados — afim de manter a rastreabilidade, é possível acessar a todos os precedentes e doutrinas relacionados que foram utilizados para sumarizar o tema.
 
-# Prodcut Backlog  
+# Product Backlog  
 | ID | Prioridade | Descrição | Estimativa | Sprint |
 | --- | --- | --- | --- | --- |
 | **US-01** | Must | Como **advogado**, quero digitar o tema do meu caso em linguagem natural e receber temas jurídicos apurados — não uma lista de processos — para descobrir como aquilo vem sendo decidido sem garimpar acórdão por acórdão | 8 | Sprint 1 |
