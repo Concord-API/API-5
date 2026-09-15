@@ -2,7 +2,9 @@
 > (do latim: razão, fundamento). De *ratio decidendi* — o fundamento determinante de uma
 > decisão judicial, o que de fato se repete e se torna padrão.
 
-![home](Assets/home.jpeg)
+Veja a versão em inglês da documentação [aqui](../../README.md)
+
+![home](../../Assets/home.jpeg)
 
 ## Sumário
 - [Introdução](#introdução)

@@ -2,6 +2,8 @@
 > (Latin: reason, ground). From ratio decidendi — the determining ground of a judicial
 > decision, what actually repeats and becomes a pattern.
 
+See the portuguese(br) version of the documentation [here](Docs/pt_br/README.md)
+
 ![home](Assets/home.jpeg)
 
 ## Contents
