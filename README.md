@@ -54,9 +54,9 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | **US-28** | Should | As a **user**, I want to copy the topic's citation already with the source, the extraction date, the scope and the `n`, so that I can paste it without retyping | 3 | Sprint 3 |
 | **US-29** | Should | As a **user**, I want to know when the data was last updated, and to be warned when it is stale, so that I do not rely on a months-old snapshot | 3 | Sprint 3 |
 | **US-30** | Could | As a **user**, I want to know how long it usually takes from filing to decision on this topic, so that I can calibrate my client's expectation | 8 | Sprint 3 |
-| **US-34** | Should | As a **user**, I want to ask a chatbot about a topic in natural language and get the answer in prose with the numbers, for the questions that no screen filter answers | 13 | Sprint 3 |
-| **US-35** | Should | As a **user**, I want every chatbot answer to bring the `n`, the source, the extraction date, the scope and the link to the cases, so that I can check it before using it | 5 | Sprint 3 |
-| **US-36** | Should | As a **user**, I want the chatbot to say it does not know when the data is not in the base, so that I do not get a plausible, invented number | 3 | Sprint 3 |
+| **US-34** | Could | As a **user**, I want to ask a chatbot about a topic in natural language and get the answer in prose with the numbers, for the questions that no screen filter answers | 13 | Sprint 3 |
+| **US-35** | Could | As a **user**, I want every chatbot answer to bring the `n`, the source, the extraction date, the scope and the link to the cases, so that I can check it before using it | 5 | Sprint 3 |
+| **US-36** | Could | As a **user**, I want the chatbot to say it does not know when the data is not in the base, so that I do not get a plausible, invented number | 3 | Sprint 3 |
 
 ## Sprint distribution
 

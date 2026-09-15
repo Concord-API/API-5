@@ -76,5 +76,5 @@ requirement traces back to the user story it comes from.
 | # | Requirement | Origin |
 | --- | --- | --- |
 | FR-35 | Answer natural-language questions about a topic, in prose and with the numbers, over the same aggregates the screens use. | US-34 |
-| FR-36 | Bring, in every chatbot answer, the `n`, the source, the extraction date, the scope and the link to the cases. | US-35 |
+| FR-36 | Bring, in every chatbot answer, the source, the extraction date, the scope and the link to the cases. | US-35 |
 | FR-37 | Answer that it does not know when the data is not in the base, instead of producing a plausible number. | US-36 |
