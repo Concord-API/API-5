@@ -1,12 +1,14 @@
 # Definition of Ready (DoR)
 
-Checklist único do time, aplicado a **todo item do Product Backlog antes de entrar na Sprint**. Responde à pergunta: *"este item está pronto para ser desenvolvido?"*
+A single checklist for the team, applied to **every Product Backlog item before it enters a
+Sprint**. It answers one question: *is this item ready to be built?*
 
-Uma story só entra na Sprint quando os seis itens abaixo estiverem cumpridos.
+A story only enters the Sprint when the items below are met.
 
-1. **Regras de negócio detalhadas** — o que o item faz, os limites e o que acontece nos casos de exceção.
-2. **Dados a armazenar definidos** — campos, tipos, obrigatoriedade e validações; quando o item toca o Data Warehouse, o **grão da tabela fato está declarado por escrito**.
-3. **Mensagens de confirmação, erro e aviso definidas** — texto exato de cada uma.
-4. **Protótipo da tela** — wireframe ou tela navegável aprovada, quando o item tem interface.
-5. **Critérios de aceitação escritos em BDD** — pelo menos um cenário por regra relevante, incluindo o caminho de exceção.
-6. **Procedência declarada** — para todo número que o item exibe, está definido de onde vem a fonte.
+1. **Business rules detailed** — what the item does, its limits, and what happens on the exception paths.
+2. **Data to store defined** — fields, types, whether they are required, and validations; when the item touches the Data Warehouse, the **fact table grain is declared in writing**.
+3. **Confirmation, error and warning messages defined** — the exact text of each one.
+4. **Screen prototype** — an approved wireframe or navigable screen, when the item has an interface.
+5. **Acceptance criteria written in BDD** — at least one scenario per relevant rule, including the exception path.
+6. **Provenance declared** — for every number the item displays, where the source comes from is defined.
+7. **Source verified**, when the item depends on a source that is not confirmed yet — the investigation happens in refinement and the answer is written down. Without it the item is not committed.
