@@ -1,86 +1,94 @@
-
 # Ratio 
-> (latim: razão, fundamento). De ratio decidendi — o fundamento determinante de
-> uma decisão judicial, aquilo que de fato se repete e vira padrão.
+> (Latin: reason, ground). From ratio decidendi — the determining ground of a judicial
+> decision, what actually repeats and becomes a pattern.
 
 ![home](Assets/home.jpeg)
 
-## Índice
-- [Introdução](#introdução)
-- [Principais Funcionalidades](#principais-funcionalidades)
-- [Equipe](#equipe)
-- [Como contribuir?](#como-contribuir)
+## Contents
+- [Introduction](#introduction)
+- [Key Features](#key-features)
+- [Team](#team)
+- [How to contribute](#how-to-contribute)
   - [Branches](#branches)
   - [Commits](#commits)
 
-## Introdução
-O Ratio tem como objetivo eliminar o trabalho manual e fragmentado da análise jurisprudencial que impede advogados e magistrados de identificar com segurança o posicionamento dos tribunais sobre uma determinada tese, permitindo avaliar rapidamente sua aceitação, recorrência e grau de consolidação para embasar decisões e estratégias jurídicas, por meio da centralização e análise de jurisprudências, precedentes e doutrinas do TJSP, TJRJ e TJMG em um Data Warehouse jurídico, com busca semântica por tema e geração de indicadores e padrões de decisão rastreáveis às fontes originais.
+## Introduction
+Ratio sets out to eliminate the manual, fragmented work of case law analysis that keeps lawyers and judges from reliably identifying where the courts stand on a given thesis — letting them quickly assess its acceptance, recurrence and degree of consolidation to ground legal decisions and strategies. It does so by centralising and analysing case law, precedents and legal scholarship from TJSP, TJRJ and TJMG in a legal Data Warehouse, with semantic search by topic and the generation of indicators and decision patterns traceable back to their original sources.
+ 
+## Key Features
+- **Topic search in natural language** — the user describes the case in their own words and gets the legal topic already identified, without having to build search syntax or know the technical name of the thesis.
+- **Consolidated decision pattern** — acceptance rate, case volume and courts involved, computed automatically. Removes the manual tabulation of decisions in a spreadsheet.
+- **Strength score for the understanding** — shows how settled (or how unstable) that pattern is, weighing agreement between decisions, volume, coverage and recency.
+- **Traceability** — every number displayed leads back to its source and extraction date; no metric is invented or computed in the dark.
+- **Multi-court coverage** — centralised data from TJSP, TJRJ and TJMG, the three courts with the highest case volume in the country.
+- **Access to related precedents and scholarship** — to keep everything traceable, all the precedents and scholarly works used to summarise a topic remain reachable.
 
-## Principais Funcionalidades
-- Busca por tema, em linguagem natural — o usuário descreve o caso com suas próprias palavras e recebe o tema jurídico já identificado, sem precisar montar sintaxe de busca ou saber o nome técnico da tese.
-- Padrão de decisão consolidado — percentual de acolhimento, volume de processos e tribunais envolvidos, calculados automaticamente. Elimina a tabulação manual de decisões em planilha.
-- Nota de força do entendimento — indica o quão consolidado (ou instável) é aquele padrão, considerando concordância entre decisões, volume, cobertura e recência.
-- Rastreabilidade — cada número exibido leva de volta à sua fonte e à data de extração; nenhuma métrica é inventada ou calculada "no escuro".
-- Cobertura multi-tribunal — dados centralizados de TJSP, TJRJ e TJMG, os três tribunais com maior volume processual do país.
-- Acesso a precedentes e doutrina relacionados — afim de manter a rastreabilidade, é possível acessar a todos os precedentes e doutrinas relacionados que foram utilizados para sumarizar o tema.
 
-# Product Backlog  
-| ID | Prioridade | Descrição | Estimativa | Sprint |
+# Product Backlog
+| ID | Priority | Description | Estimate | Sprint |
 | --- | --- | --- | --- | --- |
-| **US-01** | Must | Como **advogado**, quero digitar o tema do meu caso em linguagem natural e receber temas jurídicos apurados — não uma lista de processos — para descobrir como aquilo vem sendo decidido sem garimpar acórdão por acórdão | 8 | Sprint 1 |
-| **US-02** | Must | Como **advogado**, quero que os resultados venham ordenados pela firmeza do entendimento, e não por relevância textual, para encontrar primeiro o que me serve para sustentar a tese | 2 | Sprint 1 |
-| **US-04** | Must | Como **advogado**, quero filtrar os resultados por tribunal, período, grau e força mínima, vendo quantos processos cada tribunal tem, para reduzir a lista ao recorte do meu caso | 5 | Sprint 1 |
-| **US-05** | Should | Como **advogado**, quero que a busca separe teses distintas que hoje caem no mesmo assunto do CNJ, para encontrar a tese do meu caso e não a categoria dela | 13 | Sprint 1 |
-| **US-09** | Must | Como **juiz**, quero ler o entendimento do tema em prosa, abrindo com o número que responde à pergunta e com o processo apurado junto de todo percentual, para entender o padrão sem abrir tabela | 8 | Sprint 1 |
-| **US-10** | Must | Como **advogado**, quero ver a distribuição dos desfechos do tema em uma figura com a fonte declarada, para enxergar de uma vez quanto é procedente, parcialmente procedente e improcedente | 5 | Sprint 1 |
-| **US-13** | Should | Como **advogado**, quero que a aba que estou vendo fique na URL, para mandar a um colega o link exato da parte que quero mostrar | 2 | Sprint 1 |
-| **US-18** | Could | Como **juiz**, quero ver os precedentes qualificados ligados ao tema — súmula, tema repetitivo, IRDR — distinguindo o que vincula de direito do que apenas persuade, para saber o que me obriga | 8 | Sprint 1 |
-| **US-21** | Could | Como **advogado**, quero ver a doutrina invocada com autor, obra e a posição dela no debate, com link para o artigo quando houver, para saber o que citar além de jurisprudência | 8 | Sprint 1 |
-| **US-23** | Could | Como **advogado**, quero ler o inteiro teor da decisão citada, para conferir o contexto antes de usá-la | 5 | Sprint 1 |
-| **US-24** | Must | Como **advogado**, quero que toda tela deixe claro que os dados cobrem TJSP, TJRJ e TJMG, para não tirar conclusão nacional de um percentual que reflete três estados | 2 | Sprint 1 |
-| **US-25** | Must | Como **juiz**, quero saber de que fonte e de que data de extração vem cada número que estou vendo, para saber exatamente o que estou citando | 3 | Sprint 1 |
-| **US-26** | Must | Como **advogado**, quero que a tela me diga o que não existe e por quê, em vez de mostrar campo vazio ou valor plausível, para não construir uma peça sobre dado que não existe | 3 | Sprint 1 |
-| **US-03** | Must | Como **advogado**, quero ver em cada resultado a nota, a matéria, o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma | 8 | Sprint 2 |
-| **US-38** | Could | Como **advogado**, quero sugestões de consultas frequentes na tela inicial, para entender o tipo de pergunta que a ferramenta responde antes de digitar a minha | 2 | Sprint 2 |
-| **US-06** | Must | Como **advogado**, quero uma nota de 0 a 100 dizendo quão firme é o entendimento sobre o tema, para saber se vale sustentar a tese ou se ela é briga aberta | 8 | Sprint 2 |
-| **US-07** | Must | Como **advogado**, quero que a nota venha com o grau em linguagem que já existe no meio jurídico — Consolidada, Dominante, Em formação, Divergente — para não precisar interpretar uma escala inventada | 2 | Sprint 2 |
-| **US-08** | Must | Como **juiz**, quero abrir a composição da nota — os quatro componentes, seus pesos e a base de cálculo — para poder citar a estatística sabendo exatamente de onde ela vem | 3 | Sprint 2 |
-| **US-11** | Must | Como **juiz**, quero ver como o alinhamento do tema evoluiu ano a ano, com a frase de tendência, para saber se o entendimento está se firmando ou virando | 5 | Sprint 2 |
-| **US-12** | Must | Como **advogado**, quero ver o alinhamento do tema por tribunal, para saber se a tese pega igual em São Paulo, no Rio e em Minas | 3 | Sprint 2 |
-| **US-14** | Must | Como **juiz**, quero uma tabela do comportamento de cada tribunal — decisões, alinhamento e data da última — para comparar o meu tribunal com os outros | 3 | Sprint 2 |
-| **US-15** | Must | Como **advogado**, quero uma amostra auditável dos processos que sustentam o tema, com órgão julgador, data e desfecho, para conferir os casos antes de citá-los | 5 | Sprint 2 |
-| **US-17** | Should | Como **juiz**, quero saber se as câmaras do meu tribunal estão decidindo igual entre si, para identificar divergência interna antes de decidir | 5 | Sprint 2 |
-| **US-19** | Could | Como **advogado**, quero ver os fundamentos invocados nas decisões do tema, com a frequência e a taxa de acolhimento de cada um, para escolher o argumento que mais ganha e evitar o que perde sempre | 13 | Sprint 2 |
-| **US-22** | Could | Como **advogado**, quero o nome do relator na amostra e na referência da citação, para montar a citação completa da petição | 5 | Sprint 2 |
-| **US-37** | Could | Como **juiz**, quero ver no texto do entendimento o acórdão que sustenta cada afirmação, com a referência completa e a lista das decisões citadas ao pé, para citar a mesma decisão na minha | 8 | Sprint 2 |
-| **US-27** | Should | Como **advogado**, quero exportar em CSV as decisões que sustentam o tema, para trabalhar os dados fora da ferramenta | 5 | Sprint 3 |
-| **US-28** | Should | Como **advogado**, quero copiar a citação do tema já com a fonte, a data de extração, o escopo e o processo apurado, para colar na petição sem transcrever à mão | 3 | Sprint 3 |
-| **US-29** | Should | Como **juiz**, quero saber quando o dado foi atualizado pela última vez, e ser avisado quando ele está velho, para não decidir sobre um retrato de meses atrás | 3 | Sprint 3 |
-| **US-30** | Could | Como **advogado**, quero saber quanto tempo costuma levar do ajuizamento até a decisão nesse tema, para calibrar a expectativa do meu cliente | 8 | Sprint 3 |
-| **US-34** | Should | Como **advogado**, quero perguntar em linguagem natural para um chatbot sobre um tema e receber a resposta em prosa com os números, para as perguntas que não cabem em nenhum filtro da tela | 13 | Sprint 3 |
-| **US-35** | Should | Como **juiz**, quero que toda resposta do chatbot traga o processo apurado, a fonte, a data de extração, o escopo e o link para os processos, para poder conferir antes de usar | 5 | Sprint 3 |
-| **US-36** | Should | Como **advogado**, quero que o chatbot diga não sei quando o dado não está na base, para não receber um número plausível e inventado | 3 | Sprint 3 |
+| **US-01** | Must | As a **user**, I want to type my case's topic in natural language and get curated legal topics — not a list of cases — so that I can find out how it is being decided without digging through one ruling at a time | 8 | Sprint 1 |
+| **US-02** | Must | As a **user**, I want results ordered by how settled the understanding is, and not by text relevance, so that I find first what supports my thesis | 2 | Sprint 1 |
+| **US-04** | Must | As a **user**, I want to filter results by court, period, instance and minimum strength, seeing how many cases each court has, so that I can narrow the list down to my case | 5 | Sprint 1 |
+| **US-09** | Must | As a **user**, I want to read the topic's understanding in prose, opening with the number that answers the question and with the case count next to every percentage, so that I understand the pattern without opening a table | 8 | Sprint 1 |
+| **US-10** | Must | As a **user**, I want to see the distribution of outcomes for the topic in a figure with the source stated, so that I can see at a glance how much is upheld, partially upheld and dismissed | 5 | Sprint 1 |
+| **US-13** | Could | As a **user**, I want the tab I am viewing to be reflected in the URL, so that I can send a colleague the exact link to the part I want to show | 5 | Sprint 1 |
+| **US-18** | Could | As a **user**, I want to see the qualified precedents linked to the topic — súmula, repetitive theme, IRDR — distinguishing what is legally binding from what is merely persuasive, so that I know what binds me | 8 | Sprint 1 |
+| **US-21** | Must | As a **user**, I want to see the legal scholarship invoked, with author, work and its position in the debate, with a link to the article when there is one, so that I know what to cite beyond case law | 8 | Sprint 1 |
+| **US-23** | Could | As a **user**, I want to read the full text of the cited decision on the application, so that I can check the context before using it | 5 | Sprint 1 |
+| **US-24** | Must | As a **user**, I want every screen to make clear that the data covers TJSP, TJRJ and TJMG, so that I do not draw a nationwide conclusion from a percentage that reflects three states | 2 | Sprint 1 |
+| **US-25** | Must | As a **user**, I want to know the source and the extraction date of every number I am seeing, so that I know exactly what I am citing | 3 | Sprint 1 |
+| **US-26** | Must | As a **user**, I want the screen to tell me what does not exist and why, instead of showing an empty field or a plausible value, so that I do not build a filing on data that does not exist | 3 | Sprint 1 |
+| **US-03** | Must | As a **user**, I want to see in each result the score, the area of law, the thesis title, a short summary, the courts, the volume, the period, the last decision and the favourable percentage, so that I can compare theses before opening any of them | 8 | Sprint 2 |
+| **US-38** | Could | As a **user**, I want suggested frequent queries on the home screen, so that I understand what kind of question the tool answers before typing my own | 2 | Sprint 2 |
+| **US-06** | Must | As a **user**, I want a 0-to-100 score telling me how settled the understanding on the topic is, so that I know whether the thesis is worth arguing or is an open fight | 8 | Sprint 2 |
+| **US-07** | Must | As a **user**, I want the score to come with a grade in language that already exists in the legal field — Consolidada, Dominante, Em formação, Divergente — so that I do not have to interpret an invented scale | 2 | Sprint 2 |
+| **US-08** | Must | As a **user**, I want to open the score's composition — the four components, their weights and the basis of calculation — so that I can cite the statistic knowing exactly where it comes from | 3 | Sprint 2 |
+| **US-11** | Must | As a **user**, I want to see how the topic's alignment evolved year by year, with the trend sentence, so that I know whether the understanding is settling or shifting | 5 | Sprint 2 |
+| **US-12** | Must | As a **user**, I want to see the topic's alignment by court, so that I know whether the thesis holds the same in São Paulo, Rio de Janeiro and Minas Gerais | 3 | Sprint 2 |
+| **US-14** | Must | As a **user**, I want a table of each court's behaviour — decisions, alignment and date of the latest one — so that I can compare my court with the others | 3 | Sprint 2 |
+| **US-15** | Must | As a **user**, I want an auditable sample of the cases behind the topic, with panel, date and outcome, so that I can check the cases before citing them | 5 | Sprint 2 |
+| **US-17** | Should | As a **user**, I want to know whether the panels of my court are deciding alike, so that I can spot internal divergence before deciding | 5 | Sprint 2 |
+| **US-19** | Could | As a **user**, I want to see the grounds invoked in the topic's decisions, with the frequency and the acceptance rate of each one, so that I can pick the argument that wins most and avoid the one that always loses | 8 | Sprint 2 |
+| **US-22** | Could | As a **user**, I want the reporting judge's name in the sample and in the citation reference, so that I can assemble the complete citation | 5 | Sprint 2 |
+| **US-37** | Could | As a **user**, I want to see in the understanding text the ruling that supports each statement, with the full reference and the list of cited decisions at the foot, so that I can cite the same decision | 8 | Sprint 2 |
+| **US-27** | Should | As a **user**, I want to export to CSV the decisions that support the topic, so that I can work the data outside the tool | 5 | Sprint 3 |
+| **US-28** | Should | As a **user**, I want to copy the topic's citation already with the source, the extraction date, the scope and the `n`, so that I can paste it without retyping | 3 | Sprint 3 |
+| **US-29** | Should | As a **user**, I want to know when the data was last updated, and to be warned when it is stale, so that I do not rely on a months-old snapshot | 3 | Sprint 3 |
+| **US-30** | Could | As a **user**, I want to know how long it usually takes from filing to decision on this topic, so that I can calibrate my client's expectation | 8 | Sprint 3 |
+| **US-34** | Should | As a **user**, I want to ask a chatbot about a topic in natural language and get the answer in prose with the numbers, for the questions that no screen filter answers | 13 | Sprint 3 |
+| **US-35** | Should | As a **user**, I want every chatbot answer to bring the `n`, the source, the extraction date, the scope and the link to the cases, so that I can check it before using it | 5 | Sprint 3 |
+| **US-36** | Should | As a **user**, I want the chatbot to say it does not know when the data is not in the base, so that I do not get a plausible, invented number | 3 | Sprint 3 |
 
-##  Escala de Estimativa
-| SP | Significado | Camadas | Incerteza |
+## Sprint distribution
+
+| Sprint | Window | Stories | Points |
 | --- | --- | --- | --- |
-| **1** | ajuste isolado: um texto, uma formatação | 1 | nenhuma |
-| **2** | a última peça de algo que outra story já entregou | 1 | nenhuma |
-| **3** | trabalho próprio em uma camada: um bloco, uma tabela, um componente | 1 | nenhuma |
-| **5** | duas camadas, ou uma regra que alguém precisa definir | 2 | alguma |
-| **8** | atravessa do banco à tela, ou o time nunca fez aquilo | 3+ | real |
-| **13** | grande **e** incerta — teto da escala, candidata a quebra no refinamento | todas | alta |
+| **Sprint 1** | 07/09 – 27/09 | 13 | 62 |
+| **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
+| **Sprint 3** | 02/11 – 22/11 | 7 | 40 |
 
 ## MoSCoW
-| Prioridade | Significado |
+
+| Priority | Meaning |
 | --- | --- |
-| **Must** | Obrigatório para a entrega. Sem este item, o produto não cumpre seu objetivo principal, não atende ao requisito essencial ou não pode ser considerado funcional/avaliável. Deve ser priorizado antes de qualquer outro item. |
-| **Should** | Importante para uma entrega completa. O produto ainda funciona sem este item, mas sua ausência gera uma perda relevante de qualidade, usabilidade ou cobertura do objetivo. Deve entrar se houver capacidade disponível após os Must. |
-| **Could** | Melhoria desejável. Agrega valor ao produto, mas não compromete a entrega caso fique de fora. É o primeiro grupo a ser reduzido ou adiado quando houver restrição de prazo, equipe ou capacidade. |
-| **Won't** | Fora da entrega atual. O item foi analisado e deliberadamente não será desenvolvido neste ciclo/projeto. Deve ser registrado no Fora do escopo para evitar que volte ao backlog como uma demanda inesperada. |
+| **Must** | Required for the delivery. Without it the product does not meet its main objective and is not assessable. Prioritised ahead of everything else. |
+| **Should** | Important for a complete delivery. The product still works without it, but its absence is a real loss of quality, usability or coverage. Enters if there is capacity left after the Musts. |
+| **Could** | Desirable improvement. Adds value but does not compromise the delivery if left out. First group to be cut when time or capacity gets tight. |
+| **Won't** | Out of this delivery. Analysed and deliberately not built in this cycle — recorded in [Out of scope](#out-of-scope) so it does not come back as a surprise. |
 
+## Estimation scale
 
-## Equipe
+| SP | Meaning | Layers | Uncertainty |
+| --- | --- | --- | --- |
+| **1** | isolated tweak: one text, one bit of formatting | 1 | none |
+| **2** | the last piece of something another story already delivered | 1 | none |
+| **3** | self-contained work in one layer: a block, a table, a component | 1 | none |
+| **5** | two layers, or a rule someone has to define | 2 | some |
+| **8** | goes from the database to the screen, or the team has never done it | 3+ | real |
+| **13** | large **and** uncertain — top of the scale, a candidate for splitting in refinement | all | high |
+
+## Team
 <div align="center">
   <table>
     <thead>
@@ -130,23 +138,22 @@ O Ratio tem como objetivo eliminar o trabalho manual e fragmentado da análise j
   </table>
 </div>
 
-## Como contribuir?
+## How to contribute
 ### Branches
-- **Feature Branching + branch por Sprint**
-- **main:** Branch principal e estável do projeto. Recebe merges apenas ao final de cada sprint, após revisão e aprovação.
-- **sprintX** (ex: sprint1, sprint2, sprint3): Cada sprint possui sua própria branch base, onde são integradas todas as funcionalidades desenvolvidas durante aquele ciclo.
-- **taskpai-subtask-nome-da-task-com-traço-se-tiver-espaco:** Para cada nova funcionalidade ou correção, é criada uma branch específica a partir da branch da sprint em andamento. Essa Branch é criada com base na task do board. Exemplo: `RATIO-35-0.1-Implementar-documentação-API`
-- **Repositório de documentação:** tendo em vista que as branches deste repositório não são ligadas a taks, devem seguir um padrão diferente. Deve apenas conter o nome da aplicação acompanhado da palavra “**DOCS**” e da descrição do que está sendo feito, por exemplo, `RATIO-DOCS-Definition-of-Done`, `RATIO-DOCS-Product-Backlog`
+- **Feature branching + one branch per sprint**
+- **main:** the project's main, stable branch. It only receives merges at the end of each sprint, after review and approval.
+- **sprintX** (e.g. sprint1, sprint2, sprint3): each sprint has its own base branch, where every feature built during that cycle is integrated.
+- **parenttask-subtask-task-name-with-dashes-if-it-has-spaces:** for every new feature or fix, a dedicated branch is created off the current sprint branch. The branch is named after the task on the board. Example: `RATIO-35-0.1-Implement-API-documentation`
+- **Documentation repository:** since the branches in this repository are not tied to tasks, they follow a different pattern. They carry the application name, the word "**DOCS**" and a description of what is being done — for example, `RATIO-DOCS-Definition-of-Done`, `RATIO-DOCS-Product-Backlog`
 ### Commits
-**Todos os commits para qualquer repositório deste projeto devem ser feitos em inglês**  
-Cada commit deve ser pequeno, descritivo e objetivo, seguindo o padrão de convenção semântica:
-
-- `feat:` descrição da nova funcionalidade
-- `fix:` correção de bug ou comportamento inesperador
-- `factor:` melhoria de código sem alterar comportamento
-- `docs:` atualização de documentação
-- `chore:` tarefas de configuração, build ou manutenção
-
-Exemplo: `feat: add semantic search by legal topic`
-
-O número de commits é usado como indicador de contribuição individual e progresso da sprint, permitindo rastrear o fluxo de trabalho no repositório
+**Every commit to any repository in this project must be written in English.**  
+Each commit should be small, descriptive and to the point, following the semantic convention:
+ 
+- `feat:` description of the new feature
+- `fix:` bug fix or unexpected behaviour
+- `refactor:` code improvement with no change in behaviour
+- `docs:` documentation update
+- `chore:` configuration, build or maintenance work
+Example: `feat: add semantic search by legal topic`
+ 
+The number of commits is used as an indicator of individual contribution and sprint progress, making the flow of work in the repository traceable.
