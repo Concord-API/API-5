@@ -249,42 +249,6 @@ Então a categoria aparecerá com 0%, e não será omitida
  
 ---
  
-### US-13 — Aba corrente na URL · Should · 2 SP
- 
-> Como **advogado**, quero que a aba que estou vendo fique na URL, para mandar a um colega o link exato da parte que quero mostrar.
- 
-**Regras de negócio**
- 
-- Trocar de aba atualiza a URL sem recarregar a página.
-- Abrir a URL com a aba indicada carrega direto naquela aba.
-- Aba inexistente na URL cai na aba padrão do tema.
-**Dados a armazenar**
- 
-- `aba`: lista pré-definida, opcional na URL.
-- `identificador do tema`: identificador, obrigatório na URL.
-**Mensagens**
- 
-- Confirmação: "Link copiado."
-- Erro: "Tema não encontrado."
-- Aviso: "Aba não reconhecida. Exibindo a aba inicial do tema."
-**Protótipo** — abas do tema com botão de copiar link.
- 
-**Critérios de aceitação**
- 
-```
-Cenário: Compartilhar a aba corrente
-Dado que o advogado está na aba de distribuição de um tema
-Quando copiar a URL e abri-la em outra janela
-Então a página abrirá diretamente na aba de distribuição do mesmo tema
- 
-Cenário: Aba inválida na URL
-Dado que a URL indica uma aba que não existe
-Quando a página for aberta
-Então o sistema exibirá a aba inicial do tema e o aviso "Aba não reconhecida"
-```
- 
----
- 
 ### US-18 — Precedentes qualificados ligados ao tema · Could · 8 SP
  
 > Como **juiz**, quero ver os precedentes qualificados ligados ao tema — súmula, tema repetitivo, IRDR — distinguindo o que vincula de direito do que apenas persuade, para saber o que me obriga.
