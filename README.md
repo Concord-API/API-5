@@ -23,7 +23,6 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 - **Multi-court coverage** — centralised data from TJSP, TJRJ and TJMG, the three courts with the highest case volume in the country.
 - **Access to related precedents and scholarship** — to keep everything traceable, all the precedents and scholarly works used to summarise a topic remain reachable.
 
-
 # Product Backlog
 | ID | Priority | Description | Estimate | Sprint |
 | --- | --- | --- | --- | --- |
