@@ -1,475 +1,1158 @@
-# DoR detalhado e Critérios de Aceitação
+Detailed DoR and acceptance criteria for all 32 stories in the
+[Product Backlog](../../README.md#-product-backlog), in backlog order. Scenarios are written in BDD, as
+the [Definition of Ready](definition-of-ready.md) requires.
  
-### US-01 — Busca por tema em linguagem natural · Must · 8 SP
+Each header carries priority, epic, estimate, sprint, state and dependencies. Domain values
+stay in Portuguese (`NFR-20`), so terms such as *Consolidada* and *súmula* appear as they do
+on screen.
  
-> Como **advogado**, quero digitar o tema do meu caso em linguagem natural e receber temas jurídicos apurados — não uma lista de processos — para descobrir como aquilo vem sendo decidido sem garimpar acórdão por acórdão.
+---
  
-**Regras de negócio**
+# Sprint 1
  
-- A busca aceita texto livre em português e retorna **temas**, nunca processos individuais.
-- A busca é full-text no Postgres, tolerante a ausência de acento e a erro de digitação.
-- Busca sem resultado retorna estado vazio explicativo, não lista vazia.
-- Consulta com menos de 3 caracteres não é submetida.
-**Dados a armazenar**
+---
  
-- `termo de busca`: texto, obrigatório, mínimo 3 caracteres.
-- `identificador do tema`: identificador, obrigatório.
-- `título do tema`: texto, obrigatório.
-- `vetor de busca`: índice full-text em português, gerado na carga.
-- Grão do resultado: um registro por tema.
-**Mensagens**
+### US-01 — Natural-language topic search
+`Must` · E1 · 8 SP · Sprint 1 · ready · depends on —
  
-- Confirmação: "N temas encontrados para «termo»."
-- Erro: "Digite ao menos 3 caracteres para buscar."
-- Aviso: "Nenhum tema encontrado para «termo» no escopo TJSP, TJRJ e TJMG."
-**Protótipo** — tela de busca com campo único e lista de resultados.
+> As a **user**, I want to type my case's topic in natural language and get curated legal
+> topics — not a list of cases — so that I can find out how it is being decided without
+> digging through one ruling at a time.
  
-**Critérios de aceitação**
+**Business rules**
  
-```
-Cenário: Buscar um tema existente
-Dado que existem temas apurados na base
-Quando o advogado digitar "juros abusivos em contrato bancário"
-Então o sistema exibirá uma lista de temas jurídicos, e não de processos
+- The search accepts free text in Portuguese and returns **topics**, never individual cases.
+- Full-text search in Postgres, tolerant to missing accents and typing errors.
+- A query with fewer than 3 characters is not submitted.
+- An empty search is not an error: it returns the highest-volume topics.
+- A topic with no computed judgment does not appear — a topic without an outcome answers nothing.
+**Data**
  
-Cenário: Buscar com erro de digitação
-Dado que existe o tema "Dano moral por negativação indevida"
-Quando o advogado digitar "negativacao indevda"
-Então o sistema retornará esse mesmo tema
+- `search term`: text, required, minimum 3 characters.
+- `topic id`, `topic title`: required.
+- `search vector`: Portuguese full-text index, generated at load time.
+**Messages**
  
-Cenário: Buscar termo sem correspondência
-Dado que não há tema correspondente na base
-Quando o advogado buscar "contrato de arrendamento de satélite"
-Então o sistema exibirá "Nenhum tema encontrado para «...» no escopo TJSP, TJRJ e TJMG"
+- Confirmation: "N temas encontrados para «termo»."
+- Error: "Digite ao menos 3 caracteres para buscar."
+- Empty: "Nenhum tema encontrado para «termo» no escopo TJSP, TJRJ e TJMG."
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Search an existing topic
+Given there are computed topics in the base
+When the user types "inscrição indevida em cadastro de inadimplentes"
+Then the system shows a list of legal topics, and no item in the list is an individual case
+ 
+Scenario: Search without accents
+Given the topic "Inscrição indevida" exists
+When the user types "inscricao indevida"
+Then the system returns that same topic
+ 
+Scenario: Search with a typing error
+Given the topic "Dano moral por negativação indevida" exists
+When the user types "negativacao indevda"
+Then the system recovers the topic by similarity instead of returning empty
+ 
+Scenario: Search with no match
+Given there is no matching topic in the base
+When the user searches "contrato de arrendamento de satélite"
+Then the system explains the TJSP, TJRJ and TJMG scope and suggests rephrasing
+ 
+Scenario: Empty search
+Given the user submits the search with no term
+When the search runs
+Then the system returns the highest-volume topics
+ 
+Scenario: Share the search
+Given the user has submitted a search
+When the term appears in the URL
+Then reloading the page or opening the link reproduces the same search
 ```
  
 ---
  
-### US-02 — Ordenação por firmeza do entendimento · Must · 2 SP
+### US-02 — Results ordered by strength of understanding
+`Must` · E1 · 2 SP · Sprint 1 · ready · depends on US-01, US-06
  
-> Como **advogado**, quero que os resultados venham ordenados pela firmeza do entendimento, e não por relevância textual, para encontrar primeiro o que me serve para sustentar a tese.
+> As a **user**, I want results ordered by how settled the understanding is, and not by text
+> relevance, so that I find first what supports my thesis.
  
-**Regras de negócio**
+**Business rules**
  
-- A ordenação padrão da lista é pela **nota de firmeza**, decrescente.
-- Em caso de empate na nota, desempata pelo maior volume de decisões.
-- A relevância textual é usada apenas para filtrar quais temas entram na lista, nunca para ordená-la.
-**Dados a armazenar**
+- Default ordering is by the strength score, descending, and the screen states it.
+- Ties are broken by the larger decision volume; text relevance is used only to decide which topics enter the list, never to order it.
+- The volume behind each score is visible next to it.
+**Acceptance criteria**
  
-- `nota de firmeza`: inteiro de 0 a 100, opcional (vazio quando abaixo do limiar).
-- `volume de decisões`: inteiro, obrigatório.
-**Mensagens**
+```gherkin
+Scenario: Default ordering
+Given a set of results
+When the list is displayed
+Then it is ordered by strength score, descending, and the screen states that
  
-- Confirmação: "Ordenado por firmeza do entendimento."
-- Erro: não se aplica.
-- Aviso: "Alguns temas não possuem nota calculada e aparecem ao final da lista."
-**Protótipo** — lista de resultados com indicador de ordenação visível.
+Scenario: Tie on the score
+Given two topics with the same score
+When the list is assembled
+Then the tie is broken by decision volume, and text relevance is not displayed
  
-**Critérios de aceitação**
+Scenario: High volume, open dispute
+Given a topic with a large volume and decisions split evenly
+When the results appear
+Then it does not sit at the top on volume alone
  
-```
-Cenário: Ordenação padrão da lista
-Dado que a busca retornou temas com notas 82, 47 e 91
-Quando a lista for exibida
-Então os temas aparecerão na ordem 91, 82, 47
- 
-Cenário: Empate na nota de firmeza
-Dado que dois temas possuem nota 70, com 400 e 120 decisões
-Quando a lista for exibida
-Então o tema com 400 decisões aparecerá primeiro
-```
- 
----
- 
-### US-04 — Filtros por tribunal, período, grau e força mínima · Must · 5 SP
- 
-> Como **advogado**, quero filtrar os resultados por tribunal, período, grau e força mínima, vendo quantos processos cada tribunal tem, para reduzir a lista ao recorte do meu caso.
- 
-**Regras de negócio**
- 
-- Filtros disponíveis: tribunal (TJSP, TJRJ, TJMG), período por ano, grau e força mínima da nota.
-- Cada opção de tribunal exibe a **contagem de processos** correspondente.
-- Filtros são combináveis e refletidos na lista imediatamente.
-- Combinação sem resultado mostra estado vazio explicativo e mantém os filtros aplicados visíveis.
-**Dados a armazenar**
- 
-- `tribunal`: lista pré-definida (TJSP, TJRJ, TJMG), obrigatório.
-- `ano da decisão`: inteiro de 4 dígitos, obrigatório.
-- `grau`: lista pré-definida, obrigatório.
-- `força mínima`: inteiro de 0 a 100, opcional.
-- Origem: consulta OLAP pré-agregada por tema, ano e tribunal.
-**Mensagens**
- 
-- Confirmação: "N temas com os filtros aplicados."
-- Erro: "Período inválido: o ano inicial deve ser anterior ao final."
-- Aviso: "Nenhum tema atende a essa combinação de filtros. Remova um filtro para ampliar o resultado."
-**Protótipo** — painel lateral de filtros com contadores por tribunal.
- 
-**Critérios de aceitação**
- 
-```
-Cenário: Filtrar por tribunal
-Dado que a lista exibe temas dos três tribunais
-Quando o advogado marcar apenas TJSP
-Então a lista exibirá somente temas com decisões do TJSP
-E cada tribunal exibirá a quantidade de processos ao lado do nome
- 
-Cenário: Combinação de filtros sem resultado
-Dado que o advogado filtrou por TJMG, ano 2015 e força mínima 90
-Quando nenhum tema atender à combinação
-Então o sistema exibirá "Nenhum tema atende a essa combinação de filtros"
-E manterá os filtros aplicados visíveis na tela
- 
-Cenário: Período invertido
-Dado que o advogado informou o período de 2024 a 2019
-Quando aplicar o filtro
-Então o sistema exibirá "Período inválido: o ano inicial deve ser anterior ao final"
+Scenario: High score, low volume
+Given a topic with a high score and very few judgments
+When it appears in the list
+Then the volume behind it is visible next to the score
 ```
  
 ---
  
-### US-05 — Separação de teses distintas sob o mesmo assunto CNJ · Should · 13 SP
+### US-04 — Filter results to the shape of my case
+`Must` · E1 · 5 SP · Sprint 1 · awaiting decision 2 · depends on US-03
  
-> Como **advogado**, quero que a busca separe teses distintas que hoje caem no mesmo assunto do CNJ, para encontrar a tese do meu caso e não a categoria dela.
+> As a **user**, I want to filter results by court, period, instance and minimum strength,
+> seeing how many cases each court has, so that I can narrow the list down to my case.
  
-**Regras de negócio**
+**Business rules**
  
-- Um assunto CNJ pode originar **mais de um tema** na base.
-- Cada tema resultante exibe o assunto CNJ de origem, para o usuário entender a separação.
-- A relação entre assunto CNJ e tema é N:N e vive em **tabela-ponte** no DW.
-- O critério de separação usado é registrado e exibível junto ao tema.
-**Dados a armazenar**
+- Filters combine and are applied by the API; the list is never filtered in the browser.
+- The court filter shows each court's case count, coming from the API.
+- The instance filter offers only the instances that exist in the loaded scope.
+- Active filters are reflected in the URL so a narrowed view can be shared.
+**Messages**
  
-- `código do assunto CNJ`: texto, obrigatório.
-- `descrição do assunto CNJ`: texto, obrigatório.
-- `identificador do tema`: identificador, obrigatório.
-- `critério de separação`: texto, obrigatório.
-- Tabela-ponte entre tema e assunto CNJ, grão: um registro por par tema × assunto CNJ.
-**Mensagens**
+- Empty result: the screen describes the filters applied and offers the path to clear them.
+**Acceptance criteria**
  
-- Confirmação: "Este assunto do CNJ contém N teses distintas."
-- Erro: "Não foi possível separar as teses deste assunto. Exibindo o assunto agrupado."
-- Aviso: "Este tema compartilha o assunto CNJ «...» com outras teses."
-**Protótipo** — resultado com etiqueta do assunto CNJ de origem em cada tema.
+```gherkin
+Scenario: Filter by court with counts
+Given the courts in scope
+When the court filter is rendered
+Then each court shows its case count, coming from the API
  
-**Critérios de aceitação**
+Scenario: Instance filter with state courts only
+Given decision 2 keeps the scope at state courts
+When the instance filter is rendered
+Then the "Superior" option is not shown
  
-```
-Cenário: Assunto CNJ com mais de uma tese
-Dado que o assunto CNJ "Contratos bancários" agrupa 3 teses distintas
-Quando o advogado buscar por esse assunto
-Então o sistema exibirá 3 temas separados
-E cada um exibirá o assunto CNJ de origem
+Scenario: Apply and share
+Given the user has chosen filters
+When they apply them
+Then the list is rebuilt by the API and the filters appear in the URL
  
-Cenário: Assunto CNJ com tese única
-Dado que o assunto CNJ possui apenas uma tese
-Quando o advogado buscar por ele
-Então o sistema exibirá um único tema, sem aviso de compartilhamento
-```
+Scenario: Clear filters
+Given filters are applied
+When the user clears them
+Then every filter returns to its default and the list is rebuilt
  
----
- 
-### US-09 — Entendimento do tema em prosa · Must · 8 SP
- 
-> Como **juiz**, quero ler o entendimento do tema em prosa, abrindo com o número que responde à pergunta e com o processo apurado junto de todo percentual, para entender o padrão sem abrir tabela.
- 
-**Regras de negócio**
- 
-- O texto abre com o número que responde à pergunta central do tema.
-- **Todo percentual citado no texto vem acompanhado do método de apuração** — quantidade de decisões, recorte e fórmula.
-- O texto é gerado a partir dos agregados do DW, nunca de valores digitados à mão.
-- Sem dados suficientes, o texto não é gerado: exibe-se o motivo.
-**Dados a armazenar**
- 
-- `texto do entendimento`: texto, obrigatório.
-- `percentual`: decimal de 0 a 100, 1 casa.
-- `número de decisões`: inteiro, obrigatório para todo percentual exibido.
-- `método de apuração`: texto, obrigatório.
-**Mensagens**
- 
-- Confirmação: não se aplica (leitura).
-- Erro: "Não foi possível gerar o entendimento deste tema."
-- Aviso: "Entendimento apurado sobre N decisões — amostra reduzida, leia com cautela."
-**Protótipo** — aba "Entendimento" com o texto corrido e a procedência ao pé.
- 
-**Critérios de aceitação**
- 
-```
-Cenário: Ler o entendimento de um tema consolidado
-Dado que o tema possui 412 decisões apuradas
-Quando o juiz abrir a aba de entendimento
-Então o texto abrirá com o número que responde à pergunta central
-E cada percentual citado virá acompanhado do número de decisões e do método de apuração
- 
-Cenário: Tema com amostra reduzida
-Dado que o tema possui apenas 7 decisões apuradas
-Quando o juiz abrir a aba de entendimento
-Então o sistema exibirá "Entendimento apurado sobre 7 decisões — amostra reduzida, leia com cautela"
+Scenario: Narrowing with no results
+Given a filter combination with no result
+When it is applied
+Then the screen describes the applied narrowing and offers a way to clear it
 ```
  
 ---
  
-### US-10 — Figura da distribuição dos desfechos · Must · 5 SP
+### US-09 — Read the understanding in prose
+`Must` · E3 · 8 SP · Sprint 1 · ready · depends on US-06
  
-> Como **advogado**, quero ver a distribuição dos desfechos do tema em uma figura com a fonte declarada, para enxergar de uma vez quanto é procedente, parcialmente procedente e improcedente.
+> As a **user**, I want to read the topic's understanding in prose, opening with the number
+> that answers the question and with the case count (`n`) next to every percentage, so that
+> I understand the pattern without opening a table.
  
-**Regras de negócio**
+**Business rules**
  
-- A figura exibe as três categorias: procedente, parcialmente procedente e improcedente.
-- A soma dos percentuais é 100%; diferença de arredondamento é absorvida na maior fatia.
-- A figura traz **fonte, data de extração e total de decisões** declarados junto dela.
-- Categoria com zero ocorrências aparece com valor 0, não é omitida.
-**Dados a armazenar**
+- The topic header carries the score, the grade, the area tag, the thesis title and the metadata line: cases, courts, period and last decision.
+- The text opens with a highlight line that already contains the number answering the question, with its `n`.
+- Every number in the body is accompanied by its `n`, and none of them is computed on screen.
+- While automatic generation of the prose does not exist, the summary is the **curated** text per decision 20, and the data records that it is curated.
+- Blocks whose source is not confirmed — ruling quotation, full-text button, citation markers, cited-decision footer — do not appear, and their place explains why.
+**Acceptance criteria**
  
-- `desfecho`: lista pré-definida (procedente, parcialmente procedente, improcedente), obrigatório.
-- `quantidade de decisões`: inteiro, obrigatório.
-- `percentual`: decimal com 1 casa.
-- Origem: consulta OLAP pré-agregada por tema e desfecho.
-**Mensagens**
+```gherkin
+Scenario: Opening line answers the question
+Given a topic with computed data
+When its summary is rendered
+Then the first highlight line contains the number that answers the question, with its n
  
-- Confirmação: não se aplica.
-- Erro: "Não há decisões classificadas por desfecho para este tema."
-- Aviso: "Distribuição apurada sobre N decisões."
-**Protótipo** — gráfico de distribuição com legenda e bloco de procedência.
+Scenario: Every percentage carries its n
+Given any percentage in the body of the text
+When it is displayed
+Then the case count it was computed from is displayed with it
  
-**Critérios de aceitação**
+Scenario: Nothing is computed on screen
+Given the text and its numbers come from aggregates
+When the page renders
+Then no number is calculated in the frontend
  
-```
-Cenário: Visualizar a distribuição de desfechos
-Dado que o tema possui 300 decisões classificadas
-Quando o advogado abrir o tema
-Então a figura exibirá procedente, parcialmente procedente e improcedente
-E exibirá a fonte, a data de extração e o total de 300 decisões
+Scenario: Unsourced block
+Given the ruling quotation depends on full decision text, which has no confirmed source
+When the page renders
+Then the quotation block does not appear and its place explains why, linking to the limitations page
  
-Cenário: Desfecho sem ocorrência
-Dado que nenhuma decisão do tema é parcialmente procedente
-Quando a figura for exibida
-Então a categoria aparecerá com 0%, e não será omitida
-```
- 
----
- 
-### US-18 — Precedentes qualificados ligados ao tema · Could · 8 SP
- 
-> Como **juiz**, quero ver os precedentes qualificados ligados ao tema — súmula, tema repetitivo, IRDR — distinguindo o que vincula de direito do que apenas persuade, para saber o que me obriga.
- 
-**Regras de negócio**
- 
-- Cada precedente é classificado como **vinculante** ou **persuasivo**, e a distinção é visível na tela.
-- Tipos aceitos: súmula, tema repetitivo e IRDR.
-- A relação entre tema e precedente é N:N, em tabela-ponte.
-- Tema sem precedente qualificado exibe estado vazio explicativo.
-**Dados a armazenar**
- 
-- `tipo de precedente`: lista pré-definida (súmula, tema repetitivo, IRDR), obrigatório.
-- `identificação do precedente`: texto, obrigatório.
-- `caráter`: lista pré-definida (vinculante, persuasivo), obrigatório.
-- `órgão de origem`: texto, obrigatório.
-- Tabela-ponte entre tema e precedente, grão: um registro por par tema × precedente.
-**Mensagens**
- 
-- Confirmação: não se aplica.
-- Erro: "Não foi possível carregar os precedentes deste tema."
-- Aviso: "Nenhum precedente qualificado identificado para este tema."
-**Protótipo** — aba de precedentes, separada em vinculantes e persuasivos.
- 
-**Critérios de aceitação**
- 
-```
-Cenário: Tema com precedentes de naturezas diferentes
-Dado que o tema está ligado a uma súmula vinculante e a um IRDR persuasivo
-Quando o juiz abrir a aba de precedentes
-Então os dois serão exibidos em grupos distintos, identificados como vinculante e persuasivo
- 
-Cenário: Tema sem precedente qualificado
-Dado que o tema não possui precedente vinculado
-Quando o juiz abrir a aba
-Então o sistema exibirá "Nenhum precedente qualificado identificado para este tema"
+Scenario: Footer declares provenance
+Given the page was fed by one or more sources
+When the footer renders
+Then it lists every source, the extraction date and the methodology version
 ```
  
 ---
  
-### US-21 — Doutrina invocada · Could · 8 SP
+### US-10 — See the outcome distribution as a figure
+`Must` · E3 · 5 SP · Sprint 1 · awaiting decision 3 · depends on US-09
  
-> Como **advogado**, quero ver a doutrina invocada com autor, obra e a posição dela no debate, com link para o artigo quando houver, para saber o que citar além de jurisprudência.
+> As a **user**, I want to see the distribution of outcomes for the topic in a figure with
+> the source stated, so that I can see at a glance how much is upheld, partially upheld and
+> dismissed.
  
-**Regras de negócio**
+**Business rules**
  
-- Cada referência traz autor, obra e a posição no debate (favorável, contrária ou neutra).
-- O link para o artigo é exibido apenas quando existir.
-- A relação entre tema e doutrina é N:N, em tabela-ponte.
-**Dados a armazenar**
+- The figure shows counts and percentages per outcome category.
+- It is numbered, sits in the flow of the text — never in a card grid — and carries the source underneath.
+- Without a stated source the figure is not rendered at all.
+- The treatment of partially upheld claims (decision 3) is declared where the number is computed.
+- Visual rules: rectangular bars, no radius, no axis, no grid, no tooltip.
+**Acceptance criteria**
  
-- `autor`: texto, obrigatório.
-- `obra`: texto, obrigatório.
-- `posição no debate`: lista pré-definida (favorável, contrária, neutra), obrigatório.
-- `link do artigo`: texto, opcional, com validação de formato de URL.
-- Tabela-ponte entre tema e doutrina, grão: um registro por par tema × referência.
-**Mensagens**
+```gherkin
+Scenario: Distribution with counts and percentages
+Given a topic with computed outcomes
+When the figure is rendered
+Then each outcome category shows its count and its percentage
  
-- Confirmação: não se aplica.
-- Erro: "Não foi possível carregar a doutrina deste tema."
-- Aviso: "Nenhuma doutrina identificada para este tema."
-**Protótipo** — aba de doutrina em lista, agrupada por posição.
+Scenario: Figure without a source
+Given a figure whose source is not declared
+When the page is assembled
+Then the figure is not rendered
  
-**Critérios de aceitação**
- 
+Scenario: Amount figure has no source
+Given the awarded-amount range depends on full decision text, which has no source
+When the page renders
+Then the amount figure does not appear and its place explains why
 ```
-Cenário: Doutrina com link disponível
-Dado que a referência possui URL cadastrada
-Quando o advogado abrir a aba de doutrina
-Então autor, obra e posição serão exibidos com link para o artigo
  
-Cenário: Doutrina sem link
-Dado que a referência não possui URL cadastrada
-Quando a aba for exibida
-Então autor, obra e posição serão exibidos sem link, e sem campo vazio na tela
+---
+
+### US-18 — See the qualified precedents that bind me
+`Could` · E4 · 8 SP · Sprint 1 · source to verify · depends on —
+ 
+> As a **user**, I want to see the qualified precedents linked to the topic — súmula,
+> repetitive theme, IRDR — distinguishing what is legally binding from what is merely
+> persuasive, so that I know what binds me.
+ 
+**DoR precondition:** precedent source verified — is there a usable public API, does it cover
+the three courts, and do its terms allow storing in our own base — with the answer written
+down in the wiki. Until then the block does not appear and its place explains why.
+ 
+**Business rules**
+ 
+- Each precedent carries its kind, its effect, how many of the topic's decisions cite it and whether it was followed.
+- The effect distinguishes legally binding from persuasive, and the visual hierarchy mirrors the legal hierarchy — solid fill only for what is mandatory.
+- Each precedent has a path to its official source.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Binding and persuasive are distinguishable
+Given a topic with linked precedents
+When the block is rendered
+Then what is legally binding is visually distinct from what is persuasive
+ 
+Scenario: A court departing from the precedent
+Given a court that departs from the precedent
+When the block is rendered
+Then that is flagged as open divergence
+ 
+Scenario: Provenance of the block
+Given the precedent block is displayed
+When the user checks its provenance
+Then it states where the precedents came from and when
 ```
  
 ---
  
-### US-23 — Inteiro teor da decisão citada · Could · 5 SP
+### US-21 — Know what to cite beyond case law
+`Must` · E4 · 8 SP · Sprint 1 · source to verify · depends on —
  
-> Como **advogado**, quero ler o inteiro teor da decisão citada, para conferir o contexto antes de usá-la.
+> As a **user**, I want to see the legal scholarship invoked, with author, work and its
+> position in the debate, with a link to the article when there is one, so that I know what
+> to cite beyond case law.
  
-**Regras de negócio**
+**DoR precondition:** a verified source for the articles **and** a written answer on where
+the association between scholarship and topic comes from — that is the real gap, not the
+text source. Manual curation is acceptable if declared, with the note that it does not scale.
  
-- Toda decisão citada na ferramenta oferece acesso ao inteiro teor.
-- Quando o inteiro teor não está disponível na base, a tela informa a indisponibilidade e a origem do documento.
-- O documento exibido traz número do processo, tribunal e data.
-**Dados a armazenar**
+> This is the only **Must** in the backlog whose source is not confirmed. Either the
+> verification is answered early in Sprint 1, or the priority is wrong — see the warning in
+> the [Product Backlog](product-backlog.md).
  
-- `número do processo`: texto, obrigatório, com validação de formato CNJ.
-- `inteiro teor`: texto, opcional.
-- `link de origem`: texto, opcional, com validação de formato de URL.
-- `data da decisão`: data válida, obrigatório.
-**Mensagens**
+**Business rules**
  
-- Confirmação: não se aplica.
-- Erro: "Não foi possível carregar o inteiro teor desta decisão."
-- Aviso: "Inteiro teor não disponível na base. Consulte a decisão na origem."
-**Protótipo** — painel lateral com o texto da decisão e o cabeçalho de identificação.
+- Each entry carries author, work, edition or chapter, and its position in the debate (majority, intermediate, minority).
+- An **article** carries a link to where it is published, preferably with a stable identifier.
+- A **book** appears as a text reference — author, title, edition, chapter. **Never as a PDF**: copyrighted work is not hosted.
+**Acceptance criteria**
  
-**Critérios de aceitação**
+```gherkin
+Scenario: Article with a stable link
+Given an article entry
+When it is displayed
+Then it carries a link to where it is published
  
-```
-Cenário: Abrir uma decisão com inteiro teor disponível
-Dado que a decisão possui inteiro teor na base
-Quando o advogado clicar sobre ela
-Então o sistema exibirá o texto completo com número do processo, tribunal e data
+Scenario: Book as a text reference
+Given a book entry
+When it is displayed
+Then it appears as author, title, edition and chapter, with no hosted PDF
  
-Cenário: Decisão sem inteiro teor
-Dado que a decisão não possui inteiro teor armazenado
-Quando o advogado clicar sobre ela
-Então o sistema exibirá "Inteiro teor não disponível na base. Consulte a decisão na origem"
-```
- 
----
- 
-### US-24 — Escopo dos dados visível em toda tela · Must · 2 SP
- 
-> Como **advogado**, quero que toda tela deixe claro que os dados cobrem TJSP, TJRJ e TJMG, para não tirar conclusão nacional de um percentual que reflete três estados.
- 
-**Regras de negócio**
- 
-- O escopo aparece em **todas as telas** que exibem dado apurado.
-- O texto do escopo é único e centralizado, para não divergir entre telas.
-- Quando um filtro reduz o escopo, o indicador reflete o recorte aplicado.
-**Dados a armazenar**
- 
-- `descrição do escopo`: texto, obrigatório, valor padrão "TJSP, TJRJ e TJMG".
-**Mensagens**
- 
-- Confirmação: não se aplica.
-- Erro: não se aplica.
-- Aviso: "Dados restritos a TJSP, TJRJ e TJMG. Não representam a média nacional."
-**Protótipo** — faixa fixa de escopo no cabeçalho das telas de dado.
- 
-**Critérios de aceitação**
- 
-```
-Cenário: Escopo visível na tela de resultados
-Dado que o advogado está em qualquer tela que exibe dado apurado
-Quando a tela for carregada
-Então o indicador "TJSP, TJRJ e TJMG" estará visível sem necessidade de rolagem
- 
-Cenário: Escopo reduzido por filtro
-Dado que o advogado filtrou apenas TJSP
-Quando a tela for atualizada
-Então o indicador exibirá somente TJSP
+Scenario: Curated association
+Given the association between scholarship and topic was curated by hand
+When provenance is displayed
+Then it states that it was curated, and when
 ```
  
 ---
  
-### US-25 — Fonte e data de extração de cada número · Must · 3 SP
+### US-23 — Read the full text of the cited decision in the application
+`Could` · E4 · 5 SP · Sprint 1 · source to verify · depends on US-37
  
-> Como **juiz**, quero saber de que fonte e de que data de extração vem cada número que estou vendo, para saber exatamente o que estou citando.
+> As a **user**, I want to read the full text of the cited decision on the application, so
+> that I can check the context before using it.
  
-**Regras de negócio**
+**DoR precondition:** decision 21 taken — may the full text be stored and displayed inside
+the application? — plus a verified route to obtain that text in the three courts, written
+down in the wiki. Reading in the application means **storing** the text, not linking out to
+it, and that changes the data model (`NFR-01`) and the LGPD analysis (`NFR-21`).
  
-- **Nenhum número é exibido sem fonte e data de extração.** Se a procedência falta, o número não vai para a tela.
-- A data de extração é a da carga que originou o número, não a data da consulta.
-- A regra vale para todos os temas e para todas as telas.
-**Dados a armazenar**
+**Business rules**
  
-- `fonte`: texto, obrigatório.
-- `data de extração`: data válida, obrigatório.
-- `método de apuração`: texto, obrigatório.
-- Registrados na dimensão de carga, ligados ao grão da tabela fato.
-**Mensagens**
+- The decision text is displayed inside the application, with its source and extraction date next to it, like any other datum (`NFR-02`).
+- Opening the text does not lose the topic context: the user can return to where they were.
+- Where the text was not obtained for a decision, there is no dead button — the absence is explicit (`US-26`), and the case number stays visible for a manual lookup at the court.
+- A case under seal is never displayed, whatever the route — it is flagged as sealed.
+- The text is stored as it was obtained. It is not summarised, rewritten or completed by a model.
+**Acceptance criteria**
  
-- Confirmação: não se aplica.
-- Erro: "Número indisponível: procedência não registrada."
-- Aviso: "Fonte: «...» · Extração em dd/mm/aaaa."
-**Protótipo** — bloco de procedência ao pé de cada figura e tabela.
+```gherkin
+Scenario: Read a decision in the application
+Given a cited decision whose full text was obtained
+When the user asks to read it
+Then the text is displayed in the application with its source and extraction date
  
-**Critérios de aceitação**
+Scenario: Return to the topic
+Given the user is reading a decision text
+When they go back
+Then they return to the point in the topic they came from
  
-```
-Cenário: Número com procedência completa
-Dado que o percentual possui fonte e data de extração registradas
-Quando o juiz visualizar o número
-Então a fonte e a data de extração serão exibidas junto dele
+Scenario: Text not obtained
+Given a decision whose full text was not obtained
+When the row is rendered
+Then there is no dead button, the absence is explicit, and the case number stays visible
  
-Cenário: Número sem procedência registrada
-Dado que um valor não possui fonte ou data de extração
-Quando a tela for montada
-Então o valor não será exibido
-E o sistema exibirá "Número indisponível: procedência não registrada"
+Scenario: Case under seal
+Given a case under seal
+When it appears anywhere
+Then no text is displayed and the case is flagged as sealed
+ 
+Scenario: Text is not rewritten
+Given a stored decision text
+When it is displayed
+Then it matches what was obtained from the source, with no model-generated summary presented as the decision
 ```
  
 ---
  
-### US-26 — Ausência de dado explicada · Must · 3 SP
+### US-24 — Know the coverage scope
+`Must` · E5 · 2 SP · Sprint 1 · ready · depends on —
  
-> Como **advogado**, quero que a tela me diga o que não existe e por quê, em vez de mostrar campo vazio ou valor plausível, para não construir uma peça sobre dado que não existe.
+> As a **user**, I want every screen to make clear that the data covers TJSP, TJRJ and TJMG,
+> so that I do not draw a nationwide conclusion from a percentage that reflects three states.
  
-**Regras de negócio**
+**Business rules**
  
-- Nenhuma tela exibe campo vazio, traço solto ou zero ambíguo no lugar de dado ausente.
-- Todo estado vazio informa **o que falta e por quê** — sem dado na base, fora do escopo ou fora do período filtrado.
-- Ausência de dado nunca é substituída por estimativa ou valor padrão.
-**Dados a armazenar**
+- The scope is visible **without interaction** — not hidden in a tooltip.
+- The text names the courts and uses no internal technical vocabulary.
+- The court list is not fixed text scattered through the interface: if decision 2 changes the scope, the statement follows.
+**Acceptance criteria**
  
-- `motivo da ausência`: lista pré-definida (sem dado na base, fora do escopo, fora do período filtrado), obrigatório quando não há valor.
-**Mensagens**
+```gherkin
+Scenario: Scope visible on every screen with numbers
+Given the results screen and both detail tabs
+When each of them renders
+Then the territorial scope is visible without interaction
  
-- Confirmação: não se aplica.
-- Erro: "Não foi possível verificar a disponibilidade deste dado."
-- Aviso: "Sem dado para este recorte: «motivo». Nenhum valor foi estimado."
-**Protótipo** — componente único de estado vazio, reutilizado em todas as telas.
- 
-**Critérios de aceitação**
- 
+Scenario: Scope changes
+Given decision 2 changes the scope
+When the screens render
+Then the statement reflects the new coverage, from a single source
 ```
-Cenário: Recorte sem dado na base
-Dado que o tema não possui decisões no TJMG
-Quando o advogado filtrar por TJMG
-Então o sistema exibirá "Sem dado para este recorte: sem dado na base"
-E não exibirá campo vazio nem valor estimado
  
-Cenário: Recorte fora do período
-Dado que o tema só possui decisões a partir de 2019
-Quando o advogado filtrar o período de 2010 a 2015
-Então o sistema exibirá "Sem dado para este recorte: fora do período filtrado"
+---
+ 
+### US-25 — Know the source and date of every number
+`Must` · E5 · 3 SP · Sprint 1 · ready · depends on —
+ 
+> As a **user**, I want to know the source and the extraction date of every number I am
+> seeing, so that I know exactly what I am citing.
+ 
+**Business rules**
+ 
+- Where a page is fed by more than one source, the footer lists **all** of them; two blocks from different sources each declare their own.
+- The extraction date comes from the loaded data, never from the server clock at request time.
+- A block with no available provenance **is not displayed** — provenance is a requirement, not an ornament.
+- The methodology version used to compute the metrics is displayed with the provenance.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Source and date on every screen with numbers
+Given the results screen and both detail tabs
+When each of them renders
+Then the source and the extraction date are stated
+ 
+Scenario: Several sources on one page
+Given the page was fed by more than one source
+When the footer renders
+Then every source is listed, not only the main one
+ 
+Scenario: Block without provenance
+Given a block whose provenance is not available
+When the page renders
+Then that block is not displayed
+ 
+Scenario: Date comes from the data
+Given a page rendered today from a load run last week
+When the extraction date is displayed
+Then it shows the load's date, not today's
 ```
+ 
+---
+ 
+### US-26 — See "no data" explained instead of an empty field
+`Must` · E5 · 3 SP · Sprint 1 · ready · depends on —
+ 
+> As a **user**, I want the screen to tell me what does not exist and why, instead of showing
+> an empty field or a plausible value, so that I do not build a filing on data that does not
+> exist.
+ 
+**Business rules**
+ 
+- Three distinct messages, each with its own text: **the source does not provide this**, **the data has not been loaded yet**, and **it does not apply to this topic**. The generic message is never used.
+- An empty list returned by the API is content, not an error, and never an invented placeholder.
+- An unsourced field inside a table: the column does not appear, or appears explicitly flagged — never with a value.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Block with no confirmed source
+Given any block without a confirmed source today
+When the topic detail renders
+Then it states what does not exist and why, with a path to the full explanation
+ 
+Scenario: Empty list from the API
+Given the API returns an empty list
+When the screen renders
+Then the empty state is content, with no invented placeholder
+ 
+Scenario: The right message for each situation
+Given each of the three situations
+When the screen renders
+Then it shows the matching message, never the generic one
+```
+ 
+---
+ 
+# Sprint 2
+ 
+---
+ 
+### US-03 — Compare theses in the result list
+`Must` · E1 · 8 SP · Sprint 2 · ready · depends on US-01, US-06
+ 
+> As a **user**, I want to see in each result the score, the area of law, the thesis title, a
+> short summary, the courts, the volume, the period, the last decision and the favourable
+> percentage, so that I can compare theses before opening any of them.
+ 
+**Business rules**
+ 
+- Each item carries: score in a circle with `/100`, area tag, thesis title, a summary of up to two lines, court acronyms, number of cases, period, date of the last decision and the favourable percentage with its alignment bar.
+- The favourable percentage carries its `n` on the same line.
+- When a topic has more courts than the chips shown, a `+N` indicator shows exactly the difference; when they all fit, the indicator is not rendered.
+- Numbers are formatted in Portuguese (12.418, not 12,418) and are never recomputed on screen.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: A complete result item
+Given a topic in the result list
+When the item is rendered
+Then it shows score, area, title, summary, courts, volume, period, last decision and favourable percentage
+ 
+Scenario: Percentage without a basis
+Given the favourable percentage is displayed
+When the item renders
+Then its n is visible on the same line
+ 
+Scenario: More courts than chips
+Given a topic with more courts than the chips shown
+When the item renders
+Then a +N indicator shows exactly the difference
+ 
+Scenario: Open the topic
+Given a result item
+When the user clicks it
+Then the topic detail opens
+```
+ 
+---
+ 
+### US-38 — Query suggestions on the home screen
+`Could` · E1 · 2 SP · Sprint 2 · ready · depends on US-01
+ 
+> As a **user**, I want suggested frequent queries on the home screen, so that I understand
+> what kind of question the tool answers before typing my own.
+ 
+**Business rules**
+ 
+- Suggestions come from real data in the loaded scope, never from a fixed list in the code.
+- They are natural-language topics, reinforcing what US-01 teaches about what is searched here.
+- With no suggestions available, the area simply does not appear — no empty space, no error text.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Click a suggestion
+Given the home screen shows suggestions
+When the user clicks one
+Then the search runs with that term
+ 
+Scenario: No suggestions available
+Given there are no suggestions to show
+When the home screen renders
+Then the suggestions area is not rendered at all
+```
+ 
+---
+ 
+### US-06 — The 0-to-100 score
+`Must` · E2 · 8 SP · Sprint 2 · awaiting decision 4 · depends on —
+ 
+> As a **user**, I want a 0-to-100 score telling me how settled the understanding on the
+> topic is, so that I know whether the thesis is worth arguing or is an open fight.
+ 
+**Business rules**
+ 
+- The score combines four components — agreement, volume, coverage and recency — with weights summing to 1.0.
+- The score is **deterministic**: same base, same score, and no component is a model's opinion.
+- A topic with no computed judgment gets no score and does not appear.
+- Known limitations are recorded where the user reaches the score breakdown — in particular that recency uses only the year of the last decision, not recent density.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Evenly split topic
+Given a topic decided half one way and half the other
+When the score is computed
+Then agreement is 0
+ 
+Scenario: Unanimous topic
+Given a topic decided the same way in every judgment
+When the score is computed
+Then agreement is 1
+ 
+Scenario: Volume above saturation
+Given a topic with volume above the saturation point
+When the score is computed
+Then more decisions do not increase the score
+ 
+Scenario: Stale thesis
+Given a topic whose last decision is old enough
+When the score is computed
+Then recency is 0
+ 
+Scenario: Coverage before recalibration
+Given decision 4 has not been taken
+When a topic is displayed
+Then no score is shown
+ 
+Scenario: Reference example
+Given the reference example published in the wiki
+When the automated test runs
+Then it reproduces exactly that example's score
+```
+ 
+---
+ 
+### US-07 — The grade in legal language
+`Must` · E2 · 2 SP · Sprint 2 · awaiting decision 14 · depends on US-06
+ 
+> As a **user**, I want the score to come with a grade in language that already exists in the
+> legal field — Consolidada, Dominante, Em formação, Divergente — so that I do not have to
+> interpret an invented scale.
+ 
+**Business rules**
+ 
+- Each score band maps to one of the four grades, and the grade appears next to the score.
+- There is a **minimum number of judgments** (decision 14) below which the score is shown without the textual grade — a thesis with 95% agreement over eight judgments would otherwise borrow an authority eight cases do not support.
+- All four labels are terms that already exist in legal vocabulary; the product invents none.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Grade next to the score
+Given a topic with enough judgments
+When the score is displayed
+Then the matching grade is displayed next to it
+ 
+Scenario: Below the minimum
+Given a topic with high agreement but fewer judgments than the minimum
+When the score is displayed
+Then it appears without the textual grade
+```
+ 
+---
+ 
+### US-08 — Audit the score's composition
+`Must` · E2 · 3 SP · Sprint 2 · ready · depends on US-06
+ 
+> As a **user**, I want to open the score's composition — the four components, their weights
+> and the basis of calculation — so that I can cite the statistic knowing exactly where it
+> comes from.
+ 
+**Business rules**
+ 
+- The breakdown shows the four components with their value and weight, plus the basis: judgments, favourable, unfavourable, number of courts and the year of the last decision.
+- The breakdown is reachable in the interface — not hidden, not API-only.
+- The methodology and the weights are documented and reachable from the screen.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Open the breakdown
+Given a displayed score
+When the user opens its composition
+Then they see the four components with value and weight, and the basis of calculation
+ 
+Scenario: Nothing recomputed
+Given the score arrives ready from the API
+When the screen renders
+Then neither the components nor the total are recomputed
+```
+ 
+---
+ 
+### US-11 — See the alignment evolve over time
+`Must` · E3 · 5 SP · Sprint 2 · ready · depends on US-09
+ 
+> As a **user**, I want to see how the topic's alignment evolved year by year, with the trend
+> sentence, so that I know whether the understanding is settling or shifting.
+ 
+**Business rules**
+ 
+- The series runs oldest to most recent, with the most recent year highlighted.
+- The trend sentence reads "X% → Y% in the predominant direction", both values coming from the aggregate — not computed on screen.
+- A year with no computed result has no empty bar.
+- With data in a single year, the trend sentence is not shown — there are no two points to compare.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Yearly series
+Given a topic with results across several years
+When the series is rendered
+Then it runs from oldest to most recent, with the most recent year highlighted
+ 
+Scenario: Year with no result
+Given a year with no computed result
+When the series is rendered
+Then there is no empty bar for that year
+ 
+Scenario: Single year
+Given a topic with data in one year only
+When the series is rendered
+Then the trend sentence is not displayed
+```
+ 
+---
+ 
+### US-12 — See the alignment per court
+`Must` · E3 · 3 SP · Sprint 2 · ready · depends on US-09
+ 
+> As a **user**, I want to see the topic's alignment by court, so that I know whether the
+> thesis holds the same in São Paulo, Rio and Minas.
+ 
+**Business rules**
+ 
+- Each court in scope shows its percentage in the predominant direction, with its `n` available next to it.
+- A court with no computed judgment does not appear with zero percent — it appears as having no data, or does not appear.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Alignment per court
+Given a topic with decisions in more than one court
+When the list is rendered
+Then each court shows its percentage in the predominant direction, with its n
+ 
+Scenario: Court without judgments
+Given a court with no computed judgment on the topic
+When the list is rendered
+Then it does not appear with zero percent
+ 
+Scenario: Numbers add up
+Given the sum of the courts
+When compared with the topic total
+Then the numbers match
+```
+ 
+---
+ 
+### US-14 — Compare each court's behaviour
+`Must` · E4 · 3 SP · Sprint 2 · ready · depends on US-12
+ 
+> As a **user**, I want a table of each court's behaviour — decisions, alignment and date of
+> the latest one — so that I can compare my court with the others.
+ 
+**Business rules**
+ 
+- Per court: number of decisions, alignment and date of the last decision.
+- The median awarded amount depends on full decision text and has no source: that column does not appear, or appears flagged as unsourced — never with a value.
+- Visual rules: serif text, monospace numbers right-aligned, small-caps header, no zebra striping, no vertical borders.
+- A table wider than its container scrolls **inside it**; the page never scrolls horizontally.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Behaviour per court
+Given a topic with decisions in more than one court
+When the table is rendered
+Then each row shows decisions, alignment and the date of the last decision
+ 
+Scenario: Unsourced column
+Given the median amount has no confirmed source
+When the table is rendered
+Then that column does not appear, or appears flagged as unsourced
+ 
+Scenario: Wide table
+Given a table wider than its container
+When it is rendered
+Then it scrolls inside the container and the page does not scroll horizontally
+```
+ 
+---
+ 
+### US-15 — Check the sample of cases behind the topic
+`Must` · E4 · 5 SP · Sprint 2 · ready · depends on US-09
+ 
+> As a **user**, I want an auditable sample of the cases behind the topic, with panel, date
+> and outcome, so that I can check the cases before citing them.
+ 
+**Business rules**
+ 
+- Each row carries case number, panel, date and computed outcome.
+- Reporting judge and amount have no confirmed source: those columns come **empty and flagged**, never filled.
+- A case under seal is flagged and no sealed data is exposed.
+- The default ordering is declared and stable between visits, and the sample states how many rows it shows out of how many in total ("N of M decisions").
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Auditable sample
+Given a topic with computed cases
+When the sample is rendered
+Then each row shows case number, panel, date and outcome
+ 
+Scenario: Unsourced columns
+Given reporting judge and amount have no confirmed source
+When a row is rendered
+Then those columns are empty and flagged, never filled
+ 
+Scenario: Case under seal
+Given a case under seal
+When it appears in the sample
+Then it is flagged and no sealed data is exposed
+ 
+Scenario: Stable ordering
+Given the same query run twice
+When the sample is rendered
+Then the order is the same
+```
+ 
+---
+ 
+### US-17 — Know whether the court's panels diverge
+`Should` · E4 · 5 SP · Sprint 2 · ready · depends on US-14
+ 
+> As a **user**, I want to know whether the panels of my court are deciding alike, so that I
+> can spot internal divergence before deciding.
+ 
+**Business rules**
+ 
+- Per court, the alignment of each panel, with each panel's `n` visible next to the percentage.
+- A panel with a single judgment does not appear — an isolated case is noise, not divergence.
+- A panel departing from its own court's pattern is flagged.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Alignment per panel
+Given a court with decisions across several panels
+When the block is rendered
+Then each panel shows its alignment and its n
+ 
+Scenario: Panel with a single judgment
+Given a panel with one judgment only
+When the block is rendered
+Then that panel does not appear
+ 
+Scenario: Divergent panel
+Given a panel departing from its own court's pattern
+When the block is rendered
+Then the divergence is flagged
+ 
+Scenario: Numbers add up
+Given the sum of a court's panels
+When compared with that court's total
+Then the numbers match
+```
+ 
+---
+ 
+### US-19 — Pick the argument that wins most
+`Could` · E4 · 8 SP · Sprint 2 · source to verify · depends on —
+ 
+> As a **user**, I want to see the grounds invoked in the topic's decisions, with the
+> frequency and the acceptance rate of each one, so that I can pick the argument that wins
+> most and avoid the one that always loses.
+ 
+**DoR precondition:** a verified route to full decision text in the three courts, plus a
+written answer on the feasibility of extracting grounds — cost, quality against manual
+checking, and auditability. Without decision text there are no grounds to extract.
+ 
+**Business rules**
+ 
+- Each ground carries its nature (statute, case law, súmula, defence thesis), in how many decisions it was cited and its acceptance rate.
+- Where extraction is automated, it is possible to trace which decisions a ground was identified in.
+- **Frequency and acceptance rate come from counting over the data**, never from the model.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Grounds with frequency and acceptance
+Given a topic with extracted grounds
+When the block is rendered
+Then each ground shows its nature, its citation count and its acceptance rate
+ 
+Scenario: Traceable extraction
+Given an automatically extracted ground
+When the user checks it
+Then they can see in which decisions it was identified
+ 
+Scenario: The model does not count
+Given a model took part in the extraction
+When the numbers are displayed
+Then none of them came from the model
+```
+ 
+---
+ 
+### US-22 — Assemble the complete citation
+`Could` · E4 · 5 SP · Sprint 2 · source to verify · depends on —
+ 
+> As a **user**, I want the reporting judge's name in the sample and in the citation
+> reference, so that I can assemble the complete citation.
+ 
+**DoR precondition:** a verified route to the reporting judge — structured field, portal
+scraping or full text. If the data is not consistent across the three courts, the item does
+not enter.
+ 
+**Business rules**
+ 
+- The reporting judge appears in the auditable sample and in the citation reference.
+- Where the judge was not obtained, the field is **empty and flagged**, never filled by inference.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Reporting judge in the sample
+Given a case whose reporting judge was obtained
+When the row is rendered
+Then the name appears in the sample and in the citation reference
+ 
+Scenario: Reporting judge not obtained
+Given a case whose reporting judge was not obtained
+When the row is rendered
+Then the field is empty and flagged, not inferred
+```
+ 
+---
+ 
+### US-37 — See the ruling behind each statement
+`Could` · E4 · 8 SP · Sprint 2 · source to verify · depends on —
+ 
+> As a **user**, I want to see in the understanding text the ruling that supports each
+> statement, with the full reference and the list of cited decisions at the foot, so that I
+> can cite the same decision.
+ 
+**DoR precondition:** a verified route to full decision text. Without it there is no headnote
+to quote, and the full reference also depends on the reporting judge (`US-22`).
+ 
+**Business rules**
+ 
+- A statement supported by a specific decision carries a clickable citation marker that leads to the matching entry in the cited-decisions list.
+- Each entry carries case number, panel, reporting judge, date and a one-line synthesis.
+- Every cited decision exists in the base — no citation is generated without backing.
+- Where full text is unavailable for a decision, there is no dead button.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Citation marker
+Given a statement supported by a specific decision
+When the user reads the text
+Then there is a clickable citation marker next to it
+ 
+Scenario: Reach the cited decision
+Given the user clicks the marker
+When the click happens
+Then they reach the matching entry in the cited-decisions list
+ 
+Scenario: No citation without backing
+Given any cited decision
+When it is displayed
+Then it exists in the base
+```
+ 
+---
+ 
+# Sprint 3
+ 
+---
+ 
+### US-27 — Export the topic's decisions
+`Should` · E5 · 5 SP · Sprint 3 · ready · depends on US-15
+ 
+> As a **user**, I want to export to CSV the decisions that support the topic, so that I can
+> work the data outside the tool.
+ 
+**Business rules**
+ 
+- The file is generated by the server from the same data as the screen — never assembled in the browser.
+- It contains the same rows the screen would show for the same filter: no divergence between screen and file.
+- The file states source, extraction date and territorial scope.
+- An unsourced field comes as an empty column, never filled.
+- There is a declared row ceiling, and the interface says what it is instead of failing without explanation.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Export matches the screen
+Given a topic with a filter applied
+When the user exports to CSV
+Then the file contains the same rows the screen would show for that filter
+ 
+Scenario: File states its provenance
+Given an exported file
+When it is opened
+Then it states source, extraction date and territorial scope
+ 
+Scenario: Portuguese spreadsheet
+Given a spreadsheet configured in Portuguese
+When the file is opened
+Then numbers, dates and accented characters render correctly
+ 
+Scenario: Volume above the ceiling
+Given a topic with more decisions than the export ceiling
+When the user exports
+Then the interface states the ceiling instead of failing silently
+```
+ 
+---
+ 
+### US-28 — Copy the citation ready to paste
+`Should` · E5 · 3 SP · Sprint 3 · ready · depends on US-25
+ 
+> As a **user**, I want to copy the topic's citation already with the source, the extraction
+> date, the scope and the `n`, so that I can paste it without retyping.
+ 
+**Business rules**
+ 
+- The copied text is plain text, one or two lines, with no formatting markup and no line break that forces re-editing.
+- Nothing without backing enters the citation.
+- There is a visible confirmation that the copy happened.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Copy and paste
+Given the user copies the topic's citation
+When they paste it
+Then it contains the number, the n, the source, the extraction date and the territorial scope
+ 
+Scenario: Visible confirmation
+Given the citation was copied
+When the user looks at the screen
+Then there is a visible confirmation of the action
+ 
+Scenario: Unsourced block
+Given a block without a source
+When the citation is assembled
+Then nothing without backing enters it
+```
+ 
+---
+ 
+### US-29 — Know whether the data is current
+`Should` · E5 · 3 SP · Sprint 3 · awaiting decision 16 · depends on US-25
+ 
+> As a **user**, I want to know when the data was last updated, and to be warned when it is
+> stale, so that I do not rely on a months-old snapshot.
+ 
+**Business rules**
+ 
+- Every screen with a number shows the date of the last extraction.
+- Past the threshold set in decision 16, there is an explicit warning that the data is stale.
+- After a load has failed for days, the product must not present stale data looking current — that is the worst case for someone citing it.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Extraction date visible
+Given any screen showing numbers
+When it renders
+Then the date of the last extraction is visible
+ 
+Scenario: Stale data
+Given the last extraction is older than the defined threshold
+When the user opens the screen
+Then there is an explicit warning that the data is stale
+ 
+Scenario: Load failing for days
+Given the load has failed for several days
+When the user uses the product
+Then it does not present stale data with the appearance of current data
+```
+ 
+---
+ 
+### US-30 — Know how long it takes to reach a decision
+`Could` · E6 · 8 SP · Sprint 3 · awaiting decision 1 · depends on —
+ 
+> As a **user**, I want to know how long it usually takes from filing to decision on this
+> topic, so that I can calibrate my client's expectation.
+ 
+**DoR precondition:** decision 1 must have chosen the **movement** grain. With a judgment
+grain this metric cannot be computed, and the story leaves the backlog instead of being
+delivered as an approximation.
+ 
+**Business rules**
+ 
+- The metric shows the central tendency of the elapsed time between filing and decision, with its `n`.
+- Cases without a decision do not enter, and that is stated — the average of those already decided is not the average of all.
+- The metric's breakdown (per court, per instance) is declared, and the caveat that this is observed time in the loaded scope, not a forecast, is visible.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Elapsed time with its basis
+Given a topic with decided cases
+When the metric is displayed
+Then it shows the central tendency with its n
+ 
+Scenario: Undecided cases
+Given cases still without a decision
+When the metric is computed
+Then they do not enter, and the screen states it
+ 
+Scenario: Not a forecast
+Given the metric is displayed
+When the user reads it
+Then the caveat that it is observed time, not a forecast, is visible
+```
+ 
+---
+ 
+### US-34 — Ask in natural language
+`Should` · E7 · 13 SP · Sprint 3 · awaiting decision 18 · depends on US-01, US-09
+ 
+> As a **user**, I want to ask a chatbot about a topic in natural language and get the answer
+> in prose with the numbers, for the questions that no screen filter answers.
+ 
+**DoR precondition:** stable aggregates, and the screens' queries already exposed as validated
+parameterised functions with no free SQL. Before that, the chatbot would
+answer numbers the screens do not yet confirm.
+ 
+**Business rules**
+ 
+- **Every number in an answer comes from a query**; the model only interprets the question and writes the prose.
+- The chatbot uses the same queries as the screens, so the same question asked in both places returns identical numbers.
+- The chatbot describes what the data shows. It does not give legal advice: "the claim was upheld in 82% of cases" is data; "file this action" is not the product.
+- The chatbot appears where decision 18 places it.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: A question no filter answers
+Given a question such as "is this topic more favourable in SP or in MG?"
+When the user asks it
+Then they get an answer in prose with the numbers
+ 
+Scenario: Same numbers as the screen
+Given the same question asked on the screen and in the chat
+When both answer
+Then the numbers are identical
+ 
+Scenario: No legal advice
+Given the user asks for advice
+When the chatbot answers
+Then it describes what the data shows and does not tell the user what to do
+```
+ 
+---
+ 
+### US-35 — Be able to check what the chatbot answered
+`Should` · E7 · 5 SP · Sprint 3 · ready · depends on US-34
+ 
+> As a **user**, I want every chatbot answer to bring the `n`, the source, the extraction
+> date, the scope and the link to the cases, so that I can check it before using it.
+ 
+**Business rules**
+ 
+- Every percentage in an answer carries its `n`; every number carries its source and extraction date.
+- A statement about a topic carries a path to the cases behind it.
+- A question about "the Brazilian courts" is answered for the courts in scope, **saying how many they are** — never suggesting national coverage.
+- There is an evaluation suite of known-answer questions, checked against the direct query, running in CI. It is a **precondition for exposing the chatbot**.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Percentage with its basis
+Given any percentage in an answer
+When it is displayed
+Then it carries its n, its source and its extraction date
+ 
+Scenario: Question implying national coverage
+Given a question about "the Brazilian courts"
+When it is answered
+Then the answer covers the courts in scope and says how many they are
+ 
+Scenario: Evaluation suite catches divergence
+Given a known-answer question whose number diverges from the direct query
+When the suite runs in CI
+Then it fails
+```
+ 
+---
+ 
+### US-36 — Get "I don't know" instead of an invented number
+`Should` · E7 · 3 SP · Sprint 3 · ready · depends on US-34
+ 
+> As a **user**, I want the chatbot to say it does not know when the data is not in the base,
+> so that I do not get a plausible, invented number.
+ 
+**Business rules**
+ 
+- Where the data is not in the base, the answer explicitly says so.
+- The chatbot invents no case law for a topic that does not exist in the base.
+- Every number in an answer corresponds to a value returned by one of those query functions — checked by the evaluation suite, which fails if a number has no such origin.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Data not in the base
+Given a question whose data is not in the base
+When it is answered
+Then the answer explicitly says that data is not there
+ 
+Scenario: Topic that does not exist
+Given a topic that does not exist in the base
+When the user asks about it
+Then the chatbot invents no case law
+ 
+Scenario: Block without a confirmed source
+Given a question about a block with no confirmed source
+When it is answered
+Then the answer says it is outside the data scope, and why
+ 
+Scenario: Every number traced to a query
+Given an answer containing numbers
+When the evaluation suite runs
+Then every number matches a value returned by a query function, and the suite fails otherwise
