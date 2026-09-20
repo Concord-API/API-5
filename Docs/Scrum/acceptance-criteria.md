@@ -1,4 +1,4 @@
-Detailed DoR and acceptance criteria for all 32 stories in the
+Detailed DoR and acceptance criteria for all 29 stories in the
 [Product Backlog](../../README.md#-product-backlog), in backlog order. Scenarios are written in BDD, as
 the [Definition of Ready](definition-of-ready.md) requires.
  
@@ -121,6 +121,7 @@ Then the volume behind it is visible next to the score
 - The topic header carries the score, the grade, the area tag, the thesis title and the metadata line: cases, courts, period and last decision.
 - The text opens with a highlight line that already contains the number answering the question, with its `n`.
 - Every number in the body is accompanied by its `n`, and none of them is computed on screen.
+- Below **2** judged cases a topic shows the case **count** instead of a percentage: "1 decisão", never "100%". The threshold is read from the methodology configuration, not fixed in the interface.
 - While automatic generation of the prose does not exist, the summary is the **curated** text per decision 20, and the data records that it is curated.
 - Blocks whose source is not confirmed — ruling quotation, full-text button, citation markers, cited-decision footer — do not appear, and their place explains why.
 **Acceptance criteria**
@@ -131,6 +132,11 @@ Given a topic with computed data
 When its summary is rendered
 Then the first highlight line contains the number that answers the question, with its n
  
+Scenario: Topic below the percentage floor
+Given a topic with a single judged case
+When its summary is rendered
+Then it shows the count of judged cases and no percentage
+
 Scenario: Every percentage carries its n
 Given any percentage in the body of the text
 When it is displayed
@@ -163,7 +169,7 @@ Then it lists every source, the extraction date and the methodology version
  
 **Business rules**
  
-- The figure shows counts and percentages per outcome category.
+- The figure shows counts and percentages per outcome category. Below **2** judged cases it shows counts only, with no percentage.
 - It is numbered, sits in the flow of the text — never in a card grid — and carries the source underneath.
 - Without a stated source the figure is not rendered at all.
 - The treatment of partially upheld claims (decision 3) is declared where the number is computed.
@@ -220,133 +226,45 @@ Then they return to the previous tab, not out of the topic
  
 ---
 
-### US-18 — See the qualified precedents that bind me
-`Could` · E4 · 8 SP · Sprint 1 · source to verify · depends on —
- 
-> As a **user**, I want to see the qualified precedents linked to the topic — súmula,
-> repetitive theme, IRDR — distinguishing what is legally binding from what is merely
-> persuasive, so that I know what binds me.
- 
-**DoR precondition:** precedent source verified — is there a usable public API, does it cover
-the three courts, and do its terms allow storing in our own base — with the answer written
-down in the wiki. Until then the block does not appear and its place explains why.
- 
-**Business rules**
- 
-- Each precedent carries its kind, its effect, how many of the topic's decisions cite it and whether it was followed.
-- The effect distinguishes legally binding from persuasive, and the visual hierarchy mirrors the legal hierarchy — solid fill only for what is mandatory.
-- Each precedent has a path to its official source.
-**Acceptance criteria**
- 
-```gherkin
-Scenario: Binding and persuasive are distinguishable
-Given a topic with linked precedents
-When the block is rendered
-Then what is legally binding is visually distinct from what is persuasive
- 
-Scenario: A court departing from the precedent
-Given a court that departs from the precedent
-When the block is rendered
-Then that is flagged as open divergence
- 
-Scenario: Provenance of the block
-Given the precedent block is displayed
-When the user checks its provenance
-Then it states where the precedents came from and when
-```
- 
----
- 
 ### US-21 — Know what to cite beyond case law
-`Must` · E4 · 8 SP · Sprint 1 · source to verify · depends on —
- 
-> As a **user**, I want to see the legal scholarship invoked, with author, work and its
-> position in the debate, with a link to the article when there is one, so that I know what
-> to cite beyond case law.
- 
-**DoR precondition:** a verified source for the articles **and** a written answer on where
-the association between scholarship and topic comes from — that is the real gap, not the
-text source. Manual curation is acceptable if declared, with the note that it does not scale.
- 
-> This is the only **Must** in the backlog whose source is not confirmed. Either the
-> verification is answered early in Sprint 1, or the priority is wrong — see the warning in
-> the [Product Backlog](product-backlog.md).
- 
+`Must` · E4 · 8 SP · Sprint 1 · ready · depends on —
+
+> As a **user**, I want to see the legal scholarship related to the topic, with author, work
+> and a link to the article when there is one, so that I know what to cite beyond case law.
+
 **Business rules**
- 
-- Each entry carries author, work, edition or chapter, and its position in the debate (majority, intermediate, minority).
-- An **article** carries a link to where it is published, preferably with a stable identifier.
+
+- The association between scholarship and topic is **computed by semantic similarity** over the titles, with a declared threshold. It is not scholarship invoked by any decision, and the screen never presents it as such.
+- Each entry carries the similarity score of its association and the model that produced it, so the reader can judge the link.
+- Each entry carries author, work and, for an **article**, a link to where it is published, preferably with a stable identifier.
 - A **book** appears as a text reference — author, title, edition, chapter. **Never as a PDF**: copyrighted work is not hosted.
+- A topic with no association above the threshold shows no block, and its place explains why (`US-26`).
 **Acceptance criteria**
- 
+
 ```gherkin
+Scenario: The association declares what it is
+Given a topic with linked scholarship
+When the block is rendered
+Then it states that the link is by semantic similarity, with its threshold, and no entry is presented as cited by a court
+
 Scenario: Article with a stable link
 Given an article entry
 When it is displayed
 Then it carries a link to where it is published
- 
+
 Scenario: Book as a text reference
 Given a book entry
 When it is displayed
 Then it appears as author, title, edition and chapter, with no hosted PDF
- 
-Scenario: Curated association
-Given the association between scholarship and topic was curated by hand
-When provenance is displayed
-Then it states that it was curated, and when
+
+Scenario: Topic with no scholarship above the threshold
+Given a topic whose associations all fall below the declared threshold
+When the page renders
+Then the block does not appear and its place explains why
 ```
- 
+
 ---
- 
-### US-23 — Read the full text of the cited decision in the application
-`Could` · E4 · 5 SP · Sprint 1 · source to verify · depends on US-37
- 
-> As a **user**, I want to read the full text of the cited decision on the application, so
-> that I can check the context before using it.
- 
-**DoR precondition:** decision 21 taken — may the full text be stored and displayed inside
-the application? — plus a verified route to obtain that text in the three courts, written
-down in the wiki. Reading in the application means **storing** the text, not linking out to
-it, and that changes the data model (`NFR-01`) and the LGPD analysis (`NFR-21`).
- 
-**Business rules**
- 
-- The decision text is displayed inside the application, with its source and extraction date next to it, like any other datum (`NFR-02`).
-- Opening the text does not lose the topic context: the user can return to where they were.
-- Where the text was not obtained for a decision, there is no dead button — the absence is explicit (`US-26`), and the case number stays visible for a manual lookup at the court.
-- A case under seal is never displayed, whatever the route — it is flagged as sealed.
-- The text is stored as it was obtained. It is not summarised, rewritten or completed by a model.
-**Acceptance criteria**
- 
-```gherkin
-Scenario: Read a decision in the application
-Given a cited decision whose full text was obtained
-When the user asks to read it
-Then the text is displayed in the application with its source and extraction date
- 
-Scenario: Return to the topic
-Given the user is reading a decision text
-When they go back
-Then they return to the point in the topic they came from
- 
-Scenario: Text not obtained
-Given a decision whose full text was not obtained
-When the row is rendered
-Then there is no dead button, the absence is explicit, and the case number stays visible
- 
-Scenario: Case under seal
-Given a case under seal
-When it appears anywhere
-Then no text is displayed and the case is flagged as sealed
- 
-Scenario: Text is not rewritten
-Given a stored decision text
-When it is displayed
-Then it matches what was obtained from the source, with no model-generated summary presented as the decision
-```
- 
----
- 
+
 ### US-24 — Know the coverage scope
 `Must` · E5 · 2 SP · Sprint 1 · ready · depends on —
  
@@ -459,7 +377,7 @@ Then it shows the matching message, never the generic one
 **Business rules**
  
 - Each item carries: score in a circle with `/100`, area tag, thesis title, a summary of up to two lines, court acronyms, number of cases, period, date of the last decision and the favourable percentage with its alignment bar.
-- The favourable percentage carries its `n` on the same line.
+- The favourable percentage carries its `n` on the same line. Below **2** judged cases the item shows the count instead of a percentage.
 - When a topic has more courts than the chips shown, a `+N` indicator shows exactly the difference; when they all fit, the indicator is not rendered.
 - Numbers are formatted in Portuguese (12.418, not 12,418) and are never recomputed on screen.
 **Acceptance criteria**
@@ -879,36 +797,6 @@ Then none of them came from the model
  
 ---
  
-### US-22 — Assemble the complete citation
-`Could` · E4 · 5 SP · Sprint 2 · source to verify · depends on —
- 
-> As a **user**, I want the reporting judge's name in the sample and in the citation
-> reference, so that I can assemble the complete citation.
- 
-**DoR precondition:** a verified route to the reporting judge — structured field, portal
-scraping or full text. If the data is not consistent across the three courts, the item does
-not enter.
- 
-**Business rules**
- 
-- The reporting judge appears in the auditable sample and in the citation reference.
-- Where the judge was not obtained, the field is **empty and flagged**, never filled by inference.
-**Acceptance criteria**
- 
-```gherkin
-Scenario: Reporting judge in the sample
-Given a case whose reporting judge was obtained
-When the row is rendered
-Then the name appears in the sample and in the citation reference
- 
-Scenario: Reporting judge not obtained
-Given a case whose reporting judge was not obtained
-When the row is rendered
-Then the field is empty and flagged, not inferred
-```
- 
----
- 
 ### US-37 — See the ruling behind each statement
 `Could` · E4 · 8 SP · Sprint 2 · source to verify · depends on —
  
@@ -917,12 +805,12 @@ Then the field is empty and flagged, not inferred
 > can cite the same decision.
  
 **DoR precondition:** a verified route to full decision text. Without it there is no headnote
-to quote, and the full reference also depends on the reporting judge (`US-22`).
+to quote.
  
 **Business rules**
  
 - A statement supported by a specific decision carries a clickable citation marker that leads to the matching entry in the cited-decisions list.
-- Each entry carries case number, panel, reporting judge, date and a one-line synthesis.
+- Each entry carries case number, panel, date and a one-line synthesis.
 - Every cited decision exists in the base — no citation is generated without backing.
 - Where full text is unavailable for a decision, there is no dead button.
 **Acceptance criteria**

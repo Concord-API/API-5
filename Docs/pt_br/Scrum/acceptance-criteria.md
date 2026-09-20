@@ -1,4 +1,4 @@
-DoR detalhada e critérios de aceite para todas as 32 histórias do
+DoR detalhada e critérios de aceite para todas as 29 histórias do
 [Product Backlog](../../README.md#-product-backlog), na ordem do backlog. Os cenários são
 escritos em BDD, como a [Definition of Ready](definition-of-ready.md) exige.
 
@@ -122,6 +122,7 @@ Então o volume por trás dele fica visível ao lado do score
 - O cabeçalho do tema carrega o score, o grau, a tag de área, o título da tese e a linha de metadados: processos, tribunais, período e última decisão.
 - O texto abre com uma linha de destaque que já contém o número que responde à pergunta, com seu `n`.
 - Todo número no corpo vem acompanhado do seu `n`, e nenhum deles é calculado na tela.
+- Abaixo de **2** processos julgados o tema exibe a **contagem** em vez de percentual: "1 decisão", nunca "100%". O limite é lido da configuração da metodologia, não fixado na interface.
 - Enquanto não existir geração automática da prosa, o resumo é o texto **curado** conforme a decisão 20, e o dado registra que ele é curado.
 - Blocos cuja fonte não está confirmada — citação de acórdão, botão de inteiro teor, marcadores de citação, rodapé de decisões citadas — não aparecem, e seu lugar explica por quê.
 **Critérios de aceite**
@@ -131,6 +132,11 @@ Cenário: A linha de abertura responde à pergunta
 Dado um tema com dados calculados
 Quando seu resumo é renderizado
 Então a primeira linha de destaque contém o número que responde à pergunta, com seu n
+
+Cenário: Tema abaixo do piso de percentual
+Dado um tema com um único processo julgado
+Quando o resumo é renderizado
+Então ele exibe a contagem de processos julgados e nenhum percentual
 
 Cenário: Todo percentual carrega seu n
 Dado qualquer percentual no corpo do texto
@@ -164,7 +170,7 @@ Então ele lista todas as fontes, a data de extração e a versão da metodologi
 
 **Regras de negócio**
 
-- A figura exibe contagens e percentuais por categoria de resultado.
+- A figura exibe contagens e percentuais por categoria de resultado. Abaixo de **2** processos julgados ela exibe apenas contagens, sem percentual.
 - Ela é numerada, fica no fluxo do texto — nunca em uma grade de cards — e carrega a fonte logo abaixo.
 - Sem fonte declarada a figura simplesmente não é renderizada.
 - O tratamento dos pedidos parcialmente procedentes (decisão 3) é declarado onde o número é calculado.
@@ -221,65 +227,27 @@ Então ele retorna à aba anterior, não para fora do tema
 
 ---
 
-### US-18 — Ver os precedentes qualificados que me vinculam
-`Could` · E4 · 8 SP · Sprint 1 · fonte a verificar · depende de —
-
-> Como **usuário**, quero ver os precedentes qualificados vinculados ao tema — súmula, tema
-> repetitivo, IRDR — distinguindo o que é juridicamente vinculante do que é meramente
-> persuasivo, para que eu saiba o que me vincula.
-
-**Pré-condição da DoR:** fonte de precedentes verificada — existe uma API pública utilizável,
-ela cobre os três tribunais, e seus termos permitem armazenar em base própria — com a
-resposta registrada na wiki. Até lá o bloco não aparece e seu lugar explica por quê.
-
-**Regras de negócio**
-
-- Cada precedente carrega sua espécie, seu efeito, quantas das decisões do tema o citam e se ele foi seguido.
-- O efeito distingue o juridicamente vinculante do persuasivo, e a hierarquia visual espelha a hierarquia jurídica — preenchimento sólido apenas para o que é obrigatório.
-- Cada precedente tem um caminho para sua fonte oficial.
-**Critérios de aceite**
-
-```gherkin
-Cenário: Vinculante e persuasivo são distinguíveis
-Dado um tema com precedentes vinculados
-Quando o bloco é renderizado
-Então o que é juridicamente vinculante é visualmente distinto do que é persuasivo
-
-Cenário: Um tribunal que se afasta do precedente
-Dado um tribunal que se afasta do precedente
-Quando o bloco é renderizado
-Então isso é sinalizado como divergência em aberto
-
-Cenário: Procedência do bloco
-Dado que o bloco de precedentes está exibido
-Quando o usuário verifica sua procedência
-Então ele declara de onde vieram os precedentes e quando
-```
-
----
-
 ### US-21 — Saber o que citar além da jurisprudência
-`Must` · E4 · 8 SP · Sprint 1 · fonte a verificar · depende de —
+`Must` · E4 · 8 SP · Sprint 1 · pronta · depende de —
 
-> Como **usuário**, quero ver a doutrina invocada, com autor, obra e sua posição no debate,
-> com link para o artigo quando houver, para que eu saiba o que citar além da jurisprudência.
-
-**Pré-condição da DoR:** uma fonte verificada para os artigos **e** uma resposta por escrito
-sobre de onde vem a associação entre doutrina e tema — essa é a lacuna real, não a fonte do
-texto. Curadoria manual é aceitável se declarada, com a ressalva de que não escala.
-
-> Este é o único **Must** do backlog cuja fonte não está confirmada. Ou a verificação é
-> respondida logo no início da Sprint 1, ou a prioridade está errada — ver o aviso no
-> [Product Backlog](product-backlog.md).
+> Como **usuário**, quero ver a doutrina relacionada ao tema, com autor, obra e link para o
+> artigo quando houver, para que eu saiba o que citar além da jurisprudência.
 
 **Regras de negócio**
 
-- Cada entrada carrega autor, obra, edição ou capítulo, e sua posição no debate (majoritária, intermediária, minoritária).
-- Um **artigo** carrega link para onde está publicado, preferencialmente com identificador estável.
+- A associação entre doutrina e tema é **calculada por similaridade semântica** sobre os títulos, com limiar declarado. Não é doutrina invocada por decisão nenhuma, e a tela nunca a apresenta como tal.
+- Cada entrada carrega o score de similaridade da sua associação e o modelo que a produziu, para que o leitor julgue a ligação.
+- Cada entrada carrega autor, obra e, no caso de **artigo**, link para onde está publicado, preferencialmente com identificador estável.
 - Um **livro** aparece como referência textual — autor, título, edição, capítulo. **Nunca como PDF**: obra protegida por direito autoral não é hospedada.
+- Um tema sem nenhuma associação acima do limiar não exibe o bloco, e o lugar dele explica por quê (`US-26`).
 **Critérios de aceite**
 
 ```gherkin
+Cenário: A associação declara o que é
+Dado um tema com doutrina ligada
+Quando o bloco é renderizado
+Então ele declara que a ligação é por similaridade semântica, com seu limiar, e nenhuma entrada é apresentada como citada por um tribunal
+
 Cenário: Artigo com link estável
 Dado uma entrada de artigo
 Quando ela é exibida
@@ -290,59 +258,10 @@ Dado uma entrada de livro
 Quando ela é exibida
 Então ela aparece como autor, título, edição e capítulo, sem PDF hospedado
 
-Cenário: Associação curada
-Dado que a associação entre doutrina e tema foi curada manualmente
-Quando a procedência é exibida
-Então ela declara que houve curadoria, e quando
-```
-
----
-
-### US-23 — Ler o inteiro teor da decisão citada na aplicação
-`Could` · E4 · 5 SP · Sprint 1 · fonte a verificar · depende de US-37
-
-> Como **usuário**, quero ler o inteiro teor da decisão citada dentro da aplicação, para que
-> eu possa conferir o contexto antes de usá-la.
-
-**Pré-condição da DoR:** decisão 21 tomada — o inteiro teor pode ser armazenado e exibido
-dentro da aplicação? — mais uma rota verificada para obter esse texto nos três tribunais,
-registrada na wiki. Ler na aplicação significa **armazenar** o texto, não apenas apontar para
-ele, e isso muda o modelo de dados (`NFR-01`) e a análise de LGPD (`NFR-21`).
-
-**Regras de negócio**
-
-- O texto da decisão é exibido dentro da aplicação, com sua fonte e data de extração ao lado, como qualquer outro dado (`NFR-02`).
-- Abrir o texto não faz perder o contexto do tema: o usuário consegue voltar para onde estava.
-- Onde o texto não foi obtido para uma decisão, não há botão morto — a ausência é explícita (`US-26`), e o número do processo continua visível para uma consulta manual no tribunal.
-- Um processo em segredo de justiça nunca é exibido, qualquer que seja a rota — ele é sinalizado como sigiloso.
-- O texto é armazenado como foi obtido. Ele não é resumido, reescrito nem completado por um modelo.
-**Critérios de aceite**
-
-```gherkin
-Cenário: Ler uma decisão na aplicação
-Dado uma decisão citada cujo inteiro teor foi obtido
-Quando o usuário pede para lê-la
-Então o texto é exibido na aplicação com sua fonte e data de extração
-
-Cenário: Voltar ao tema
-Dado que o usuário está lendo o texto de uma decisão
-Quando ele volta
-Então ele retorna ao ponto do tema de onde veio
-
-Cenário: Texto não obtido
-Dado uma decisão cujo inteiro teor não foi obtido
-Quando a linha é renderizada
-Então não há botão morto, a ausência é explícita, e o número do processo continua visível
-
-Cenário: Processo em segredo de justiça
-Dado um processo em segredo de justiça
-Quando ele aparece em qualquer lugar
-Então nenhum texto é exibido e o processo é sinalizado como sigiloso
-
-Cenário: O texto não é reescrito
-Dado um texto de decisão armazenado
-Quando ele é exibido
-Então ele corresponde ao que foi obtido da fonte, sem resumo gerado por modelo apresentado como a decisão
+Cenário: Tema sem doutrina acima do limiar
+Dado um tema cujas associações ficam todas abaixo do limiar declarado
+Quando a página é renderizada
+Então o bloco não aparece e o lugar dele explica por quê
 ```
 
 ---
@@ -459,7 +378,7 @@ Então ela exibe a mensagem correspondente, nunca a genérica
 **Regras de negócio**
 
 - Cada item carrega: score em um círculo com `/100`, tag de área, título da tese, um resumo de até duas linhas, siglas dos tribunais, número de processos, período, data da última decisão e o percentual favorável com sua barra de alinhamento.
-- O percentual favorável carrega seu `n` na mesma linha.
+- O percentual favorável carrega seu `n` na mesma linha. Abaixo de **2** processos julgados o item exibe a contagem em vez de percentual.
 - Quando um tema tem mais tribunais do que os chips exibidos, um indicador `+N` mostra exatamente a diferença; quando todos cabem, o indicador não é renderizado.
 - Os números são formatados em português (12.418, não 12,418) e nunca são recalculados na tela.
 **Critérios de aceite**
@@ -881,35 +800,6 @@ Então nenhum deles veio do modelo
 
 ---
 
-### US-22 — Montar a citação completa
-`Could` · E4 · 5 SP · Sprint 2 · fonte a verificar · depende de —
-
-> Como **usuário**, quero o nome do relator na amostra e na referência de citação, para que eu
-> consiga montar a citação completa.
-
-**Pré-condição da DoR:** uma rota verificada até o relator — campo estruturado, raspagem do
-portal ou inteiro teor. Se o dado não for consistente nos três tribunais, o item não entra.
-
-**Regras de negócio**
-
-- O relator aparece na amostra auditável e na referência de citação.
-- Onde o relator não foi obtido, o campo fica **vazio e sinalizado**, nunca preenchido por inferência.
-**Critérios de aceite**
-
-```gherkin
-Cenário: Relator na amostra
-Dado um processo cujo relator foi obtido
-Quando a linha é renderizada
-Então o nome aparece na amostra e na referência de citação
-
-Cenário: Relator não obtido
-Dado um processo cujo relator não foi obtido
-Quando a linha é renderizada
-Então o campo fica vazio e sinalizado, não inferido
-```
-
----
-
 ### US-37 — Ver o acórdão por trás de cada afirmação
 `Could` · E4 · 8 SP · Sprint 2 · fonte a verificar · depende de —
 
@@ -918,12 +808,12 @@ Então o campo fica vazio e sinalizado, não inferido
 > mesma decisão.
 
 **Pré-condição da DoR:** uma rota verificada para o inteiro teor. Sem ela não há ementa a
-citar, e a referência completa também depende do relator (`US-22`).
+citar.
 
 **Regras de negócio**
 
 - Uma afirmação sustentada por uma decisão específica carrega um marcador de citação clicável que leva à entrada correspondente na lista de decisões citadas.
-- Cada entrada carrega número do processo, câmara, relator, data e uma síntese de uma linha.
+- Cada entrada carrega número do processo, câmara, data e uma síntese de uma linha.
 - Toda decisão citada existe na base — nenhuma citação é gerada sem lastro.
 - Onde o inteiro teor não está disponível para uma decisão, não há botão morto.
 **Critérios de aceite**

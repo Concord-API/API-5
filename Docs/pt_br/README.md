@@ -32,7 +32,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 - **Score de força do entendimento** — mostra o quanto aquele padrão está consolidado (ou instável), ponderando concordância entre as decisões, volume, cobertura e atualidade.
 - **Rastreabilidade** — todo número exibido leva de volta à sua fonte e data de extração; nenhuma métrica é inventada ou calculada no escuro.
 - **Cobertura multitribunal** — dados centralizados de TJSP, TJRJ e TJMG, os três tribunais com maior volume processual do país.
-- **Acesso a precedentes e doutrina relacionados** — para manter tudo rastreável, todos os precedentes e obras doutrinárias usados para resumir um tema permanecem acessíveis.
+- **Acesso à jurisprudência e à doutrina relacionadas** — para manter tudo rastreável, todo processo por trás de um tema leva de volta ao tribunal, e a doutrina relacionada a ele continua acessível.
 
 # Product Backlog
 
@@ -42,7 +42,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | **US-02** | Must | Como **usuário**, quero os resultados ordenados por quão consolidado está o entendimento, e não por relevância de texto, para encontrar primeiro o que sustenta minha tese | 2 | Sprint 1 |
 | **US-09** | Must | Como **usuário**, quero ler o entendimento do tema em prosa, abrindo com o número que responde à pergunta e com a contagem de casos ao lado de cada percentual, para entender o padrão sem abrir uma tabela | 8 | Sprint 1 |
 | **US-10** | Must | Como **usuário**, quero ver a distribuição de resultados do tema em uma figura com a fonte declarada, para ver de relance quanto é procedente, parcialmente procedente e improcedente | 5 | Sprint 1 |
-| **US-21** | Must | Como **usuário**, quero ver a doutrina invocada, com autor, obra e sua posição no debate, com link para o artigo quando houver, para saber o que citar além da jurisprudência | 8 | Sprint 1 |
+| **US-21** | Must | Como **usuário**, quero ver a doutrina relacionada ao tema, com autor, obra e link para o artigo quando houver, para saber o que citar além da jurisprudência | 8 | Sprint 1 |
 | **US-24** | Must | Como **usuário**, quero que toda tela deixe claro que os dados cobrem TJSP, TJRJ e TJMG, para não tirar uma conclusão nacional de um percentual que reflete três estados | 2 | Sprint 1 |
 | **US-25** | Must | Como **usuário**, quero saber a fonte e a data de extração de todo número que estou vendo, para saber exatamente o que estou citando | 3 | Sprint 1 |
 | **US-26** | Must | Como **usuário**, quero que a tela me diga o que não existe e por quê, em vez de mostrar um campo vazio ou um valor plausível, para não construir uma peça sobre dado que não existe | 3 | Sprint 1 |
@@ -59,12 +59,9 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | **US-27** | Should | Como **usuário**, quero exportar para CSV as decisões que sustentam o tema, para trabalhar os dados fora da ferramenta | 5 | Sprint 3 |
 | **US-28** | Should | Como **usuário**, quero copiar a citação do tema já com a fonte, a data de extração, o escopo e o `n`, para colar sem redigitar | 3 | Sprint 3 |
 | **US-29** | Should | Como **usuário**, quero saber quando os dados foram atualizados pela última vez, e ser avisado quando estiverem defasados, para não me apoiar em um retrato de meses atrás | 3 | Sprint 3 |
-| **US-18** | Could | Como **usuário**, quero ver os precedentes qualificados vinculados ao tema — súmula, tema repetitivo, IRDR — distinguindo o que é vinculante do que é meramente persuasivo, para saber o que me obriga | 8 | Sprint 1 |
-| **US-23** | Could | Como **usuário**, quero ler o texto integral da decisão citada na aplicação, para conferir o contexto antes de usá-la | 5 | Sprint 1 |
 | **US-13** | Could | Como **usuário**, quero que a aba que estou vendo seja refletida na URL, para enviar a um colega o link exato da parte que quero mostrar | 5 | Sprint 1 |
 | **US-38** | Could | Como **usuário**, quero sugestões de consultas frequentes na tela inicial, para entender que tipo de pergunta a ferramenta responde antes de digitar a minha | 2 | Sprint 2 |
 | **US-19** | Could | Como **usuário**, quero ver os fundamentos invocados nas decisões do tema, com a frequência e a taxa de acolhimento de cada um, para escolher o argumento que mais vence e evitar o que sempre perde | 8 | Sprint 2 |
-| **US-22** | Could | Como **usuário**, quero o nome do relator na amostra e na referência de citação, para montar a citação completa | 5 | Sprint 2 |
 | **US-37** | Could | Como **usuário**, quero ver no texto do entendimento o acórdão que sustenta cada afirmação, com a referência completa e a lista de decisões citadas ao pé, para poder citar a mesma decisão | 8 | Sprint 2 |
 | **US-30** | Could | Como **usuário**, quero saber quanto tempo normalmente se leva do ajuizamento à decisão neste tema, para calibrar a expectativa do meu cliente | 8 | Sprint 3 |
 | **US-34** | Could | Como **usuário**, quero perguntar a um chatbot sobre um tema em linguagem natural e receber a resposta em prosa com os números, para as perguntas que nenhum filtro de tela responde | 13 | Sprint 3 |
@@ -75,8 +72,8 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 
 | Sprint | Janela | Histórias | Pontos |
 | --- | --- | --- | --- |
-| **Sprint 1** | 07/09 – 27/09 | 11 | 57 |
-| **Sprint 2** | 05/10 – 25/10 | 14 | 70 |
+| **Sprint 1** | 07/09 – 27/09 | 9 | 44 |
+| **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
 | **Sprint 3** | 02/11 – 22/11 | 7 | 40 |
 
 ## MoSCoW
