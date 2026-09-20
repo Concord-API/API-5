@@ -49,11 +49,8 @@ requisito remete à história de usuário de que se origina.
 | # | Requisito | Origem |
 | --- | --- | --- |
 | FR-23 | Exibir uma amostra auditável dos processos por trás do tema, com câmara, data e resultado. | US-15 |
-| FR-24 | Exibir o nome do relator na amostra e na referência de citação. | US-22 |
-| FR-25 | Exibir o inteiro teor de uma decisão citada dentro da aplicação, com sua fonte e data de extração. | US-23 |
 | FR-26 | Vincular cada afirmação do texto do entendimento ao acórdão que a sustenta, com a lista de decisões citadas ao pé. | US-37 |
-| FR-27 | Exibir os precedentes qualificados vinculados ao tema — súmula, tema repetitivo e IRDR — distinguindo o vinculante do persuasivo. | US-18 |
-| FR-28 | Exibir a doutrina invocada, com autor, obra, posição no debate e link para o artigo quando houver. | US-21 |
+| FR-28 | Exibir a doutrina relacionada ao tema, com autor, obra, o score de similaridade da associação e link para o artigo quando houver. | US-21 |
 
 ## Procedência e transparência
 

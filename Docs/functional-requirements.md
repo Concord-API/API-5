@@ -49,11 +49,8 @@ requirement traces back to the user story it comes from.
 | # | Requirement | Origin |
 | --- | --- | --- |
 | FR-23 | Show an auditable sample of the cases behind the topic, with panel, date and outcome. | US-15 |
-| FR-24 | Show the reporting judge's name in the sample and in the citation reference. | US-22 |
-| FR-25 | Display the full text of a cited decision inside the application, with its source and extraction date. | US-23 |
 | FR-26 | Tie each statement in the understanding text to the ruling that supports it, with the list of cited decisions at the foot. | US-37 |
-| FR-27 | Show the qualified precedents linked to the topic — súmula, repetitive theme and IRDR — distinguishing binding from persuasive. | US-18 |
-| FR-28 | Show the legal scholarship invoked, with author, work, position in the debate and a link to the article when there is one. | US-21 |
+| FR-28 | Show the legal scholarship related to the topic, with author, work, the similarity score of the association and a link to the article when there is one. | US-21 |
  
 ## Provenance and transparency
  
