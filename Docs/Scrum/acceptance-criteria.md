@@ -109,52 +109,6 @@ Then the volume behind it is visible next to the score
  
 ---
  
-### US-04 — Filter results to the shape of my case
-`Must` · E1 · 5 SP · Sprint 1 · awaiting decision 2 · depends on US-03
- 
-> As a **user**, I want to filter results by court, period, instance and minimum strength,
-> seeing how many cases each court has, so that I can narrow the list down to my case.
- 
-**Business rules**
- 
-- Filters combine and are applied by the API; the list is never filtered in the browser.
-- The court filter shows each court's case count, coming from the API.
-- The instance filter offers only the instances that exist in the loaded scope.
-- Active filters are reflected in the URL so a narrowed view can be shared.
-**Messages**
- 
-- Empty result: the screen describes the filters applied and offers the path to clear them.
-**Acceptance criteria**
- 
-```gherkin
-Scenario: Filter by court with counts
-Given the courts in scope
-When the court filter is rendered
-Then each court shows its case count, coming from the API
- 
-Scenario: Instance filter with state courts only
-Given decision 2 keeps the scope at state courts
-When the instance filter is rendered
-Then the "Superior" option is not shown
- 
-Scenario: Apply and share
-Given the user has chosen filters
-When they apply them
-Then the list is rebuilt by the API and the filters appear in the URL
- 
-Scenario: Clear filters
-Given filters are applied
-When the user clears them
-Then every filter returns to its default and the list is rebuilt
- 
-Scenario: Narrowing with no results
-Given a filter combination with no result
-When it is applied
-Then the screen describes the applied narrowing and offers a way to clear it
-```
- 
----
- 
 ### US-09 — Read the understanding in prose
 `Must` · E3 · 8 SP · Sprint 1 · ready · depends on US-06
  
@@ -231,6 +185,37 @@ Scenario: Amount figure has no source
 Given the awarded-amount range depends on full decision text, which has no source
 When the page renders
 Then the amount figure does not appear and its place explains why
+```
+ 
+---
+
+### US-13 — Share the link to the tab I am on
+`Could` · E3 · 5 SP · Sprint 1 · ready · depends on US-09
+ 
+> As a **user**, I want the tab I am viewing to be reflected in the URL, so that I can send
+> a colleague the exact link to the part I want to show.
+ 
+**Business rules**
+ 
+- The active tab is part of the URL and is visually distinguishable per the design system.
+- Browser history follows tab changes.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Switch tabs
+Given the user switches tabs
+When the tab changes
+Then the URL changes to reflect the active tab
+ 
+Scenario: Open a shared link
+Given a link carrying the analytical base tab
+When it is opened
+Then the page opens already on that tab
+ 
+Scenario: Browser back
+Given the user has switched tabs
+When they press the browser's back button
+Then they return to the previous tab, not out of the topic
 ```
  
 ---
@@ -499,6 +484,57 @@ Scenario: Open the topic
 Given a result item
 When the user clicks it
 Then the topic detail opens
+```
+ 
+---
+ 
+### US-04 — Filter results to the shape of my case
+`Must` · E1 · 5 SP · Sprint 2 · awaiting decision 2 · depends on US-03
+ 
+> As a **user**, I want to filter results by court, period, instance and minimum strength,
+> seeing how many cases each court has, so that I can narrow the list down to my case.
+ 
+> **Moved from Sprint 1 to Sprint 2 on 20/09/2026.** It filters the result list `US-03`
+> builds, so it was allocated a sprint ahead of what it depends on. It now sits immediately
+> after `US-03`, and decision 2 — do STJ and STF enter the scope? — is due at the Sprint 2
+> planning on 05/10 rather than inside Sprint 1.
+ 
+**Business rules**
+ 
+- Filters combine and are applied by the API; the list is never filtered in the browser.
+- The court filter shows each court's case count, coming from the API.
+- The instance filter offers only the instances that exist in the loaded scope.
+- Active filters are reflected in the URL so a narrowed view can be shared.
+**Messages**
+ 
+- Empty result: the screen describes the filters applied and offers the path to clear them.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Filter by court with counts
+Given the courts in scope
+When the court filter is rendered
+Then each court shows its case count, coming from the API
+ 
+Scenario: Instance filter with state courts only
+Given decision 2 keeps the scope at state courts
+When the instance filter is rendered
+Then the "Superior" option is not shown
+ 
+Scenario: Apply and share
+Given the user has chosen filters
+When they apply them
+Then the list is rebuilt by the API and the filters appear in the URL
+ 
+Scenario: Clear filters
+Given filters are applied
+When the user clears them
+Then every filter returns to its default and the list is rebuilt
+ 
+Scenario: Narrowing with no results
+Given a filter combination with no result
+When it is applied
+Then the screen describes the applied narrowing and offers a way to clear it
 ```
  
 ---

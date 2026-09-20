@@ -110,53 +110,6 @@ Então o volume por trás dele fica visível ao lado do score
 
 ---
 
-### US-04 — Filtrar os resultados para o formato do meu caso
-`Must` · E1 · 5 SP · Sprint 1 · aguardando decisão 2 · depende de US-03
-
-> Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força
-> mínima, vendo quantos processos cada tribunal tem, para que eu possa estreitar a lista até
-> o meu caso.
-
-**Regras de negócio**
-
-- Os filtros se combinam e são aplicados pela API; a lista nunca é filtrada no navegador.
-- O filtro de tribunal exibe a contagem de processos de cada tribunal, vinda da API.
-- O filtro de instância oferece apenas as instâncias que existem no escopo carregado.
-- Os filtros ativos são refletidos na URL, de modo que uma visão estreitada possa ser compartilhada.
-**Mensagens**
-
-- Resultado vazio: a tela descreve os filtros aplicados e oferece o caminho para limpá-los.
-**Critérios de aceite**
-
-```gherkin
-Cenário: Filtrar por tribunal com contagens
-Dado os tribunais no escopo
-Quando o filtro de tribunal é renderizado
-Então cada tribunal exibe sua contagem de processos, vinda da API
-
-Cenário: Filtro de instância apenas com tribunais estaduais
-Dado que a decisão 2 mantém o escopo em tribunais estaduais
-Quando o filtro de instância é renderizado
-Então a opção "Superior" não é exibida
-
-Cenário: Aplicar e compartilhar
-Dado que o usuário escolheu filtros
-Quando ele os aplica
-Então a lista é reconstruída pela API e os filtros aparecem na URL
-
-Cenário: Limpar filtros
-Dado que há filtros aplicados
-Quando o usuário os limpa
-Então todo filtro volta ao seu padrão e a lista é reconstruída
-
-Cenário: Estreitamento sem resultados
-Dado uma combinação de filtros sem resultado
-Quando ela é aplicada
-Então a tela descreve o estreitamento aplicado e oferece um caminho para limpá-lo
-```
-
----
-
 ### US-09 — Ler o entendimento em prosa
 `Must` · E3 · 8 SP · Sprint 1 · pronta · depende de US-06
 
@@ -233,6 +186,37 @@ Cenário: A figura de valores não tem fonte
 Dado que a faixa de valores arbitrados depende do inteiro teor, que não tem fonte
 Quando a página é renderizada
 Então a figura de valores não aparece e seu lugar explica por quê
+```
+
+---
+
+### US-13 — Compartilhar o link da aba em que estou
+`Could` · E3 · 5 SP · Sprint 1 · pronta · depende de US-09
+
+> Como **usuário**, quero que a aba que estou vendo seja refletida na URL, para que eu possa
+> enviar a um colega o link exato da parte que quero mostrar.
+
+**Regras de negócio**
+
+- A aba ativa faz parte da URL e é visualmente distinguível conforme o design system.
+- O histórico do navegador acompanha a troca de abas.
+**Critérios de aceite**
+
+```gherkin
+Cenário: Trocar de aba
+Dado que o usuário troca de aba
+Quando a aba muda
+Então a URL muda para refletir a aba ativa
+
+Cenário: Abrir um link compartilhado
+Dado um link que carrega a aba da base analítica
+Quando ele é aberto
+Então a página abre já naquela aba
+
+Cenário: Voltar pelo navegador
+Dado que o usuário trocou de aba
+Quando ele pressiona o botão voltar do navegador
+Então ele retorna à aba anterior, não para fora do tema
 ```
 
 ---
@@ -500,6 +484,58 @@ Cenário: Abrir o tema
 Dado um item de resultado
 Quando o usuário clica nele
 Então o detalhe do tema é aberto
+```
+
+---
+
+### US-04 — Filtrar os resultados para o formato do meu caso
+`Must` · E1 · 5 SP · Sprint 2 · aguardando decisão 2 · depende de US-03
+
+> Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força
+> mínima, vendo quantos processos cada tribunal tem, para que eu possa estreitar a lista até
+> o meu caso.
+
+> **Movida da Sprint 1 para a Sprint 2 em 20/09/2026.** Ela filtra a lista de resultados que a
+> `US-03` constrói, portanto estava alocada uma sprint antes daquilo de que depende. Agora fica
+> imediatamente após a `US-03`, e a decisão 2 — STJ e STF entram no escopo? — passa a vencer no
+> planning da Sprint 2, em 05/10, em vez de dentro da Sprint 1.
+
+**Regras de negócio**
+
+- Os filtros se combinam e são aplicados pela API; a lista nunca é filtrada no navegador.
+- O filtro de tribunal exibe a contagem de processos de cada tribunal, vinda da API.
+- O filtro de instância oferece apenas as instâncias que existem no escopo carregado.
+- Os filtros ativos são refletidos na URL, de modo que uma visão estreitada possa ser compartilhada.
+**Mensagens**
+
+- Resultado vazio: a tela descreve os filtros aplicados e oferece o caminho para limpá-los.
+**Critérios de aceite**
+
+```gherkin
+Cenário: Filtrar por tribunal com contagens
+Dado os tribunais no escopo
+Quando o filtro de tribunal é renderizado
+Então cada tribunal exibe sua contagem de processos, vinda da API
+
+Cenário: Filtro de instância apenas com tribunais estaduais
+Dado que a decisão 2 mantém o escopo em tribunais estaduais
+Quando o filtro de instância é renderizado
+Então a opção "Superior" não é exibida
+
+Cenário: Aplicar e compartilhar
+Dado que o usuário escolheu filtros
+Quando ele os aplica
+Então a lista é reconstruída pela API e os filtros aparecem na URL
+
+Cenário: Limpar filtros
+Dado que há filtros aplicados
+Quando o usuário os limpa
+Então todo filtro volta ao seu padrão e a lista é reconstruída
+
+Cenário: Estreitamento sem resultados
+Dado uma combinação de filtros sem resultado
+Quando ela é aplicada
+Então a tela descreve o estreitamento aplicado e oferece um caminho para limpá-lo
 ```
 
 ---

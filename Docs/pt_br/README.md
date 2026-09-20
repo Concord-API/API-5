@@ -40,7 +40,6 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | --- | --- | --- | --- | --- |
 | **US-01** | Must | Como **usuário**, quero digitar o tema do meu caso em linguagem natural e receber temas jurídicos curados — não uma lista de processos — para descobrir como ele vem sendo decidido sem garimpar um acórdão por vez | 8 | Sprint 1 |
 | **US-02** | Must | Como **usuário**, quero os resultados ordenados por quão consolidado está o entendimento, e não por relevância de texto, para encontrar primeiro o que sustenta minha tese | 2 | Sprint 1 |
-| **US-04** | Must | Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força mínima, vendo quantos processos cada tribunal tem, para restringir a lista ao meu caso | 5 | Sprint 1 |
 | **US-09** | Must | Como **usuário**, quero ler o entendimento do tema em prosa, abrindo com o número que responde à pergunta e com a contagem de casos ao lado de cada percentual, para entender o padrão sem abrir uma tabela | 8 | Sprint 1 |
 | **US-10** | Must | Como **usuário**, quero ver a distribuição de resultados do tema em uma figura com a fonte declarada, para ver de relance quanto é procedente, parcialmente procedente e improcedente | 5 | Sprint 1 |
 | **US-21** | Must | Como **usuário**, quero ver a doutrina invocada, com autor, obra e sua posição no debate, com link para o artigo quando houver, para saber o que citar além da jurisprudência | 8 | Sprint 1 |
@@ -48,6 +47,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | **US-25** | Must | Como **usuário**, quero saber a fonte e a data de extração de todo número que estou vendo, para saber exatamente o que estou citando | 3 | Sprint 1 |
 | **US-26** | Must | Como **usuário**, quero que a tela me diga o que não existe e por quê, em vez de mostrar um campo vazio ou um valor plausível, para não construir uma peça sobre dado que não existe | 3 | Sprint 1 |
 | **US-03** | Must | Como **usuário**, quero ver em cada resultado o score, a área do direito, o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma delas | 8 | Sprint 2 |
+| **US-04** | Must | Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força mínima, vendo quantos processos cada tribunal tem, para restringir a lista ao meu caso | 5 | Sprint 2 |
 | **US-06** | Must | Como **usuário**, quero um score de 0 a 100 dizendo o quanto o entendimento sobre o tema está consolidado, para saber se a tese vale ser defendida ou é uma briga aberta | 8 | Sprint 2 |
 | **US-07** | Must | Como **usuário**, quero que o score venha com uma classificação em linguagem que já existe no meio jurídico — Consolidada, Dominante, Em formação, Divergente — para não ter de interpretar uma escala inventada | 2 | Sprint 2 |
 | **US-08** | Must | Como **usuário**, quero abrir a composição do score — os quatro componentes, seus pesos e a base de cálculo — para citar a estatística sabendo exatamente de onde ela vem | 3 | Sprint 2 |
@@ -61,6 +61,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | **US-29** | Should | Como **usuário**, quero saber quando os dados foram atualizados pela última vez, e ser avisado quando estiverem defasados, para não me apoiar em um retrato de meses atrás | 3 | Sprint 3 |
 | **US-18** | Could | Como **usuário**, quero ver os precedentes qualificados vinculados ao tema — súmula, tema repetitivo, IRDR — distinguindo o que é vinculante do que é meramente persuasivo, para saber o que me obriga | 8 | Sprint 1 |
 | **US-23** | Could | Como **usuário**, quero ler o texto integral da decisão citada na aplicação, para conferir o contexto antes de usá-la | 5 | Sprint 1 |
+| **US-13** | Could | Como **usuário**, quero que a aba que estou vendo seja refletida na URL, para enviar a um colega o link exato da parte que quero mostrar | 5 | Sprint 1 |
 | **US-38** | Could | Como **usuário**, quero sugestões de consultas frequentes na tela inicial, para entender que tipo de pergunta a ferramenta responde antes de digitar a minha | 2 | Sprint 2 |
 | **US-19** | Could | Como **usuário**, quero ver os fundamentos invocados nas decisões do tema, com a frequência e a taxa de acolhimento de cada um, para escolher o argumento que mais vence e evitar o que sempre perde | 8 | Sprint 2 |
 | **US-22** | Could | Como **usuário**, quero o nome do relator na amostra e na referência de citação, para montar a citação completa | 5 | Sprint 2 |
@@ -74,8 +75,8 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 
 | Sprint | Janela | Histórias | Pontos |
 | --- | --- | --- | --- |
-| **Sprint 1** | 07/09 – 27/09 | 13 | 62 |
-| **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
+| **Sprint 1** | 07/09 – 27/09 | 11 | 57 |
+| **Sprint 2** | 05/10 – 25/10 | 14 | 70 |
 | **Sprint 3** | 02/11 – 22/11 | 7 | 40 |
 
 ## MoSCoW
