@@ -150,18 +150,24 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 
 ## How to contribute
 ### Branches
-- **Feature branching + one branch per sprint**
-- **main:** the project's main, stable branch. It only receives merges at the end of each sprint, after review and approval.
-- **sprintX** (e.g. sprint1, sprint2, sprint3): each sprint has its own base branch, where every feature built during that cycle is integrated.
-- **parenttask-subtask-task-name-with-dashes-if-it-has-spaces:** for every new feature or fix, a dedicated branch is created off the current sprint branch. The branch is named after the task on the board. Example: `RATIO-35-0.1-Implement-API-documentation`
+- **Feature branching + one branch per user story**
+- **main:** the project's main, stable branch. It receives a merge every time a user story is completed, after review and approval.
+- **usX** (e.g. `us1`, `us9`, `us21`): each user story has its own base branch, named after its number without leading zeros, where every task of that story is integrated.
+- **us0:** the base branch of the **Technical Foundation** — the `0.Y` tasks (schema, pipeline, frontend skeleton) that belong to no user story.
+- **task-id-task-name-with-dashes-instead-of-spaces:** every task gets its own branch, created from the branch of the user story it belongs to and merged back into it. The name is the task ID followed by its title on the board, with no reference to the user story — the ID already says which story it belongs to (`1.1` is from US-01, `0.12` from the Technical Foundation). No accents, backticks, quotes or slashes. Example: `0.12-Create-the-dw-schema-migration-and-apply-it-on-API-startup`
+- **Protection:** nobody pushes straight to `main` or to a `usX` branch. Every change enters through a pull request from a task branch.
 - **Documentation repository:** since the branches in this repository are not tied to tasks, they follow a different pattern. They carry the application name, the word "**DOCS**" and a description of what is being done — for example, `RATIO-DOCS-Definition-of-Done`, `RATIO-DOCS-Product-Backlog`
 ### Commits
-**Every commit to any repository in this project must be written in English.**  
+**Every commit to any repository in this project must be written in English.**
 Each commit should be small, descriptive and to the point, following the semantic convention:
- 
+
 - `feat:` description of the new feature
 - `fix:` bug fix or unexpected behaviour
 - `refactor:` code improvement with no change in behaviour
 - `docs:` documentation update
+- `test:` adding or changing the project's tests — unit, integration, contract, end to end
 - `chore:` configuration, build or maintenance work
+
+A commit carries **only the subject line**, with no descriptive body, and **no AI tool is ever credited as a co-author** (no `Co-Authored-By:` for AI).
+
 Example: `feat: add semantic search by legal topic`
