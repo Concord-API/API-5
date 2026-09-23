@@ -168,6 +168,32 @@ Each commit should be small, descriptive and to the point, following the semanti
 - `test:` adding or changing the project's tests — unit, integration, contract, end to end
 - `chore:` configuration, build or maintenance work
 
-A commit carries **only the subject line**, with no descriptive body, and **no AI tool is ever credited as a co-author** (no `Co-Authored-By:` for AI).
+A commit carries **only the subject line**, with no descriptive body.
 
 Example: `feat: add semantic search by legal topic`
+
+### Releases
+Every pull request to `main` carries **exactly one** `release:*` label. It decides the `vX.Y.Z` version published on merge. The release is created automatically once the CI on `main` passes.
+
+| Label | When to use | Effect on the version | Example |
+|---|---|---|---|
+| `release:sprint` | the sprint's last pull request to `main` (the sprint delivery) | bumps **X** and resets Y and Z | `v1.2.1` → `v2.0.0` |
+| `release:us` | a completed user story (`usX` → `main` pull request) | bumps **Y** and resets Z | `v1.2.1` → `v1.3.0` |
+| `release:fix` | a fix that goes straight to `main` | bumps **Z** | `v1.2.1` → `v1.2.2` |
+| `release:none` | a change with no effect for the client (CI, documentation) | publishes no release | — |
+
+- **X** counts the delivered sprints, **Y** the user stories delivered since the last sprint and **Z** the fixes since the last user story.
+- The sprint number goes up **at the end** of the sprint: `release:sprint` goes on the sprint's last pull request to `main`. If no user story pull request is left at the end, a delivery-only pull request is opened with that label.
+- A task generates no version, because its pull request goes to `usX`, not to `main`. Neither does a fix inside a user story in progress: it goes into that `usX`.
+- Before the first delivery, versions stay at `0.Y.Z`. The first delivered sprint produces `v1.0.0`.
+- Each repository has its own numbering: the backend's `v1.2.0` does not match the frontend's `v1.2.0`.
+
+Example of a sprint:
+
+| Event | Label | Version |
+|---|---|---|
+| US-01 completed | `release:us` | `v0.1.0` |
+| fix on `main` | `release:fix` | `v0.1.1` |
+| US-02 completed | `release:us` | `v0.2.0` |
+| sprint 1's last user story | `release:sprint` | `v1.0.0` |
+| sprint 2's first user story | `release:us` | `v1.1.0` |

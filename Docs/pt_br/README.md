@@ -166,6 +166,32 @@ Cada commit deve ser pequeno, descritivo e direto, seguindo a convenção semân
 - `test:` adição ou alteração de testes do projeto — unidade, integração, contrato, ponta a ponta
 - `chore:` configuração, build ou manutenção
 
-O commit leva **só a linha do assunto**, sem corpo descritivo, e **nenhuma ferramenta de IA é registrada como coautora** (sem `Co-Authored-By:` de IA).
+O commit leva **só a linha do assunto**, sem corpo descritivo.
 
 Exemplo: `feat: add semantic search by legal topic`
+
+### Releases
+Todo pull request para a `main` leva **exatamente um** label `release:*`. É ele que decide a versão `vX.Y.Z` publicada no merge. A release é criada automaticamente depois que o CI da `main` passa.
+
+| Label | Quando usar | Efeito na versão | Exemplo |
+|---|---|---|---|
+| `release:sprint` | último PR para a `main` da sprint (a entrega da sprint) | sobe o **X** e zera Y e Z | `v1.2.1` → `v2.0.0` |
+| `release:us` | user story concluída (PR `usX` → `main`) | sobe o **Y** e zera o Z | `v1.2.1` → `v1.3.0` |
+| `release:fix` | correção que vai direto para a `main` | sobe o **Z** | `v1.2.1` → `v1.2.2` |
+| `release:none` | mudança sem efeito para o cliente (CI, documentação) | não publica release | — |
+
+- **X** conta as sprints entregues, **Y** as user stories entregues desde a última sprint e **Z** as correções desde a última user story.
+- A versão sobe de sprint **no fim** dela: o `release:sprint` vai no último PR da sprint para a `main`. Se no fim não sobrar PR de user story, abre-se um PR só da entrega com esse label.
+- Task não gera versão, porque o PR dela vai para a `usX`, não para a `main`. Correção dentro de uma user story em andamento também não: ela entra na própria `usX`.
+- Antes da primeira entrega, as versões ficam em `0.Y.Z`. A primeira sprint entregue gera a `v1.0.0`.
+- Cada repositório tem a própria numeração: a `v1.2.0` do backend não corresponde à `v1.2.0` do frontend.
+
+Exemplo de uma sprint:
+
+| Evento | Label | Versão |
+|---|---|---|
+| US-01 concluída | `release:us` | `v0.1.0` |
+| correção na `main` | `release:fix` | `v0.1.1` |
+| US-02 concluída | `release:us` | `v0.2.0` |
+| última US da sprint 1 | `release:sprint` | `v1.0.0` |
+| primeira US da sprint 2 | `release:us` | `v1.1.0` |
