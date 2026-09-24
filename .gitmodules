@@ -4,3 +4,6 @@
 [submodule "Frontend"]
 	path = Frontend
 	url = git@github.com:Concord-API/API5-Frontend.git
+[submodule "Pipeline"]
+	path = Pipeline
+	url = git@github.com:Concord-API/API5-Pipeline.git
