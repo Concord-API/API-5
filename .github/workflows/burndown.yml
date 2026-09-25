@@ -1,0 +1,54 @@
+name: Burndown
+
+on:
+  schedule:
+    - cron: "0 11 * * 4"
+  workflow_dispatch:
+    inputs:
+      sprint:
+        description: "Sprint, ex.: Sprint 2 (vazio = a sprint em curso)"
+        required: false
+      hoje:
+        description: "Data de corte AAAA-MM-DD (vazio = hoje)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: burndown
+  cancel-in-progress: false
+
+jobs:
+  burndown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gerar o burndown
+        env:
+          GH_TOKEN: ${{ secrets.BOARD_TOKEN }}
+          SPRINT: ${{ inputs.sprint }}
+          HOJE: ${{ inputs.hoje }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::O secret BOARD_TOKEN não está configurado no repositório."
+            exit 1
+          fi
+          args=()
+          if [ -n "$SPRINT" ]; then args+=(--sprint "$SPRINT"); fi
+          if [ -n "$HOJE" ]; then args+=(--hoje "$HOJE"); fi
+          python3 scripts/burndown/burndown.py "${args[@]}" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: Publicar na main
+        run: |
+          git add Docs/Scrum/burndown
+          if git diff --cached --quiet; then
+            echo "Nada mudou desde o último gráfico."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: update the burndown chart"
+          git pull --rebase
+          git push
