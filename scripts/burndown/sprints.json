@@ -1,0 +1,23 @@
+{
+  "sprints": [
+    {
+      "nome": "Sprint 1",
+      "abertura": "2026-09-07",
+      "inicio": "2026-09-21",
+      "fim": "2026-09-27",
+      "nota": "A sprint abriu em 07/09; o quadro passou a registrar estado em 21/09, e a linha ideal parte daí."
+    },
+    {
+      "nome": "Sprint 2",
+      "abertura": "2026-10-05",
+      "inicio": "2026-10-05",
+      "fim": "2026-10-25"
+    },
+    {
+      "nome": "Sprint 3",
+      "abertura": "2026-11-02",
+      "inicio": "2026-11-02",
+      "fim": "2026-11-22"
+    }
+  ]
+}
