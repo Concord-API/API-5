@@ -196,37 +196,6 @@ Então a figura de valores não aparece e seu lugar explica por quê
 
 ---
 
-### US-13 — Compartilhar o link da aba em que estou
-`Could` · E3 · 5 SP · Sprint 1 · pronta · depende de US-09
-
-> Como **usuário**, quero que a aba que estou vendo seja refletida na URL, para que eu possa
-> enviar a um colega o link exato da parte que quero mostrar.
-
-**Regras de negócio**
-
-- A aba ativa faz parte da URL e é visualmente distinguível conforme o design system.
-- O histórico do navegador acompanha a troca de abas.
-**Critérios de aceite**
-
-```gherkin
-Cenário: Trocar de aba
-Dado que o usuário troca de aba
-Quando a aba muda
-Então a URL muda para refletir a aba ativa
-
-Cenário: Abrir um link compartilhado
-Dado um link que carrega a aba da base analítica
-Quando ele é aberto
-Então a página abre já naquela aba
-
-Cenário: Voltar pelo navegador
-Dado que o usuário trocou de aba
-Quando ele pressiona o botão voltar do navegador
-Então ele retorna à aba anterior, não para fora do tema
-```
-
----
-
 ### US-21 — Saber o que citar além da jurisprudência
 `Must` · E4 · 8 SP · Sprint 1 · pronta · depende de —
 
@@ -940,6 +909,39 @@ Cenário: Carga falhando há dias
 Dado que a carga falhou por vários dias
 Quando o usuário usa o produto
 Então ele não apresenta dado desatualizado com aparência de dado atual
+```
+
+---
+
+### US-13 — Compartilhar o link da aba em que estou
+`Could` · E3 · 5 SP · Sprint 3 · pronta · depende de US-09
+
+> Como **usuário**, quero que a aba que estou vendo seja refletida na URL, para que eu possa
+> enviar a um colega o link exato da parte que quero mostrar.
+
+> **Movida da Sprint 1 para a Sprint 3 em 24/09/2026.**
+
+**Regras de negócio**
+
+- A aba ativa faz parte da URL e é visualmente distinguível conforme o design system.
+- O histórico do navegador acompanha a troca de abas.
+**Critérios de aceite**
+
+```gherkin
+Cenário: Trocar de aba
+Dado que o usuário troca de aba
+Quando a aba muda
+Então a URL muda para refletir a aba ativa
+
+Cenário: Abrir um link compartilhado
+Dado um link que carrega a aba da base analítica
+Quando ele é aberto
+Então a página abre já naquela aba
+
+Cenário: Voltar pelo navegador
+Dado que o usuário trocou de aba
+Quando ele pressiona o botão voltar do navegador
+Então ele retorna à aba anterior, não para fora do tema
 ```
 
 ---
