@@ -60,10 +60,10 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | [**US-27**](Docs/Scrum/acceptance-criteria.md#us-27--export-the-topics-decisions)                      | Should   | As a **user**, I want to export to CSV the decisions that support the topic, so that I can work the data outside the tool                                                                                                                               | 5        | Sprint 3 |
 | [**US-28**](Docs/Scrum/acceptance-criteria.md#us-28--copy-the-citation-ready-to-paste)             | Should   | As a **user**, I want to copy the topic's citation already with the source, the extraction date and the scope, so that I can paste it without retyping                                                                                         | 3        | Sprint 3 |
 | [**US-29**](Docs/Scrum/acceptance-criteria.md#us-29--know-whether-the-data-is-current)                  | Should   | As a **user**, I want to know when the data was last updated, and to be warned when it is stale, so that I do not rely on a months-old snapshot                                                                                                         | 3        | Sprint 3 |
-| [**US-13**](Docs/Scrum/acceptance-criteria.md#us-13--share-the-link-to-the-tab-i-am-on) | Could | As a **user**, I want the tab I am viewing to be reflected in the URL, so that I can send a colleague the exact link to the part I want to show | 5 | Sprint 1 |
 | [**US-38**](Docs/Scrum/acceptance-criteria.md#us-38--query-suggestions-on-the-home-screen)      | Could    | As a **user**, I want suggested frequent queries on the home screen, so that I understand what kind of question the tool answers before typing my own                                                                                                   | 2        | Sprint 2 |
 | [**US-19**](Docs/Scrum/acceptance-criteria.md#us-19--pick-the-argument-that-wins-most)                 | Could    | As a **user**, I want to see the grounds invoked in the topic's decisions, with the frequency and the acceptance rate of each one, so that I can pick the argument that wins most and avoid the one that always loses                                   | 8        | Sprint 2 |
 | [**US-37**](Docs/Scrum/acceptance-criteria.md#us-37--see-the-ruling-behind-each-statement)    | Could    | As a **user**, I want to see in the understanding text the ruling that supports each statement, with the full reference and the list of cited decisions at the foot, so that I can cite the same decision                                               | 8        | Sprint 2 |
+| [**US-13**](Docs/Scrum/acceptance-criteria.md#us-13--share-the-link-to-the-tab-i-am-on) | Could | As a **user**, I want the tab I am viewing to be reflected in the URL, so that I can send a colleague the exact link to the part I want to show | 5 | Sprint 3 |
 | [**US-30**](Docs/Scrum/acceptance-criteria.md#us-30--know-how-long-it-takes-to-reach-a-decision)    | Could    | As a **user**, I want to know how long it usually takes from filing to decision on this topic, so that I can calibrate my client's expectation                                                                                                          | 8        | Sprint 3 |
 | [**US-34**](Docs/Scrum/acceptance-criteria.md#us-34--ask-in-natural-language)        | Could    | As a **user**, I want to ask a chatbot about a topic in natural language and get the answer in prose with the numbers, for the questions that no screen filter answers                                                                                  | 13       | Sprint 3 |
 | [**US-35**](Docs/Scrum/acceptance-criteria.md#us-35--be-able-to-check-what-the-chatbot-answered)          | Could    | As a **user**, I want every chatbot answer to bring the `n`, the source, the extraction date, the scope and the link to the cases, so that I can check it before using it                                                                               | 5        | Sprint 3 |
@@ -74,9 +74,9 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 
 | Sprint | Window | Stories | Points |
 | --- | --- | --- | --- |
-| **Sprint 1** | 07/09 – 27/09 | 9 | 44 |
+| **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
 | **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
-| **Sprint 3** | 02/11 – 22/11 | 7 | 40 |
+| **Sprint 3** | 02/11 – 22/11 | 8 | 45 |
 
 ## MoSCoW
 

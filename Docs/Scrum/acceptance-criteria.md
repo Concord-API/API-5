@@ -195,37 +195,6 @@ Then the amount figure does not appear and its place explains why
  
 ---
 
-### US-13 — Share the link to the tab I am on
-`Could` · E3 · 5 SP · Sprint 1 · ready · depends on US-09
- 
-> As a **user**, I want the tab I am viewing to be reflected in the URL, so that I can send
-> a colleague the exact link to the part I want to show.
- 
-**Business rules**
- 
-- The active tab is part of the URL and is visually distinguishable per the design system.
-- Browser history follows tab changes.
-**Acceptance criteria**
- 
-```gherkin
-Scenario: Switch tabs
-Given the user switches tabs
-When the tab changes
-Then the URL changes to reflect the active tab
- 
-Scenario: Open a shared link
-Given a link carrying the analytical base tab
-When it is opened
-Then the page opens already on that tab
- 
-Scenario: Browser back
-Given the user has switched tabs
-When they press the browser's back button
-Then they return to the previous tab, not out of the topic
-```
- 
----
-
 ### US-21 — Know what to cite beyond case law
 `Must` · E4 · 8 SP · Sprint 1 · ready · depends on —
 
@@ -941,6 +910,39 @@ Then it does not present stale data with the appearance of current data
  
 ---
  
+### US-13 — Share the link to the tab I am on
+`Could` · E3 · 5 SP · Sprint 3 · ready · depends on US-09
+ 
+> As a **user**, I want the tab I am viewing to be reflected in the URL, so that I can send
+> a colleague the exact link to the part I want to show.
+ 
+> **Moved from Sprint 1 to Sprint 3 on 24/09/2026.**
+ 
+**Business rules**
+ 
+- The active tab is part of the URL and is visually distinguishable per the design system.
+- Browser history follows tab changes.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Switch tabs
+Given the user switches tabs
+When the tab changes
+Then the URL changes to reflect the active tab
+ 
+Scenario: Open a shared link
+Given a link carrying the analytical base tab
+When it is opened
+Then the page opens already on that tab
+ 
+Scenario: Browser back
+Given the user has switched tabs
+When they press the browser's back button
+Then they return to the previous tab, not out of the topic
+```
+ 
+---
+
 ### US-30 — Know how long it takes to reach a decision
 `Could` · E6 · 8 SP · Sprint 3 · awaiting decision 1 · depends on —
  
