@@ -1,6 +1,6 @@
 # Sprint Backlog — Sprint 2
 
-**Window:** Oct 5 to Oct 25, 2026 · **8 stories · 36 SP** · **goal: 6 stories · 29 SP** · outside the goal: 2 stories · 7 SP
+**Window:** Oct 5 to Oct 25, 2026 
 
 ## Sprint goal
 
