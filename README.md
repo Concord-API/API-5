@@ -23,16 +23,17 @@ See the portuguese(br) version of the documentation [here](Docs/pt_br/README.md)
 - [How to contribute](#how-to-contribute)
   - [Branches](#branches)
   - [Commits](#commits)
+- [Dimensional Model](Docs/dimensional-model.svg)
 
 ## Introduction
-Ratio sets out to eliminate the manual, fragmented work of case law analysis that keeps lawyers and judges from reliably identifying where the courts stand on a given thesis — letting them quickly assess its acceptance, recurrence and degree of consolidation to ground legal decisions and strategies. It does so by centralising and analysing case law, precedents and legal scholarship from TJSP, TJRJ and TJMG in a legal Data Warehouse, with semantic search by topic and the generation of indicators and decision patterns traceable back to their original sources.
+Ratio sets out to eliminate the manual, fragmented work of case law analysis that keeps lawyers and judges from reliably identifying where the courts stand on a given thesis — letting them quickly assess its acceptance, recurrence and degree of consolidation to ground legal decisions and strategies. It does so by centralising and analysing case law, precedents and legal scholarship from TJSP, TJRJ, TJMG, STJ and STF in a legal Data Warehouse, with semantic search by topic and the generation of indicators and decision patterns traceable back to their original sources.
  
 ## Key Features
 - **Topic search in natural language** — the user describes the case in their own words and gets the legal topic already identified, without having to build search syntax or know the technical name of the thesis.
 - **Consolidated decision pattern** — acceptance rate, case volume and courts involved, computed automatically. Removes the manual tabulation of decisions in a spreadsheet.
 - **Strength score for the understanding** — shows how settled (or how unstable) that pattern is, weighing agreement between decisions, volume, coverage and recency.
 - **Traceability** — every number displayed leads back to its source and extraction date; no metric is invented or computed in the dark.
-- **Multi-court coverage** — centralised data from TJSP, TJRJ and TJMG, the three courts with the highest case volume in the country.
+- **Multi-court coverage** — centralised data from TJSP, TJRJ and TJMG — the three state courts with the highest case volume in the country — plus the two superior courts, STJ and STF.
 - **Access to related case law and scholarship** — to keep everything traceable, every case behind a topic leads back to the court, and the scholarship related to it stays reachable.
 
 # Product Backlog
@@ -44,7 +45,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | [**US-09**](Docs/Scrum/acceptance-criteria.md#us-09--read-the-understanding-in-prose) | Must | As a **user**, I want to read the topic's understanding in prose, opening with the number that answers the question and with the case count next to every percentage, so that I understand the pattern without opening a table | 8 |
 | [**US-10**](Docs/Scrum/acceptance-criteria.md#us-10--see-the-outcome-distribution-as-a-figure) | Must | As a **user**, I want to see the distribution of outcomes for the topic in a figure with the source stated, so that I can see at a glance how much is upheld, partially upheld and dismissed | 5 |
 | [**US-21**](Docs/Scrum/acceptance-criteria.md#us-21--know-what-to-cite-beyond-case-law) | Must | As a **user**, I want to see the legal scholarship related to the topic, with author, work and a link to the article when there is one, so that I know what to cite beyond case law | 8 |
-| [**US-24**](Docs/Scrum/acceptance-criteria.md#us-24--know-the-coverage-scope) | Must | As a **user**, I want every screen to make clear that the data covers TJSP, TJRJ and TJMG, so that I do not draw a nationwide conclusion from a percentage that reflects three states | 2 |
+| [**US-24**](Docs/Scrum/acceptance-criteria.md#us-24--know-the-coverage-scope) | Must | As a **user**, I want every screen to make clear that the data covers TJSP, TJRJ, TJMG, STJ and STF, so that I do not draw a nationwide conclusion from a percentage that reflects only these five courts | 2 |
 | [**US-25**](Docs/Scrum/acceptance-criteria.md#us-25--know-the-source-and-date-of-every-number) | Must | As a **user**, I want to know the source and the extraction date of every number I am seeing, so that I know exactly what I am citing | 3 |
 | [**US-26**](Docs/Scrum/acceptance-criteria.md#us-26--see-no-data-explained-instead-of-an-empty-field) | Must | As a **user**, I want the screen to tell me what does not exist and why, instead of showing an empty field or a plausible value, so that I do not build a filing on data that does not exist | 3 |
 | [**US-03**](Docs/Scrum/acceptance-criteria.md#us-03--compare-theses-in-the-result-list) | Must | As a **user**, I want to see in each result the score, the area of law, the thesis title, a short summary, the courts, the volume, the period, the last decision and the favourable percentage, so that I can compare theses before opening any of them | 8 |
@@ -52,7 +53,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | [**US-06**](Docs/Scrum/acceptance-criteria.md#us-06--the-0-to-100-score) | Must | As a **user**, I want a 0-to-100 score telling me how settled the understanding on the topic is, so that I know whether the thesis is worth arguing or is an open fight | 8 |
 | [**US-07**](Docs/Scrum/acceptance-criteria.md#us-07--the-grade-in-legal-language) | Must | As a **user**, I want the score to come with a grade in language that already exists in the legal field — Consolidada, Dominante, Em formação, Divergente — so that I do not have to interpret an invented scale | 2 |
 | [**US-11**](Docs/Scrum/acceptance-criteria.md#us-11--see-the-alignment-evolve-over-time) | Must | As a **user**, I want to see how the topic's alignment evolved year by year, with the trend sentence, so that I know whether the understanding is settling or shifting | 5 |
-| [**US-12**](Docs/Scrum/acceptance-criteria.md#us-12--see-the-alignment-per-court) | Must | As a **user**, I want to see the topic's alignment by court, so that I know whether the thesis holds the same in São Paulo, Rio de Janeiro and Minas Gerais | 3 |
+| [**US-12**](Docs/Scrum/acceptance-criteria.md#us-12--see-the-alignment-per-court) | Must | As a **user**, I want to see the topic's alignment by court, so that I know whether the thesis holds the same in São Paulo, Rio de Janeiro, Minas Gerais and the superior courts (STJ and STF) | 3 |
 | [**US-14**](Docs/Scrum/acceptance-criteria.md#us-14--compare-each-courts-behaviour) | Must | As a **user**, I want a table of each court's behaviour — decisions, alignment and date of the latest one — so that I can compare my court with the others | 3 |
 | [**US-15**](Docs/Scrum/acceptance-criteria.md#us-15--check-the-sample-of-cases-behind-the-topic) | Must | As a **user**, I want an auditable sample of the cases behind the topic, with panel, date and outcome, so that I can check the cases before citing them | 5 |
 | [**US-17**](Docs/Scrum/acceptance-criteria.md#us-17--know-whether-the-courts-panels-diverge) | Should | As a **user**, I want to know whether the panels of my court are deciding alike, so that I can spot internal divergence before deciding | 5 |
