@@ -13,16 +13,17 @@ Veja a versão em inglês da documentação [aqui](../../README.md)
   - [Disitribuição por Sprint](#distribuição-por-sprint)
   - [MoSCoW](#moscow)
   - [Escala de Estimativa](#escala-de-estimativa)
-- [Critérios de Aceitação](Docs/pt_br/Scrum/acceptance-criteria.md)
-- [DoD](Docs/pt_br/Scrum/definition-of-done.md)
-- [DoR](Docs/pt_br/Scrum/definition-of-ready.md)
-- [Meta do produto](Docs/pt_br/Scrum/product-goal.md)
-- [Requisitos Funcionais](Docs/pt_br/functional-requirements.md)
-- [Requisitos Não Funcionais](Docs/pt_br/non-functional-requirements.md)
+- [Critérios de Aceitação](../pt_br/Scrum/acceptance-criteria.md)
+- [DoD](../pt_br/Scrum/definition-of-done.md)
+- [DoR](../pt_br/Scrum/definition-of-ready.md)
+- [Meta do produto](../pt_br/Scrum/product-goal.md)
+- [Requisitos Funcionais](../pt_br/functional-requirements.md)
+- [Requisitos Não Funcionais](../pt_br/non-functional-requirements.md)
 - [Time](#time)
 - [Como contribuir](#como-contribuir)
   - [Branches](#branches)
   - [Commits](#commits)
+- [Modelo Dimensional](../dimensional-model.svg)
 
 ## Introdução
 O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jurisprudência que impede advogados e juízes de identificar com segurança onde os tribunais se posicionam sobre uma tese — permitindo avaliar rapidamente sua aceitação, recorrência e grau de consolidação para fundamentar decisões e estratégias jurídicas. Para isso, centraliza e analisa jurisprudência, precedentes e doutrina do TJSP, TJRJ, TJMG, STJ e STF em um Data Warehouse jurídico, com busca semântica por tema e geração de indicadores e padrões decisórios rastreáveis até suas fontes originais.
@@ -39,26 +40,26 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 
 | ID | Prioridade | Descrição | Estimativa |
 | --- | --- | --- | --- |
-| [**US-01**](Docs/pt_br/Scrum/acceptance-criteria.md#us-01--busca-de-tema-em-linguagem-natural) | Must | Como **usuário**, quero digitar o tema do meu caso em linguagem natural e receber temas jurídicos curados — não uma lista de processos — para descobrir como ele vem sendo decidido sem garimpar um acórdão por vez | 8 |
-| [**US-02**](Docs/pt_br/Scrum/acceptance-criteria.md#us-02--resultados-ordenados-pela-força-do-entendimento) | Must | Como **usuário**, quero os resultados ordenados por quão consolidado está o entendimento, e não por relevância de texto, para encontrar primeiro o que sustenta minha tese | 2 |
-| [**US-09**](Docs/pt_br/Scrum/acceptance-criteria.md#us-09--ler-o-entendimento-em-prosa) | Must | Como **usuário**, quero ler o entendimento do tema em prosa, abrindo com o número que responde à pergunta e com a contagem de casos ao lado de cada percentual, para entender o padrão sem abrir uma tabela | 8 |
-| [**US-10**](Docs/pt_br/Scrum/acceptance-criteria.md#us-10--ver-a-distribuição-dos-resultados-em-uma-figura) | Must | Como **usuário**, quero ver a distribuição de resultados do tema em uma figura com a fonte declarada, para ver de relance quanto é procedente, parcialmente procedente e improcedente | 5 |
-| [**US-21**](Docs/pt_br/Scrum/acceptance-criteria.md#us-21--saber-o-que-citar-além-da-jurisprudência) | Must | Como **usuário**, quero ver a doutrina relacionada ao tema, com autor, obra e link para o artigo quando houver, para saber o que citar além da jurisprudência | 8 |
-| [**US-24**](Docs/pt_br/Scrum/acceptance-criteria.md#us-24--conhecer-o-escopo-de-cobertura) | Must | Como **usuário**, quero que toda tela deixe claro que os dados cobrem TJSP, TJRJ, TJMG, STJ e STF, para não tirar uma conclusão nacional de um percentual que reflete apenas esses cinco tribunais | 2 |
-| [**US-25**](Docs/pt_br/Scrum/acceptance-criteria.md#us-25--conhecer-a-fonte-e-a-data-de-todo-número) | Must | Como **usuário**, quero saber a fonte e a data de extração de todo número que estou vendo, para saber exatamente o que estou citando | 3 |
-| [**US-26**](Docs/pt_br/Scrum/acceptance-criteria.md#us-26--ver-sem-dado-explicado-em-vez-de-um-campo-vazio) | Must | Como **usuário**, quero que a tela me diga o que não existe e por quê, em vez de mostrar um campo vazio ou um valor plausível, para não construir uma peça sobre dado que não existe | 3 |
-| [**US-03**](Docs/pt_br/Scrum/acceptance-criteria.md#us-03--comparar-teses-na-lista-de-resultados) | Must | Como **usuário**, quero ver em cada resultado o score, a área do direito, o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma delas | 8 |
-| [**US-04**](Docs/pt_br/Scrum/acceptance-criteria.md#us-04--filtrar-os-resultados-para-o-formato-do-meu-caso) | Must | Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força mínima, vendo quantos processos cada tribunal tem, para restringir a lista ao meu caso | 5 |
-| [**US-06**](Docs/pt_br/Scrum/acceptance-criteria.md#us-06--o-score-de-0-a-100) | Must | Como **usuário**, quero um score de 0 a 100 dizendo o quanto o entendimento sobre o tema está consolidado, para saber se a tese vale ser defendida ou é uma briga aberta | 8 |
-| [**US-07**](Docs/pt_br/Scrum/acceptance-criteria.md#us-07--o-grau-em-linguagem-jurídica) | Must | Como **usuário**, quero que o score venha com uma classificação em linguagem que já existe no meio jurídico — Consolidada, Dominante, Em formação, Divergente — para não ter de interpretar uma escala inventada | 2 |
-| [**US-11**](Docs/pt_br/Scrum/acceptance-criteria.md#us-11--ver-o-alinhamento-evoluir-ao-longo-do-tempo) | Must | Como **usuário**, quero ver como o alinhamento do tema evoluiu ano a ano, com a frase de tendência, para saber se o entendimento está se firmando ou mudando | 5 |
-| [**US-12**](Docs/pt_br/Scrum/acceptance-criteria.md#us-12--ver-o-alinhamento-por-tribunal) | Must | Como **usuário**, quero ver o alinhamento do tema por tribunal, para saber se a tese se sustenta igual em São Paulo, Rio de Janeiro, Minas Gerais e nos tribunais superiores (STJ e STF) | 3 |
-| [**US-14**](Docs/pt_br/Scrum/acceptance-criteria.md#us-14--comparar-o-comportamento-de-cada-tribunal) | Must | Como **usuário**, quero uma tabela do comportamento de cada tribunal — decisões, alinhamento e data da mais recente — para comparar o meu tribunal com os outros | 3 |
-| [**US-15**](Docs/pt_br/Scrum/acceptance-criteria.md#us-15--conferir-a-amostra-de-processos-por-trás-do-tema) | Must | Como **usuário**, quero uma amostra auditável dos processos por trás do tema, com câmara, data e resultado, para conferir os casos antes de citá-los | 5 |
-| [**US-17**](Docs/pt_br/Scrum/acceptance-criteria.md#us-17--saber-se-as-câmaras-do-tribunal-divergem) | Should | Como **usuário**, quero saber se as câmaras do meu tribunal estão decidindo igual, para identificar divergência interna antes de decidir | 5 |
-| [**US-27**](Docs/pt_br/Scrum/acceptance-criteria.md#us-27--exportar-as-decisões-do-tema) | Should | Como **usuário**, quero exportar para CSV as decisões que sustentam o tema, para trabalhar os dados fora da ferramenta | 5 |
-| [**US-28**](Docs/pt_br/Scrum/acceptance-criteria.md#us-28--copiar-a-citação-pronta-para-colar) | Should | Como **usuário**, quero copiar a citação do tema já com a fonte, a data de extração, o escopo e o `n`, para colar sem redigitar | 3 |
-| [**US-29**](Docs/pt_br/Scrum/acceptance-criteria.md#us-29--saber-se-o-dado-está-atual) | Should | Como **usuário**, quero saber quando os dados foram atualizados pela última vez, e ser avisado quando estiverem defasados, para não me apoiar em um retrato de meses atrás | 3 |
+| [**US-01**](../pt_br/Scrum/acceptance-criteria.md#us-01--busca-de-tema-em-linguagem-natural) | Must | Como **usuário**, quero digitar o tema do meu caso em linguagem natural e receber temas jurídicos curados — não uma lista de processos — para descobrir como ele vem sendo decidido sem garimpar um acórdão por vez | 8 |
+| [**US-02**](../pt_br/Scrum/acceptance-criteria.md#us-02--resultados-ordenados-pela-força-do-entendimento) | Must | Como **usuário**, quero os resultados ordenados por quão consolidado está o entendimento, e não por relevância de texto, para encontrar primeiro o que sustenta minha tese | 2 |
+| [**US-09**](../pt_br/Scrum/acceptance-criteria.md#us-09--ler-o-entendimento-em-prosa) | Must | Como **usuário**, quero ler o entendimento do tema em prosa, abrindo com o número que responde à pergunta e com a contagem de casos ao lado de cada percentual, para entender o padrão sem abrir uma tabela | 8 |
+| [**US-10**](../pt_br/Scrum/acceptance-criteria.md#us-10--ver-a-distribuição-dos-resultados-em-uma-figura) | Must | Como **usuário**, quero ver a distribuição de resultados do tema em uma figura com a fonte declarada, para ver de relance quanto é procedente, parcialmente procedente e improcedente | 5 |
+| [**US-21**](../pt_br/Scrum/acceptance-criteria.md#us-21--saber-o-que-citar-além-da-jurisprudência) | Must | Como **usuário**, quero ver a doutrina relacionada ao tema, com autor, obra e link para o artigo quando houver, para saber o que citar além da jurisprudência | 8 |
+| [**US-24**](../pt_br/Scrum/acceptance-criteria.md#us-24--conhecer-o-escopo-de-cobertura) | Must | Como **usuário**, quero que toda tela deixe claro que os dados cobrem TJSP, TJRJ, TJMG, STJ e STF, para não tirar uma conclusão nacional de um percentual que reflete apenas esses cinco tribunais | 2 |
+| [**US-25**](../pt_br/Scrum/acceptance-criteria.md#us-25--conhecer-a-fonte-e-a-data-de-todo-número) | Must | Como **usuário**, quero saber a fonte e a data de extração de todo número que estou vendo, para saber exatamente o que estou citando | 3 |
+| [**US-26**](../pt_br/Scrum/acceptance-criteria.md#us-26--ver-sem-dado-explicado-em-vez-de-um-campo-vazio) | Must | Como **usuário**, quero que a tela me diga o que não existe e por quê, em vez de mostrar um campo vazio ou um valor plausível, para não construir uma peça sobre dado que não existe | 3 |
+| [**US-03**](../pt_br/Scrum/acceptance-criteria.md#us-03--comparar-teses-na-lista-de-resultados) | Must | Como **usuário**, quero ver em cada resultado o score, a área do direito, o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma delas | 8 |
+| [**US-04**](../pt_br/Scrum/acceptance-criteria.md#us-04--filtrar-os-resultados-para-o-formato-do-meu-caso) | Must | Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força mínima, vendo quantos processos cada tribunal tem, para restringir a lista ao meu caso | 5 |
+| [**US-06**](../pt_br/Scrum/acceptance-criteria.md#us-06--o-score-de-0-a-100) | Must | Como **usuário**, quero um score de 0 a 100 dizendo o quanto o entendimento sobre o tema está consolidado, para saber se a tese vale ser defendida ou é uma briga aberta | 8 |
+| [**US-07**](../pt_br/Scrum/acceptance-criteria.md#us-07--o-grau-em-linguagem-jurídica) | Must | Como **usuário**, quero que o score venha com uma classificação em linguagem que já existe no meio jurídico — Consolidada, Dominante, Em formação, Divergente — para não ter de interpretar uma escala inventada | 2 |
+| [**US-11**](../pt_br/Scrum/acceptance-criteria.md#us-11--ver-o-alinhamento-evoluir-ao-longo-do-tempo) | Must | Como **usuário**, quero ver como o alinhamento do tema evoluiu ano a ano, com a frase de tendência, para saber se o entendimento está se firmando ou mudando | 5 |
+| [**US-12**](../pt_br/Scrum/acceptance-criteria.md#us-12--ver-o-alinhamento-por-tribunal) | Must | Como **usuário**, quero ver o alinhamento do tema por tribunal, para saber se a tese se sustenta igual em São Paulo, Rio de Janeiro, Minas Gerais e nos tribunais superiores (STJ e STF) | 3 |
+| [**US-14**](../pt_br/Scrum/acceptance-criteria.md#us-14--comparar-o-comportamento-de-cada-tribunal) | Must | Como **usuário**, quero uma tabela do comportamento de cada tribunal — decisões, alinhamento e data da mais recente — para comparar o meu tribunal com os outros | 3 |
+| [**US-15**](../pt_br/Scrum/acceptance-criteria.md#us-15--conferir-a-amostra-de-processos-por-trás-do-tema) | Must | Como **usuário**, quero uma amostra auditável dos processos por trás do tema, com câmara, data e resultado, para conferir os casos antes de citá-los | 5 |
+| [**US-17**](../pt_br/Scrum/acceptance-criteria.md#us-17--saber-se-as-câmaras-do-tribunal-divergem) | Should | Como **usuário**, quero saber se as câmaras do meu tribunal estão decidindo igual, para identificar divergência interna antes de decidir | 5 |
+| [**US-27**](../pt_br/Scrum/acceptance-criteria.md#us-27--exportar-as-decisões-do-tema) | Should | Como **usuário**, quero exportar para CSV as decisões que sustentam o tema, para trabalhar os dados fora da ferramenta | 5 |
+| [**US-28**](../pt_br/Scrum/acceptance-criteria.md#us-28--copiar-a-citação-pronta-para-colar) | Should | Como **usuário**, quero copiar a citação do tema já com a fonte, a data de extração, o escopo e o `n`, para colar sem redigitar | 3 |
+| [**US-29**](../pt_br/Scrum/acceptance-criteria.md#us-29--saber-se-o-dado-está-atual) | Should | Como **usuário**, quero saber quando os dados foram atualizados pela última vez, e ser avisado quando estiverem defasados, para não me apoiar em um retrato de meses atrás | 3 |
 
 ## Distribuição por sprint
 
@@ -146,7 +147,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 - **us0:** a branch base do **Technical Foundation** — as tasks `0.Y` (schema, pipeline, esqueleto do frontend), que não pertencem a nenhuma user story.
 - **id-da-task-nome-da-task-com-hifens-no-lugar-dos-espacos:** cada task tem sua própria branch, criada a partir da branch da user story a que pertence e mergeada de volta nela. O nome é o ID da task seguido do título dela no board, sem referência à user story — o ID já diz a que história ela pertence (`1.1` é da US-01, `0.12` do Technical Foundation). Sem acento, crase, aspas ou barra. Exemplo: `0.12-Create-the-dw-schema-migration-and-apply-it-on-API-startup`
 - **Proteção:** ninguém dá push direto na `main` nem numa branch `usX`. Toda mudança entra por pull request, a partir de uma branch de task.
-- **Repositório de documentação:** como as branches deste repositório não estão vinculadas a tarefas, seguem um padrão diferente. Levam o nome da aplicação, a palavra "**DOCS**" e uma descrição do que está sendo feito — por exemplo, `RATIO-DOCS-Definition-of-Done`, `RATIO-DOCS-Product-Backlog`
+- **Repositório de documentação:** como as branches deste repositório não estão vinculadas a tarefas, seguem um padrão diferente. Levam o nome da aplicação, a palavra "**..**" e uma descrição do que está sendo feito — por exemplo, `RATIO-..-Definition-of-Done`, `RATIO-..-Product-Backlog`
 ### Commits
 **Todo commit em qualquer repositório deste projeto deve ser escrito em inglês.**
 Cada commit deve ser pequeno, descritivo e direto, seguindo a convenção semântica:
@@ -154,7 +155,7 @@ Cada commit deve ser pequeno, descritivo e direto, seguindo a convenção semân
 - `feat:` descrição da nova funcionalidade
 - `fix:` correção de bug ou comportamento inesperado
 - `refactor:` melhoria de código sem mudança de comportamento
-- `docs:` atualização de documentação
+- `..:` atualização de documentação
 - `test:` adição ou alteração de testes do projeto — unidade, integração, contrato, ponta a ponta
 - `chore:` configuração, build ou manutenção
 

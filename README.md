@@ -23,6 +23,7 @@ See the portuguese(br) version of the documentation [here](Docs/pt_br/README.md)
 - [How to contribute](#how-to-contribute)
   - [Branches](#branches)
   - [Commits](#commits)
+- [Dimensional Model](Docs/dimensional-model.svg)
 
 ## Introduction
 Ratio sets out to eliminate the manual, fragmented work of case law analysis that keeps lawyers and judges from reliably identifying where the courts stand on a given thesis — letting them quickly assess its acceptance, recurrence and degree of consolidation to ground legal decisions and strategies. It does so by centralising and analysing case law, precedents and legal scholarship from TJSP, TJRJ, TJMG, STJ and STF in a legal Data Warehouse, with semantic search by topic and the generation of indicators and decision patterns traceable back to their original sources.
