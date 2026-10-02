@@ -10,7 +10,7 @@ Stories the team commits to delivering. If any of them is not completed, the spr
 | --- | --- | --- | ---: |
 | **US-03** | Must | As a **user**, I want to see in each result the score, the area of law (vara), the thesis title, a short summary, the courts, the volume, the period, the last decision and the favourable percentage, so that I can compare theses before opening any of them | 8 |
 | **US-04** | Must | As a **user**, I want to filter results by court, period, instance and minimum strength, seeing how many cases each court has, so that I can narrow the list down to my case | 5 |
-| **US-12** | Must | As a **user**, I want to see the topic's alignment by court, so that I know whether the thesis holds the same in São Paulo, Rio de Janeiro and Minas Gerais | 3 |
+| **US-12** | Must | As a **user**, I want to see the topic's alignment by court, so that I know whether the thesis holds the same in São Paulo, Rio de Janeiro, Minas Gerais and the superior courts (STJ and STF) | 3 |
 | **US-14** | Must | As a **user**, I want a table of each court's behaviour — decisions, alignment and date of the latest one — so that I can compare my court with the others | 3 |
 | **US-15** | Must | As a **user**, I want an auditable sample of the cases behind the topic, with panel, date and outcome, so that I can check the cases before citing them | 5 |
 | **US-17** | Should | As a **user**, I want to know whether the panels of my court are deciding alike, so that I can spot internal divergence before deciding | 5 |

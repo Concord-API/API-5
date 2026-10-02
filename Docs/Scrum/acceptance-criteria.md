@@ -35,7 +35,7 @@ on screen.
  
 - Confirmation: "N temas encontrados para «termo»."
 - Error: "Digite ao menos 3 caracteres para buscar."
-- Empty: "Nenhum tema encontrado para «termo» no escopo TJSP, TJRJ e TJMG."
+- Empty: "Nenhum tema encontrado para «termo» no escopo TJSP, TJRJ, TJMG, STJ e STF."
 **Acceptance criteria**
  
 ```gherkin
@@ -57,7 +57,7 @@ Then the system recovers the topic by similarity instead of returning empty
 Scenario: Search with no match
 Given there is no matching topic in the base
 When the user searches "contrato de arrendamento de satélite"
-Then the system explains the TJSP, TJRJ and TJMG scope and suggests rephrasing
+Then the system explains the TJSP, TJRJ, TJMG, STJ and STF scope and suggests rephrasing
  
 Scenario: Empty search
 Given the user submits the search with no term
@@ -237,14 +237,15 @@ Then the block does not appear and its place explains why
 ### US-24 — Know the coverage scope
 `Must` · E5 · 2 SP · Sprint 1 · ready · depends on —
  
-> As a **user**, I want every screen to make clear that the data covers TJSP, TJRJ and TJMG,
-> so that I do not draw a nationwide conclusion from a percentage that reflects three states.
+> As a **user**, I want every screen to make clear that the data covers TJSP, TJRJ, TJMG, STJ
+> and STF, so that I do not draw a nationwide conclusion from a percentage that reflects only
+> these five courts.
  
 **Business rules**
  
 - The scope is visible **without interaction** — not hidden in a tooltip.
 - The text names the courts and uses no internal technical vocabulary.
-- The court list is not fixed text scattered through the interface: if decision 2 changes the scope, the statement follows.
+- The court list is not fixed text scattered through the interface: it comes from a single scope source, so any change of scope — as decision 2 did when it added STJ and STF — is followed by the statement.
 **Acceptance criteria**
  
 ```gherkin
@@ -253,8 +254,13 @@ Given the results screen and both detail tabs
 When each of them renders
 Then the territorial scope is visible without interaction
  
+Scenario: The statement names every court in scope
+Given the scope defined by decision 2
+When any screen showing numbers renders
+Then the statement names TJSP, TJRJ, TJMG, STJ and STF
+
 Scenario: Scope changes
-Given decision 2 changes the scope
+Given the scope changes again after decision 2
 When the screens render
 Then the statement reflects the new coverage, from a single source
 ```
@@ -376,7 +382,7 @@ Then the topic detail opens
 ---
  
 ### US-04 — Filter results to the shape of my case
-`Must` · E1 · 5 SP · Sprint 2 · awaiting decision 2 · depends on US-03
+`Must` · E1 · 5 SP · Sprint 2 · ready · depends on US-03
  
 > As a **user**, I want to filter results by court, period, instance and minimum strength,
 > seeing how many cases each court has, so that I can narrow the list down to my case.
@@ -385,12 +391,15 @@ Then the topic detail opens
 > builds, so it was allocated a sprint ahead of what it depends on. It now sits immediately
 > after `US-03`, and decision 2 — do STJ and STF enter the scope? — is due at the Sprint 2
 > planning on 05/10 rather than inside Sprint 1.
+>
+> **Decision 2 resolved on 02/10/2026:** STJ and STF enter the scope, which becomes TJSP,
+> TJRJ, TJMG, STJ and STF.
  
 **Business rules**
  
 - Filters combine and are applied by the API; the list is never filtered in the browser.
 - The court filter shows each court's case count, coming from the API.
-- The instance filter offers only the instances that exist in the loaded scope.
+- The instance filter offers only the instances that exist in the loaded scope. With STJ and STF in scope, the "Superior" instance is offered and selects only those two courts.
 - Active filters are reflected in the URL so a narrowed view can be shared.
 **Messages**
  
@@ -403,10 +412,15 @@ Given the courts in scope
 When the court filter is rendered
 Then each court shows its case count, coming from the API
  
-Scenario: Instance filter with state courts only
-Given decision 2 keeps the scope at state courts
+Scenario: Instance filter with superior courts
+Given decision 2 brought STJ and STF into the scope
 When the instance filter is rendered
-Then the "Superior" option is not shown
+Then the "Superior" option is shown
+
+Scenario: Filter by the Superior instance
+Given the user selects the "Superior" instance
+When the filter is applied
+Then only results from STJ and STF remain
  
 Scenario: Apply and share
 Given the user has chosen filters
@@ -539,7 +553,7 @@ Then the trend sentence is not displayed
 `Must` · E3 · 3 SP · Sprint 2 · ready · depends on US-09
  
 > As a **user**, I want to see the topic's alignment by court, so that I know whether the
-> thesis holds the same in São Paulo, Rio and Minas.
+> thesis holds the same in São Paulo, Rio, Minas and the superior courts (STJ and STF).
  
 **Business rules**
  
@@ -608,6 +622,7 @@ Then it scrolls inside the container and the page does not scroll horizontally
 **Business rules**
  
 - Each row carries case number, panel, date and computed outcome.
+- At STJ and STF, which have no chambers (*câmaras*), the panel column carries the judging body that decided — *turma*, *seção*, *Corte Especial* or *Plenário*.
 - Reporting judge and amount have no confirmed source: those columns come **empty and flagged**, never filled.
 - A case under seal is flagged and no sealed data is exposed.
 - The default ordering is declared and stable between visits, and the sample states how many rows it shows out of how many in total ("N of M decisions").
@@ -646,6 +661,7 @@ Then the order is the same
 **Business rules**
  
 - Per court, the alignment of each panel, with each panel's `n` visible next to the percentage.
+- At STJ and STF, the panels compared are the *turmas* and the *seções*.
 - A panel with a single judgment does not appear — an isolated case is noise, not divergence.
 - A panel departing from its own court's pattern is flagged.
 **Acceptance criteria**

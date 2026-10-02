@@ -35,7 +35,7 @@ e *súmula* aparecem como aparecem na tela.
 
 - Confirmação: "N temas encontrados para «termo»."
 - Erro: "Digite ao menos 3 caracteres para buscar."
-- Vazio: "Nenhum tema encontrado para «termo» no escopo TJSP, TJRJ e TJMG."
+- Vazio: "Nenhum tema encontrado para «termo» no escopo TJSP, TJRJ, TJMG, STJ e STF."
 **Critérios de aceite**
 
 ```gherkin
@@ -57,7 +57,7 @@ Então o sistema recupera o tema por similaridade em vez de devolver vazio
 Cenário: Buscar sem correspondência
 Dado que não há tema correspondente na base
 Quando o usuário busca "contrato de arrendamento de satélite"
-Então o sistema explica o escopo TJSP, TJRJ e TJMG e sugere reformular
+Então o sistema explica o escopo TJSP, TJRJ, TJMG, STJ e STF e sugere reformular
 
 Cenário: Busca vazia
 Dado que o usuário submete a busca sem termo
@@ -238,14 +238,15 @@ Então o bloco não aparece e o lugar dele explica por quê
 ### US-24 — Conhecer o escopo de cobertura
 `Must` · E5 · 2 SP · Sprint 1 · pronta · depende de —
 
-> Como **usuário**, quero que toda tela deixe claro que os dados cobrem TJSP, TJRJ e TJMG,
-> para que eu não tire uma conclusão nacional de um percentual que reflete três estados.
+> Como **usuário**, quero que toda tela deixe claro que os dados cobrem TJSP, TJRJ, TJMG, STJ
+> e STF, para que eu não tire uma conclusão nacional de um percentual que reflete apenas esses
+> cinco tribunais.
 
 **Regras de negócio**
 
 - O escopo fica visível **sem interação** — não escondido em um tooltip.
 - O texto nomeia os tribunais e não usa vocabulário técnico interno.
-- A lista de tribunais não é texto fixo espalhado pela interface: se a decisão 2 mudar o escopo, a declaração acompanha.
+- A lista de tribunais não é texto fixo espalhado pela interface: ela vem de uma fonte única de escopo, de modo que qualquer mudança — como a da decisão 2, que incluiu STJ e STF — é acompanhada pela declaração.
 **Critérios de aceite**
 
 ```gherkin
@@ -254,8 +255,13 @@ Dado a tela de resultados e as duas abas de detalhe
 Quando cada uma delas é renderizada
 Então o escopo territorial fica visível sem interação
 
+Cenário: A declaração nomeia todos os tribunais do escopo
+Dado o escopo definido pela decisão 2
+Quando qualquer tela com números é renderizada
+Então a declaração nomeia TJSP, TJRJ, TJMG, STJ e STF
+
 Cenário: Mudança de escopo
-Dado que a decisão 2 muda o escopo
+Dado que o escopo muda novamente depois da decisão 2
 Quando as telas são renderizadas
 Então a declaração reflete a nova cobertura, a partir de uma fonte única
 ```
@@ -377,7 +383,7 @@ Então o detalhe do tema é aberto
 ---
 
 ### US-04 — Filtrar os resultados para o formato do meu caso
-`Must` · E1 · 5 SP · Sprint 2 · aguardando decisão 2 · depende de US-03
+`Must` · E1 · 5 SP · Sprint 2 · pronta · depende de US-03
 
 > Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força
 > mínima, vendo quantos processos cada tribunal tem, para que eu possa estreitar a lista até
@@ -387,12 +393,15 @@ Então o detalhe do tema é aberto
 > `US-03` constrói, portanto estava alocada uma sprint antes daquilo de que depende. Agora fica
 > imediatamente após a `US-03`, e a decisão 2 — STJ e STF entram no escopo? — passa a vencer no
 > planning da Sprint 2, em 05/10, em vez de dentro da Sprint 1.
+>
+> **Decisão 2 tomada em 02/10/2026:** STJ e STF entram no escopo, que passa a ser TJSP, TJRJ,
+> TJMG, STJ e STF.
 
 **Regras de negócio**
 
 - Os filtros se combinam e são aplicados pela API; a lista nunca é filtrada no navegador.
 - O filtro de tribunal exibe a contagem de processos de cada tribunal, vinda da API.
-- O filtro de instância oferece apenas as instâncias que existem no escopo carregado.
+- O filtro de instância oferece apenas as instâncias que existem no escopo carregado. Com STJ e STF no escopo, a instância "Superior" é oferecida e seleciona apenas esses dois tribunais.
 - Os filtros ativos são refletidos na URL, de modo que uma visão estreitada possa ser compartilhada.
 **Mensagens**
 
@@ -405,10 +414,15 @@ Dado os tribunais no escopo
 Quando o filtro de tribunal é renderizado
 Então cada tribunal exibe sua contagem de processos, vinda da API
 
-Cenário: Filtro de instância apenas com tribunais estaduais
-Dado que a decisão 2 mantém o escopo em tribunais estaduais
+Cenário: Filtro de instância com tribunais superiores
+Dado que a decisão 2 trouxe STJ e STF para o escopo
 Quando o filtro de instância é renderizado
-Então a opção "Superior" não é exibida
+Então a opção "Superior" é exibida
+
+Cenário: Filtrar pela instância Superior
+Dado que o usuário seleciona a instância "Superior"
+Quando o filtro é aplicado
+Então restam apenas os resultados do STJ e do STF
 
 Cenário: Aplicar e compartilhar
 Dado que o usuário escolheu filtros
@@ -542,7 +556,7 @@ Então a frase de tendência não é exibida
 `Must` · E3 · 3 SP · Sprint 2 · pronta · depende de US-09
 
 > Como **usuário**, quero ver o alinhamento do tema por tribunal, para que eu saiba se a tese
-> se sustenta igual em São Paulo, no Rio e em Minas.
+> se sustenta igual em São Paulo, no Rio, em Minas e nos tribunais superiores (STJ e STF).
 
 **Regras de negócio**
 
@@ -611,6 +625,7 @@ Então ela rola dentro do contêiner e a página não rola horizontalmente
 **Regras de negócio**
 
 - Cada linha carrega número do processo, câmara, data e resultado calculado.
+- No STJ e no STF, que não têm câmaras, a coluna de câmara traz o órgão julgador que decidiu — *turma*, *seção*, *Corte Especial* ou *Plenário*.
 - Relator e valor não têm fonte confirmada: essas colunas vêm **vazias e sinalizadas**, nunca preenchidas.
 - Um processo em segredo de justiça é sinalizado e nenhum dado sigiloso é exposto.
 - A ordenação padrão é declarada e estável entre visitas, e a amostra informa quantas linhas exibe de quantas no total ("N de M decisões").
@@ -649,6 +664,7 @@ Então a ordem é a mesma
 **Regras de negócio**
 
 - Por tribunal, o alinhamento de cada câmara, com o `n` de cada câmara visível ao lado do percentual.
+- No STJ e no STF, as câmaras comparadas são as *turmas* e as *seções*.
 - Uma câmara com um único julgado não aparece — um caso isolado é ruído, não divergência.
 - Uma câmara que se afasta do padrão do próprio tribunal é sinalizada.
 **Critérios de aceite**
