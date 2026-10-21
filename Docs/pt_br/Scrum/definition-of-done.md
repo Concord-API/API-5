@@ -37,3 +37,9 @@ quem está indicado.
 | Estado vazio tratado: a tela declara o que não existe e por quê, sem campo em branco e sem valor plausível inventado. | PR `usX → main` (checklist de QA) | pessoa do time que não implementou a história |
 | Documentação mínima atualizada (README, dicionário de dados, grão da tabela). | PR `usX → main` | Code Reviewers |
 | Incremento demonstrável no ambiente de homologação, instalado em Windows Server atrás do IIS da mesma forma que estará no servidor do cliente. | Acceptance (instalação) e Homologação (demonstração) | CI e PO |
+
+### Build vermelho
+
+Se o CI ou o Acceptance ficar vermelho na `us0`, numa `usX` ou na `main`, quem fez o
+último merge reverte esse merge primeiro e investiga depois. Ninguém mergeia em cima de
+uma branch vermelha.

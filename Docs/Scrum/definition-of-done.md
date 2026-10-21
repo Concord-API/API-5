@@ -37,3 +37,9 @@ person shown.
 | Empty state handled: the screen states what does not exist and why, with no blank field and no invented plausible value. | `usX → main` PR (QA checklist) | a team member who did not implement the story |
 | Minimum documentation updated (README, data dictionary, table grain). | `usX → main` PR | Code Reviewers |
 | Increment demonstrable in the homologation environment, installed on Windows Server behind IIS the same way it will be on the client's server. | Acceptance (installation) and Homologation (demonstration) | CI and PO |
+
+### Red build
+
+If CI or Acceptance turns red on `us0`, a `usX` or `main`, whoever made the last merge
+reverts that merge first and investigates afterwards. Nobody merges on top of a red
+branch.
