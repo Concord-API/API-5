@@ -5,9 +5,10 @@ quem está indicado.
 
 | Nível | O que acontece nele |
 | --- | --- |
-| **PR da task** | PR de uma task para a `us0` ou para a `usX`: formatação, lint, build, testes unitários e de integração e *quality gate* do Sonar |
+| **PR da task** | PR de uma task para a `us0` ou para a `usX`: formatação, lint, build, testes unitários e de integração e análise do Sonar |
 | **Acceptance** | push na `us0` ou na `usX`: a aplicação é instalada em Windows Server atrás do IIS, sobe num banco vazio, recebe a carga de amostra e responde busca e detalhe do tema pelo IIS |
-| **PR `usX → main`** | revisão de código, label de release e checklist de QA da história |
+| **PR `usX → main`** | revisão de código, label de release, *quality gate* do Sonar sobre o código da história e checklist de QA da história |
+| **Push na `main`** | CI e *quality gate* do Sonar sobre o código integrado; a release só é publicada com tudo verde |
 | **Carga** | geração do arquivo de carga, do nosso lado |
 | **Homologação** | demonstração do incremento ao PO |
 
@@ -18,6 +19,7 @@ quem está indicado.
 | Código implementado e revisado por outra pessoa do time. | PR `usX → main` | Code Reviewers |
 | Testes automatizados escritos e executados (unitários e de integração), todos verdes no pipeline. | PR da task | autor da task |
 | Comportamento crítico coberto por teste: cálculo do score, agregações e as regras de exibição de procedência. | PR da task (cobertura no Sonar) e PR `usX → main` (revisão) | autor da task e Code Reviewers |
+| *Quality gate* do SonarQube Cloud (Sonar way) verde sobre o código novo: confiabilidade, segurança e manutenibilidade nota A, cobertura de ao menos 80%, duplicação de no máximo 3% e todos os *security hotspots* revisados. | PR `usX → main` e push na `main` | CI |
 
 ### Dados e pipeline
 
