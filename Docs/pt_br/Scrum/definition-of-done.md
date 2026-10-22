@@ -45,3 +45,6 @@ quem está indicado.
 Se o CI ou o Acceptance ficar vermelho na `us0`, numa `usX` ou na `main`, quem fez o
 último merge reverte esse merge primeiro e investiga depois. Ninguém mergeia em cima de
 uma branch vermelha.
+
+Um *quality gate* do Sonar vermelho no push da `main` deixa o CI da `main` vermelho, e a
+release daquele merge não é publicada.

@@ -45,3 +45,6 @@ person shown.
 If CI or Acceptance turns red on `us0`, a `usX` or `main`, whoever made the last merge
 reverts that merge first and investigates afterwards. Nobody merges on top of a red
 branch.
+
+A red Sonar quality gate on the push to `main` turns the `main` CI red, and the release
+of that merge is not published.
