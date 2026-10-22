@@ -5,9 +5,10 @@ person shown.
 
 | Level | What happens there |
 | --- | --- |
-| **Task PR** | PR from a task into `us0` or `usX`: formatting, lint, build, unit and integration tests and the Sonar quality gate |
+| **Task PR** | PR from a task into `us0` or `usX`: formatting, lint, build, unit and integration tests and the Sonar analysis |
 | **Acceptance** | push to `us0` or `usX`: the application is installed on Windows Server behind IIS, starts on an empty database, receives the sample load and answers search and theme detail through IIS |
-| **`usX → main` PR** | code review, release label and the story's QA checklist |
+| **`usX → main` PR** | code review, release label, the Sonar quality gate on the story's code and the story's QA checklist |
+| **Push to `main`** | CI and the Sonar quality gate on the integrated code; the release is published only when everything is green |
 | **Load** | generation of the load file, on our side |
 | **Homologation** | demonstration of the increment to the PO |
 
@@ -18,6 +19,7 @@ person shown.
 | Code implemented and reviewed by another team member. | `usX → main` PR | Code Reviewers |
 | Automated tests written and run (unit and integration), all green in the pipeline. | Task PR | task author |
 | Critical behaviour covered by test: score calculation, aggregations and the provenance display rules. | Task PR (Sonar coverage) and `usX → main` PR (review) | task author and Code Reviewers |
+| SonarQube Cloud quality gate (Sonar way) green on new code: reliability, security and maintainability rated A, coverage of at least 80%, duplication of at most 3% and every security hotspot reviewed. | `usX → main` PR and push to `main` | CI |
 
 ### Data and pipeline
 
@@ -43,3 +45,6 @@ person shown.
 If CI or Acceptance turns red on `us0`, a `usX` or `main`, whoever made the last merge
 reverts that merge first and investigates afterwards. Nobody merges on top of a red
 branch.
+
+A red Sonar quality gate on the push to `main` turns the `main` CI red, and the release
+of that merge is not published.
