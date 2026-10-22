@@ -34,9 +34,9 @@ person shown.
 
 | Item | Where it is verified | Who verifies |
 | --- | --- | --- |
-| Every value displayed, analytical or descriptive, carries its source, extraction date, scope and how it was computed. | `usX → main` PR (QA checklist) | a team member who did not implement the story |
-| The TJSP, TJRJ, TJMG, STJ and STF scope is visible on screen. | `usX → main` PR (QA checklist) | a team member who did not implement the story |
-| Empty state handled: the screen states what does not exist and why, with no blank field and no invented plausible value. | `usX → main` PR (QA checklist) | a team member who did not implement the story |
+| Every value displayed, analytical or descriptive, carries its source, extraction date, scope and how it was computed. | `usX → main` PR (QA checklist) | the story's author |
+| The TJSP, TJRJ, TJMG, STJ and STF scope is visible on screen. | `usX → main` PR (QA checklist) | the story's author |
+| Empty state handled: the screen states what does not exist and why, with no blank field and no invented plausible value. | `usX → main` PR (QA checklist) | the story's author |
 | Minimum documentation updated (README, data dictionary, table grain). | `usX → main` PR | Code Reviewers |
 | Increment demonstrable in the homologation environment, installed on Windows Server behind IIS the same way it will be on the client's server. | Acceptance (installation) and Homologation (demonstration) | CI and PO |
 

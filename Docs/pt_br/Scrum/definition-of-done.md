@@ -34,9 +34,9 @@ quem está indicado.
 
 | Item | Onde é verificado | Quem verifica |
 | --- | --- | --- |
-| Todo valor exibido, analítico ou descritivo, carrega sua fonte, data de extração, escopo e como foi calculado. | PR `usX → main` (checklist de QA) | pessoa do time que não implementou a história |
-| O escopo TJSP, TJRJ, TJMG, STJ e STF está visível na tela. | PR `usX → main` (checklist de QA) | pessoa do time que não implementou a história |
-| Estado vazio tratado: a tela declara o que não existe e por quê, sem campo em branco e sem valor plausível inventado. | PR `usX → main` (checklist de QA) | pessoa do time que não implementou a história |
+| Todo valor exibido, analítico ou descritivo, carrega sua fonte, data de extração, escopo e como foi calculado. | PR `usX → main` (checklist de QA) | autor da história |
+| O escopo TJSP, TJRJ, TJMG, STJ e STF está visível na tela. | PR `usX → main` (checklist de QA) | autor da história |
+| Estado vazio tratado: a tela declara o que não existe e por quê, sem campo em branco e sem valor plausível inventado. | PR `usX → main` (checklist de QA) | autor da história |
 | Documentação mínima atualizada (README, dicionário de dados, grão da tabela). | PR `usX → main` | Code Reviewers |
 | Incremento demonstrável no ambiente de homologação, instalado em Windows Server atrás do IIS da mesma forma que estará no servidor do cliente. | Acceptance (instalação) e Homologação (demonstração) | CI e PO |
 
