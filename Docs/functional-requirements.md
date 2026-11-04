@@ -49,7 +49,6 @@ requirement traces back to the user story it comes from.
 | FR-35 | Open each case of the sample at the court with one click, falling back to the court's portal with the number copied when the court does not accept it in the URL. | US-39 |
 | FR-36 | Show the rulings that make up the topic's case law, in the same table pattern as the cases, with the summary exactly as published. | US-40 |
 | FR-37 | Show the qualified precedents related to the topic, with type, number, court, thesis, status and leading cases, never attaching an outcome percentage to them. | US-41 |
-| FR-38 | Separate cases, rulings and qualified precedents into their own sections of the Base analítica tab, each with its definition, source and extraction date. | US-42 |
  
 ## Provenance and transparency
  

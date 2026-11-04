@@ -1,4 +1,4 @@
-Detailed DoR and acceptance criteria for all 23 stories in the
+Detailed DoR and acceptance criteria for all 22 stories in the
 [Product Backlog](../../README.md#-product-backlog), in backlog order. Scenarios are written in BDD, as
 the [Definition of Ready](definition-of-ready.md) requires.
  
@@ -890,39 +890,4 @@ Scenario: Branch out of scope
 Given a precedent from a labour or electoral court
 When the topic's precedents are loaded
 Then it does not appear
-```
- 
----
- 
-### US-42 — Tell cases, rulings and precedents apart
-`Should` · E4 · 3 SP · Sprint 3 · awaiting US-40 and US-41 · depends on US-15, US-40, US-41
- 
-> As a **user**, I want the Base analítica tab to separate cases, rulings and qualified
-> precedents under their own headings, so that I never read a statistic about cases as if it were
-> a precedent.
- 
-**Business rules**
- 
-- Three sections, always in the same order: *Processos*, *Julgados* and *Precedentes qualificados*.
-- Each section has a one-line definition that follows the glossary, and its own source, extraction date and scope.
-- A section without data keeps its heading and explains why it is empty (`US-26`).
-- No figure computed over cases or rulings appears in the *Precedentes qualificados* section.
-**Acceptance criteria**
- 
-```gherkin
-Scenario: Three sections, three definitions
-Given a topic
-When the Base analítica tab renders
-Then it shows Processos, Julgados and Precedentes qualificados in that order
-And each shows its definition, source and extraction date
- 
-Scenario: Empty section
-Given a topic with no rulings
-When the tab renders
-Then the Julgados section keeps its heading and explains why it is empty
- 
-Scenario: No cross-contamination
-Given the Precedentes qualificados section
-When it renders
-Then no percentage computed over cases or rulings appears in it
 ```

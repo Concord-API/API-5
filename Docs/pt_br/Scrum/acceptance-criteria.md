@@ -1,4 +1,4 @@
-DoR detalhada e critérios de aceite para todas as 23 histórias do
+DoR detalhada e critérios de aceite para todas as 22 histórias do
 [Product Backlog](../../README.md#-product-backlog), na ordem do backlog. Os cenários são
 escritos em BDD, como a [Definition of Ready](definition-of-ready.md) exige.
 
@@ -893,39 +893,4 @@ Cenário: Ramo fora do escopo
 Dado um precedente de um tribunal trabalhista ou eleitoral
 Quando os precedentes do tema são carregados
 Então ele não aparece
-```
-
----
-
-### US-42 — Distinguir processos, julgados e precedentes
-`Should` · E4 · 3 SP · Sprint 3 · aguardando US-40 e US-41 · depende de US-15, US-40, US-41
-
-> Como **usuário**, quero que a aba Base analítica separe processos, julgados e precedentes
-> qualificados em seções próprias, para que eu nunca leia uma estatística sobre processos como se
-> fosse um precedente.
-
-**Regras de negócio**
-
-- Três seções, sempre na mesma ordem: *Processos*, *Julgados* e *Precedentes qualificados*.
-- Cada seção tem uma definição de uma linha que segue o glossário, e sua própria fonte, data de extração e escopo.
-- Uma seção sem dado mantém o título e explica por que está vazia (`US-26`).
-- Nenhum número calculado sobre processos ou julgados aparece na seção *Precedentes qualificados*.
-**Critérios de aceite**
-
-```gherkin
-Cenário: Três seções, três definições
-Dado um tema
-Quando a aba Base analítica é renderizada
-Então ela mostra Processos, Julgados e Precedentes qualificados nessa ordem
-E cada uma mostra sua definição, fonte e data de extração
-
-Cenário: Seção vazia
-Dado um tema sem julgados
-Quando a aba é renderizada
-Então a seção Julgados mantém o título e explica por que está vazia
-
-Cenário: Sem contaminação entre seções
-Dado a seção Precedentes qualificados
-Quando ela é renderizada
-Então nenhum percentual calculado sobre processos ou julgados aparece nela
 ```

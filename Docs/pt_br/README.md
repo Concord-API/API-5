@@ -35,7 +35,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 - **Score de força do entendimento** — mostra o quanto aquele padrão está consolidado (ou instável), ponderando concordância entre as decisões, volume, cobertura e atualidade.
 - **Rastreabilidade** — todo número exibido leva de volta à sua fonte e data de extração; nenhuma métrica é inventada ou calculada no escuro.
 - **Cobertura multitribunal** — dados centralizados de TJSP, TJRJ e TJMG — os três tribunais estaduais com maior volume processual do país — mais os dois tribunais superiores, STJ e STF.
-- **Acesso à jurisprudência e à doutrina relacionadas** — para manter tudo rastreável, todo processo por trás de um tema abre no tribunal com um clique, e os julgados, os precedentes qualificados e a doutrina relacionados a ele continuam acessíveis, cada um em sua própria seção.
+- **Acesso à jurisprudência e à doutrina relacionadas** — para manter tudo rastreável, todo processo por trás de um tema abre no tribunal com um clique, e os julgados, os precedentes qualificados e a doutrina relacionados a ele continuam acessíveis.
 
 # Product Backlog
 
@@ -63,7 +63,6 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | [**US-39**](../pt_br/Scrum/acceptance-criteria.md#us-39--abrir-o-processo-no-tribunal-com-um-clique) | Should | Como **usuário**, quero clicar no número do processo e cair na página desse processo no tribunal, para conferi-lo sem copiar e colar o número | 5 |
 | [**US-40**](../pt_br/Scrum/acceptance-criteria.md#us-40--ver-os-julgados-por-trás-do-tema) | Should | Como **usuário**, quero ver os julgados que compõem a jurisprudência do tema, com tribunal, órgão julgador, data, ementa e link para a página do tribunal, no mesmo padrão de tabela dos processos, para ler como os tribunais decidiram e não apenas contar os casos | 8 |
 | [**US-41**](../pt_br/Scrum/acceptance-criteria.md#us-41--ver-os-precedentes-qualificados-relacionados-ao-tema) | Should | Como **usuário**, quero ver os precedentes qualificados relacionados ao tema — súmulas, temas repetitivos, IRDR, IAC e repercussão geral —, com tipo, número, tribunal, tese e situação, para saber o que vincula os tribunais neste tema e não apenas como eles têm decidido | 8 |
-| [**US-42**](../pt_br/Scrum/acceptance-criteria.md#us-42--distinguir-processos-julgados-e-precedentes) | Should | Como **usuário**, quero que a aba Base analítica separe processos, julgados e precedentes qualificados em seções próprias, para nunca ler uma estatística sobre processos como se fosse um precedente | 3 |
 
 ## Distribuição por sprint
 
@@ -71,7 +70,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | --- | --- | --- | --- |
 | **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
 | **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
-| **Sprint 3** | 02/11 – 22/11 | 11 | 66 |
+| **Sprint 3** | 02/11 – 22/11 | 10 | 63 |
 
 ## MoSCoW
 

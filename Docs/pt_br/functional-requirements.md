@@ -49,7 +49,6 @@ requisito remete à história de usuário de que se origina.
 | FR-35 | Abrir cada processo da amostra no tribunal com um clique, recorrendo ao portal do tribunal com o número copiado quando o tribunal não o aceita na URL. | US-39 |
 | FR-36 | Exibir os julgados que compõem a jurisprudência do tema, no mesmo padrão de tabela dos processos, com a ementa exatamente como publicada. | US-40 |
 | FR-37 | Exibir os precedentes qualificados relacionados ao tema, com tipo, número, tribunal, tese, situação e processos paradigma, sem nunca anexar a eles um percentual de resultado. | US-41 |
-| FR-38 | Separar processos, julgados e precedentes qualificados em seções próprias da aba Base analítica, cada uma com sua definição, fonte e data de extração. | US-42 |
 
 ## Procedência e transparência
 
