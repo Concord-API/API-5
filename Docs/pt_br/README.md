@@ -13,6 +13,7 @@ Veja a versão em inglês da documentação [aqui](../../README.md)
   - [Disitribuição por Sprint](#distribuição-por-sprint)
   - [MoSCoW](#moscow)
   - [Escala de Estimativa](#escala-de-estimativa)
+  - [Fora de escopo](#fora-de-escopo)
 - [Critérios de Aceitação](../pt_br/Scrum/acceptance-criteria.md)
 - [DoD](../pt_br/Scrum/definition-of-done.md)
 - [DoR](../pt_br/Scrum/definition-of-ready.md)
@@ -34,7 +35,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 - **Score de força do entendimento** — mostra o quanto aquele padrão está consolidado (ou instável), ponderando concordância entre as decisões, volume, cobertura e atualidade.
 - **Rastreabilidade** — todo número exibido leva de volta à sua fonte e data de extração; nenhuma métrica é inventada ou calculada no escuro.
 - **Cobertura multitribunal** — dados centralizados de TJSP, TJRJ e TJMG — os três tribunais estaduais com maior volume processual do país — mais os dois tribunais superiores, STJ e STF.
-- **Acesso à jurisprudência e à doutrina relacionadas** — para manter tudo rastreável, todo processo por trás de um tema leva de volta ao tribunal, e a doutrina relacionada a ele continua acessível.
+- **Acesso à jurisprudência e à doutrina relacionadas** — para manter tudo rastreável, todo processo por trás de um tema abre no tribunal com um clique, e os julgados, os precedentes qualificados e a doutrina relacionados a ele continuam acessíveis.
 
 # Product Backlog
 
@@ -59,7 +60,9 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | [**US-17**](../pt_br/Scrum/acceptance-criteria.md#us-17--saber-se-as-câmaras-do-tribunal-divergem) | Should | Como **usuário**, quero saber se as câmaras do meu tribunal estão decidindo igual, para identificar divergência interna antes de decidir | 5 |
 | [**US-27**](../pt_br/Scrum/acceptance-criteria.md#us-27--exportar-as-decisões-do-tema) | Should | Como **usuário**, quero exportar para CSV as decisões que sustentam o tema, para trabalhar os dados fora da ferramenta | 5 |
 | [**US-28**](../pt_br/Scrum/acceptance-criteria.md#us-28--copiar-a-citação-pronta-para-colar) | Should | Como **usuário**, quero copiar a citação do tema já com a fonte, a data de extração, o escopo e o `n`, para colar sem redigitar | 3 |
-| [**US-29**](../pt_br/Scrum/acceptance-criteria.md#us-29--saber-se-o-dado-está-atual) | Should | Como **usuário**, quero saber quando os dados foram atualizados pela última vez, e ser avisado quando estiverem defasados, para não me apoiar em um retrato de meses atrás | 3 |
+| [**US-39**](../pt_br/Scrum/acceptance-criteria.md#us-39--abrir-o-processo-no-tribunal-com-um-clique) | Should | Como **usuário**, quero clicar no número do processo e cair na página desse processo no tribunal, para conferi-lo sem copiar e colar o número | 5 |
+| [**US-40**](../pt_br/Scrum/acceptance-criteria.md#us-40--ver-os-julgados-por-trás-do-tema) | Should | Como **usuário**, quero ver os julgados que compõem a jurisprudência do tema, com tribunal, órgão julgador, data, ementa e link para a página do tribunal, no mesmo padrão de tabela dos processos, para ler como os tribunais decidiram e não apenas contar os casos | 8 |
+| [**US-41**](../pt_br/Scrum/acceptance-criteria.md#us-41--ver-os-precedentes-qualificados-relacionados-ao-tema) | Should | Como **usuário**, quero ver os precedentes qualificados relacionados ao tema — súmulas, temas repetitivos, IRDR, IAC e repercussão geral —, com tipo, número, tribunal, tese e situação, para saber o que vincula os tribunais neste tema e não apenas como eles têm decidido | 8 |
 
 ## Distribuição por sprint
 
@@ -67,7 +70,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | --- | --- | --- | --- |
 | **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
 | **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
-| **Sprint 3** | 02/11 – 22/11 | 8 | 45 |
+| **Sprint 3** | 02/11 – 22/11 | 10 | 63 |
 
 ## MoSCoW
 
@@ -88,6 +91,15 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | **5** | duas camadas, ou uma regra que alguém precisa definir | 2 | alguma |
 | **8** | vai do banco até a tela, ou o time nunca fez | 3+ | real |
 | **13** | grande **e** incerta — topo da escala, candidata a ser quebrada no refinamento | todas | alta |
+
+## Fora de escopo
+
+Analisado e deliberadamente não construído neste ciclo.
+
+| Item | Por quê |
+| --- | --- |
+| **Matéria criminal** | O produto atende só ao ramo cível. Processos criminais não são carregados, não aparecem na busca e o chatbot não os responde. O sentido de um resultado se inverte no penal (*procedência* é condenação), e isso faria um percentual "favorável" ser lido ao contrário. |
+| **Aviso de dado desatualizado** (antiga US-29) | Removido do backlog. A data de extração já é exibida em toda tela com números (US-25), então um aviso separado, com limite de defasagem, não acrescenta nada. |
 
 ## Time
 <div align="center">

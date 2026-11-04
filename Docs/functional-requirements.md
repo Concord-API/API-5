@@ -46,6 +46,9 @@ requirement traces back to the user story it comes from.
 | --- | --- | --- |
 | FR-23 | Show an auditable sample of the cases behind the topic, with panel, date and outcome. | US-15 |
 | FR-28 | Show the legal scholarship related to the topic, with author, work, the similarity score of the association and a link to the article when there is one. | US-21 |
+| FR-35 | Open each case of the sample at the court with one click, falling back to the court's portal with the number copied when the court does not accept it in the URL. | US-39 |
+| FR-36 | Show the rulings that make up the topic's case law, in the same table pattern as the cases, with the summary exactly as published. | US-40 |
+| FR-37 | Show the qualified precedents related to the topic, with type, number, court, thesis, status and leading cases, never attaching an outcome percentage to them. | US-41 |
  
 ## Provenance and transparency
  
@@ -54,7 +57,6 @@ requirement traces back to the user story it comes from.
 | FR-29 | Show the TJSP, TJRJ and TJMG scope on every screen that presents computed data. | US-24 |
 | FR-30 | Show the source, extraction date and method behind each number, omitting the number when provenance is not recorded. | US-25 |
 | FR-31 | State what does not exist and why, without showing an empty field or an estimated value. | US-26 |
-| FR-32 | State when the data was last updated and warn when it is stale. | US-29 |
  
 ## Data output
  

@@ -13,6 +13,7 @@ See the portuguese(br) version of the documentation [here](Docs/pt_br/README.md)
   - [Sprint Distribution](#sprint-distribution)
   - [Estimate Scale](#estimation-scale)
   - [MoSCoW](#moscow)
+  - [Out of scope](#out-of-scope)
 - [Acceptance Criteria](Docs/Scrum/acceptance-criteria.md)
 - [DoD](Docs/Scrum/definition-of-done.md)
 - [DoR](Docs/Scrum/definition-of-ready.md)
@@ -34,7 +35,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 - **Strength score for the understanding** — shows how settled (or how unstable) that pattern is, weighing agreement between decisions, volume, coverage and recency.
 - **Traceability** — every number displayed leads back to its source and extraction date; no metric is invented or computed in the dark.
 - **Multi-court coverage** — centralised data from TJSP, TJRJ and TJMG — the three state courts with the highest case volume in the country — plus the two superior courts, STJ and STF.
-- **Access to related case law and scholarship** — to keep everything traceable, every case behind a topic leads back to the court, and the scholarship related to it stays reachable.
+- **Access to related case law and scholarship** — to keep everything traceable, every case behind a topic opens at the court with one click, and the rulings, the qualified precedents and the scholarship related to it stay reachable.
 
 # Product Backlog
 
@@ -59,7 +60,9 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | [**US-17**](Docs/Scrum/acceptance-criteria.md#us-17--know-whether-the-courts-panels-diverge) | Should | As a **user**, I want to know whether the panels of my court are deciding alike, so that I can spot internal divergence before deciding | 5 |
 | [**US-27**](Docs/Scrum/acceptance-criteria.md#us-27--export-the-topics-decisions) | Should | As a **user**, I want to export to CSV the decisions that support the topic, so that I can work the data outside the tool | 5 |
 | [**US-28**](Docs/Scrum/acceptance-criteria.md#us-28--copy-the-citation-ready-to-paste) | Should | As a **user**, I want to copy the topic's citation already with the source, the extraction date, the scope and the `n`, so that I can paste it without retyping | 3 |
-| [**US-29**](Docs/Scrum/acceptance-criteria.md#us-29--know-whether-the-data-is-current) | Should | As a **user**, I want to know when the data was last updated, and to be warned when it is stale, so that I do not rely on a months-old snapshot | 3 |
+| [**US-39**](Docs/Scrum/acceptance-criteria.md#us-39--open-the-case-at-the-court-with-one-click) | Should | As a **user**, I want to click the case number and land on that case's page at the court, so that I can check it without copying and pasting the number | 5 |
+| [**US-40**](Docs/Scrum/acceptance-criteria.md#us-40--see-the-court-rulings-behind-the-topic) | Should | As a **user**, I want to see the rulings that make up the topic's case law, with court, judging body, date, summary and a link to the court's page, in the same table pattern as the cases, so that I can read how the courts decided and not only count the cases | 8 |
+| [**US-41**](Docs/Scrum/acceptance-criteria.md#us-41--see-the-qualified-precedents-related-to-the-topic) | Should | As a **user**, I want to see the qualified precedents related to the topic — súmulas, temas repetitivos, IRDR, IAC and repercussão geral — with type, number, court, thesis and status, so that I know what binds the courts on this topic and not only how they have decided | 8 |
 
 
 ## Sprint distribution
@@ -68,7 +71,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | --- | --- | --- | --- |
 | **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
 | **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
-| **Sprint 3** | 02/11 – 22/11 | 8 | 45 |
+| **Sprint 3** | 02/11 – 22/11 | 10 | 63 |
 
 ## MoSCoW
 
@@ -89,6 +92,15 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | **5** | two layers, or a rule someone has to define | 2 | some |
 | **8** | goes from the database to the screen, or the team has never done it | 3+ | real |
 | **13** | large **and** uncertain — top of the scale, a candidate for splitting in refinement | all | high |
+
+## Out of scope
+
+Analysed and deliberately not built in this cycle.
+
+| Item | Why |
+| --- | --- |
+| **Criminal matter** | The product serves civil matter only. Criminal cases are not loaded, not searched and not answered by the chatbot. The meaning of an outcome inverts in criminal cases (a *procedência* is a conviction), and that would make a "favourable" percentage read the wrong way. |
+| **Stale-data warning** (former US-29) | Removed from the backlog. The extraction date is already shown on every screen with numbers (US-25), so a separate warning with a staleness threshold adds nothing. |
 
 ## Team
 <div align="center">

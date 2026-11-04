@@ -46,6 +46,9 @@ requisito remete à história de usuário de que se origina.
 | --- | --- | --- |
 | FR-23 | Exibir uma amostra auditável dos processos por trás do tema, com câmara, data e resultado. | US-15 |
 | FR-28 | Exibir a doutrina relacionada ao tema, com autor, obra, o score de similaridade da associação e link para o artigo quando houver. | US-21 |
+| FR-35 | Abrir cada processo da amostra no tribunal com um clique, recorrendo ao portal do tribunal com o número copiado quando o tribunal não o aceita na URL. | US-39 |
+| FR-36 | Exibir os julgados que compõem a jurisprudência do tema, no mesmo padrão de tabela dos processos, com a ementa exatamente como publicada. | US-40 |
+| FR-37 | Exibir os precedentes qualificados relacionados ao tema, com tipo, número, tribunal, tese, situação e processos paradigma, sem nunca anexar a eles um percentual de resultado. | US-41 |
 
 ## Procedência e transparência
 
@@ -54,7 +57,6 @@ requisito remete à história de usuário de que se origina.
 | FR-29 | Exibir o escopo TJSP, TJRJ e TJMG em toda tela que apresenta dado calculado. | US-24 |
 | FR-30 | Exibir a fonte, a data de extração e o método por trás de cada número, omitindo o número quando a procedência não está registrada. | US-25 |
 | FR-31 | Declarar o que não existe e por quê, sem exibir campo vazio nem valor estimado. | US-26 |
-| FR-32 | Informar quando o dado foi atualizado pela última vez e alertar quando ele estiver desatualizado. | US-29 |
 
 ## Saída de dados
 
