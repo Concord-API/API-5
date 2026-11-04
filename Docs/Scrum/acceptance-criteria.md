@@ -1,4 +1,4 @@
-Detailed DoR and acceptance criteria for all 20 stories in the
+Detailed DoR and acceptance criteria for all 23 stories in the
 [Product Backlog](../../README.md#-product-backlog), in backlog order. Scenarios are written in BDD, as
 the [Definition of Ready](definition-of-ready.md) requires.
  
@@ -765,32 +765,164 @@ Then nothing without backing enters it
  
 ---
  
-### US-29 — Know whether the data is current
-`Should` · E5 · 3 SP · Sprint 3 · awaiting decision 16 · depends on US-25
+### US-39 — Open the case at the court with one click
+`Should` · E4 · 5 SP · Sprint 3 · ready · depends on US-15
  
-> As a **user**, I want to know when the data was last updated, and to be warned when it is
-> stale, so that I do not rely on a months-old snapshot.
+> As a **user**, I want to click the case number and land on that case's page at the court,
+> so that I can check it without copying and pasting the number.
  
 **Business rules**
  
-- Every screen with a number shows the date of the last extraction.
-- Past the threshold set in decision 16, there is an explicit warning that the data is stale.
-- After a load has failed for days, the product must not present stale data looking current — that is the worst case for someone citing it.
+- Every case number in the sample is a link that opens the case in a new tab, so the user keeps their place in the topic.
+- Where the court's system accepts the case number in the URL (today TJSP), the link opens the case directly.
+- Where it does not (today TJRJ and TJMG), the link opens the court's portal with the number already copied to the clipboard, and the screen confirms the copy. The user never has to select and copy the number by hand.
+- Where the court has no mapped destination there is no link: a link that does not resolve is worse than none.
+- The link text is always "consultar no tribunal", never "veja a decisão": no test can guarantee that a link opens one specific case, and the screen does not promise it.
+- Links are built from the case number and the court's mapped destination. They are not validated in batch, because the courts apply rate limits.
+- A case under seal is flagged and carries no link (`US-15`).
 **Acceptance criteria**
  
 ```gherkin
-Scenario: Extraction date visible
-Given any screen showing numbers
+Scenario: Direct link
+Given a case whose court's system accepts the case number in the URL
+When the user clicks the case number
+Then the case opens at the court in a new tab
+ 
+Scenario: Portal with the number copied
+Given a case from a court that does not accept the number in the URL
+When the user clicks the case number
+Then the court's portal opens in a new tab
+And the number is on the clipboard and the screen confirms it
+ 
+Scenario: Court without a mapped destination
+Given a case from a court with no mapped destination
+When the row is rendered
+Then there is no link
+ 
+Scenario: Case under seal
+Given a case under seal
+When the row is rendered
+Then it is flagged and carries no link
+```
+ 
+---
+ 
+### US-40 — See the court rulings behind the topic
+`Should` · E4 · 8 SP · Sprint 3 · awaiting spike · depends on US-15, US-24, US-25
+ 
+> As a **user**, I want to see the rulings that make up the topic's case law, with court, judging
+> body, date, summary and a link to the court's page, in the same table pattern as the cases, so
+> that I can read how the courts decided and not only count the cases.
+ 
+**Business rules**
+ 
+- Same pattern as the case sample (`US-15`): "N of M", stable ordering, source and extraction date on the block, and the link text "consultar no tribunal" (`US-39`).
+- Each row carries court, judging body, date, case number and the summary (*ementa*) exactly as published, never rewritten. Whether the summary may be stored depends on the source's terms of use (`NFR-21`); the full text is not stored.
+- Only courts with a lawful, verified source appear. The block states which courts it covers and which it does not (`US-24`).
+- The source is collected only by the ETL (`NFR-12`). The application never queries it at runtime.
+- If the ruling carries the CNJ number, the link to the topic is exact, through the cases already in it. Otherwise it is by semantic similarity with a declared threshold, and the screen says so (same rule as `US-21`).
+- Rulings are case law. Nothing in the block implies binding force: qualified precedents have their own block (`US-41`).
+- A court with no source shows no rows, and its place explains why (`US-26`).
+- Depends on the spike (DoR 7): the state courts' repositories are blocked by captcha or by their terms of use, and the STJ open-data portal publishes *espelhos de acórdãos* whose fields, update frequency and licence are not verified yet.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Rulings in the same pattern as the cases
+Given a topic with rulings from a covered court
+When the Base analítica tab renders
+Then the rulings appear as a table with "N of M", source, extraction date and one link per row
+ 
+Scenario: Summary as published
+Given a ruling with a summary
+When the row renders
+Then the summary appears exactly as the court published it
+ 
+Scenario: Court without a source
+Given a court with no lawful source of rulings
+When the block renders
+Then it lists no rows for that court and says why
+ 
+Scenario: Association declared
+Given a ruling tied to the topic by similarity
+When the row renders
+Then the screen states the method and the threshold
+```
+ 
+---
+ 
+### US-41 — See the qualified precedents related to the topic
+`Should` · E4 · 8 SP · Sprint 3 · awaiting spike · depends on US-24, US-25
+ 
+> As a **user**, I want to see the qualified precedents related to the topic — *súmulas*, *temas
+> repetitivos*, IRDR, IAC and *repercussão geral* — with type, number, court, thesis and status, so
+> that I know what binds the courts on this topic and not only how they have decided.
+ 
+**Business rules**
+ 
+- Each entry carries type, number, court, the thesis as published, the status as the source gives it (*vigente*, *transitado em julgado*, *cancelado*…) with the date it was last updated, any active suspension, a link to the official source and the leading cases (*processos paradigma*) with their links to the court.
+- The binding effect is not inferred: the screen shows the type as the source gives it.
+- Only civil matter and the courts in scope appear (STF, STJ, TJSP, TJRJ, TJMG). Labour, electoral and other branches are left out, and so are the items the source holds that are not qualified precedents, such as technical notes.
+- The tie to the topic is declared: semantic similarity over the question and the thesis, with a threshold. The screen says "related to the topic", never "cited in these cases" (same rule as `US-21`).
+- A cancelled or overruled precedent still appears, marked as such, so the user does not cite it by mistake.
+- No outcome percentage is ever attached to a precedent: percentages belong to the cases and the rulings.
+- The source is collected only by the ETL (`NFR-12`) and carries its extraction date (`US-25`).
+- A topic with no related precedent shows no entries, and its place explains why (`US-26`).
+- Depends on the spike (DoR 7): the candidate source is Pangea/BNP, whose public search was checked on 04/11/2026; the terms of use for automated access and the stability of its endpoint are not verified yet.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Precedent with its identification
+Given a topic with a related qualified precedent
+When the block renders
+Then the entry shows type, number, court, thesis, status and the date the status was last updated
+ 
+Scenario: Cancelled precedent
+Given a related precedent whose status is "cancelado"
+When the block renders
+Then it appears marked as cancelled
+ 
+Scenario: Related, not cited
+Given any entry in the block
 When it renders
-Then the date of the last extraction is visible
+Then the screen states it is related to the topic by the declared method
  
-Scenario: Stale data
-Given the last extraction is older than the defined threshold
-When the user opens the screen
-Then there is an explicit warning that the data is stale
+Scenario: Branch out of scope
+Given a precedent from a labour or electoral court
+When the topic's precedents are loaded
+Then it does not appear
+```
  
-Scenario: Load failing for days
-Given the load has failed for several days
-When the user uses the product
-Then it does not present stale data with the appearance of current data
+---
+ 
+### US-42 — Tell cases, rulings and precedents apart
+`Should` · E4 · 3 SP · Sprint 3 · awaiting US-40 and US-41 · depends on US-15, US-40, US-41
+ 
+> As a **user**, I want the Base analítica tab to separate cases, rulings and qualified
+> precedents under their own headings, so that I never read a statistic about cases as if it were
+> a precedent.
+ 
+**Business rules**
+ 
+- Three sections, always in the same order: *Processos*, *Julgados* and *Precedentes qualificados*.
+- Each section has a one-line definition that follows the glossary, and its own source, extraction date and scope.
+- A section without data keeps its heading and explains why it is empty (`US-26`).
+- No figure computed over cases or rulings appears in the *Precedentes qualificados* section.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Three sections, three definitions
+Given a topic
+When the Base analítica tab renders
+Then it shows Processos, Julgados and Precedentes qualificados in that order
+And each shows its definition, source and extraction date
+ 
+Scenario: Empty section
+Given a topic with no rulings
+When the tab renders
+Then the Julgados section keeps its heading and explains why it is empty
+ 
+Scenario: No cross-contamination
+Given the Precedentes qualificados section
+When it renders
+Then no percentage computed over cases or rulings appears in it
 ```

@@ -1,4 +1,4 @@
-DoR detalhada e critérios de aceite para todas as 20 histórias do
+DoR detalhada e critérios de aceite para todas as 23 histórias do
 [Product Backlog](../../README.md#-product-backlog), na ordem do backlog. Os cenários são
 escritos em BDD, como a [Definition of Ready](definition-of-ready.md) exige.
 
@@ -768,32 +768,164 @@ Então nada sem lastro entra nela
 
 ---
 
-### US-29 — Saber se o dado está atual
-`Should` · E5 · 3 SP · Sprint 3 · aguardando decisão 16 · depende de US-25
+### US-39 — Abrir o processo no tribunal com um clique
+`Should` · E4 · 5 SP · Sprint 3 · pronta · depende de US-15
 
-> Como **usuário**, quero saber quando o dado foi atualizado pela última vez, e ser avisado
-> quando ele estiver desatualizado, para que eu não me apoie em um retrato de meses atrás.
+> Como **usuário**, quero clicar no número do processo e cair na página desse processo no
+> tribunal, para que eu possa conferi-lo sem copiar e colar o número.
 
 **Regras de negócio**
 
-- Toda tela com número exibe a data da última extração.
-- Passado o limite definido na decisão 16, há um aviso explícito de que o dado está desatualizado.
-- Depois de uma carga falhando por dias, o produto não pode apresentar dado desatualizado com aparência de atual — esse é o pior caso para quem o cita.
+- Todo número de processo da amostra é um link que abre o processo em uma nova aba, para o usuário não perder o lugar no tema.
+- Onde o sistema do tribunal aceita o número do processo na URL (hoje o TJSP), o link abre o processo diretamente.
+- Onde não aceita (hoje TJRJ e TJMG), o link abre o portal do tribunal com o número já copiado para a área de transferência, e a tela confirma a cópia. O usuário nunca precisa selecionar e copiar o número à mão.
+- Onde o tribunal não tem destino mapeado, não há link: um link que não resolve é pior que nenhum.
+- O texto do link é sempre "consultar no tribunal", nunca "veja a decisão": nenhum teste garante que um link abre um processo específico, e a tela não promete isso.
+- Os links são montados a partir do número do processo e do destino mapeado do tribunal. Não são validados em lote, porque os tribunais aplicam limite de taxa.
+- Um processo em segredo de justiça é sinalizado e não tem link (`US-15`).
 **Critérios de aceite**
 
 ```gherkin
-Cenário: Data de extração visível
-Dado qualquer tela que exiba números
+Cenário: Link direto
+Dado um processo cujo sistema do tribunal aceita o número do processo na URL
+Quando o usuário clica no número do processo
+Então o processo abre no tribunal em uma nova aba
+
+Cenário: Portal com o número copiado
+Dado um processo de um tribunal que não aceita o número na URL
+Quando o usuário clica no número do processo
+Então o portal do tribunal abre em uma nova aba
+E o número está na área de transferência e a tela confirma a cópia
+
+Cenário: Tribunal sem destino mapeado
+Dado um processo de um tribunal sem destino mapeado
+Quando a linha é renderizada
+Então não há link
+
+Cenário: Processo em segredo de justiça
+Dado um processo em segredo de justiça
+Quando a linha é renderizada
+Então ele é sinalizado e não tem link
+```
+
+---
+
+### US-40 — Ver os julgados por trás do tema
+`Should` · E4 · 8 SP · Sprint 3 · aguardando spike · depende de US-15, US-24, US-25
+
+> Como **usuário**, quero ver os julgados que compõem a jurisprudência do tema, com tribunal,
+> órgão julgador, data, ementa e link para a página do tribunal, no mesmo padrão de tabela dos
+> processos, para que eu possa ler como os tribunais decidiram e não apenas contar os casos.
+
+**Regras de negócio**
+
+- Mesmo padrão da amostra de processos (`US-15`): "N de M", ordenação estável, fonte e data de extração no bloco, e o texto de link "consultar no tribunal" (`US-39`).
+- Cada linha traz tribunal, órgão julgador, data, número do processo e a ementa exatamente como publicada, nunca reescrita. Guardar a ementa depende dos termos de uso da fonte (`NFR-21`); o inteiro teor não é guardado.
+- Só aparecem tribunais com fonte lícita e verificada. O bloco declara quais tribunais cobre e quais não cobre (`US-24`).
+- A fonte é coletada somente pelo ETL (`NFR-12`). A aplicação nunca a consulta em tempo de execução.
+- Se o julgado traz o número CNJ, a ligação com o tema é exata, pelos processos que já estão nele. Caso contrário, é por similaridade semântica com limite declarado, e a tela diz isso (mesma regra da `US-21`).
+- Julgados são jurisprudência. Nada no bloco sugere força vinculante: os precedentes qualificados têm bloco próprio (`US-41`).
+- Um tribunal sem fonte não mostra linhas, e o lugar delas explica por quê (`US-26`).
+- Depende do spike (DoR 7): os repositórios dos tribunais estaduais estão bloqueados por captcha ou pelos termos de uso, e o portal de dados abertos do STJ publica *espelhos de acórdãos* cujos campos, frequência de atualização e licença ainda não foram verificados.
+**Critérios de aceite**
+
+```gherkin
+Cenário: Julgados no mesmo padrão dos processos
+Dado um tema com julgados de um tribunal coberto
+Quando a aba Base analítica é renderizada
+Então os julgados aparecem em uma tabela com "N de M", fonte, data de extração e um link por linha
+
+Cenário: Ementa como publicada
+Dado um julgado com ementa
+Quando a linha é renderizada
+Então a ementa aparece exatamente como o tribunal a publicou
+
+Cenário: Tribunal sem fonte
+Dado um tribunal sem fonte lícita de julgados
+Quando o bloco é renderizado
+Então ele não lista linhas desse tribunal e diz por quê
+
+Cenário: Ligação declarada
+Dado um julgado ligado ao tema por similaridade
+Quando a linha é renderizada
+Então a tela declara o método e o limite
+```
+
+---
+
+### US-41 — Ver os precedentes qualificados relacionados ao tema
+`Should` · E4 · 8 SP · Sprint 3 · aguardando spike · depende de US-24, US-25
+
+> Como **usuário**, quero ver os precedentes qualificados relacionados ao tema — súmulas, temas
+> repetitivos, IRDR, IAC e repercussão geral —, com tipo, número, tribunal, tese e situação, para
+> que eu saiba o que vincula os tribunais neste tema e não apenas como eles têm decidido.
+
+**Regras de negócio**
+
+- Cada entrada traz tipo, número, tribunal, a tese como publicada, a situação como a fonte a informa (*vigente*, *transitado em julgado*, *cancelado*…) com a data da última atualização, eventual suspensão ativa, link para a fonte oficial e os processos paradigma com seus links para o tribunal.
+- O efeito vinculante não é inferido: a tela mostra o tipo como a fonte o informa.
+- Só aparecem matéria cível e os tribunais do escopo (STF, STJ, TJSP, TJRJ, TJMG). Ramos trabalhista, eleitoral e outros ficam de fora, assim como os itens da fonte que não são precedentes qualificados, como notas técnicas.
+- A ligação com o tema é declarada: similaridade semântica sobre a questão e a tese, com limite. A tela diz "relacionado ao tema", nunca "citado nestes processos" (mesma regra da `US-21`).
+- Um precedente cancelado ou superado continua aparecendo, marcado como tal, para o usuário não o citar por engano.
+- Nenhum percentual de resultado é anexado a um precedente: percentuais pertencem aos processos e aos julgados.
+- A fonte é coletada somente pelo ETL (`NFR-12`) e traz a data de extração (`US-25`).
+- Um tema sem precedente relacionado não mostra entradas, e o lugar delas explica por quê (`US-26`).
+- Depende do spike (DoR 7): a fonte candidata é o Pangea/BNP, cuja busca pública foi conferida em 04/11/2026; os termos de uso para acesso automatizado e a estabilidade do endpoint ainda não foram verificados.
+**Critérios de aceite**
+
+```gherkin
+Cenário: Precedente com sua identificação
+Dado um tema com um precedente qualificado relacionado
+Quando o bloco é renderizado
+Então a entrada mostra tipo, número, tribunal, tese, situação e a data da última atualização da situação
+
+Cenário: Precedente cancelado
+Dado um precedente relacionado cuja situação é "cancelado"
+Quando o bloco é renderizado
+Então ele aparece marcado como cancelado
+
+Cenário: Relacionado, não citado
+Dado qualquer entrada do bloco
 Quando ela é renderizada
-Então a data da última extração fica visível
+Então a tela declara que ela está relacionada ao tema pelo método declarado
 
-Cenário: Dado desatualizado
-Dado que a última extração é mais antiga que o limite definido
-Quando o usuário abre a tela
-Então há um aviso explícito de que o dado está desatualizado
+Cenário: Ramo fora do escopo
+Dado um precedente de um tribunal trabalhista ou eleitoral
+Quando os precedentes do tema são carregados
+Então ele não aparece
+```
 
-Cenário: Carga falhando há dias
-Dado que a carga falhou por vários dias
-Quando o usuário usa o produto
-Então ele não apresenta dado desatualizado com aparência de dado atual
+---
+
+### US-42 — Distinguir processos, julgados e precedentes
+`Should` · E4 · 3 SP · Sprint 3 · aguardando US-40 e US-41 · depende de US-15, US-40, US-41
+
+> Como **usuário**, quero que a aba Base analítica separe processos, julgados e precedentes
+> qualificados em seções próprias, para que eu nunca leia uma estatística sobre processos como se
+> fosse um precedente.
+
+**Regras de negócio**
+
+- Três seções, sempre na mesma ordem: *Processos*, *Julgados* e *Precedentes qualificados*.
+- Cada seção tem uma definição de uma linha que segue o glossário, e sua própria fonte, data de extração e escopo.
+- Uma seção sem dado mantém o título e explica por que está vazia (`US-26`).
+- Nenhum número calculado sobre processos ou julgados aparece na seção *Precedentes qualificados*.
+**Critérios de aceite**
+
+```gherkin
+Cenário: Três seções, três definições
+Dado um tema
+Quando a aba Base analítica é renderizada
+Então ela mostra Processos, Julgados e Precedentes qualificados nessa ordem
+E cada uma mostra sua definição, fonte e data de extração
+
+Cenário: Seção vazia
+Dado um tema sem julgados
+Quando a aba é renderizada
+Então a seção Julgados mantém o título e explica por que está vazia
+
+Cenário: Sem contaminação entre seções
+Dado a seção Precedentes qualificados
+Quando ela é renderizada
+Então nenhum percentual calculado sobre processos ou julgados aparece nela
 ```
