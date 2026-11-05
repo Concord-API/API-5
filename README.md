@@ -35,7 +35,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 - **Strength score for the understanding** — shows how settled (or how unstable) that pattern is, weighing agreement between decisions, volume, coverage and recency.
 - **Traceability** — every number displayed leads back to its source and extraction date; no metric is invented or computed in the dark.
 - **Multi-court coverage** — centralised data from TJSP, TJRJ and TJMG — the three state courts with the highest case volume in the country — plus the two superior courts, STJ and STF.
-- **Access to related case law and scholarship** — to keep everything traceable, every case behind a topic opens at the court with one click, and the rulings, the qualified precedents and the scholarship related to it stay reachable.
+- **Access to related case law and scholarship** — to keep everything traceable, the data of every case behind a topic is shown inside the product, taken from the court's own site, and the rulings, the qualified precedents and the scholarship related to it stay reachable.
 
 # Product Backlog
 
@@ -60,7 +60,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | [**US-17**](Docs/Scrum/acceptance-criteria.md#us-17--know-whether-the-courts-panels-diverge) | Should | As a **user**, I want to know whether the panels of my court are deciding alike, so that I can spot internal divergence before deciding | 5 |
 | [**US-27**](Docs/Scrum/acceptance-criteria.md#us-27--export-the-topics-decisions) | Should | As a **user**, I want to export to CSV the decisions that support the topic, so that I can work the data outside the tool | 5 |
 | [**US-28**](Docs/Scrum/acceptance-criteria.md#us-28--copy-the-citation-ready-to-paste) | Should | As a **user**, I want to copy the topic's citation already with the source, the extraction date, the scope and the `n`, so that I can paste it without retyping | 3 |
-| [**US-39**](Docs/Scrum/acceptance-criteria.md#us-39--open-the-case-at-the-court-with-one-click) | Should | As a **user**, I want to click the case number and land on that case's page at the court, so that I can check it without copying and pasting the number | 5 |
+| [**US-39**](Docs/Scrum/acceptance-criteria.md#us-39--see-the-case-data-inside-ratio) | Should | As a **user**, I want to see the data of each case in the sample inside Ratio, taken from the court's own site, so that I can check the case without leaving the product | 5 |
 | [**US-40**](Docs/Scrum/acceptance-criteria.md#us-40--see-the-court-rulings-behind-the-topic) | Should | As a **user**, I want to see the rulings that make up the topic's case law, with court, judging body, date, summary and a link to the court's page, in the same table pattern as the cases, so that I can read how the courts decided and not only count the cases | 8 |
 | [**US-41**](Docs/Scrum/acceptance-criteria.md#us-41--see-the-qualified-precedents-related-to-the-topic) | Should | As a **user**, I want to see the qualified precedents related to the topic — súmulas, temas repetitivos, IRDR, IAC and repercussão geral — with type, number, court, thesis and status, so that I know what binds the courts on this topic and not only how they have decided | 8 |
 
@@ -70,8 +70,8 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | Sprint | Window | Stories | Points |
 | --- | --- | --- | --- |
 | **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
-| **Sprint 2** | 05/10 – 25/10 | 13 | 65 |
-| **Sprint 3** | 02/11 – 22/11 | 10 | 63 |
+| **Sprint 2** | 05/10 – 25/10 | 9 | 44 |
+| **Sprint 3** | 02/11 – 22/11 | 5 | 29 |
 
 ## MoSCoW
 

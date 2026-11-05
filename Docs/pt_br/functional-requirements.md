@@ -46,7 +46,7 @@ requisito remete à história de usuário de que se origina.
 | --- | --- | --- |
 | FR-23 | Exibir uma amostra auditável dos processos por trás do tema, com câmara, data e resultado. | US-15 |
 | FR-28 | Exibir a doutrina relacionada ao tema, com autor, obra, o score de similaridade da associação e link para o artigo quando houver. | US-21 |
-| FR-35 | Abrir cada processo da amostra no tribunal com um clique, recorrendo ao portal do tribunal com o número copiado quando o tribunal não o aceita na URL. | US-39 |
+| FR-35 | Exibir, dentro do produto, os dados de cada processo da amostra, extraídos do site público do próprio tribunal, sem redirecionar o usuário ao portal do tribunal. | US-39 |
 | FR-36 | Exibir os julgados que compõem a jurisprudência do tema, no mesmo padrão de tabela dos processos, com a ementa exatamente como publicada. | US-40 |
 | FR-37 | Exibir os precedentes qualificados relacionados ao tema, com tipo, número, tribunal, tese, situação e processos paradigma, sem nunca anexar a eles um percentual de resultado. | US-41 |
 
