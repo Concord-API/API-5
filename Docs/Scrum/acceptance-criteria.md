@@ -765,44 +765,52 @@ Then nothing without backing enters it
  
 ---
  
-### US-39 — Open the case at the court with one click
-`Should` · E4 · 5 SP · Sprint 3 · ready · depends on US-15
+### US-39 — See the case data inside Ratio
+`Should` · E4 · 5 SP · Sprint 3 · ready · depends on US-15, US-24, US-25, US-26
  
-> As a **user**, I want to click the case number and land on that case's page at the court,
-> so that I can check it without copying and pasting the number.
+> As a **user**, I want to see the data of each case in the sample inside Ratio, taken from the
+> court's own site, so that I can check the case without leaving the product.
  
 **Business rules**
  
-- Every case number in the sample is a link that opens the case in a new tab, so the user keeps their place in the topic.
-- Where the court's system accepts the case number in the URL (today TJSP), the link opens the case directly.
-- Where it does not (today TJRJ and TJMG), the link opens the court's portal with the number already copied to the clipboard, and the screen confirms the copy. The user never has to select and copy the number by hand.
-- Where the court has no mapped destination there is no link: a link that does not resolve is worse than none.
-- The link text is always "consultar no tribunal", never "veja a decisão": no test can guarantee that a link opens one specific case, and the screen does not promise it.
-- Links are built from the case number and the court's mapped destination. They are not validated in batch, because the courts apply rate limits.
-- A case under seal is flagged and carries no link (`US-15`).
+- Each case in the sample opens its data inside the product, without sending the user to another site. The product carries no link to the court's portal (Sprint Review).
+- The data comes from the public site of each court in scope — TJSP, TJRJ, TJMG, STJ and STF (`US-24`).
+- The data shown is: case number, court and instance, class, subjects, judging body (panel), reporting judge, filing date, date and outcome of the decision, and the public movements with date and description.
+- Names of parties and lawyers are not shown (`NFR-21`), and neither are documents or the full text of decisions.
+- The data is loaded in advance (`NFR-12`) and shows its extraction date the same way the rest of the product does (`US-25`).
+- A field the court's site does not publish comes empty and flagged, never filled (same rule as `US-15`).
+- A case under seal is flagged and no sealed data is exposed (`US-15`, `NFR-21`).
+- Where there is no data for a case or a court, the screen says what does not exist and why, as in `US-26`: no empty field, no filler and no link.
 **Acceptance criteria**
  
 ```gherkin
-Scenario: Direct link
-Given a case whose court's system accepts the case number in the URL
-When the user clicks the case number
-Then the case opens at the court in a new tab
+Scenario: Case data inside the product
+Given a case from a court in scope with data loaded
+When the user opens the case
+Then its data appears inside Ratio with the extraction date
+And there is no link to the court's portal
  
-Scenario: Portal with the number copied
-Given a case from a court that does not accept the number in the URL
-When the user clicks the case number
-Then the court's portal opens in a new tab
-And the number is on the clipboard and the screen confirms it
+Scenario: Field the court does not publish
+Given a case whose court's site does not publish the reporting judge
+When the case is opened
+Then that field is empty and flagged, never filled
  
-Scenario: Court without a mapped destination
-Given a case from a court with no mapped destination
-When the row is rendered
-Then there is no link
+Scenario: Parties not shown
+Given a case with data loaded
+When its data is rendered
+Then no names of parties or lawyers appear
  
 Scenario: Case under seal
 Given a case under seal
-When the row is rendered
-Then it is flagged and carries no link
+When it appears in the sample
+Then it is flagged
+And no sealed data is exposed
+ 
+Scenario: No data
+Given a case or a court with no data loaded
+When the case is opened
+Then the screen says what does not exist and why
+And there is no empty field, no filler and no link
 ```
  
 ---
@@ -816,7 +824,7 @@ Then it is flagged and carries no link
  
 **Business rules**
  
-- Same pattern as the case sample (`US-15`): "N of M", stable ordering, source and extraction date on the block, and the link text "consultar no tribunal" (`US-39`).
+- Same pattern as the case sample (`US-15`): "N of M", stable ordering, source and extraction date on the block.
 - Each row carries court, judging body, date, case number and the summary (*ementa*) exactly as published, never rewritten. Whether the summary may be stored depends on the source's terms of use (`NFR-21`); the full text is not stored.
 - Only courts with a lawful, verified source appear. The block states which courts it covers and which it does not (`US-24`).
 - The source is collected only by the ETL (`NFR-12`). The application never queries it at runtime.

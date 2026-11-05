@@ -768,44 +768,52 @@ Então nada sem lastro entra nela
 
 ---
 
-### US-39 — Abrir o processo no tribunal com um clique
-`Should` · E4 · 5 SP · Sprint 3 · pronta · depende de US-15
+### US-39 — Ver os dados do processo dentro do Ratio
+`Should` · E4 · 5 SP · Sprint 3 · pronta · depende de US-15, US-24, US-25, US-26
 
-> Como **usuário**, quero clicar no número do processo e cair na página desse processo no
-> tribunal, para que eu possa conferi-lo sem copiar e colar o número.
+> Como **usuário**, quero ver os dados de cada processo da amostra dentro do Ratio, extraídos do
+> site do próprio tribunal, para que eu possa conferir o processo sem sair do produto.
 
 **Regras de negócio**
 
-- Todo número de processo da amostra é um link que abre o processo em uma nova aba, para o usuário não perder o lugar no tema.
-- Onde o sistema do tribunal aceita o número do processo na URL (hoje o TJSP), o link abre o processo diretamente.
-- Onde não aceita (hoje TJRJ e TJMG), o link abre o portal do tribunal com o número já copiado para a área de transferência, e a tela confirma a cópia. O usuário nunca precisa selecionar e copiar o número à mão.
-- Onde o tribunal não tem destino mapeado, não há link: um link que não resolve é pior que nenhum.
-- O texto do link é sempre "consultar no tribunal", nunca "veja a decisão": nenhum teste garante que um link abre um processo específico, e a tela não promete isso.
-- Os links são montados a partir do número do processo e do destino mapeado do tribunal. Não são validados em lote, porque os tribunais aplicam limite de taxa.
-- Um processo em segredo de justiça é sinalizado e não tem link (`US-15`).
+- Cada processo da amostra abre seus dados dentro do produto, sem mandar o usuário para outro site. O produto não traz link para o portal do tribunal (Sprint Review).
+- Os dados vêm do site público de cada tribunal do escopo — TJSP, TJRJ, TJMG, STJ e STF (`US-24`).
+- Os dados exibidos são: número do processo, tribunal e instância, classe, assuntos, órgão julgador (câmara), relator, data de distribuição, data e resultado da decisão, e as movimentações públicas com data e descrição.
+- Nomes de partes e advogados não são exibidos (`NFR-21`), nem documentos ou o inteiro teor das decisões.
+- Os dados são carregados antecipadamente (`NFR-12`) e mostram a data de extração do mesmo modo que o resto do produto (`US-25`).
+- Um campo que o site do tribunal não publica vem vazio e sinalizado, nunca preenchido (mesma regra da `US-15`).
+- Um processo em segredo de justiça é sinalizado e nenhum dado sigiloso é exposto (`US-15`, `NFR-21`).
+- Onde não há dado para um processo ou tribunal, a tela diz o que não existe e por quê, como na `US-26`: sem campo vazio, sem preenchimento e sem link.
 **Critérios de aceite**
 
 ```gherkin
-Cenário: Link direto
-Dado um processo cujo sistema do tribunal aceita o número do processo na URL
-Quando o usuário clica no número do processo
-Então o processo abre no tribunal em uma nova aba
+Cenário: Dados do processo dentro do produto
+Dado um processo de um tribunal do escopo com dados carregados
+Quando o usuário abre o processo
+Então os dados aparecem dentro do Ratio com a data de extração
+E não há link para o portal do tribunal
 
-Cenário: Portal com o número copiado
-Dado um processo de um tribunal que não aceita o número na URL
-Quando o usuário clica no número do processo
-Então o portal do tribunal abre em uma nova aba
-E o número está na área de transferência e a tela confirma a cópia
+Cenário: Campo que o tribunal não publica
+Dado um processo cujo site do tribunal não publica o relator
+Quando o processo é aberto
+Então esse campo fica vazio e sinalizado, nunca preenchido
 
-Cenário: Tribunal sem destino mapeado
-Dado um processo de um tribunal sem destino mapeado
-Quando a linha é renderizada
-Então não há link
+Cenário: Partes não exibidas
+Dado um processo com dados carregados
+Quando seus dados são renderizados
+Então nenhum nome de parte ou advogado aparece
 
 Cenário: Processo em segredo de justiça
 Dado um processo em segredo de justiça
-Quando a linha é renderizada
-Então ele é sinalizado e não tem link
+Quando ele aparece na amostra
+Então ele é sinalizado
+E nenhum dado sigiloso é exposto
+
+Cenário: Sem dado
+Dado um processo ou tribunal sem dado carregado
+Quando o processo é aberto
+Então a tela diz o que não existe e por quê
+E não há campo vazio, preenchimento nem link
 ```
 
 ---
@@ -819,7 +827,7 @@ Então ele é sinalizado e não tem link
 
 **Regras de negócio**
 
-- Mesmo padrão da amostra de processos (`US-15`): "N de M", ordenação estável, fonte e data de extração no bloco, e o texto de link "consultar no tribunal" (`US-39`).
+- Mesmo padrão da amostra de processos (`US-15`): "N de M", ordenação estável, fonte e data de extração no bloco.
 - Cada linha traz tribunal, órgão julgador, data, número do processo e a ementa exatamente como publicada, nunca reescrita. Guardar a ementa depende dos termos de uso da fonte (`NFR-21`); o inteiro teor não é guardado.
 - Só aparecem tribunais com fonte lícita e verificada. O bloco declara quais tribunais cobre e quais não cobre (`US-24`).
 - A fonte é coletada somente pelo ETL (`NFR-12`). A aplicação nunca a consulta em tempo de execução.
