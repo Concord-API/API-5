@@ -63,6 +63,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | [**US-39**](../pt_br/Scrum/acceptance-criteria.md#us-39--ver-os-dados-do-processo-dentro-do-ratio) | Should | Como **usuário**, quero ver os dados de cada processo da amostra dentro do Ratio, extraídos do site do próprio tribunal, para conferir o processo sem sair do produto | 5 |
 | [**US-40**](../pt_br/Scrum/acceptance-criteria.md#us-40--ver-os-julgados-por-trás-do-tema) | Should | Como **usuário**, quero ver os julgados que compõem a jurisprudência do tema, com tribunal, órgão julgador, data, ementa e link para a página do tribunal, no mesmo padrão de tabela dos processos, para ler como os tribunais decidiram e não apenas contar os casos | 8 |
 | [**US-41**](../pt_br/Scrum/acceptance-criteria.md#us-41--ver-os-precedentes-qualificados-relacionados-ao-tema) | Should | Como **usuário**, quero ver os precedentes qualificados relacionados ao tema — súmulas, temas repetitivos, IRDR, IAC e repercussão geral —, com tipo, número, tribunal, tese e situação, para saber o que vincula os tribunais neste tema e não apenas como eles têm decidido | 8 |
+| **US-13** | Could | Como **usuário**, quero que a aba que estou vendo seja refletida na URL, para enviar a um colega o link exato da parte que quero mostrar | 5 |
 
 ## Distribuição por sprint
 
@@ -70,7 +71,7 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | --- | --- | --- | --- |
 | **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
 | **Sprint 2** | 05/10 – 25/10 | 9 | 44 |
-| **Sprint 3** | 02/11 – 22/11 | 5 | 29 |
+| **Sprint 3** | 02/11 – 22/11 | 6 | 34 |
 
 ## MoSCoW
 
