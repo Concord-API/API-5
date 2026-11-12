@@ -63,6 +63,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | [**US-39**](Docs/Scrum/acceptance-criteria.md#us-39--see-the-case-data-inside-ratio) | Should | As a **user**, I want to see the data of each case in the sample inside Ratio, taken from the court's own site, so that I can check the case without leaving the product | 5 |
 | [**US-40**](Docs/Scrum/acceptance-criteria.md#us-40--see-the-court-rulings-behind-the-topic) | Should | As a **user**, I want to see the rulings that make up the topic's case law, with court, judging body, date, summary and a link to the court's page, in the same table pattern as the cases, so that I can read how the courts decided and not only count the cases | 8 |
 | [**US-41**](Docs/Scrum/acceptance-criteria.md#us-41--see-the-qualified-precedents-related-to-the-topic) | Should | As a **user**, I want to see the qualified precedents related to the topic — súmulas, temas repetitivos, IRDR, IAC and repercussão geral — with type, number, court, thesis and status, so that I know what binds the courts on this topic and not only how they have decided | 8 |
+| **US-13** | Could | As a **user**, I want the tab I am viewing to be reflected in the URL, so that I can send a colleague the exact link to the part I want to show | 5 |
 
 
 ## Sprint distribution
@@ -71,7 +72,7 @@ Ratio sets out to eliminate the manual, fragmented work of case law analysis tha
 | --- | --- | --- | --- |
 | **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
 | **Sprint 2** | 05/10 – 25/10 | 9 | 44 |
-| **Sprint 3** | 02/11 – 22/11 | 5 | 29 |
+| **Sprint 3** | 02/11 – 22/11 | 6 | 34 |
 
 ## MoSCoW
 
