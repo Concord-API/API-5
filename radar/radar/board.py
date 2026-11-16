@@ -48,6 +48,12 @@ def plan_metrics(existing: list[dict], metrics: list[Metric]) -> tuple[list[Metr
     return creates, updates
 
 
+def known_weeks(metrics: list[Metric], options: dict[str, str]) -> tuple[list[Metric], list[str]]:
+    kept = [metric for metric in metrics if metric.semana in options]
+    skipped = sorted({metric.semana for metric in metrics if metric.semana not in options})
+    return kept, skipped
+
+
 SET_VALUE = """
 mutation($project: ID!, $item: ID!, $field: ID!, $value: ProjectV2FieldValue!) {
   updateProjectV2ItemFieldValue(input: {projectId: $project, itemId: $item, fieldId: $field, value: $value}) {
@@ -93,7 +99,7 @@ class Board:
         result = self.client.graphql(ADD_DRAFT, project=self.project_id, title=metric.title)
         item_id = result["addProjectV2DraftIssue"]["projectItem"]["id"]
         self._set(item_id, "Radar", self._option("Radar", "Métrica"))
-        self._set(item_id, "Semana", {"text": metric.semana})
+        self._set(item_id, "Semana", self._option("Semana", metric.semana))
         self._set(item_id, "Etapa", self._option("Etapa", metric.etapa))
         self._set(item_id, "Valor", {"number": metric.valor})
 

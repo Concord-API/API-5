@@ -39,7 +39,7 @@ query($owner: String!, $number: Int!, $cursor: String) {
             ... on ProjectV2ItemFieldSingleSelectValue { name }
           }
           semana: fieldValueByName(name: "Semana") {
-            ... on ProjectV2ItemFieldTextValue { text }
+            ... on ProjectV2ItemFieldSingleSelectValue { name }
           }
           etapa: fieldValueByName(name: "Etapa") {
             ... on ProjectV2ItemFieldSingleSelectValue { name }
