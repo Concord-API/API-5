@@ -4,7 +4,11 @@
 
 **Board:** [GitHub Project](https://github.com/orgs/Concord-API/projects/5) · snapshot de 12/11/2026
 
+**Definições:** [Definition of Ready](../Docs/pt_br/Scrum/definition-of-ready.md) · [Definition of Done](../Docs/pt_br/Scrum/definition-of-done.md)
+
 ## Meta da sprint
+
+> **O usuário pesquisa o tema do caso e encontra primeiro os temas jurídicos mais consolidados, com o entendimento explicado, a distribuição de resultados e a doutrina, sabendo de onde vem cada número.**
 
 Stories que o time se compromete a entregar. Se alguma não for concluída, a sprint não atingiu a meta.
 
@@ -58,6 +62,12 @@ Stories planejadas na sprint, mas que podem passar para a próxima se não houve
 | Test | 16h | 16h |
 | DevOps | 11h | 11h |
 | Docs | 10h | 10h |
+
+## Burndown
+
+![Burndown da Sprint 1](burndown.png)
+
+Horas restantes por dia, a partir do campo `Status` do board e das horas de cada task. Final da sprint.
 
 ## Stories e tasks
 
