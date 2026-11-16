@@ -1,6 +1,6 @@
 from datetime import date
 
-from radar.board import Metric, days_in_status, plan_days, plan_metrics
+from radar.board import Metric, days_in_status, known_weeks, plan_days, plan_metrics
 
 
 def task(item_id, status, since, state="OPEN", days=None):
@@ -60,3 +60,12 @@ def test_updates_the_value_of_a_metric_that_is_already_on_the_board():
 
 def test_the_title_names_the_stage_and_the_week():
     assert Metric("Planning S3", "Commits", 50).title == "Commits · Planning S3"
+
+
+def test_skips_the_metrics_whose_week_has_no_option_on_the_board():
+    metrics = [Metric("S4·1", "Commits", 3), Metric("S5·1", "Commits", 2)]
+
+    kept, skipped = known_weeks(metrics, {"S4·1": "o1"})
+
+    assert kept == [Metric("S4·1", "Commits", 3)]
+    assert skipped == ["S5·1"]
