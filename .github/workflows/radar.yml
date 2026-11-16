@@ -1,0 +1,78 @@
+name: Radar
+
+on:
+  schedule:
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "radar/**"
+      - ".github/radar.yml"
+      - ".github/workflows/radar.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: radar-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  tests:
+    name: Radar script tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: radar
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -q
+
+  radar:
+    name: Radar
+    needs: tests
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r radar/requirements.txt
+      - id: app
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.RADAR_APP_ID }}
+          private-key: ${{ secrets.RADAR_APP_KEY }}
+          owner: ${{ github.repository_owner }}
+      - name: Collect and update the board
+        env:
+          RADAR_TOKEN: ${{ steps.app.outputs.token }}
+          PYTHONPATH: radar
+        run: python -m radar --out "$RUNNER_TEMP/radar-out"
+      - name: Keep the snapshot in radar-data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          data="$RUNNER_TEMP/radar-data"
+          if git ls-remote --exit-code --heads origin radar-data > /dev/null; then
+            git fetch --depth 1 origin radar-data:radar-data
+            git worktree add "$data" radar-data
+          else
+            git worktree add --orphan -b radar-data "$data"
+          fi
+          mkdir -p "$data/radar/data"
+          cp "$RUNNER_TEMP"/radar-out/*.json "$data/radar/data/"
+          cd "$data"
+          git add radar/data
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "chore: add the radar snapshot of $(ls "$RUNNER_TEMP"/radar-out | sed 's/.json//')"
+          git push origin radar-data
