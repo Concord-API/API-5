@@ -9,11 +9,10 @@ WEEK = timedelta(days=7)
 DAY = 86400
 TASKS_CREATED = "Tasks criadas"
 COMMITS = "Commits"
-WAITING_START = "Esperando começar"
-DEVELOPING = "Desenvolvendo"
-WAITING_REVIEW = "Esperando revisão"
-NEVER_STARTED = "Nunca começou"
-STAGES = [WAITING_START, DEVELOPING, WAITING_REVIEW, NEVER_STARTED]
+FIRST_COMMIT = "Dias até o 1º commit"
+OPEN_PR = "Dias até abrir o PR"
+REVIEW = "Dias esperando revisão"
+TIME_FIELDS = [FIRST_COMMIT, OPEN_PR, REVIEW]
 
 
 def _instant(value: str) -> datetime:
@@ -58,17 +57,23 @@ def week_metrics(snapshot: dict, sprints: list[Sprint], today: date, timezone: s
     return metrics
 
 
-def _sprint_of_task(created: date, sprints: list[Sprint]) -> int | None:
-    for sprint in sprints:
-        if created <= sprint.end:
-            return sprint.number
-    return None
+def _pulls_by_task(snapshot: dict) -> dict[str, list[dict]]:
+    pulls = defaultdict(list)
+    for pull in snapshot["pulls"]:
+        if pull["task"] and pull["base"] != "main":
+            pulls[pull["task"]].append(pull)
+    return pulls
 
 
-def _task_stages(task: dict, pulls: list[dict], now: datetime) -> dict[str, float]:
+def _rounded(days: float | None) -> int | None:
+    return None if days is None else round(days)
+
+
+def _times(task: dict, pulls: list[dict], now: datetime) -> dict[str, int | None]:
     created = _instant(task["created_at"])
     if not pulls:
-        return {NEVER_STARTED: _days(created, now)} if task["state"] == "OPEN" else {}
+        waiting = _days(created, now) if task["state"] == "OPEN" else None
+        return {FIRST_COMMIT: _rounded(waiting), OPEN_PR: None, REVIEW: None}
     opened = min(_instant(p["created_at"]) for p in pulls)
     first_commit = min(_instant(p["first_commit_at"] or p["created_at"]) for p in pulls)
     merges = [_instant(p["merged_at"]) for p in pulls if p["merged_at"]]
@@ -82,28 +87,12 @@ def _task_stages(task: dict, pulls: list[dict], now: datetime) -> dict[str, floa
     review = min(reviews) if reviews else None
     waiting_until = review if review and review < end else end
     return {
-        WAITING_START: _days(created, first_commit),
-        DEVELOPING: _days(first_commit, opened),
-        WAITING_REVIEW: _days(opened, waiting_until),
+        FIRST_COMMIT: _rounded(_days(created, first_commit)),
+        OPEN_PR: _rounded(_days(first_commit, opened)),
+        REVIEW: _rounded(_days(opened, waiting_until)),
     }
 
 
-def stage_metrics(snapshot: dict, sprints: list[Sprint], now: datetime, timezone: str) -> list[Metric]:
-    today = now.astimezone(ZoneInfo(timezone)).date()
-    pulls = defaultdict(list)
-    for pull in snapshot["pulls"]:
-        if pull["task"] and pull["base"] != "main":
-            pulls[pull["task"]].append(pull)
-    totals = defaultdict(float)
-    for task in snapshot["tasks"]:
-        sprint = task.get("sprint") or _sprint_of_task(_local_day(task["created_at"], timezone), sprints)
-        if sprint is None:
-            continue
-        for stage, days in _task_stages(task, pulls[task["task"]], now).items():
-            totals[(sprint, stage)] += days
-    return [
-        Metric(f"S{sprint.number}", stage, round(totals[(sprint.number, stage)]))
-        for sprint in sprints
-        if sprint.start <= today
-        for stage in STAGES
-    ]
+def task_times(snapshot: dict, now: datetime) -> dict[str, dict[str, int | None]]:
+    pulls = _pulls_by_task(snapshot)
+    return {task["item_id"]: _times(task, pulls[task["task"]], now) for task in snapshot["tasks"]}

@@ -48,6 +48,15 @@ def plan_metrics(existing: list[dict], metrics: list[Metric]) -> tuple[list[Metr
     return creates, updates
 
 
+def plan_times(times: dict[str, dict], current: dict[str, dict]) -> list[tuple[str, str, int | None]]:
+    plan = []
+    for item_id, fields in times.items():
+        for field, value in fields.items():
+            if current.get(item_id, {}).get(field) != value:
+                plan.append((item_id, field, value))
+    return plan
+
+
 def known_weeks(metrics: list[Metric], options: dict[str, str]) -> tuple[list[Metric], list[str]]:
     kept = [metric for metric in metrics if metric.semana in options]
     skipped = sorted({metric.semana for metric in metrics if metric.semana not in options})
@@ -89,11 +98,14 @@ class Board:
     def _option(self, name: str, option: str) -> dict:
         return {"singleSelectOptionId": self.fields[name]["options"][option]}
 
-    def set_days(self, item_id: str, days: int | None):
-        if days is None:
-            self.client.graphql(CLEAR_VALUE, project=self.project_id, item=item_id, field=self.fields["Dias no status"]["id"])
+    def set_number(self, item_id: str, field: str, value: int | None):
+        if value is None:
+            self.client.graphql(CLEAR_VALUE, project=self.project_id, item=item_id, field=self.fields[field]["id"])
         else:
-            self._set(item_id, "Dias no status", {"number": days})
+            self._set(item_id, field, {"number": value})
+
+    def set_days(self, item_id: str, days: int | None):
+        self.set_number(item_id, "Dias no status", days)
 
     def create_metric(self, metric: Metric):
         result = self.client.graphql(ADD_DRAFT, project=self.project_id, title=metric.title)
