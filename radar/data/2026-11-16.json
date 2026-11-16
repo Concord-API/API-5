@@ -33,7 +33,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCST3A",
@@ -50,7 +55,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCR-4I",
@@ -67,7 +77,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8rHKg",
@@ -84,7 +99,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8rHGo",
@@ -101,7 +121,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8rHDw",
@@ -118,7 +143,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8c-PA",
@@ -135,7 +165,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg742TY",
@@ -152,7 +187,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg741K4",
@@ -169,7 +209,12 @@
     "thiagosabreu"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 1,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg742Kg",
@@ -186,7 +231,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 1,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74zp0",
@@ -203,7 +253,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75Gcw",
@@ -220,7 +275,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 4,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 30
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74y-I",
@@ -237,7 +297,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74zms",
@@ -254,7 +319,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCSTwM",
@@ -271,7 +341,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg741Eo",
@@ -288,7 +363,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg741fc",
@@ -305,7 +385,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg741lI",
@@ -322,7 +407,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74118",
@@ -339,7 +429,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_vAI",
@@ -357,7 +452,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg742Bo",
@@ -374,7 +474,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg742F8",
@@ -391,7 +496,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg742Ow",
@@ -408,7 +518,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg742dU",
@@ -425,7 +540,12 @@
     "thiagosabreu"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg742yg",
@@ -442,7 +562,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7423Q",
@@ -459,7 +584,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg743B4",
@@ -476,7 +606,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 1,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg743Ug",
@@ -493,7 +628,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg743eo",
@@ -510,7 +650,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7477M",
@@ -527,7 +672,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748Ao",
@@ -544,7 +694,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748Ew",
@@ -561,7 +716,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748Kw",
@@ -578,7 +738,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748WA",
@@ -595,7 +760,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748Yw",
@@ -612,7 +782,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748iU",
@@ -629,7 +804,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748oI",
@@ -646,7 +826,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg748rA",
@@ -663,7 +848,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74_s8",
@@ -680,7 +870,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74_xM",
@@ -697,7 +892,12 @@
     "thiagosabreu"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74_z8",
@@ -714,7 +914,12 @@
     "thiagosabreu"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74_3g",
@@ -731,7 +936,12 @@
     "thiagosabreu"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 1
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74_70",
@@ -748,7 +958,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 4,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg74_-w",
@@ -765,7 +980,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 4,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75CeA",
@@ -782,7 +1002,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75CpU",
@@ -799,7 +1024,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75C7U",
@@ -816,7 +1046,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75C-s",
@@ -833,7 +1068,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75DDY",
@@ -850,7 +1090,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75DI4",
@@ -867,7 +1112,12 @@
     "thiagosabreu"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 4,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75DNA",
@@ -884,7 +1134,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75DSM",
@@ -901,7 +1156,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75DWw",
@@ -918,7 +1178,12 @@
     "RichardCordeiro"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 5,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75GJM",
@@ -935,7 +1200,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75GNo",
@@ -952,7 +1222,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 4,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75GRo",
@@ -969,7 +1244,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 4,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75GgQ",
@@ -986,7 +1266,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 34,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg75Gjo",
@@ -1003,7 +1288,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 34,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7-_Ek",
@@ -1020,7 +1310,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7-_fc",
@@ -1037,7 +1332,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7-_sM",
@@ -1054,7 +1354,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7-_5I",
@@ -1071,7 +1376,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_ADA",
@@ -1088,7 +1398,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_AOw",
@@ -1105,7 +1420,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_Amc",
@@ -1122,7 +1442,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_BmM",
@@ -1139,7 +1464,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_BsI",
@@ -1156,7 +1486,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_B1Y",
@@ -1173,7 +1508,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_CBY",
@@ -1190,7 +1530,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_CIg",
@@ -1207,7 +1552,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg7_COY",
@@ -1224,7 +1574,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8Dj5A",
@@ -1241,7 +1596,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8DmKg",
@@ -1258,7 +1618,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8DmMI",
@@ -1275,7 +1640,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8ER0s",
@@ -1292,7 +1662,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8NiS4",
@@ -1309,7 +1684,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8NiXY",
@@ -1326,7 +1706,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8OayU",
@@ -1343,7 +1728,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8Oa04",
@@ -1360,7 +1750,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8c-RA",
@@ -1377,7 +1772,12 @@
     "JoaoBaranov"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8mnEo",
@@ -1394,7 +1794,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8mnHw",
@@ -1411,7 +1816,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8mnMc",
@@ -1428,7 +1838,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8mnPk",
@@ -1445,7 +1860,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8mnSU",
@@ -1462,7 +1882,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8nRNc",
@@ -1479,7 +1904,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg8n04Q",
@@ -1496,7 +1926,12 @@
     "victorgsnogueira"
    ],
    "sprint": 1,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_smU",
@@ -1513,7 +1948,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_stU",
@@ -1530,7 +1970,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_s2Y",
@@ -1547,7 +1992,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_tIc",
@@ -1564,7 +2014,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_tSA",
@@ -1581,7 +2036,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_thQ",
@@ -1598,7 +2058,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_trY",
@@ -1615,7 +2080,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_t2o",
@@ -1632,7 +2102,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_t8I",
@@ -1649,7 +2124,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_ugs",
@@ -1666,7 +2146,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_uuw",
@@ -1683,7 +2168,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 15,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_u2c",
@@ -1700,7 +2190,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 15,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_u7Y",
@@ -1718,7 +2213,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 15,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_vH4",
@@ -1735,7 +2235,12 @@
     "vp-p"
    ],
    "sprint": 3,
-   "days_in_status": 41
+   "days_in_status": 41,
+   "times": {
+    "Dias até o 1º commit": 41,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_vXI",
@@ -1752,7 +2257,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_vfw",
@@ -1769,7 +2279,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 13,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_vks",
@@ -1786,7 +2301,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 13,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_vvM",
@@ -1803,7 +2323,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 13,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_v2k",
@@ -1820,7 +2345,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_v6U",
@@ -1837,7 +2367,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 13,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_v-o",
@@ -1854,7 +2389,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 13,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wFI",
@@ -1871,7 +2411,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wKU",
@@ -1888,7 +2433,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wPI",
@@ -1905,7 +2455,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wTc",
@@ -1922,7 +2477,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wYA",
@@ -1939,7 +2499,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wec",
@@ -1956,7 +2521,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wjI",
@@ -1973,7 +2543,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 14,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wpU",
@@ -1990,7 +2565,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_wwE",
@@ -2007,7 +2587,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_w1E",
@@ -2024,7 +2609,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_w78",
@@ -2041,7 +2631,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xA4",
@@ -2058,7 +2653,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xHQ",
@@ -2075,7 +2675,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xMw",
@@ -2092,7 +2697,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xRo",
@@ -2109,7 +2719,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xT8",
@@ -2126,7 +2741,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xaU",
@@ -2143,7 +2763,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xfk",
@@ -2160,7 +2785,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 16,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xjk",
@@ -2177,7 +2807,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xoE",
@@ -2194,7 +2829,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xtg",
@@ -2211,7 +2851,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_xyE",
@@ -2228,7 +2873,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_x3Q",
@@ -2245,7 +2895,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_x7c",
@@ -2262,7 +2917,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_yAE",
@@ -2279,7 +2939,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_yFM",
@@ -2296,7 +2961,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzg-_yLo",
@@ -2313,7 +2983,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 17,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU2To",
@@ -2330,7 +3005,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 8,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU2aw",
@@ -2347,7 +3027,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU2jQ",
@@ -2364,7 +3049,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU2o8",
@@ -2381,7 +3071,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU2tw",
@@ -2398,7 +3093,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU2zE",
@@ -2415,7 +3115,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU24M",
@@ -2432,7 +3137,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU29s",
@@ -2449,7 +3159,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3C4",
@@ -2466,7 +3181,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3J4",
@@ -2483,7 +3203,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3OQ",
@@ -2500,7 +3225,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3T0",
@@ -2517,7 +3247,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3Yc",
@@ -2534,7 +3269,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 8,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3co",
@@ -2551,7 +3291,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 8,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3jc",
@@ -2568,7 +3313,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3ns",
@@ -2585,7 +3335,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3ro",
@@ -2602,7 +3357,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3u4",
@@ -2619,7 +3379,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU3y0",
@@ -2636,7 +3401,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU35I",
@@ -2653,7 +3423,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU39M",
@@ -2670,7 +3445,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhAU4BA",
@@ -2687,7 +3467,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCR-OM",
@@ -2704,7 +3489,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCR-U8",
@@ -2721,7 +3511,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCR-gY",
@@ -2738,7 +3533,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCR-q8",
@@ -2755,7 +3555,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCR_AU",
@@ -2772,7 +3577,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCR_I0",
@@ -2789,7 +3599,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 1,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCScqQ",
@@ -2806,7 +3621,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCShAQ",
@@ -2823,7 +3643,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjG30",
@@ -2840,7 +3665,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjG7o",
@@ -2857,7 +3687,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHC4",
@@ -2874,7 +3709,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHKo",
@@ -2891,7 +3731,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHRE",
@@ -2908,7 +3753,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHX8",
@@ -2925,7 +3775,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHec",
@@ -2942,7 +3797,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHmc",
@@ -2959,7 +3819,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHtM",
@@ -2976,7 +3841,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjHyk",
@@ -2993,7 +3863,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjH6k",
@@ -3010,7 +3885,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjIAo",
@@ -3027,7 +3907,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjIIE",
@@ -3044,7 +3929,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhCjIPw",
@@ -3061,7 +3951,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC0B3o",
@@ -3078,7 +3973,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC003s",
@@ -3095,7 +3995,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC1Mnc",
@@ -3112,7 +4017,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC1eZw",
@@ -3129,7 +4039,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC1yww",
@@ -3146,7 +4061,12 @@
     "JoaoBaranov"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC2RMM",
@@ -3163,7 +4083,12 @@
     "RichardCordeiro"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC3QKA",
@@ -3180,7 +4105,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC-HR8",
@@ -3197,7 +4127,12 @@
     "vp-p"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC-I6M",
@@ -3214,7 +4149,12 @@
     "vp-p"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC-Js0",
@@ -3231,7 +4171,12 @@
     "vp-p"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhC-Kcw",
@@ -3248,7 +4193,12 @@
     "vp-p"
    ],
    "sprint": 3,
-   "days_in_status": 24
+   "days_in_status": 24,
+   "times": {
+    "Dias até o 1º commit": 25,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDFviU",
@@ -3265,7 +4215,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 1
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDa3aU",
@@ -3282,7 +4237,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDcvVY",
@@ -3299,7 +4259,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDdIo4",
@@ -3316,7 +4281,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDdZS8",
@@ -3333,7 +4303,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDdZXk",
@@ -3350,7 +4325,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDdZbM",
@@ -3367,7 +4347,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDdZeM",
@@ -3384,7 +4369,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDdwsc",
@@ -3401,7 +4391,12 @@
     "victorgsnogueira"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDd_NA",
@@ -3418,7 +4413,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDd_P0",
@@ -3435,7 +4435,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDd_SI",
@@ -3452,7 +4457,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDd_VI",
@@ -3469,7 +4479,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhDeZ_I",
@@ -3486,7 +4501,12 @@
     "thiagosabreu"
    ],
    "sprint": 2,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJb9A",
@@ -3503,7 +4523,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJcQM",
@@ -3520,7 +4545,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJcXU",
@@ -3537,7 +4567,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJcfc",
@@ -3554,7 +4589,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJcpI",
@@ -3571,7 +4611,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJcxE",
@@ -3588,7 +4633,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJc4g",
@@ -3605,7 +4655,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJdAI",
@@ -3622,7 +4677,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJdGg",
@@ -3639,7 +4699,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJdOY",
@@ -3656,7 +4721,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": 12
+   "days_in_status": 12,
+   "times": {
+    "Dias até o 1º commit": 12,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJdYE",
@@ -3673,7 +4743,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJdhc",
@@ -3690,7 +4765,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJdq8",
@@ -3707,7 +4787,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJdyY",
@@ -3724,7 +4809,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJd58",
@@ -3741,7 +4831,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJeDg",
@@ -3758,7 +4853,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGJeN4",
@@ -3775,7 +4875,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZaiY",
@@ -3792,7 +4897,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZapI",
@@ -3809,7 +4919,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 3,
-   "days_in_status": 0
+   "days_in_status": 0,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZaxg",
@@ -3826,7 +4941,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 7,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZa5M",
@@ -3843,7 +4963,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 7,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZa_Y",
@@ -3860,7 +4985,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 7,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZbIs",
@@ -3877,7 +5007,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 1
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZbQs",
@@ -3894,7 +5029,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 1
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZbXU",
@@ -3911,7 +5051,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 1
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZbeo",
@@ -3928,7 +5073,12 @@
     "RichardCordeiro"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 8,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZblM",
@@ -3945,7 +5095,12 @@
     "RichardCordeiro"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 9,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZbs4",
@@ -3962,7 +5117,12 @@
     "RichardCordeiro"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 9,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZb2g",
@@ -3977,7 +5137,12 @@
    "status_since": "2026-11-05T21:30:16Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZb9o",
@@ -3992,7 +5157,12 @@
    "status_since": "2026-11-05T21:30:25Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZcGU",
@@ -4007,7 +5177,12 @@
    "status_since": "2026-11-05T21:30:34Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZcL8",
@@ -4022,7 +5197,12 @@
    "status_since": "2026-11-05T21:30:43Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZcVc",
@@ -4037,7 +5217,12 @@
    "status_since": "2026-11-05T21:30:54Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZcdQ",
@@ -4052,7 +5237,12 @@
    "status_since": "2026-11-05T21:31:03Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZcjU",
@@ -4069,7 +5259,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 10,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 1
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZcqM",
@@ -4084,7 +5279,12 @@
    "status_since": "2026-11-05T21:31:20Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZcyg",
@@ -4099,7 +5299,12 @@
    "status_since": "2026-11-05T21:31:30Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZc6Y",
@@ -4114,7 +5319,12 @@
    "status_since": "2026-11-05T21:31:38Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZdDE",
@@ -4129,7 +5339,12 @@
    "status_since": "2026-11-05T21:31:48Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZdKo",
@@ -4144,7 +5359,12 @@
    "status_since": "2026-11-05T21:31:57Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZdWM",
@@ -4159,7 +5379,12 @@
    "status_since": "2026-11-05T21:32:09Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZdeQ",
@@ -4174,7 +5399,12 @@
    "status_since": "2026-11-05T21:32:18Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZdm8",
@@ -4191,7 +5421,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZdu8",
@@ -4208,7 +5443,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZd1Q",
@@ -4223,7 +5463,12 @@
    "status_since": "2026-11-05T21:32:43Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZd9c",
@@ -4238,7 +5483,12 @@
    "status_since": "2026-11-05T21:32:54Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZeFQ",
@@ -4253,7 +5503,12 @@
    "status_since": "2026-11-05T21:33:03Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZeN8",
@@ -4268,7 +5523,12 @@
    "status_since": "2026-11-05T21:33:13Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZeYM",
@@ -4285,7 +5545,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZefk",
@@ -4300,7 +5565,12 @@
    "status_since": "2026-11-05T21:33:32Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZeoA",
@@ -4315,7 +5585,12 @@
    "status_since": "2026-11-05T21:33:40Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZews",
@@ -4330,7 +5605,12 @@
    "status_since": "2026-11-05T21:33:51Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZe4g",
@@ -4345,7 +5625,12 @@
    "status_since": "2026-11-05T21:33:59Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZfA4",
@@ -4360,7 +5645,12 @@
    "status_since": "2026-11-05T21:34:10Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZfLU",
@@ -4375,7 +5665,12 @@
    "status_since": "2026-11-05T21:34:23Z",
    "assignees": [],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGajOc",
@@ -4392,7 +5687,12 @@
     "victorgsnogueira"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 1
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGajS0",
@@ -4409,7 +5709,12 @@
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": 11
+   "days_in_status": 11,
+   "times": {
+    "Dias até o 1º commit": 11,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhHA7Oo",
@@ -4426,7 +5731,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 1,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhHA7Tk",
@@ -4443,7 +5753,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhHA7Z4",
@@ -4460,7 +5775,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 2,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhHA7e0",
@@ -4477,7 +5797,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhHBLKQ",
@@ -4494,7 +5819,12 @@
     "joaoandrade17"
    ],
    "sprint": 3,
-   "days_in_status": 8
+   "days_in_status": 8,
+   "times": {
+    "Dias até o 1º commit": 8,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhHWvDw",
@@ -4511,7 +5841,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhIkgAY",
@@ -4528,7 +5863,12 @@
     "JoaoBaranov"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhImYvM",
@@ -4545,7 +5885,12 @@
     "IsaacOliveiraSouza"
    ],
    "sprint": 3,
-   "days_in_status": 3
+   "days_in_status": 3,
+   "times": {
+    "Dias até o 1º commit": 3,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhI_Hwk",
@@ -4562,7 +5907,12 @@
     "RichardCordeiro"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhI_H7A",
@@ -4579,7 +5929,12 @@
     "RichardCordeiro"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhI_ILA",
@@ -4596,7 +5951,12 @@
     "RichardCordeiro"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhI_ISg",
@@ -4613,7 +5973,12 @@
     "RichardCordeiro"
    ],
    "sprint": 3,
-   "days_in_status": null
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": null,
+    "Dias até abrir o PR": null,
+    "Dias esperando revisão": null
+   }
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUX58",
@@ -4621,16 +5986,21 @@
    "task": "40.9",
    "story": "US-40",
    "title": "40.9 Separate court rulings from qualified precedents",
-   "state": "OPEN",
+   "state": "CLOSED",
    "created_at": "2026-11-16T23:02:31Z",
-   "closed_at": null,
-   "status": "Todo",
-   "status_since": "2026-11-16T23:02:37Z",
+   "closed_at": "2026-11-16T23:46:18Z",
+   "status": "Done",
+   "status_since": "2026-11-16T23:46:16Z",
    "assignees": [
     "JoaoBaranov"
    ],
    "sprint": null,
-   "days_in_status": 0
+   "days_in_status": null,
+   "times": {
+    "Dias até o 1º commit": 0,
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
+   }
   }
  ],
  "metrics": [
@@ -4782,7 +6152,7 @@
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUbUI",
    "semana": "S1",
    "etapa": "Esperando começar",
-   "valor": 242.0
+   "valor": 171.0
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUbY8",
@@ -4794,7 +6164,7 @@
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUbc0",
    "semana": "S1",
    "etapa": "Esperando revisão",
-   "valor": 32.0
+   "valor": 2.0
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUbgc",
@@ -4824,13 +6194,13 @@
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUbwo",
    "semana": "S2",
    "etapa": "Nunca começou",
-   "valor": 66.0
+   "valor": 0.0
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUb0g",
    "semana": "S3",
    "etapa": "Esperando começar",
-   "valor": 108.0
+   "valor": 179.0
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUb34",
@@ -4842,13 +6212,13 @@
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUb7A",
    "semana": "S3",
    "etapa": "Esperando revisão",
-   "valor": 6.0
+   "valor": 36.0
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUb-E",
    "semana": "S3",
    "etapa": "Nunca começou",
-   "valor": 334.0
+   "valor": 388.0
   }
  ],
  "pulls": [
@@ -6808,6 +8178,17 @@
    "created_at": "2026-11-16T22:43:16Z",
    "merged_at": "2026-11-16T22:48:29Z",
    "first_commit_at": "2026-11-16T22:39:11Z",
+   "first_review_at": null
+  },
+  {
+   "repo": "API5-Backend",
+   "number": 179,
+   "branch": "40.9-Separate-court-rulings-from-qualified-precedents",
+   "base": "us40",
+   "task": "40.9",
+   "created_at": "2026-11-16T23:41:44Z",
+   "merged_at": "2026-11-16T23:45:51Z",
+   "first_commit_at": "2026-11-16T23:24:37Z",
    "first_review_at": null
   },
   {
@@ -11559,6 +12940,18 @@
    "task": "40.4"
   },
   {
+   "repo": "API5-Backend",
+   "sha": "da8b4aca4c1bf9409e563da0c6447c74023d309e",
+   "date": "2026-11-16T23:24:37Z",
+   "task": "40.9"
+  },
+  {
+   "repo": "API5-Backend",
+   "sha": "de63524cf80c16dd0c8910f1a4660654aa8e060b",
+   "date": "2026-11-16T23:40:05Z",
+   "task": "40.9"
+  },
+  {
    "repo": "API5-Frontend",
    "sha": "9daf39c56d5156d1dbc7d3cfc677eaadec751e87",
    "date": "2026-09-09T03:23:44Z",
@@ -14822,67 +16215,7 @@
   {
    "semana": "S3·3",
    "etapa": "Commits",
-   "valor": 2
-  },
-  {
-   "semana": "S1",
-   "etapa": "Esperando começar",
-   "valor": 171
-  },
-  {
-   "semana": "S1",
-   "etapa": "Desenvolvendo",
    "valor": 4
-  },
-  {
-   "semana": "S1",
-   "etapa": "Esperando revisão",
-   "valor": 2
-  },
-  {
-   "semana": "S1",
-   "etapa": "Nunca começou",
-   "valor": 0
-  },
-  {
-   "semana": "S2",
-   "etapa": "Esperando começar",
-   "valor": 954
-  },
-  {
-   "semana": "S2",
-   "etapa": "Desenvolvendo",
-   "valor": 2
-  },
-  {
-   "semana": "S2",
-   "etapa": "Esperando revisão",
-   "valor": 3
-  },
-  {
-   "semana": "S2",
-   "etapa": "Nunca começou",
-   "valor": 0
-  },
-  {
-   "semana": "S3",
-   "etapa": "Esperando começar",
-   "valor": 179
-  },
-  {
-   "semana": "S3",
-   "etapa": "Desenvolvendo",
-   "valor": 0
-  },
-  {
-   "semana": "S3",
-   "etapa": "Esperando revisão",
-   "valor": 36
-  },
-  {
-   "semana": "S3",
-   "etapa": "Nunca começou",
-   "valor": 388
   }
  ]
 }
