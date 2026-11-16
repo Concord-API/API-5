@@ -96,7 +96,7 @@ def stage_metrics(snapshot: dict, sprints: list[Sprint], now: datetime, timezone
             pulls[pull["task"]].append(pull)
     totals = defaultdict(float)
     for task in snapshot["tasks"]:
-        sprint = _sprint_of_task(_local_day(task["created_at"], timezone), sprints)
+        sprint = task.get("sprint") or _sprint_of_task(_local_day(task["created_at"], timezone), sprints)
         if sprint is None:
             continue
         for stage, days in _task_stages(task, pulls[task["task"]], now).items():

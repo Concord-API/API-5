@@ -6,7 +6,7 @@ from radar.sprints import Sprint
 SPRINTS = [Sprint(3, date(2026, 11, 2), date(2026, 11, 22))]
 
 
-def issue_item(item_id, number, title, status=None, status_since=None, closed_at=None, assignees=()):
+def issue_item(item_id, number, title, status=None, status_since=None, closed_at=None, assignees=(), sprint=None):
     return {
         "id": item_id,
         "type": "ISSUE",
@@ -17,6 +17,8 @@ def issue_item(item_id, number, title, status=None, status_since=None, closed_at
             "createdAt": "2026-11-03T13:00:00Z",
             "closedAt": closed_at,
             "assignees": {"nodes": [{"login": login} for login in assignees]},
+            "issueFieldValues": {"nodes": [{"name": "Alta", "field": {"name": "Prioridade"}}]
+                                 + ([{"name": sprint, "field": {"name": "Sprint"}}] if sprint else [])},
         },
         "status": {"name": status, "updatedAt": status_since} if status else None,
         "radar": None,
@@ -63,7 +65,8 @@ def snapshot(items=(), pulls=None):
 
 def test_keeps_only_the_tasks_of_the_board():
     result = snapshot([
-        issue_item("I1", 401, "27.3 Add the CSV export endpoint", "Todo", "2026-11-04T12:00:00Z", assignees=["ana"]),
+        issue_item("I1", 401, "27.3 Add the CSV export endpoint", "Todo", "2026-11-04T12:00:00Z", assignees=["ana"],
+                   sprint="Sprint 3"),
         issue_item("I2", 327, "US-27 — As a user, I want to export to CSV"),
         issue_item("I3", 245, "DevOps"),
         issue_item("I4", 382, "DVP-70 Add the Radar workflow", "Done", "2026-11-15T12:00:00Z", closed_at="2026-11-15T12:00:00Z"),
@@ -83,8 +86,10 @@ def test_keeps_only_the_tasks_of_the_board():
         "status": "Todo",
         "status_since": "2026-11-04T12:00:00Z",
         "assignees": ["ana"],
+        "sprint": 3,
         "days_in_status": None,
     }
+    assert result["tasks"][1]["sprint"] is None
 
 
 def test_keeps_the_metric_items_apart_from_the_tasks():

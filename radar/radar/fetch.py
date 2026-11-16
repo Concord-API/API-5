@@ -29,6 +29,11 @@ query($owner: String!, $number: Int!, $cursor: String) {
             ... on Issue {
               number title state createdAt closedAt
               assignees(first: 10) { nodes { login } }
+              issueFieldValues(first: 20) {
+                nodes {
+                  ... on IssueFieldSingleSelectValue { name field { ... on IssueFieldSingleSelect { name } } }
+                }
+              }
             }
             ... on DraftIssue { title }
           }
