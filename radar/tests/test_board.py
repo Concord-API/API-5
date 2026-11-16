@@ -29,6 +29,16 @@ def test_does_not_rewrite_a_value_that_did_not_change():
     assert plan_days(tasks, {"A": 12, "B": 1}, date(2026, 11, 16), "America/Sao_Paulo") == {"B": 2}
 
 
+def test_clears_the_days_of_a_task_that_left_the_open_columns():
+    tasks = [
+        task("C", "Done", "2026-11-10T15:00:00Z", state="CLOSED"),
+        task("D", None, None),
+        task("E", "Done", "2026-11-10T15:00:00Z", state="CLOSED"),
+    ]
+
+    assert plan_days(tasks, {"C": 4, "D": 1}, date(2026, 11, 16), "America/Sao_Paulo") == {"C": None, "D": None}
+
+
 def test_creates_only_the_metrics_that_are_not_on_the_board():
     existing = [{"item_id": "M1", "semana": "S3·1", "etapa": "Commits", "valor": 44}]
     metrics = [Metric("S3·1", "Commits", 44), Metric("S3·1", "Tasks criadas", 38)]
