@@ -21,12 +21,16 @@ def days_in_status(since: str, today: date, timezone: str) -> int:
     return (today - changed).days
 
 
-def plan_days(tasks: list[dict], current: dict[str, float], today: date, timezone: str) -> dict[str, int]:
+def task_days(task: dict, today: date, timezone: str) -> int | None:
+    if task["state"] != "OPEN" or not task["status"] or task["status"] == DONE or not task["status_since"]:
+        return None
+    return days_in_status(task["status_since"], today, timezone)
+
+
+def plan_days(tasks: list[dict], current: dict[str, float], today: date, timezone: str) -> dict[str, int | None]:
     plan = {}
     for task in tasks:
-        if task["state"] != "OPEN" or not task["status"] or task["status"] == DONE or not task["status_since"]:
-            continue
-        days = days_in_status(task["status_since"], today, timezone)
+        days = task_days(task, today, timezone)
         if current.get(task["item_id"]) != days:
             plan[task["item_id"]] = days
     return plan
@@ -52,6 +56,14 @@ mutation($project: ID!, $item: ID!, $field: ID!, $value: ProjectV2FieldValue!) {
 }
 """
 
+CLEAR_VALUE = """
+mutation($project: ID!, $item: ID!, $field: ID!) {
+  clearProjectV2ItemFieldValue(input: {projectId: $project, itemId: $item, fieldId: $field}) {
+    projectV2Item { id }
+  }
+}
+"""
+
 ADD_DRAFT = """
 mutation($project: ID!, $title: String!) {
   addProjectV2DraftIssue(input: {projectId: $project, title: $title}) { projectItem { id } }
@@ -71,8 +83,11 @@ class Board:
     def _option(self, name: str, option: str) -> dict:
         return {"singleSelectOptionId": self.fields[name]["options"][option]}
 
-    def set_days(self, item_id: str, days: int):
-        self._set(item_id, "Dias no status", {"number": days})
+    def set_days(self, item_id: str, days: int | None):
+        if days is None:
+            self.client.graphql(CLEAR_VALUE, project=self.project_id, item=item_id, field=self.fields["Dias no status"]["id"])
+        else:
+            self._set(item_id, "Dias no status", {"number": days})
 
     def create_metric(self, metric: Metric):
         result = self.client.graphql(ADD_DRAFT, project=self.project_id, title=metric.title)
