@@ -73,7 +73,12 @@ def _task_stages(task: dict, pulls: list[dict], now: datetime) -> dict[str, floa
     first_commit = min(_instant(p["first_commit_at"] or p["created_at"]) for p in pulls)
     merges = [_instant(p["merged_at"]) for p in pulls if p["merged_at"]]
     reviews = [_instant(p["first_review_at"]) for p in pulls if p["first_review_at"]]
-    end = max(merges) if merges and len(merges) == len(pulls) else now
+    if merges:
+        end = max(merges)
+    elif task["closed_at"]:
+        end = _instant(task["closed_at"])
+    else:
+        end = now
     review = min(reviews) if reviews else None
     waiting_until = review if review and review < end else end
     return {
