@@ -1,13 +1,24 @@
+import re
 from datetime import date
 
 from radar.links import story_of, task_from_branch, task_from_title
 from radar.sprints import Sprint
 
 METRIC = "Métrica"
+SPRINT_FIELD = "Sprint"
+SPRINT_NUMBER = re.compile(r"(\d+)")
 
 
 def _value(node, key):
     return node[key] if node else None
+
+
+def _sprint(content):
+    for value in content.get("issueFieldValues", {}).get("nodes", []):
+        if value.get("field", {}).get("name") == SPRINT_FIELD and value.get("name"):
+            number = SPRINT_NUMBER.search(value["name"])
+            return int(number.group(1)) if number else None
+    return None
 
 
 def _task(item):
@@ -27,6 +38,7 @@ def _task(item):
         "status": _value(item["status"], "name"),
         "status_since": _value(item["status"], "updatedAt"),
         "assignees": [node["login"] for node in content["assignees"]["nodes"]],
+        "sprint": _sprint(content),
         "days_in_status": None,
     }
 
