@@ -121,6 +121,20 @@ def test_pull_requests_into_main_do_not_count_as_task_work():
     assert Metric("S1", "Nunca começou", 10) in metrics
 
 
+def test_a_pull_request_closed_without_merge_does_not_keep_the_task_waiting():
+    data = snapshot(
+        tasks=[task("2026-09-08T12:00:00Z", state="CLOSED", closed="2026-09-12T12:00:00Z")],
+        pulls=[
+            pull("2.1", "2026-09-09T12:00:00Z", first_commit="2026-09-09T12:00:00Z"),
+            pull("2.1", "2026-09-10T12:00:00Z", first_commit="2026-09-10T12:00:00Z", merged="2026-09-12T12:00:00Z"),
+        ],
+    )
+
+    metrics = stage_metrics(data, [S1], datetime(2026, 9, 27, tzinfo=timezone.utc), TZ)
+
+    assert Metric("S1", "Esperando revisão", 3) in metrics
+
+
 def test_a_task_split_in_pull_requests_starts_at_the_first_commit_and_ends_at_the_last_merge():
     data = snapshot(
         tasks=[task("2026-09-08T12:00:00Z")],
