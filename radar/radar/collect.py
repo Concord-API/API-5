@@ -34,7 +34,7 @@ def _task(item):
 def _metric(item):
     return {
         "item_id": item["id"],
-        "semana": _value(item["semana"], "text"),
+        "semana": _value(item["semana"], "name"),
         "etapa": _value(item["etapa"], "name"),
         "valor": _value(item["valor"], "number"),
     }

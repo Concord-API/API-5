@@ -34,7 +34,7 @@ def metric_item(item_id, semana, etapa, valor):
         "content": {"title": f"{etapa} · {semana}"},
         "status": None,
         "radar": {"name": "Métrica"},
-        "semana": {"text": semana},
+        "semana": {"name": semana},
         "etapa": {"name": etapa},
         "valor": {"number": valor},
         "dias": None,
