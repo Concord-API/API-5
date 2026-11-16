@@ -9,8 +9,9 @@ S1 = Sprint(1, date(2026, 9, 7), date(2026, 9, 27))
 S2 = Sprint(2, date(2026, 10, 5), date(2026, 10, 25))
 
 
-def task(created, number=1, task_id="2.1", state="OPEN", closed=None):
-    return {"number": number, "task": task_id, "created_at": created, "state": state, "closed_at": closed}
+def task(created, number=1, task_id="2.1", state="OPEN", closed=None, sprint=None):
+    return {"number": number, "task": task_id, "created_at": created, "state": state, "closed_at": closed,
+            "sprint": sprint}
 
 
 def pull(task_id, created, first_commit=None, first_review=None, merged=None, base="us2"):
@@ -149,3 +150,21 @@ def test_a_task_split_in_pull_requests_starts_at_the_first_commit_and_ends_at_th
     assert Metric("S1", "Esperando começar", 2) in metrics
     assert Metric("S1", "Desenvolvendo", 2) in metrics
     assert Metric("S1", "Esperando revisão", 4) in metrics
+
+
+def test_a_task_counts_in_the_sprint_of_its_sprint_field_and_not_of_its_creation():
+    data = snapshot(tasks=[task("2026-10-06T12:00:00Z", task_id="DVP-14", sprint=3)])
+    s3 = Sprint(3, date(2026, 11, 2), date(2026, 11, 22))
+
+    metrics = stage_metrics(data, [S1, S2, s3], datetime(2026, 11, 16, 12, tzinfo=timezone.utc), TZ)
+
+    assert Metric("S2", "Nunca começou", 0) in metrics
+    assert Metric("S3", "Nunca começou", 41) in metrics
+
+
+def test_a_task_without_sprint_field_counts_in_the_sprint_of_its_creation():
+    data = snapshot(tasks=[task("2026-10-06T12:00:00Z", task_id="DVP-14")])
+
+    metrics = stage_metrics(data, [S1, S2], datetime(2026, 10, 16, 12, tzinfo=timezone.utc), TZ)
+
+    assert Metric("S2", "Nunca começou", 10) in metrics
