@@ -1,0 +1,9 @@
+owner: Concord-API
+project: 5
+board_repo: API-5
+code_repos:
+  - API5-Backend
+  - API5-Frontend
+  - API5-Pipeline
+timezone: America/Sao_Paulo
+sprint_backlogs: sprint*/sprint-backlog.md
