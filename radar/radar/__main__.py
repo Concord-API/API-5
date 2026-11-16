@@ -11,12 +11,14 @@ from radar import fetch
 from radar.board import Board, plan_days, plan_metrics, task_days
 from radar.collect import build_snapshot
 from radar.github import GitHub
+from radar.metrics import stage_metrics, week_metrics
 from radar.sprints import read_sprints
 
 
 def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> dict:
     timezone = config["timezone"]
-    today = datetime.now(ZoneInfo(timezone)).date()
+    now = datetime.now(ZoneInfo(timezone))
+    today = now.date()
     owner, number = config["owner"], config["project"]
 
     sprints = read_sprints(root, config["sprint_backlogs"])
@@ -30,7 +32,9 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
 
     current = {item["id"]: item["dias"]["number"] for item in items if item["dias"]}
     days = plan_days(snapshot["tasks"], current, today, timezone)
-    creates, updates = plan_metrics(snapshot["metrics"], [])
+    metrics = week_metrics(snapshot, sprints, today, timezone) + stage_metrics(snapshot, sprints, now, timezone)
+    snapshot["computed"] = [{"semana": m.semana, "etapa": m.etapa, "valor": m.valor} for m in metrics]
+    creates, updates = plan_metrics(snapshot["metrics"], metrics)
 
     out.mkdir(parents=True, exist_ok=True)
     (out / f"{snapshot['date']}.json").write_text(json.dumps(snapshot, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
