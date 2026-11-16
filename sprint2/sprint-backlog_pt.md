@@ -4,13 +4,17 @@
 
 **Board:** [GitHub Project](https://github.com/orgs/Concord-API/projects/5) · snapshot de 12/11/2026
 
+**Definições:** [Definition of Ready](../Docs/pt_br/Scrum/definition-of-ready.md) · [Definition of Done](../Docs/pt_br/Scrum/definition-of-done.md)
+
 ## Meta da sprint
+
+> **O usuário compara os temas já na lista, com a força dita em linguagem jurídica, filtra pelo seu caso e vê, dentro do tema, como cada tribunal e cada câmara decide, como isso mudou ano a ano e quais processos sustentam os números.**
 
 Stories que o time se compromete a entregar. Se alguma não for concluída, a sprint não atingiu a meta.
 
 | ID | Prioridade | Descrição | SP | Tasks | Horas | Status |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| **US-03** | Must | Como **usuário**, quero ver em cada resultado o score, a área do direito (vara), o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma delas | 8 | 11 | 35h | Concluído |
+| **US-03** | Must | Como **usuário**, quero ver em cada resultado o score, a área do direito, o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma delas | 8 | 11 | 35h | Concluído |
 | **US-04** | Must | Como **usuário**, quero filtrar os resultados por tribunal, período, instância e força mínima, vendo quantos processos cada tribunal tem, para restringir a lista ao meu caso | 5 | 8 | 18h | Concluído |
 | **US-12** | Must | Como **usuário**, quero ver o alinhamento do tema por tribunal, para saber se a tese se sustenta igual em São Paulo, Rio de Janeiro, Minas Gerais e nos tribunais superiores (STJ e STF) | 3 | 6 | 12h | Concluído |
 | **US-14** | Must | Como **usuário**, quero uma tabela do comportamento de cada tribunal — decisões, alinhamento e data da mais recente — para comparar o meu tribunal com os outros | 3 | 5 | 7h | Concluído |
@@ -32,18 +36,19 @@ Stories planejadas na sprint, mas que podem passar para a próxima se não houve
 | --- | ---: |
 | Stories (meta / fora da meta) | 6 / 2 |
 | Story points (meta / total) | 29 / 36 |
-| Tasks (concluídas / total) | 120 / 120 |
-| Horas (feitas / total) | 273h / 273h |
+| Tasks (concluídas / total) | 121 / 121 |
+| Horas (feitas / total) | 274h / 274h |
 | Tasks em stories | 54 (116h) |
 | Technical Foundation | 28 (62h) |
 | Entrega e processo | 38 (95h) |
+| Correções de stories anteriores | 1 (1h) |
 
 ### Horas por responsável
 
 | Responsável | Tasks | Horas | Concluído |
 | --- | ---: | ---: | ---: |
 | victorgsnogueira | 39 | 97.5h | 97.5h |
-| thiagosabreu | 28 | 49h | 49h |
+| thiagosabreu | 29 | 50h | 50h |
 | RichardCordeiro | 19 | 42h | 42h |
 | JoaoBaranov | 19 | 42h | 42h |
 | IsaacOliveiraSouza | 13 | 28.5h | 28.5h |
@@ -54,7 +59,7 @@ Stories planejadas na sprint, mas que podem passar para a próxima se não houve
 
 | Camada | Horas | Concluído |
 | --- | ---: | ---: |
-| Backend | 74h | 74h |
+| Backend | 75h | 75h |
 | Frontend | 57h | 57h |
 | DevOps | 55h | 55h |
 | ETL | 43h | 43h |
@@ -63,9 +68,15 @@ Stories planejadas na sprint, mas que podem passar para a próxima se não houve
 
 _As horas de uma task com mais de um responsável são divididas igualmente entre eles._
 
+## Burndown
+
+![Burndown da Sprint 2](burndown.png)
+
+Horas restantes por dia, a partir do campo `Status` do board e das horas de cada task. Final da sprint.
+
 ## Stories e tasks
 
-### US-03 — Como usuário, quero ver em cada resultado o score, a área do direito (vara), o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma delas
+### US-03 — Como usuário, quero ver em cada resultado o score, a área do direito, o título da tese, um resumo curto, os tribunais, o volume, o período, a última decisão e o percentual favorável, para comparar teses antes de abrir qualquer uma delas
 
 _8 SP · Must · Concluído · 11/11 tasks · 35h_
 
@@ -274,3 +285,13 @@ _38 tasks · 95h · 38 concluídas_
 | [DVP-38](https://github.com/Concord-API/API-5/issues/291) | Test the theme panels endpoint against the sample load | Testes | Test | vp-p | 2h | Concluído |
 | [DVP-40](https://github.com/Concord-API/API-5/issues/293) | Send the API logs only to the file and OTLP, and read the warehouse metrics after the migration | Monitoramento | Backend | thiagosabreu | 1h | Concluído |
 | [DVP-41](https://github.com/Concord-API/API-5/issues/297) | Exclude the migration scripts from the Sonar duplication check | CI | DevOps | victorgsnogueira | 1h | Concluído |
+
+## Correções de stories anteriores
+
+Tasks que corrigem uma story entregue em sprint anterior. Ficam na sprint em que foram feitas.
+
+_1 task · 1h · 1 concluída_
+
+| # | Task | Story | Camada | Responsável | Est. | Status |
+| --- | --- | --- | --- | --- | ---: | --- |
+| [25.8](https://github.com/Concord-API/API-5/issues/295) | Materialize the per-theme provenance view | US-25 (Sprint 1) | Backend | thiagosabreu | 1h | Concluído |

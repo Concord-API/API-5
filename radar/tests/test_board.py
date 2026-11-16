@@ -1,6 +1,6 @@
 from datetime import date
 
-from radar.board import Metric, days_in_status, known_weeks, plan_days, plan_metrics
+from radar.board import Metric, days_in_status, known_weeks, plan_days, plan_metrics, plan_times
 
 
 def task(item_id, status, since, state="OPEN", days=None):
@@ -69,3 +69,10 @@ def test_skips_the_metrics_whose_week_has_no_option_on_the_board():
 
     assert kept == [Metric("S4·1", "Commits", 3)]
     assert skipped == ["S5·1"]
+
+
+def test_writes_only_the_task_times_that_changed_and_clears_the_ones_that_went_away():
+    times = {"A": {"Dias até o 1º commit": 4, "Dias esperando revisão": 3}, "B": {"Dias até o 1º commit": None}}
+    current = {"A": {"Dias até o 1º commit": 4, "Dias esperando revisão": 2}, "B": {"Dias até o 1º commit": 7}}
+
+    assert plan_times(times, current) == [("A", "Dias esperando revisão", 3), ("B", "Dias até o 1º commit", None)]

@@ -8,10 +8,10 @@ from zoneinfo import ZoneInfo
 import yaml
 
 from radar import fetch
-from radar.board import Board, known_weeks, plan_days, plan_metrics, task_days
+from radar.board import Board, known_weeks, plan_days, plan_metrics, plan_times, task_days
 from radar.collect import build_snapshot
 from radar.github import GitHub
-from radar.metrics import stage_metrics, week_metrics
+from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, task_times, week_metrics
 from radar.sprints import read_sprints
 
 
@@ -32,7 +32,16 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
 
     current = {item["id"]: item["dias"]["number"] for item in items if item["dias"]}
     days = plan_days(snapshot["tasks"], current, today, timezone)
-    metrics = week_metrics(snapshot, sprints, today, timezone) + stage_metrics(snapshot, sprints, now, timezone)
+    metrics = week_metrics(snapshot, sprints, today, timezone)
+    times = task_times(snapshot, now)
+    for task in snapshot["tasks"]:
+        task["times"] = times[task["item_id"]]
+    aliases = {FIRST_COMMIT: "firstCommit", OPEN_PR: "openPr", REVIEW: "review"}
+    current_times = {
+        item["id"]: {field: (item.get(alias) or {}).get("number") for field, alias in aliases.items()}
+        for item in items
+    }
+    time_writes = plan_times(times, current_times)
     snapshot["computed"] = [{"semana": m.semana, "etapa": m.etapa, "valor": m.valor} for m in metrics]
     week_options = project["fields"].get("Semana", {}).get("options", {})
     metrics, skipped_weeks = known_weeks(metrics, week_options)
@@ -45,6 +54,8 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
         board = Board(client, project["id"], project["fields"])
         for item_id, value in days.items():
             board.set_days(item_id, value)
+        for item_id, field, value in time_writes:
+            board.set_number(item_id, field, value)
         for metric in creates:
             board.create_metric(metric)
         for item_id, metric in updates:
@@ -56,6 +67,7 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
         "pulls": len(snapshot["pulls"]),
         "commits": len(snapshot["commits"]),
         "days_written": len(days),
+        "times_written": len(time_writes),
         "metrics_created": len(creates),
         "metrics_updated": len(updates),
         "weeks_without_option": skipped_weeks,
