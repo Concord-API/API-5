@@ -55,6 +55,15 @@ query($owner: String!, $number: Int!, $cursor: String) {
           dias: fieldValueByName(name: "Dias no status") {
             ... on ProjectV2ItemFieldNumberValue { number }
           }
+          firstCommit: fieldValueByName(name: "Dias até o 1º commit") {
+            ... on ProjectV2ItemFieldNumberValue { number }
+          }
+          openPr: fieldValueByName(name: "Dias até abrir o PR") {
+            ... on ProjectV2ItemFieldNumberValue { number }
+          }
+          review: fieldValueByName(name: "Dias esperando revisão") {
+            ... on ProjectV2ItemFieldNumberValue { number }
+          }
         }
       }
     }
