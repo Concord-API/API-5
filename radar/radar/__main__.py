@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 import yaml
 
 from radar import fetch
-from radar.board import Board, plan_days, plan_metrics, task_days
+from radar.board import Board, known_weeks, plan_days, plan_metrics, task_days
 from radar.collect import build_snapshot
 from radar.github import GitHub
 from radar.metrics import stage_metrics, week_metrics
@@ -34,6 +34,8 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
     days = plan_days(snapshot["tasks"], current, today, timezone)
     metrics = week_metrics(snapshot, sprints, today, timezone) + stage_metrics(snapshot, sprints, now, timezone)
     snapshot["computed"] = [{"semana": m.semana, "etapa": m.etapa, "valor": m.valor} for m in metrics]
+    week_options = project["fields"].get("Semana", {}).get("options", {})
+    metrics, skipped_weeks = known_weeks(metrics, week_options)
     creates, updates = plan_metrics(snapshot["metrics"], metrics)
 
     out.mkdir(parents=True, exist_ok=True)
@@ -56,6 +58,7 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
         "days_written": len(days),
         "metrics_created": len(creates),
         "metrics_updated": len(updates),
+        "weeks_without_option": skipped_weeks,
         "dry_run": dry_run,
     }
 
