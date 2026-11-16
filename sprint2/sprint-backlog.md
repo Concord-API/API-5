@@ -4,13 +4,17 @@
 
 **Board:** [GitHub Project](https://github.com/orgs/Concord-API/projects/5) · snapshot of Nov 12, 2026
 
+**Definitions:** [Definition of Ready](../Docs/Scrum/definition-of-ready.md) · [Definition of Done](../Docs/Scrum/definition-of-done.md)
+
 ## Sprint goal
+
+> **The user compares topics right in the list, with the strength stated in legal terms, filters by their case and sees, inside the topic, how each court and each panel decides, how that changed year by year and which cases back the numbers.**
 
 Stories the team commits to delivering. If any of them is not completed, the sprint did not meet its goal.
 
 | ID | Priority | Description | SP | Tasks | Hours | Status |
 | --- | --- | --- | ---: | ---: | ---: | --- |
-| **US-03** | Must | As a **user**, I want to see in each result the score, the area of law (vara), the thesis title, a short summary, the courts, the volume, the period, the last decision and the favourable percentage, so that I can compare theses before opening any of them | 8 | 11 | 35h | Done |
+| **US-03** | Must | As a **user**, I want to see in each result the score, the area of law, the thesis title, a short summary, the courts, the volume, the period, the last decision and the favourable percentage, so that I can compare theses before opening any of them | 8 | 11 | 35h | Done |
 | **US-04** | Must | As a **user**, I want to filter results by court, period, instance and minimum strength, seeing how many cases each court has, so that I can narrow the list down to my case | 5 | 8 | 18h | Done |
 | **US-12** | Must | As a **user**, I want to see the topic's alignment by court, so that I know whether the thesis holds the same in São Paulo, Rio de Janeiro, Minas Gerais and the superior courts (STJ and STF) | 3 | 6 | 12h | Done |
 | **US-14** | Must | As a **user**, I want a table of each court's behaviour — decisions, alignment and date of the latest one — so that I can compare my court with the others | 3 | 5 | 7h | Done |
@@ -32,18 +36,19 @@ Stories planned in the sprint that can move to the next one if there is not enou
 | --- | ---: |
 | Stories (goal / outside the goal) | 6 / 2 |
 | Story points (goal / total) | 29 / 36 |
-| Tasks (done / total) | 120 / 120 |
-| Hours (done / total) | 273h / 273h |
+| Tasks (done / total) | 121 / 121 |
+| Hours (done / total) | 274h / 274h |
 | Tasks in stories | 54 (116h) |
 | Technical Foundation | 28 (62h) |
 | Delivery and process | 38 (95h) |
+| Fixes to earlier stories | 1 (1h) |
 
 ### Hours by assignee
 
 | Assignee | Tasks | Hours | Done |
 | --- | ---: | ---: | ---: |
 | victorgsnogueira | 39 | 97.5h | 97.5h |
-| thiagosabreu | 28 | 49h | 49h |
+| thiagosabreu | 29 | 50h | 50h |
 | RichardCordeiro | 19 | 42h | 42h |
 | JoaoBaranov | 19 | 42h | 42h |
 | IsaacOliveiraSouza | 13 | 28.5h | 28.5h |
@@ -54,7 +59,7 @@ Stories planned in the sprint that can move to the next one if there is not enou
 
 | Layer | Hours | Done |
 | --- | ---: | ---: |
-| Backend | 74h | 74h |
+| Backend | 75h | 75h |
 | Frontend | 57h | 57h |
 | DevOps | 55h | 55h |
 | ETL | 43h | 43h |
@@ -63,9 +68,15 @@ Stories planned in the sprint that can move to the next one if there is not enou
 
 _Hours of a task with more than one assignee are split evenly between them._
 
+## Burndown
+
+![Sprint 2 burndown](burndown.png)
+
+Remaining hours per day, from the board's `Status` field and each task's hours. End of the sprint.
+
 ## Stories and tasks
 
-### US-03 — As a user, I want to see in each result the score, the area of law (vara), the thesis title, a short summary, the courts, the volume, the period, the last decision and the favourable percentage, so that I can compare theses before opening any of them
+### US-03 — As a user, I want to see in each result the score, the area of law, the thesis title, a short summary, the courts, the volume, the period, the last decision and the favourable percentage, so that I can compare theses before opening any of them
 
 _8 SP · Must · Done · 11/11 tasks · 35h_
 
@@ -274,3 +285,13 @@ _38 tasks · 95h · 38 done_
 | [DVP-38](https://github.com/Concord-API/API-5/issues/291) | Test the theme panels endpoint against the sample load | Testes | Test | vp-p | 2h | Done |
 | [DVP-40](https://github.com/Concord-API/API-5/issues/293) | Send the API logs only to the file and OTLP, and read the warehouse metrics after the migration | Monitoramento | Backend | thiagosabreu | 1h | Done |
 | [DVP-41](https://github.com/Concord-API/API-5/issues/297) | Exclude the migration scripts from the Sonar duplication check | CI | DevOps | victorgsnogueira | 1h | Done |
+
+## Fixes to earlier stories
+
+Tasks that fix a story delivered in an earlier sprint. They stay in the sprint in which they were done.
+
+_1 task · 1h · 1 done_
+
+| # | Task | Story | Layer | Assignee | Est. | Status |
+| --- | --- | --- | --- | --- | ---: | --- |
+| [25.8](https://github.com/Concord-API/API-5/issues/295) | Materialize the per-theme provenance view | US-25 (Sprint 1) | Backend | thiagosabreu | 1h | Done |

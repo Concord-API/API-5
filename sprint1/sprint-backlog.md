@@ -4,7 +4,11 @@
 
 **Board:** [GitHub Project](https://github.com/orgs/Concord-API/projects/5) · snapshot of Nov 12, 2026
 
+**Definitions:** [Definition of Ready](../Docs/Scrum/definition-of-ready.md) · [Definition of Done](../Docs/Scrum/definition-of-done.md)
+
 ## Sprint goal
+
+> **The user searches for the case's topic and finds the most settled legal topics first, with the understanding explained, the outcome distribution and the doctrine, knowing where every number comes from.**
 
 Stories the team commits to delivering. If any of them is not completed, the sprint did not meet its goal.
 
@@ -58,6 +62,12 @@ Stories planned in the sprint that can move to the next one if there is not enou
 | Test | 16h | 16h |
 | DevOps | 11h | 11h |
 | Docs | 10h | 10h |
+
+## Burndown
+
+![Sprint 1 burndown](burndown.png)
+
+Remaining hours per day, from the board's `Status` field and each task's hours. End of the sprint.
 
 ## Stories and tasks
 
