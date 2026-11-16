@@ -3955,7 +3955,9 @@
    "closed_at": null,
    "status": "Todo",
    "status_since": "2026-11-05T21:32:34Z",
-   "assignees": [],
+   "assignees": [
+    "JoaoBaranov"
+   ],
    "days_in_status": 11
   },
   {
@@ -4025,7 +4027,9 @@
    "closed_at": null,
    "status": "Todo",
    "status_since": "2026-11-05T21:33:23Z",
-   "assignees": [],
+   "assignees": [
+    "thiagosabreu"
+   ],
    "days_in_status": 11
   },
   {
@@ -4310,15 +4314,15 @@
    "task": "DVP-71",
    "story": null,
    "title": "DVP-71 Measure the planning and the execution of each sprint",
-   "state": "OPEN",
+   "state": "CLOSED",
    "created_at": "2026-11-15T22:48:38Z",
-   "closed_at": null,
-   "status": "In Progress",
-   "status_since": "2026-11-16T22:38:32Z",
+   "closed_at": "2026-11-16T22:51:35Z",
+   "status": "Done",
+   "status_since": "2026-11-16T22:51:34Z",
    "assignees": [
     "RichardCordeiro"
    ],
-   "days_in_status": 0
+   "days_in_status": null
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhI_ISg",
@@ -4329,232 +4333,31 @@
    "state": "OPEN",
    "created_at": "2026-11-15T22:48:41Z",
    "closed_at": null,
-   "status": "Todo",
-   "status_since": "2026-11-15T22:49:30Z",
+   "status": "In Progress",
+   "status_since": "2026-11-16T22:52:10Z",
    "assignees": [
     "RichardCordeiro"
    ],
-   "days_in_status": 1
+   "days_in_status": 0
+  },
+  {
+   "item_id": "PVTI_lADODACFtM4BjOFPzhJUX58",
+   "number": 391,
+   "task": "40.9",
+   "story": "US-40",
+   "title": "40.9 Separate court rulings from qualified precedents",
+   "state": "OPEN",
+   "created_at": "2026-11-16T23:02:31Z",
+   "closed_at": null,
+   "status": "Todo",
+   "status_since": "2026-11-16T23:02:37Z",
+   "assignees": [
+    "JoaoBaranov"
+   ],
+   "days_in_status": 0
   }
  ],
- "metrics": [
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULNg",
-   "semana": "S1·0 planning",
-   "etapa": "Tasks criadas",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULRQ",
-   "semana": "S1·0 planning",
-   "etapa": "Commits",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULUc",
-   "semana": "S1·1",
-   "etapa": "Tasks criadas",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULZM",
-   "semana": "S1·1",
-   "etapa": "Commits",
-   "valor": 1.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULeE",
-   "semana": "S1·2",
-   "etapa": "Tasks criadas",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULjc",
-   "semana": "S1·2",
-   "etapa": "Commits",
-   "valor": 26.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULnY",
-   "semana": "S1·3",
-   "etapa": "Tasks criadas",
-   "valor": 82.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULqc",
-   "semana": "S1·3",
-   "etapa": "Commits",
-   "valor": 398.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULs0",
-   "semana": "S2·0 planning",
-   "etapa": "Tasks criadas",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULvc",
-   "semana": "S2·0 planning",
-   "etapa": "Commits",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJULyI",
-   "semana": "S2·1",
-   "etapa": "Tasks criadas",
-   "valor": 49.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUL18",
-   "semana": "S2·1",
-   "etapa": "Commits",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUL5I",
-   "semana": "S2·2",
-   "etapa": "Tasks criadas",
-   "valor": 22.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUL8k",
-   "semana": "S2·2",
-   "etapa": "Commits",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUL_k",
-   "semana": "S2·3",
-   "etapa": "Tasks criadas",
-   "valor": 51.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMDw",
-   "semana": "S2·3",
-   "etapa": "Commits",
-   "valor": 455.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMIE",
-   "semana": "S3·0 planning",
-   "etapa": "Tasks criadas",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMMc",
-   "semana": "S3·0 planning",
-   "etapa": "Commits",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMQU",
-   "semana": "S3·1",
-   "etapa": "Tasks criadas",
-   "valor": 62.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMTg",
-   "semana": "S3·1",
-   "etapa": "Commits",
-   "valor": 44.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMYM",
-   "semana": "S3·2",
-   "etapa": "Tasks criadas",
-   "valor": 7.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMdk",
-   "semana": "S3·2",
-   "etapa": "Commits",
-   "valor": 48.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMhk",
-   "semana": "S3·3",
-   "etapa": "Tasks criadas",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMkU",
-   "semana": "S3·3",
-   "etapa": "Commits",
-   "valor": 2.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMoI",
-   "semana": "S1",
-   "etapa": "Esperando começar",
-   "valor": 242.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMsI",
-   "semana": "S1",
-   "etapa": "Desenvolvendo",
-   "valor": 4.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMwQ",
-   "semana": "S1",
-   "etapa": "Esperando revisão",
-   "valor": 32.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUMzg",
-   "semana": "S1",
-   "etapa": "Nunca começou",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUM5M",
-   "semana": "S2",
-   "etapa": "Esperando começar",
-   "valor": 954.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUM-Q",
-   "semana": "S2",
-   "etapa": "Desenvolvendo",
-   "valor": 2.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUNDw",
-   "semana": "S2",
-   "etapa": "Esperando revisão",
-   "valor": 3.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUNH8",
-   "semana": "S2",
-   "etapa": "Nunca começou",
-   "valor": 66.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUNMc",
-   "semana": "S3",
-   "etapa": "Esperando começar",
-   "valor": 108.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUNSM",
-   "semana": "S3",
-   "etapa": "Desenvolvendo",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUNZg",
-   "semana": "S3",
-   "etapa": "Esperando revisão",
-   "valor": 6.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUNf0",
-   "semana": "S3",
-   "etapa": "Nunca começou",
-   "valor": 334.0
-  }
- ],
+ "metrics": [],
  "pulls": [
   {
    "repo": "API5-Backend",
@@ -14521,7 +14324,7 @@
   {
    "semana": "S3·3",
    "etapa": "Tasks criadas",
-   "valor": 0
+   "valor": 1
   },
   {
    "semana": "S3·3",
