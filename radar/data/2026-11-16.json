@@ -3935,10 +3935,12 @@
    "state": "OPEN",
    "created_at": "2026-11-05T21:32:22Z",
    "closed_at": null,
-   "status": "Todo",
-   "status_since": "2026-11-05T21:32:26Z",
-   "assignees": [],
-   "days_in_status": 11
+   "status": "Review",
+   "status_since": "2026-11-16T22:43:47Z",
+   "assignees": [
+    "JoaoBaranov"
+   ],
+   "days_in_status": 0
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhGZdu8",
@@ -4290,15 +4292,15 @@
    "task": "DVP-70",
    "story": null,
    "title": "DVP-70 Add the Radar workflow that collects the data every day",
-   "state": "OPEN",
+   "state": "CLOSED",
    "created_at": "2026-11-15T22:48:36Z",
-   "closed_at": null,
-   "status": "In Progress",
-   "status_since": "2026-11-16T22:19:11Z",
+   "closed_at": "2026-11-16T22:34:06Z",
+   "status": "Done",
+   "status_since": "2026-11-16T22:34:04Z",
    "assignees": [
     "RichardCordeiro"
    ],
-   "days_in_status": 0
+   "days_in_status": null
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhI_ILA",
@@ -4309,12 +4311,12 @@
    "state": "OPEN",
    "created_at": "2026-11-15T22:48:38Z",
    "closed_at": null,
-   "status": "Todo",
-   "status_since": "2026-11-15T22:49:24Z",
+   "status": "In Progress",
+   "status_since": "2026-11-16T22:38:32Z",
    "assignees": [
     "RichardCordeiro"
    ],
-   "days_in_status": 1
+   "days_in_status": 0
   },
   {
    "item_id": "PVTI_lADODACFtM4BjOFPzhI_ISg",
@@ -6280,6 +6282,17 @@
    "created_at": "2026-11-16T22:14:21Z",
    "merged_at": null,
    "first_commit_at": "2026-11-12T16:56:16Z",
+   "first_review_at": "2026-11-16T22:35:09Z"
+  },
+  {
+   "repo": "API5-Backend",
+   "number": 178,
+   "branch": "40.4-Expose-the-topic-rulings-with-N-of-M-source-and-extraction-date",
+   "base": "us40",
+   "task": "40.4",
+   "created_at": "2026-11-16T22:43:16Z",
+   "merged_at": null,
+   "first_commit_at": "2026-11-16T22:39:11Z",
    "first_review_at": null
   },
   {
@@ -7622,7 +7635,7 @@
    "created_at": "2026-11-16T22:14:26Z",
    "merged_at": null,
    "first_commit_at": "2026-11-15T18:34:23Z",
-   "first_review_at": null
+   "first_review_at": "2026-11-16T22:34:49Z"
   },
   {
    "repo": "API5-Pipeline",
@@ -11019,6 +11032,18 @@
    "task": "27.6"
   },
   {
+   "repo": "API5-Backend",
+   "sha": "3a60be9a8d08a00787c93f92f74c2cca75236adb",
+   "date": "2026-11-16T22:39:11Z",
+   "task": "40.4"
+  },
+  {
+   "repo": "API5-Backend",
+   "sha": "a58d9955b501d354a01fa2065aa53b3142ca910d",
+   "date": "2026-11-16T22:40:19Z",
+   "task": "40.4"
+  },
+  {
    "repo": "API5-Frontend",
    "sha": "9daf39c56d5156d1dbc7d3cfc677eaadec751e87",
    "date": "2026-09-09T03:23:44Z",
@@ -14161,6 +14186,188 @@
    "sha": "b3659931c59e159ddda26d3714548fa43d7d891b",
    "date": "2026-11-13T20:44:59Z",
    "task": "DVP-67"
+  }
+ ],
+ "computed": [
+  {
+   "semana": "S1·0 planning",
+   "etapa": "Tasks criadas",
+   "valor": 0
+  },
+  {
+   "semana": "S1·0 planning",
+   "etapa": "Commits",
+   "valor": 0
+  },
+  {
+   "semana": "S1·1",
+   "etapa": "Tasks criadas",
+   "valor": 0
+  },
+  {
+   "semana": "S1·1",
+   "etapa": "Commits",
+   "valor": 1
+  },
+  {
+   "semana": "S1·2",
+   "etapa": "Tasks criadas",
+   "valor": 0
+  },
+  {
+   "semana": "S1·2",
+   "etapa": "Commits",
+   "valor": 26
+  },
+  {
+   "semana": "S1·3",
+   "etapa": "Tasks criadas",
+   "valor": 82
+  },
+  {
+   "semana": "S1·3",
+   "etapa": "Commits",
+   "valor": 398
+  },
+  {
+   "semana": "S2·0 planning",
+   "etapa": "Tasks criadas",
+   "valor": 0
+  },
+  {
+   "semana": "S2·0 planning",
+   "etapa": "Commits",
+   "valor": 0
+  },
+  {
+   "semana": "S2·1",
+   "etapa": "Tasks criadas",
+   "valor": 49
+  },
+  {
+   "semana": "S2·1",
+   "etapa": "Commits",
+   "valor": 0
+  },
+  {
+   "semana": "S2·2",
+   "etapa": "Tasks criadas",
+   "valor": 22
+  },
+  {
+   "semana": "S2·2",
+   "etapa": "Commits",
+   "valor": 0
+  },
+  {
+   "semana": "S2·3",
+   "etapa": "Tasks criadas",
+   "valor": 51
+  },
+  {
+   "semana": "S2·3",
+   "etapa": "Commits",
+   "valor": 455
+  },
+  {
+   "semana": "S3·0 planning",
+   "etapa": "Tasks criadas",
+   "valor": 0
+  },
+  {
+   "semana": "S3·0 planning",
+   "etapa": "Commits",
+   "valor": 0
+  },
+  {
+   "semana": "S3·1",
+   "etapa": "Tasks criadas",
+   "valor": 62
+  },
+  {
+   "semana": "S3·1",
+   "etapa": "Commits",
+   "valor": 44
+  },
+  {
+   "semana": "S3·2",
+   "etapa": "Tasks criadas",
+   "valor": 7
+  },
+  {
+   "semana": "S3·2",
+   "etapa": "Commits",
+   "valor": 48
+  },
+  {
+   "semana": "S3·3",
+   "etapa": "Tasks criadas",
+   "valor": 0
+  },
+  {
+   "semana": "S3·3",
+   "etapa": "Commits",
+   "valor": 2
+  },
+  {
+   "semana": "S1",
+   "etapa": "Esperando começar",
+   "valor": 242
+  },
+  {
+   "semana": "S1",
+   "etapa": "Desenvolvendo",
+   "valor": 4
+  },
+  {
+   "semana": "S1",
+   "etapa": "Esperando revisão",
+   "valor": 32
+  },
+  {
+   "semana": "S1",
+   "etapa": "Nunca começou",
+   "valor": 0
+  },
+  {
+   "semana": "S2",
+   "etapa": "Esperando começar",
+   "valor": 954
+  },
+  {
+   "semana": "S2",
+   "etapa": "Desenvolvendo",
+   "valor": 2
+  },
+  {
+   "semana": "S2",
+   "etapa": "Esperando revisão",
+   "valor": 3
+  },
+  {
+   "semana": "S2",
+   "etapa": "Nunca começou",
+   "valor": 66
+  },
+  {
+   "semana": "S3",
+   "etapa": "Esperando começar",
+   "valor": 108
+  },
+  {
+   "semana": "S3",
+   "etapa": "Desenvolvendo",
+   "valor": 0
+  },
+  {
+   "semana": "S3",
+   "etapa": "Esperando revisão",
+   "valor": 6
+  },
+  {
+   "semana": "S3",
+   "etapa": "Nunca começou",
+   "valor": 334
   }
  ]
 }
