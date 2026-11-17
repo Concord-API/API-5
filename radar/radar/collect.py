@@ -49,6 +49,7 @@ def _metric(item):
         "semana": _value(item["semana"], "name"),
         "etapa": _value(item["etapa"], "name"),
         "valor": _value(item["valor"], "number"),
+        "pessoa": next((node["login"] for node in item["content"].get("assignees", {}).get("nodes", [])), None),
     }
 
 
@@ -78,7 +79,15 @@ def _commits(repo, pulls):
         task = task_from_branch(pull["headRefName"])
         for commit in _own_commits(pull):
             if commit["oid"] not in seen:
-                seen[commit["oid"]] = {"repo": repo, "sha": commit["oid"], "date": commit["authoredDate"], "task": task}
+                user = (commit.get("author") or {}).get("user") or {}
+                seen[commit["oid"]] = {
+                    "repo": repo,
+                    "sha": commit["oid"],
+                    "date": commit["authoredDate"],
+                    "task": task,
+                    "author": user.get("login"),
+                    "author_id": user.get("id"),
+                }
     return sorted(seen.values(), key=lambda c: (c["date"], c["sha"]))
 
 
