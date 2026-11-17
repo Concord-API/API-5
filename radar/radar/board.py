@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date, datetime
 from zoneinfo import ZoneInfo
 
@@ -10,10 +10,13 @@ class Metric:
     semana: str
     etapa: str
     valor: float
+    pessoa: str | None = None
+    pessoa_id: str | None = field(default=None, compare=False)
 
     @property
     def title(self) -> str:
-        return f"{self.etapa} · {self.semana}"
+        title = f"{self.etapa} · {self.semana}"
+        return f"{title} · {self.pessoa}" if self.pessoa else title
 
 
 def days_in_status(since: str, today: date, timezone: str) -> int:
@@ -37,10 +40,10 @@ def plan_days(tasks: list[dict], current: dict[str, float], today: date, timezon
 
 
 def plan_metrics(existing: list[dict], metrics: list[Metric]) -> tuple[list[Metric], list[tuple[str, Metric]]]:
-    on_board = {(item["semana"], item["etapa"]): item for item in existing}
+    on_board = {(item["semana"], item["etapa"], item.get("pessoa")): item for item in existing}
     creates, updates = [], []
     for metric in metrics:
-        item = on_board.get((metric.semana, metric.etapa))
+        item = on_board.get((metric.semana, metric.etapa, metric.pessoa))
         if not item:
             creates.append(metric)
         elif item["valor"] != metric.valor:
@@ -84,8 +87,8 @@ mutation($project: ID!, $item: ID!, $field: ID!) {
 """
 
 ADD_DRAFT = """
-mutation($project: ID!, $title: String!) {
-  addProjectV2DraftIssue(input: {projectId: $project, title: $title}) { projectItem { id } }
+mutation($project: ID!, $title: String!, $assignees: [ID!]) {
+  addProjectV2DraftIssue(input: {projectId: $project, title: $title, assigneeIds: $assignees}) { projectItem { id } }
 }
 """
 
@@ -118,7 +121,8 @@ class Board:
         self.set_number(item_id, "Dias no status", days)
 
     def create_metric(self, metric: Metric):
-        result = self.client.graphql(ADD_DRAFT, project=self.project_id, title=metric.title)
+        assignees = [metric.pessoa_id] if metric.pessoa_id else []
+        result = self.client.graphql(ADD_DRAFT, project=self.project_id, title=metric.title, assignees=assignees)
         item_id = result["addProjectV2DraftIssue"]["projectItem"]["id"]
         self._set(item_id, "Radar", self._option("Radar", "Métrica"))
         self._set(item_id, "Semana", self._option("Semana", metric.semana))

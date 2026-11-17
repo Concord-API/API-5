@@ -10,9 +10,9 @@ DAY = 86400
 TASKS_CREATED = "Tasks criadas"
 COMMITS = "Commits"
 FIRST_COMMIT = "Dias até o 1º commit"
-OPEN_PR = "Dias até abrir o PR"
-REVIEW = "Dias esperando revisão"
-TIME_FIELDS = [FIRST_COMMIT, OPEN_PR, REVIEW]
+COMMITS_BY_PERSON = "Commits por pessoa"
+BEFORE_START = "Antes do início"
+AFTER_END = "Depois do fim"
 
 
 def _instant(value: str) -> datetime:
@@ -73,26 +73,49 @@ def _times(task: dict, pulls: list[dict], now: datetime) -> dict[str, int | None
     created = _instant(task["created_at"])
     if not pulls:
         waiting = _days(created, now) if task["state"] == "OPEN" else None
-        return {FIRST_COMMIT: _rounded(waiting), OPEN_PR: None, REVIEW: None}
-    opened = min(_instant(p["created_at"]) for p in pulls)
+        return {FIRST_COMMIT: _rounded(waiting)}
     first_commit = min(_instant(p["first_commit_at"] or p["created_at"]) for p in pulls)
-    merges = [_instant(p["merged_at"]) for p in pulls if p["merged_at"]]
-    reviews = [_instant(p["first_review_at"]) for p in pulls if p["first_review_at"]]
-    if merges:
-        end = max(merges)
-    elif task["closed_at"]:
-        end = _instant(task["closed_at"])
-    else:
-        end = now
-    review = min(reviews) if reviews else None
-    waiting_until = review if review and review < end else end
-    return {
-        FIRST_COMMIT: _rounded(_days(created, first_commit)),
-        OPEN_PR: _rounded(_days(first_commit, opened)),
-        REVIEW: _rounded(_days(opened, waiting_until)),
-    }
+    return {FIRST_COMMIT: _rounded(_days(created, first_commit))}
 
 
 def task_times(snapshot: dict, now: datetime) -> dict[str, dict[str, int | None]]:
     pulls = _pulls_by_task(snapshot)
     return {task["item_id"]: _times(task, pulls[task["task"]], now) for task in snapshot["tasks"]}
+
+
+def _sprint_of_day(day: date, sprints: list[Sprint]) -> Sprint | None:
+    for sprint in sprints:
+        if day <= sprint.end:
+            return sprint
+    return None
+
+
+def created_in(task: dict, sprints: list[Sprint], timezone: str) -> str | None:
+    created = _local_day(task["created_at"], timezone)
+    by_number = {sprint.number: sprint for sprint in sprints}
+    sprint = by_number.get(task["sprint"]) if task.get("sprint") else _sprint_of_day(created, sprints)
+    if sprint is None:
+        return None
+    if created < sprint.start:
+        return BEFORE_START
+    if created > sprint.end:
+        return AFTER_END
+    return f"Semana {min(3, (created - sprint.start).days // 7 + 1)}"
+
+
+def person_metrics(snapshot: dict, sprints: list[Sprint], today: date, timezone: str) -> list[Metric]:
+    counts = Counter()
+    ids = {}
+    for commit in snapshot["commits"]:
+        if not commit.get("author"):
+            continue
+        day = _local_day(commit["date"], timezone)
+        sprint = next((s for s in sprints if s.start - WEEK <= day <= s.end), None)
+        if sprint is None or sprint.start - WEEK > today:
+            continue
+        counts[(sprint.number, commit["author"])] += 1
+        ids[commit["author"]] = commit["author_id"]
+    return [
+        Metric(f"S{number}", COMMITS_BY_PERSON, total, person, ids[person])
+        for (number, person), total in sorted(counts.items())
+    ]

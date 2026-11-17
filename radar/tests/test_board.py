@@ -82,3 +82,14 @@ def test_writes_only_the_story_options_that_exist_on_the_board():
     writes = [("A", "US", "US-15"), ("B", "US", "US-46"), ("C", "US", None)]
 
     assert known_options(writes, {"US-15": "o1"}) == [("A", "US", "US-15"), ("C", "US", None)]
+
+
+def test_the_metric_of_each_person_is_a_different_item():
+    existing = [{"item_id": "M1", "semana": "S3", "etapa": "Commits por pessoa", "valor": 5, "pessoa": "ana"}]
+    metrics = [Metric("S3", "Commits por pessoa", 6, "ana", "U1"), Metric("S3", "Commits por pessoa", 2, "bia", "U2")]
+
+    creates, updates = plan_metrics(existing, metrics)
+
+    assert creates == [Metric("S3", "Commits por pessoa", 2, "bia", "U2")]
+    assert updates == [("M1", Metric("S3", "Commits por pessoa", 6, "ana", "U1"))]
+    assert creates[0].title == "Commits por pessoa · S3 · bia"
