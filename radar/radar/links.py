@@ -19,3 +19,10 @@ def task_from_branch(branch: str) -> str | None:
 def story_of(task: str) -> str | None:
     match = STORY.match(task)
     return f"US-{int(match.group(1)):02d}" if match else None
+
+
+def story_label(task: str) -> str:
+    if task.startswith("DVP-"):
+        return "DevOps"
+    story = story_of(task)
+    return "Foundation" if story == "US-00" else story
