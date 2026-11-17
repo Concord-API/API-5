@@ -4910,18 +4910,18 @@
    "task": "0.113",
    "story": "US-00",
    "title": "0.113 Spike: verify the Pangea/BNP terms of use and endpoint for qualified precedents",
-   "state": "OPEN",
+   "state": "CLOSED",
    "created_at": "2026-11-05T21:28:39Z",
-   "closed_at": null,
-   "status": "In Progress",
-   "status_since": "2026-11-16T22:49:54Z",
+   "closed_at": "2026-11-16T23:49:02Z",
+   "status": "Done",
+   "status_since": "2026-11-16T23:49:03Z",
    "assignees": [
     "IsaacOliveiraSouza"
    ],
    "sprint": 3,
-   "days_in_status": 0,
+   "days_in_status": null,
    "times": {
-    "Dias até o 1º commit": 11,
+    "Dias até o 1º commit": null,
     "Dias até abrir o PR": null,
     "Dias esperando revisão": null
    }
@@ -5539,17 +5539,17 @@
    "state": "OPEN",
    "created_at": "2026-11-05T21:33:17Z",
    "closed_at": null,
-   "status": "Todo",
-   "status_since": "2026-11-05T21:33:23Z",
+   "status": "Review",
+   "status_since": "2026-11-17T00:01:04Z",
    "assignees": [
     "thiagosabreu"
    ],
    "sprint": 3,
-   "days_in_status": 11,
+   "days_in_status": 0,
    "times": {
     "Dias até o 1º commit": 11,
-    "Dias até abrir o PR": null,
-    "Dias esperando revisão": null
+    "Dias até abrir o PR": 0,
+    "Dias esperando revisão": 0
    }
   },
   {
@@ -6146,79 +6146,7 @@
    "item_id": "PVTI_lADODACFtM4BjOFPzhJUbQI",
    "semana": "S3·3",
    "etapa": "Commits",
-   "valor": 2.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbUI",
-   "semana": "S1",
-   "etapa": "Esperando começar",
-   "valor": 171.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbY8",
-   "semana": "S1",
-   "etapa": "Desenvolvendo",
    "valor": 4.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbc0",
-   "semana": "S1",
-   "etapa": "Esperando revisão",
-   "valor": 2.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbgc",
-   "semana": "S1",
-   "etapa": "Nunca começou",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbkw",
-   "semana": "S2",
-   "etapa": "Esperando começar",
-   "valor": 954.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbps",
-   "semana": "S2",
-   "etapa": "Desenvolvendo",
-   "valor": 2.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbsI",
-   "semana": "S2",
-   "etapa": "Esperando revisão",
-   "valor": 3.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUbwo",
-   "semana": "S2",
-   "etapa": "Nunca começou",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUb0g",
-   "semana": "S3",
-   "etapa": "Esperando começar",
-   "valor": 179.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUb34",
-   "semana": "S3",
-   "etapa": "Desenvolvendo",
-   "valor": 0.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUb7A",
-   "semana": "S3",
-   "etapa": "Esperando revisão",
-   "valor": 36.0
-  },
-  {
-   "item_id": "PVTI_lADODACFtM4BjOFPzhJUb-E",
-   "semana": "S3",
-   "etapa": "Nunca começou",
-   "valor": 388.0
   }
  ],
  "pulls": [
@@ -8189,6 +8117,17 @@
    "created_at": "2026-11-16T23:41:44Z",
    "merged_at": "2026-11-16T23:45:51Z",
    "first_commit_at": "2026-11-16T23:24:37Z",
+   "first_review_at": null
+  },
+  {
+   "repo": "API5-Backend",
+   "number": 180,
+   "branch": "41.2-Add-type-status-date-suspension-and-leading-cases-to-the-precedent-dimension",
+   "base": "us41",
+   "task": "41.2",
+   "created_at": "2026-11-17T00:00:17Z",
+   "merged_at": null,
+   "first_commit_at": "2026-11-16T23:55:37Z",
    "first_review_at": null
   },
   {
@@ -12952,6 +12891,30 @@
    "task": "40.9"
   },
   {
+   "repo": "API5-Backend",
+   "sha": "460f09b2aee3be927aec1b4c0508f6eddead3455",
+   "date": "2026-11-16T23:55:37Z",
+   "task": "41.2"
+  },
+  {
+   "repo": "API5-Backend",
+   "sha": "1f33f26a42ae492595d6c4c7d0c6e530650e0515",
+   "date": "2026-11-16T23:55:59Z",
+   "task": "41.2"
+  },
+  {
+   "repo": "API5-Backend",
+   "sha": "8e23ea3b405961d58635811b72133bf957c3e062",
+   "date": "2026-11-16T23:56:28Z",
+   "task": "41.2"
+  },
+  {
+   "repo": "API5-Backend",
+   "sha": "f6f0a9e9ef3c3ad2a141c6c9a89c86e51aca2669",
+   "date": "2026-11-16T23:56:48Z",
+   "task": "41.2"
+  },
+  {
    "repo": "API5-Frontend",
    "sha": "9daf39c56d5156d1dbc7d3cfc677eaadec751e87",
    "date": "2026-09-09T03:23:44Z",
@@ -16215,7 +16178,7 @@
   {
    "semana": "S3·3",
    "etapa": "Commits",
-   "valor": 4
+   "valor": 8
   }
  ]
 }
