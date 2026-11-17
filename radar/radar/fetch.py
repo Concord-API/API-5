@@ -64,6 +64,9 @@ query($owner: String!, $number: Int!, $cursor: String) {
           review: fieldValueByName(name: "Dias esperando revisão") {
             ... on ProjectV2ItemFieldNumberValue { number }
           }
+          us: fieldValueByName(name: "US") {
+            ... on ProjectV2ItemFieldSingleSelectValue { name }
+          }
         }
       }
     }

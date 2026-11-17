@@ -8,9 +8,10 @@ from zoneinfo import ZoneInfo
 import yaml
 
 from radar import fetch
-from radar.board import Board, known_weeks, plan_days, plan_metrics, plan_times, task_days
+from radar.board import Board, known_options, known_weeks, plan_days, plan_metrics, plan_times, task_days
 from radar.collect import build_snapshot
 from radar.github import GitHub
+from radar.links import story_label
 from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, task_times, week_metrics
 from radar.sprints import read_sprints
 
@@ -42,6 +43,9 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
         for item in items
     }
     time_writes = plan_times(times, current_times)
+    stories = {task["item_id"]: {"US": story_label(task["task"])} for task in snapshot["tasks"]}
+    current_stories = {item["id"]: {"US": (item.get("us") or {}).get("name")} for item in items}
+    story_writes = known_options(plan_times(stories, current_stories), project["fields"].get("US", {}).get("options", {}))
     snapshot["computed"] = [{"semana": m.semana, "etapa": m.etapa, "valor": m.valor} for m in metrics]
     week_options = project["fields"].get("Semana", {}).get("options", {})
     metrics, skipped_weeks = known_weeks(metrics, week_options)
@@ -56,6 +60,8 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
             board.set_days(item_id, value)
         for item_id, field, value in time_writes:
             board.set_number(item_id, field, value)
+        for item_id, field, value in story_writes:
+            board.set_option(item_id, field, value)
         for metric in creates:
             board.create_metric(metric)
         for item_id, metric in updates:
@@ -68,6 +74,7 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
         "commits": len(snapshot["commits"]),
         "days_written": len(days),
         "times_written": len(time_writes),
+        "stories_written": len(story_writes),
         "metrics_created": len(creates),
         "metrics_updated": len(updates),
         "weeks_without_option": skipped_weeks,
