@@ -1,7 +1,7 @@
 from datetime import date, datetime, timezone
 
 from radar.board import Metric
-from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, created_in, person_metrics, task_times, week_metrics, weeks
+from radar.metrics import FIRST_COMMIT, created_in, person_metrics, task_times, week_metrics, weeks
 from radar.sprints import Sprint
 
 TZ = "America/Sao_Paulo"
@@ -66,30 +66,22 @@ def test_measures_each_stage_of_a_task_from_issue_to_merge():
                     first_review="2026-09-17T12:00:00Z", merged="2026-09-18T12:00:00Z")],
     )
 
-    assert times(data, datetime(2026, 9, 27, tzinfo=timezone.utc)) == {"I1": {FIRST_COMMIT: 4, OPEN_PR: 2, REVIEW: 3}}
+    assert times(data, datetime(2026, 9, 27, tzinfo=timezone.utc)) == {"I1": {FIRST_COMMIT: 4}}
 
-
-def test_a_pull_request_without_review_waits_until_now():
-    data = snapshot(
-        tasks=[task("2026-09-18T12:00:00Z")],
-        pulls=[pull("2.1", "2026-09-20T12:00:00Z", first_commit="2026-09-20T12:00:00Z")],
-    )
-
-    assert times(data, datetime(2026, 9, 25, 12, tzinfo=timezone.utc))["I1"][REVIEW] == 5
 
 
 def test_an_open_task_without_pull_request_is_still_waiting_for_its_first_commit():
     data = snapshot(tasks=[task("2026-09-08T12:00:00Z")])
 
     assert times(data, datetime(2026, 9, 18, 12, tzinfo=timezone.utc)) == {
-        "I1": {FIRST_COMMIT: 10, OPEN_PR: None, REVIEW: None}}
+        "I1": {FIRST_COMMIT: 10}}
 
 
 def test_a_closed_task_without_pull_request_has_no_times():
     data = snapshot(tasks=[task("2026-09-08T12:00:00Z", state="CLOSED", closed="2026-09-09T12:00:00Z")])
 
     assert times(data, datetime(2026, 9, 18, 12, tzinfo=timezone.utc)) == {
-        "I1": {FIRST_COMMIT: None, OPEN_PR: None, REVIEW: None}}
+        "I1": {FIRST_COMMIT: None}}
 
 
 def test_pull_requests_into_main_do_not_count_as_task_work():
@@ -101,17 +93,6 @@ def test_pull_requests_into_main_do_not_count_as_task_work():
     assert times(data, datetime(2026, 9, 18, 12, tzinfo=timezone.utc))["I1"][FIRST_COMMIT] == 10
 
 
-def test_a_pull_request_closed_without_merge_does_not_keep_the_task_waiting():
-    data = snapshot(
-        tasks=[task("2026-09-08T12:00:00Z", state="CLOSED", closed="2026-09-12T12:00:00Z")],
-        pulls=[
-            pull("2.1", "2026-09-09T12:00:00Z", first_commit="2026-09-09T12:00:00Z"),
-            pull("2.1", "2026-09-10T12:00:00Z", first_commit="2026-09-10T12:00:00Z", merged="2026-09-12T12:00:00Z"),
-        ],
-    )
-
-    assert times(data, datetime(2026, 9, 27, tzinfo=timezone.utc))["I1"][REVIEW] == 3
-
 
 def test_a_task_split_in_pull_requests_starts_at_the_first_commit_and_ends_at_the_last_merge():
     data = snapshot(
@@ -122,7 +103,7 @@ def test_a_task_split_in_pull_requests_starts_at_the_first_commit_and_ends_at_th
         ],
     )
 
-    assert times(data, datetime(2026, 9, 27, tzinfo=timezone.utc)) == {"I1": {FIRST_COMMIT: 2, OPEN_PR: 2, REVIEW: 4}}
+    assert times(data, datetime(2026, 9, 27, tzinfo=timezone.utc)) == {"I1": {FIRST_COMMIT: 2}}
 
 
 S3 = Sprint(3, date(2026, 11, 2), date(2026, 11, 22))
