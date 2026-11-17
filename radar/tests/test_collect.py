@@ -33,7 +33,7 @@ def metric_item(item_id, semana, etapa, valor):
     return {
         "id": item_id,
         "type": "DRAFT_ISSUE",
-        "content": {"title": f"{etapa} · {semana}"},
+        "content": {"title": f"{etapa} · {semana}", "assignees": {"nodes": []}},
         "status": None,
         "radar": {"name": "Métrica"},
         "semana": {"name": semana},
@@ -43,8 +43,9 @@ def metric_item(item_id, semana, etapa, valor):
     }
 
 
-def commit(oid, authored, parents=1):
-    return {"commit": {"oid": oid, "authoredDate": authored, "parents": {"totalCount": parents}}}
+def commit(oid, authored, parents=1, login=None):
+    author = {"user": {"login": login, "id": f"U_{login}"}} if login else {"user": None}
+    return {"commit": {"oid": oid, "authoredDate": authored, "parents": {"totalCount": parents}, "author": author}}
 
 
 def pull(number, branch, base, commits, reviews=(), merged_at=None):
@@ -96,7 +97,7 @@ def test_keeps_the_metric_items_apart_from_the_tasks():
     result = snapshot([metric_item("M1", "S3·1", "Commits", 44)])
 
     assert result["tasks"] == []
-    assert result["metrics"] == [{"item_id": "M1", "semana": "S3·1", "etapa": "Commits", "valor": 44}]
+    assert result["metrics"] == [{"item_id": "M1", "semana": "S3·1", "etapa": "Commits", "valor": 44, "pessoa": None}]
 
 
 def test_links_each_pull_request_to_its_task_with_first_commit_and_first_review():
@@ -123,14 +124,16 @@ def test_links_each_pull_request_to_its_task_with_first_commit_and_first_review(
 def test_counts_each_commit_once_without_merge_commits():
     result = snapshot(pulls={"API5-Frontend": [
         pull(10, "27.4-Add-the-export-button", "us27",
-             [commit("a", "2026-11-05T09:00:00Z"), commit("m", "2026-11-05T10:00:00Z", parents=2)]),
+             [commit("a", "2026-11-05T09:00:00Z", login="ana"), commit("m", "2026-11-05T10:00:00Z", parents=2)]),
         pull(11, "us27", "main",
              [commit("a", "2026-11-05T09:00:00Z"), commit("c", "2026-11-06T09:00:00Z")]),
     ]})
 
     assert result["commits"] == [
-        {"repo": "API5-Frontend", "sha": "a", "date": "2026-11-05T09:00:00Z", "task": "27.4"},
-        {"repo": "API5-Frontend", "sha": "c", "date": "2026-11-06T09:00:00Z", "task": None},
+        {"repo": "API5-Frontend", "sha": "a", "date": "2026-11-05T09:00:00Z", "task": "27.4",
+         "author": "ana", "author_id": "U_ana"},
+        {"repo": "API5-Frontend", "sha": "c", "date": "2026-11-06T09:00:00Z", "task": None,
+         "author": None, "author_id": None},
     ]
 
 
@@ -139,3 +142,10 @@ def test_records_the_day_and_the_sprint_windows():
 
     assert result["date"] == "2026-11-16"
     assert result["sprints"] == [{"number": 3, "start": "2026-11-02", "end": "2026-11-22"}]
+
+
+def test_keeps_the_person_of_a_metric_item():
+    item = metric_item("M2", "S3", "Commits por pessoa", 12)
+    item["content"]["assignees"]["nodes"] = [{"login": "ana"}]
+
+    assert snapshot([item])["metrics"][0]["pessoa"] == "ana"

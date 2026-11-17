@@ -1,7 +1,7 @@
 from datetime import date, datetime, timezone
 
 from radar.board import Metric
-from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, task_times, week_metrics, weeks
+from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, created_in, person_metrics, task_times, week_metrics, weeks
 from radar.sprints import Sprint
 
 TZ = "America/Sao_Paulo"
@@ -123,3 +123,44 @@ def test_a_task_split_in_pull_requests_starts_at_the_first_commit_and_ends_at_th
     )
 
     assert times(data, datetime(2026, 9, 27, tzinfo=timezone.utc)) == {"I1": {FIRST_COMMIT: 2, OPEN_PR: 2, REVIEW: 4}}
+
+
+S3 = Sprint(3, date(2026, 11, 2), date(2026, 11, 22))
+
+
+def test_tells_when_a_task_was_created_compared_to_its_sprint():
+    tasks = {
+        "antes": {"created_at": "2026-10-30T12:00:00Z", "sprint": 3},
+        "semana1": {"created_at": "2026-11-02T12:00:00Z", "sprint": 3},
+        "semana3": {"created_at": "2026-11-17T01:00:00Z", "sprint": 3},
+        "depois": {"created_at": "2026-11-25T12:00:00Z", "sprint": 3},
+        "sem sprint": {"created_at": "2026-11-03T12:00:00Z", "sprint": None},
+        "sprint sem janela": {"created_at": "2026-11-03T12:00:00Z", "sprint": 4},
+    }
+
+    result = {name: created_in(task, [S1, S2, S3], TZ) for name, task in tasks.items()}
+
+    assert result == {
+        "antes": "Antes do início",
+        "semana1": "Semana 1",
+        "semana3": "Semana 3",
+        "depois": "Depois do fim",
+        "sem sprint": "Semana 1",
+        "sprint sem janela": None,
+    }
+
+
+def test_counts_the_commits_of_each_person_in_each_sprint_including_its_planning_week():
+    data = snapshot(commits=[
+        {"date": "2026-10-28T12:00:00Z", "author": "ana", "author_id": "U1"},
+        {"date": "2026-11-03T12:00:00Z", "author": "ana", "author_id": "U1"},
+        {"date": "2026-11-04T12:00:00Z", "author": "bia", "author_id": "U2"},
+        {"date": "2026-10-20T12:00:00Z", "author": "bia", "author_id": "U2"},
+        {"date": "2026-11-04T12:00:00Z", "author": None, "author_id": None},
+    ])
+
+    metrics = person_metrics(data, [S2, S3], date(2026, 11, 16), TZ)
+
+    assert sorted((m.semana, m.pessoa, m.valor) for m in metrics) == [
+        ("S2", "bia", 1), ("S3", "ana", 2), ("S3", "bia", 1)]
+    assert all(m.etapa == "Commits por pessoa" for m in metrics)
