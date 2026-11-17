@@ -57,6 +57,10 @@ def plan_times(times: dict[str, dict], current: dict[str, dict]) -> list[tuple[s
     return plan
 
 
+def known_options(writes: list[tuple], options: dict[str, str]) -> list[tuple]:
+    return [write for write in writes if write[2] is None or write[2] in options]
+
+
 def known_weeks(metrics: list[Metric], options: dict[str, str]) -> tuple[list[Metric], list[str]]:
     kept = [metric for metric in metrics if metric.semana in options]
     skipped = sorted({metric.semana for metric in metrics if metric.semana not in options})
@@ -103,6 +107,12 @@ class Board:
             self.client.graphql(CLEAR_VALUE, project=self.project_id, item=item_id, field=self.fields[field]["id"])
         else:
             self._set(item_id, field, {"number": value})
+
+    def set_option(self, item_id: str, field: str, option: str | None):
+        if option is None:
+            self.client.graphql(CLEAR_VALUE, project=self.project_id, item=item_id, field=self.fields[field]["id"])
+        else:
+            self._set(item_id, field, self._option(field, option))
 
     def set_days(self, item_id: str, days: int | None):
         self.set_number(item_id, "Dias no status", days)
