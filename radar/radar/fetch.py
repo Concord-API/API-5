@@ -35,7 +35,7 @@ query($owner: String!, $number: Int!, $cursor: String) {
                 }
               }
             }
-            ... on DraftIssue { title }
+            ... on DraftIssue { title assignees(first: 1) { nodes { login } } }
           }
           status: fieldValueByName(name: "Status") {
             ... on ProjectV2ItemFieldSingleSelectValue { name updatedAt }
@@ -67,6 +67,9 @@ query($owner: String!, $number: Int!, $cursor: String) {
           us: fieldValueByName(name: "US") {
             ... on ProjectV2ItemFieldSingleSelectValue { name }
           }
+          criada: fieldValueByName(name: "Criada") {
+            ... on ProjectV2ItemFieldSingleSelectValue { name }
+          }
         }
       }
     }
@@ -84,7 +87,7 @@ query($owner: String!, $repo: String!, $cursor: String) {
         reviews(first: 20) { nodes { submittedAt } }
         commits(first: 100) {
           pageInfo { hasNextPage endCursor }
-          nodes { commit { oid authoredDate parents { totalCount } } }
+          nodes { commit { oid authoredDate parents { totalCount } author { user { login id } } } }
         }
       }
     }
@@ -98,7 +101,7 @@ query($owner: String!, $repo: String!, $number: Int!, $cursor: String) {
     pullRequest(number: $number) {
       commits(first: 100, after: $cursor) {
         pageInfo { hasNextPage endCursor }
-        nodes { commit { oid authoredDate parents { totalCount } } }
+        nodes { commit { oid authoredDate parents { totalCount } author { user { login id } } } }
       }
     }
   }

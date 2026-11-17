@@ -12,7 +12,7 @@ from radar.board import Board, known_options, known_weeks, plan_days, plan_metri
 from radar.collect import build_snapshot
 from radar.github import GitHub
 from radar.links import story_label
-from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, task_times, week_metrics
+from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, created_in, person_metrics, task_times, week_metrics
 from radar.sprints import read_sprints
 
 
@@ -33,7 +33,7 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
 
     current = {item["id"]: item["dias"]["number"] for item in items if item["dias"]}
     days = plan_days(snapshot["tasks"], current, today, timezone)
-    metrics = week_metrics(snapshot, sprints, today, timezone)
+    metrics = week_metrics(snapshot, sprints, today, timezone) + person_metrics(snapshot, sprints, today, timezone)
     times = task_times(snapshot, now)
     for task in snapshot["tasks"]:
         task["times"] = times[task["item_id"]]
@@ -43,9 +43,18 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
         for item in items
     }
     time_writes = plan_times(times, current_times)
-    stories = {task["item_id"]: {"US": story_label(task["task"])} for task in snapshot["tasks"]}
-    current_stories = {item["id"]: {"US": (item.get("us") or {}).get("name")} for item in items}
-    story_writes = known_options(plan_times(stories, current_stories), project["fields"].get("US", {}).get("options", {}))
+    stories = {
+        task["item_id"]: {"US": story_label(task["task"]), "Criada": created_in(task, sprints, timezone)}
+        for task in snapshot["tasks"]
+    }
+    current_stories = {
+        item["id"]: {"US": (item.get("us") or {}).get("name"), "Criada": (item.get("criada") or {}).get("name")}
+        for item in items
+    }
+    story_writes = [
+        write for write in plan_times(stories, current_stories)
+        if known_options([write], project["fields"].get(write[1], {}).get("options", {}))
+    ]
     snapshot["computed"] = [{"semana": m.semana, "etapa": m.etapa, "valor": m.valor} for m in metrics]
     week_options = project["fields"].get("Semana", {}).get("options", {})
     metrics, skipped_weeks = known_weeks(metrics, week_options)
