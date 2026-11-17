@@ -10,9 +10,6 @@ DAY = 86400
 TASKS_CREATED = "Tasks criadas"
 COMMITS = "Commits"
 FIRST_COMMIT = "Dias até o 1º commit"
-OPEN_PR = "Dias até abrir o PR"
-REVIEW = "Dias esperando revisão"
-TIME_FIELDS = [FIRST_COMMIT, OPEN_PR, REVIEW]
 COMMITS_BY_PERSON = "Commits por pessoa"
 BEFORE_START = "Antes do início"
 AFTER_END = "Depois do fim"
@@ -76,24 +73,9 @@ def _times(task: dict, pulls: list[dict], now: datetime) -> dict[str, int | None
     created = _instant(task["created_at"])
     if not pulls:
         waiting = _days(created, now) if task["state"] == "OPEN" else None
-        return {FIRST_COMMIT: _rounded(waiting), OPEN_PR: None, REVIEW: None}
-    opened = min(_instant(p["created_at"]) for p in pulls)
+        return {FIRST_COMMIT: _rounded(waiting)}
     first_commit = min(_instant(p["first_commit_at"] or p["created_at"]) for p in pulls)
-    merges = [_instant(p["merged_at"]) for p in pulls if p["merged_at"]]
-    reviews = [_instant(p["first_review_at"]) for p in pulls if p["first_review_at"]]
-    if merges:
-        end = max(merges)
-    elif task["closed_at"]:
-        end = _instant(task["closed_at"])
-    else:
-        end = now
-    review = min(reviews) if reviews else None
-    waiting_until = review if review and review < end else end
-    return {
-        FIRST_COMMIT: _rounded(_days(created, first_commit)),
-        OPEN_PR: _rounded(_days(first_commit, opened)),
-        REVIEW: _rounded(_days(opened, waiting_until)),
-    }
+    return {FIRST_COMMIT: _rounded(_days(created, first_commit))}
 
 
 def task_times(snapshot: dict, now: datetime) -> dict[str, dict[str, int | None]]:

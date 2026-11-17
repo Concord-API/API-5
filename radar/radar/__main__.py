@@ -12,7 +12,7 @@ from radar.board import Board, known_options, known_weeks, plan_days, plan_metri
 from radar.collect import build_snapshot
 from radar.github import GitHub
 from radar.links import story_label
-from radar.metrics import FIRST_COMMIT, OPEN_PR, REVIEW, created_in, person_metrics, task_times, week_metrics
+from radar.metrics import FIRST_COMMIT, created_in, person_metrics, task_times, week_metrics
 from radar.sprints import read_sprints
 
 
@@ -37,7 +37,7 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
     times = task_times(snapshot, now)
     for task in snapshot["tasks"]:
         task["times"] = times[task["item_id"]]
-    aliases = {FIRST_COMMIT: "firstCommit", OPEN_PR: "openPr", REVIEW: "review"}
+    aliases = {FIRST_COMMIT: "firstCommit"}
     current_times = {
         item["id"]: {field: (item.get(alias) or {}).get("number") for field, alias in aliases.items()}
         for item in items
