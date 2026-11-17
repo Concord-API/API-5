@@ -241,14 +241,13 @@ _28 tasks · 62h · 28 concluídas_
 
 ## Entrega e processo
 
-Tasks `DVP-xx` (CI, deploy, QA, monitoramento, testes de banco) e `PRC-xx` (processo), também sem story-mãe.
+Tasks `DVP-xx` (CI, deploy, QA, monitoramento, testes de banco e documentação), também sem story-mãe.
 
 _38 tasks · 95h · 38 concluídas_
 
 | # | Task | Frente | Camada | Responsável | Est. | Status |
 | --- | --- | --- | --- | --- | ---: | --- |
 | [DVP-01](https://github.com/Concord-API/API-5/issues/247) | Reuse the test coverage in the quality job instead of running the tests again | CI | DevOps | victorgsnogueira | 3h | Concluído |
-| [PRC-01](https://github.com/Concord-API/API-5/issues/260) | Set up the DVP and PRC task prefixes on the board | — | Docs | joaoandrade17 | 3h | Concluído |
 | [DVP-02](https://github.com/Concord-API/API-5/issues/248) | Validate the pipeline against the API migrations in CI | CI | ETL | victorgsnogueira | 3h | Concluído |
 | [DVP-03](https://github.com/Concord-API/API-5/issues/249) | Run the API and the frontend together with the sample load in an acceptance workflow | CI | DevOps | victorgsnogueira | 6h | Concluído |
 | [DVP-04](https://github.com/Concord-API/API-5/issues/250) | Run the commit checks only on task pull requests and on main, and require the acceptance check to merge into main | CI | DevOps | victorgsnogueira | 3h | Concluído |
@@ -285,6 +284,7 @@ _38 tasks · 95h · 38 concluídas_
 | [DVP-38](https://github.com/Concord-API/API-5/issues/291) | Test the theme panels endpoint against the sample load | Testes | Test | vp-p | 2h | Concluído |
 | [DVP-40](https://github.com/Concord-API/API-5/issues/293) | Send the API logs only to the file and OTLP, and read the warehouse metrics after the migration | Monitoramento | Backend | thiagosabreu | 1h | Concluído |
 | [DVP-41](https://github.com/Concord-API/API-5/issues/297) | Exclude the migration scripts from the Sonar duplication check | CI | DevOps | victorgsnogueira | 1h | Concluído |
+| [DVP-73](https://github.com/Concord-API/API-5/issues/260) | Set up the DVP and PRC task prefixes on the board | Docs | Docs | joaoandrade17 | 3h | Concluído |
 
 ## Correções de stories anteriores
 
