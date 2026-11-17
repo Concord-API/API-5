@@ -1,6 +1,6 @@
 import pytest
 
-from radar.links import story_of, task_from_branch, task_from_title
+from radar.links import story_label, story_of, task_from_branch, task_from_title
 
 
 @pytest.mark.parametrize("title, task", [
@@ -34,3 +34,13 @@ def test_finds_the_task_in_the_branch_name(branch, task):
 ])
 def test_a_task_belongs_to_the_story_of_its_number(task, story):
     assert story_of(task) == story
+
+
+@pytest.mark.parametrize("task, label", [
+    ("27.3", "US-27"),
+    ("2.6", "US-02"),
+    ("0.85", "Foundation"),
+    ("DVP-59", "DevOps"),
+])
+def test_names_the_story_of_a_task_for_the_board(task, label):
+    assert story_label(task) == label

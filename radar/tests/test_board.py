@@ -1,6 +1,6 @@
 from datetime import date
 
-from radar.board import Metric, days_in_status, known_weeks, plan_days, plan_metrics, plan_times
+from radar.board import Metric, days_in_status, known_options, known_weeks, plan_days, plan_metrics, plan_times
 
 
 def task(item_id, status, since, state="OPEN", days=None):
@@ -76,3 +76,9 @@ def test_writes_only_the_task_times_that_changed_and_clears_the_ones_that_went_a
     current = {"A": {"Dias até o 1º commit": 4, "Dias esperando revisão": 2}, "B": {"Dias até o 1º commit": 7}}
 
     assert plan_times(times, current) == [("A", "Dias esperando revisão", 3), ("B", "Dias até o 1º commit", None)]
+
+
+def test_writes_only_the_story_options_that_exist_on_the_board():
+    writes = [("A", "US", "US-15"), ("B", "US", "US-46"), ("C", "US", None)]
+
+    assert known_options(writes, {"US-15": "o1"}) == [("A", "US", "US-15"), ("C", "US", None)]
