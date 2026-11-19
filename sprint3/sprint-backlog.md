@@ -2,7 +2,7 @@
 
 **Window:** Nov 2 to Nov 22, 2026
 
-**Board:** [GitHub Project](https://github.com/orgs/Concord-API/projects/5) · snapshot of Nov 17, 2026
+**Board:** [GitHub Project](https://github.com/orgs/Concord-API/projects/5) · snapshot of Nov 19, 2026
 
 **Definitions:** [Definition of Ready](../Docs/Scrum/definition-of-ready.md) · [Definition of Done](../Docs/Scrum/definition-of-done.md)
 
@@ -34,8 +34,8 @@ Stories planned in the sprint that can move to the next one if there is not enou
 | --- | ---: |
 | Stories (goal / outside the goal) | 4 / 2 |
 | Story points (goal / total) | 26 / 34 |
-| Tasks (done / total) | 40 / 66 |
-| Hours (done / total) | 104h / 184h |
+| Tasks (done / total) | 44 / 66 |
+| Hours (done / total) | 110h / 184h |
 | Tasks in stories | 39 (99h) |
 | Technical Foundation | 2 (10h) |
 | Delivery and process | 25 (75h) |
@@ -44,10 +44,10 @@ Stories planned in the sprint that can move to the next one if there is not enou
 
 | Assignee | Tasks | Hours | Done |
 | --- | ---: | ---: | ---: |
-| unassigned | 18 | 53h | 0h |
 | thiagosabreu | 19 | 49h | 37h |
-| JoaoBaranov | 8 | 29h | 29h |
-| IsaacOliveiraSouza | 9 | 24h | 19h |
+| unassigned | 14 | 47h | 0h |
+| JoaoBaranov | 10 | 31h | 31h |
+| IsaacOliveiraSouza | 11 | 28h | 23h |
 | RichardCordeiro | 7 | 15h | 15h |
 | vp-p | 2 | 7h | 0h |
 | joaoandrade17 | 2 | 4h | 1h |
@@ -60,15 +60,15 @@ Stories planned in the sprint that can move to the next one if there is not enou
 | ETL | 51h | 14h |
 | DevOps | 49h | 36h |
 | Backend | 30h | 27h |
-| Frontend | 24h | 14h |
-| Test | 21h | 12h |
+| Frontend | 24h | 19h |
+| Test | 21h | 13h |
 | Docs | 9h | 1h |
 
 ## Burndown
 
 ![Sprint 3 burndown](burndown.png)
 
-Remaining hours per day, from the board's `Status` field and each task's hours. Status on Nov 17, 2026.
+Remaining hours per day, from the board's `Status` field and each task's hours. Status on Nov 19, 2026.
 
 ## Stories and tasks
 
@@ -106,7 +106,7 @@ Issue: [#329](https://github.com/Concord-API/API-5/issues/329)
 
 ### US-40 — As a user, I want to see the rulings that make up the topic's case law, with court, judging body, date, summary and a link to the court's page, in the same table pattern as the cases, so that I can read how the courts decided and not only count the cases
 
-_8 SP · Should · To do · 4/8 tasks · 23h_
+_8 SP · Should · To do · 6/8 tasks · 23h_
 
 Issue: [#330](https://github.com/Concord-API/API-5/issues/330)
 
@@ -117,13 +117,13 @@ Issue: [#330](https://github.com/Concord-API/API-5/issues/330)
 | [40.3](https://github.com/Concord-API/API-5/issues/356) | Tie each ruling to the topic by CNJ number or by declared similarity | ETL | — | 4h | To do |
 | [40.4](https://github.com/Concord-API/API-5/issues/357) | Expose the topic's rulings with "N of M", source and extraction date | Backend | JoaoBaranov | 3h | Done |
 | [40.5](https://github.com/Concord-API/API-5/issues/358) | Build the rulings table in the Base analítica tab | Frontend | JoaoBaranov | 3h | Done |
-| [40.6](https://github.com/Concord-API/API-5/issues/359) | Explain in the block why a court has no rulings | Frontend | — | 1h | To do |
-| [40.7](https://github.com/Concord-API/API-5/issues/360) | Test the rulings ordering and the court without a source | Test | — | 1h | To do |
+| [40.6](https://github.com/Concord-API/API-5/issues/359) | Explain in the block why a court has no rulings | Frontend | JoaoBaranov | 1h | Done |
+| [40.7](https://github.com/Concord-API/API-5/issues/360) | Test the rulings ordering and the court without a source | Test | JoaoBaranov | 1h | Done |
 | [40.8](https://github.com/Concord-API/API-5/issues/361) | Document the rulings source in the ETL docs | Docs | IsaacOliveiraSouza | 1h | In progress |
 
 ### US-41 — As a user, I want to see the qualified precedents related to the topic — súmulas, temas repetitivos, IRDR, IAC and repercussão geral — with type, number, court, thesis and status, so that I know what binds the courts on this topic and not only how they have decided
 
-_8 SP · Should · To do · 2/8 tasks · 21h_
+_8 SP · Should · To do · 4/8 tasks · 21h_
 
 Issue: [#331](https://github.com/Concord-API/API-5/issues/331)
 
@@ -133,8 +133,8 @@ Issue: [#331](https://github.com/Concord-API/API-5/issues/331)
 | [41.2](https://github.com/Concord-API/API-5/issues/363) | Add type, status date, suspension and leading cases to the precedent dimension | Backend | thiagosabreu | 3h | Done |
 | [41.3](https://github.com/Concord-API/API-5/issues/364) | Tie each precedent to the topic by similarity over question and thesis | ETL | — | 4h | To do |
 | [41.4](https://github.com/Concord-API/API-5/issues/365) | Expose the topic's related precedents | Backend | thiagosabreu | 2h | Done |
-| [41.5](https://github.com/Concord-API/API-5/issues/366) | Build the precedents block with cancelled ones marked | Frontend | — | 3h | To do |
-| [41.6](https://github.com/Concord-API/API-5/issues/367) | Explain in the block why a topic has no related precedent | Frontend | — | 1h | To do |
+| [41.5](https://github.com/Concord-API/API-5/issues/366) | Build the precedents block with cancelled ones marked | Frontend | IsaacOliveiraSouza | 3h | Done |
+| [41.6](https://github.com/Concord-API/API-5/issues/367) | Explain in the block why a topic has no related precedent | Frontend | IsaacOliveiraSouza | 1h | Done |
 | [41.7](https://github.com/Concord-API/API-5/issues/368) | Test that labour and electoral precedents are not loaded | Test | — | 1h | To do |
 | [41.8](https://github.com/Concord-API/API-5/issues/369) | Document the precedents source in the ETL docs | Docs | — | 1h | To do |
 
