@@ -191,6 +191,31 @@ Novos candidatos a fusão são propostos, não decididos, por `python -m pipelin
 | judged theme without text | Um tema com processos julgados e sem narrativa |
 | doctrine link without score or method | Uma ligação sem `similarity`, `link_method` ou `embedding_model`, ou abaixo do limiar |
 
+### 3.8 Precedentes qualificados
+
+`pipeline/dw_precedent.py` refaz a `dim_precedent` a partir de `raw.stj_precedent` a cada execução:
+
+- Só ficam os temas do tipo `Tema` com tese, e os cancelados ficam de fora.
+- Tema cujos assuntos da TPU são todos de direito do trabalho ou eleitoral fica fora da carga (áreas da TPU `864`, `11428` e `10739`).
+- `bridge_subject_precedent` liga cada precedente aos assuntos da TPU que o STJ informa.
+
+Depois, `pipeline/precedent_link.py` liga cada precedente aos temas, em `bridge_theme_precedent`. A regra é a mesma, híbrida, da doutrina, comparando o nome do tema com a questão e a tese do precedente:
+
+- Similaridade de cosseno de pelo menos 0,55, e as palavras distintivas do nome do tema presentes no texto do precedente.
+- No máximo os 10 precedentes mais próximos por tema.
+- Cada ligação grava `similarity`, `link_method` (`embedding_cosine+lexical`) e `embedding_model`, e a tabela é refeita a cada execução.
+
+É essa ligação que a API lê, então o produto diz que o precedente é "relacionado ao tema", nunca que foi citado nesses processos.
+
+### 3.9 Dados do caso vindos do site do tribunal
+
+`pipeline/dw_court_site_case.py` refaz `case_site_detail` e `case_site_movement` a partir de `raw.court_site_case` a cada execução:
+
+- O processo coletado é casado com o `dim_case` pelo número e pelo tribunal; processo que não está no `dim_case` é ignorado.
+- Processo encontrado guarda classe, assuntos, órgão julgador, juiz ou relator, data de distribuição, situação, último julgamento e as movimentações públicas, numeradas na ordem em que o site mostra.
+- Processo que o site não encontrou, ou em sigilo, guarda só o status, sem campo e sem movimentação.
+- Só os campos listados são copiados, então nada mais do payload chega ao `dw` (NFR-21).
+
 ## 4. Carga dos dados (Load)
 
 ### Modelo de destino

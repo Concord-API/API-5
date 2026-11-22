@@ -191,6 +191,31 @@ New merge candidates are proposed, not decided, by `python -m pipeline.propose`:
 | judged theme without text | A theme with judged cases and no narrative |
 | doctrine link without score or method | A link missing `similarity`, `link_method` or `embedding_model`, or below the threshold |
 
+### 3.8 Qualified precedents
+
+`pipeline/dw_precedent.py` rebuilds `dim_precedent` from `raw.stj_precedent` on every run:
+
+- Only themes of kind `Tema` with a thesis are kept, and cancelled ones are left out.
+- A theme whose TPU subjects all belong to labour or electoral law is left out of the load (TPU areas `864`, `11428` and `10739`).
+- `bridge_subject_precedent` ties each precedent to the TPU subjects listed by the STJ.
+
+`pipeline/precedent_link.py` then ties each precedent to the themes, in `bridge_theme_precedent`. It uses the same hybrid rule as doctrine, comparing the theme name with the precedent's question and thesis:
+
+- Cosine similarity of at least 0.55, and the distinctive words of the theme name in the precedent text.
+- At most the 10 closest precedents per theme.
+- Each link stores `similarity`, `link_method` (`embedding_cosine+lexical`) and `embedding_model`, and the table is rebuilt on every run.
+
+This is the link the API reads, so the product says a precedent is "related to the topic", never that it was cited in those cases.
+
+### 3.9 Case data from the court site
+
+`pipeline/dw_court_site_case.py` rebuilds `case_site_detail` and `case_site_movement` from `raw.court_site_case` on every run:
+
+- A collected case is matched to `dim_case` by number and court; a case missing from `dim_case` is ignored.
+- A found case keeps its class, subjects, judging body, judge, filing date, situation, last judgment and public movements, numbered in the order the site shows them.
+- A case the site did not find, or one under secrecy, keeps only its status, with no field and no movement.
+- Only the listed fields are copied, so nothing else in the payload reaches `dw` (NFR-21).
+
 ## 4. Data load (Load)
 
 ### Destination model
