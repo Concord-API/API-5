@@ -29,6 +29,7 @@ Courts collected today: TJSP, TJRJ, TJMG and STJ, civil matters only. STF is in 
 | DOAJ | REST, `https://doaj.org/api/search/articles`, no authentication | `python -m pipeline.harvest_doaj [--term T] [--year Y]` | Articles for the 25 search terms in `pipeline/data/doaj_terms.json` |
 | SciELO | ArticleMeta API, `https://articlemeta.scielo.org/api/v1/article/`, no authentication | `python -m pipeline.harvest_scielo [--issn I]` | Articles from the 6 ISSNs in `pipeline/data/scielo_issns.json` |
 | OAI-PMH | Dublin Core (`oai_dc`) endpoints, no authentication | `python -m pipeline.harvest_oai [--repository R]` | Articles from the 48 journal endpoints in `pipeline/data/oai_sources.json` (47 enabled; one is disabled because its endpoint requires access) |
+| STJ qualified precedents | Open data `temas.csv` from `dadosabertos.web.stj.jus.br`, no authentication | `python -m pipeline.harvest_precedents [--file F]` | The STJ repetitive themes (temas repetitivos): number, question, thesis, status, judgment date, judging body and TPU subjects |
 | STF | Corte Aberta decisions panel (CSV), outside DataJud | not implemented | See section 8 |
 
 DataJud is the only source of decisions; the other three feed the doctrine dimension. Doctrine collectors are separate commands and are not run by `python -m pipeline`; the main command only transforms whatever is already in `raw.doctrine_article`.
@@ -68,6 +69,12 @@ Collection behaviour (`pipeline/datajud.py`):
 ### Doctrine collectors
 
 All three collectors write the article payload as JSONB into `raw.doctrine_article`, idempotently (`UNIQUE (source, payload_hash)`). They wait between requests (0.15 s for DOAJ, 0.3 s for OAI-PMH, 0.05 s for SciELO), retry up to 4 times on network error, 429 or 5xx, and commit after each term, journal or repository.
+
+### Qualified precedents collector
+
+`python -m pipeline.harvest_precedents` downloads the STJ `temas.csv` and writes each theme into `raw.stj_precedent`, keyed by kind and number, so collecting again only refreshes the payload and the collection date. The download waits 180 s per request and retries up to 5 times on network error, 429 or 5xx. When the STJ portal is down, `--file` reads a `temas.csv` that was downloaded by hand.
+
+Only the STJ repetitive themes are collected. The qualified precedents of STF, TJSP, TJRJ and TJMG (súmulas, IRDR, IAC and repercussão geral) have no verified source; see section 8.
 
 ### Frequency and authentication
 
@@ -320,3 +327,4 @@ The `Pipeline CI` workflow (`.github/workflows/ci.yml`) runs on pull requests to
 | Loading into a database the API did not migrate would corrupt or fail midway | The pipeline refuses to start without `dw`, and the load file refuses to run on a different schema version |
 | Scheduling a load would need infrastructure on the client's server | The load is manual, runs on our side, and ships as a validated file (D-17) |
 | STF is not in DataJud (it is not subordinate to the CNJ) | The only open source found is the Corte Aberta decisions panel, as a CSV with no CNJ case number and no TPU subject code. STF would be an instance of its own, and the rule of D-41 cannot reach it. The scope includes STF, but it needs a new collector, a mapping of its movement text to outcomes and of its subjects to themes, and seeding in `dim_court` once there is data. Details are in `03-dados/07-fonte-stf.md` of the docs wiki |
+| The qualified precedents of STF, TJSP, TJRJ and TJMG are gathered in the CNJ's BNP/Pangea, but its API needs a PDPJ credential granted by the CNJ to the courts, and the public site does not authorize automated access (spike 0.113) | Only the STJ repetitive themes are loaded, from the STJ open data. The other precedents stay out until there is a verified source; task 41.1 was closed on 22/11 without collecting from the BNP |
