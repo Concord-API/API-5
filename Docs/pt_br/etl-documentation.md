@@ -29,9 +29,11 @@ Tribunais coletados hoje: TJSP, TJRJ, TJMG e STJ, só matéria cível. O STF est
 | DOAJ | REST, `https://doaj.org/api/search/articles`, sem autenticação | `python -m pipeline.harvest_doaj [--term T] [--year Y]` | Artigos dos 25 termos de busca em `pipeline/data/doaj_terms.json` |
 | SciELO | API ArticleMeta, `https://articlemeta.scielo.org/api/v1/article/`, sem autenticação | `python -m pipeline.harvest_scielo [--issn I]` | Artigos dos 6 ISSNs em `pipeline/data/scielo_issns.json` |
 | OAI-PMH | Endpoints Dublin Core (`oai_dc`), sem autenticação | `python -m pipeline.harvest_oai [--repository R]` | Artigos dos 48 endpoints de revistas em `pipeline/data/oai_sources.json` (47 habilitados; um está desabilitado porque o endpoint exige acesso) |
+| Precedentes qualificados do STJ | `temas.csv` dos dados abertos em `dadosabertos.web.stj.jus.br`, sem autenticação | `python -m pipeline.harvest_precedents [--file F]` | Os temas repetitivos do STJ: número, questão, tese, situação, data de julgamento, órgão julgador e assuntos da TPU |
+| Site do TJSP | Consulta pública do e-SAJ, `https://esaj.tjsp.jus.br` (primeiro grau `cpopg`, segundo grau `cposg`), sem autenticação | `python -m pipeline.harvest_court_sites [--limit N] [--refresh]` | Dos processos do TJSP que já estão na amostra de um tema: classe, assunto, órgão julgador, juiz ou relator, data de distribuição, situação, último julgamento e movimentações públicas |
 | STF | Painel de decisões do Corte Aberta (CSV), fora do DataJud | não implementado | Veja a seção 8 |
 
-O DataJud é a única fonte de decisões; as outras três alimentam a dimensão de doutrina. Os coletores de doutrina são comandos separados e não são executados por `python -m pipeline`; o comando principal apenas transforma o que já estiver em `raw.doctrine_article`.
+O DataJud é a única fonte de decisões que contam nas métricas. Os dados abertos do STJ alimentam os precedentes qualificados, o e-SAJ acrescenta os detalhes dos processos do TJSP que já estão na amostra, e DOAJ, SciELO e OAI-PMH alimentam a dimensão de doutrina. Os coletores de doutrina são comandos separados e não são executados por `python -m pipeline`; o comando principal apenas transforma o que já estiver em `raw.doctrine_article`.
 
 ### Como o DataJud é consultado
 
@@ -68,6 +70,24 @@ Comportamento da coleta (`pipeline/datajud.py`):
 ### Coletores de doutrina
 
 Os três coletores gravam o payload do artigo como JSONB em `raw.doctrine_article`, de forma idempotente (`UNIQUE (source, payload_hash)`). Eles esperam entre as requisições (0,15 s no DOAJ, 0,3 s no OAI-PMH, 0,05 s no SciELO), repetem até 4 vezes em erro de rede, 429 ou 5xx, e fazem commit após cada termo, revista ou repositório.
+
+### Coletor de precedentes qualificados
+
+`python -m pipeline.harvest_precedents` baixa o `temas.csv` do STJ e grava cada tema em `raw.stj_precedent`, com chave por tipo e número, então coletar de novo só atualiza o payload e a data de coleta. O download espera 180 s por requisição e repete até 5 vezes em erro de rede, 429 ou 5xx. Quando o portal do STJ está fora, `--file` lê um `temas.csv` baixado à mão.
+
+Só os temas repetitivos do STJ são coletados. Os precedentes qualificados do STF, do TJSP, do TJRJ e do TJMG (súmulas, IRDR, IAC e repercussão geral) não têm fonte verificada; veja a seção 8.
+
+### Coletor do site do tribunal
+
+`python -m pipeline.harvest_court_sites` lê os processos do TJSP em `dw.theme_case_sample` sem sigilo, com número de 20 dígitos e ainda sem linha em `raw.court_site_case` (`--refresh` coleta de novo, `--limit` limita a execução). Como a lista vem do `dw`, ele roda depois de `python -m pipeline` montar a amostra.
+
+- Cada processo é consultado no e-SAJ de primeiro ou de segundo grau, conforme o grau, e as movimentações são lidas página a página.
+- Espera 2 s antes de cada requisição, com timeout de 60 s, e repete até 5 vezes em erro de rede, 429 ou 5xx.
+- Processo que o site não encontra é gravado como `not_found`, e processo em sigilo como `sealed`, sem dado.
+- HTTP 403, página de desafio ou captcha param a execução. Os processos já coletados ficam, porque há commit após cada processo, e rodar de novo continua de onde parou. O Ratio não contorna essas proteções.
+- Partes, advogados, documentos e inteiro teor não são lidos (NFR-21).
+
+Só o TJSP tem fonte no site do tribunal; veja a seção 8.
 
 ### Frequência e autenticação
 
@@ -171,6 +191,31 @@ Novos candidatos a fusão são propostos, não decididos, por `python -m pipelin
 | judged theme without text | Um tema com processos julgados e sem narrativa |
 | doctrine link without score or method | Uma ligação sem `similarity`, `link_method` ou `embedding_model`, ou abaixo do limiar |
 
+### 3.8 Precedentes qualificados
+
+`pipeline/dw_precedent.py` refaz a `dim_precedent` a partir de `raw.stj_precedent` a cada execução:
+
+- Só ficam os temas do tipo `Tema` com tese, e os cancelados ficam de fora.
+- Tema cujos assuntos da TPU são todos de direito do trabalho ou eleitoral fica fora da carga (áreas da TPU `864`, `11428` e `10739`).
+- `bridge_subject_precedent` liga cada precedente aos assuntos da TPU que o STJ informa.
+
+Depois, `pipeline/precedent_link.py` liga cada precedente aos temas, em `bridge_theme_precedent`. A regra é a mesma, híbrida, da doutrina, comparando o nome do tema com a questão e a tese do precedente:
+
+- Similaridade de cosseno de pelo menos 0,55, e as palavras distintivas do nome do tema presentes no texto do precedente.
+- No máximo os 10 precedentes mais próximos por tema.
+- Cada ligação grava `similarity`, `link_method` (`embedding_cosine+lexical`) e `embedding_model`, e a tabela é refeita a cada execução.
+
+É essa ligação que a API lê, então o produto diz que o precedente é "relacionado ao tema", nunca que foi citado nesses processos.
+
+### 3.9 Dados do caso vindos do site do tribunal
+
+`pipeline/dw_court_site_case.py` refaz `case_site_detail` e `case_site_movement` a partir de `raw.court_site_case` a cada execução:
+
+- O processo coletado é casado com o `dim_case` pelo número e pelo tribunal; processo que não está no `dim_case` é ignorado.
+- Processo encontrado guarda classe, assuntos, órgão julgador, juiz ou relator, data de distribuição, situação, último julgamento e as movimentações públicas, numeradas na ordem em que o site mostra.
+- Processo que o site não encontrou, ou em sigilo, guarda só o status, sem campo e sem movimentação.
+- Só os campos listados são copiados, então nada mais do payload chega ao `dw` (NFR-21).
+
 ## 4. Carga dos dados (Load)
 
 ### Modelo de destino
@@ -180,13 +225,14 @@ O destino é o PostgreSQL 16 (locale ICU `pt-BR`, extensões `unaccent` e `pg_tr
 | Tipo | Objetos |
 | --- | --- |
 | Fato | `fact_case_event`, grão: uma movimentação de um processo |
-| Dimensões | `dim_case`, `dim_case_class`, `dim_court`, `dim_date`, `dim_decision_outcome`, `dim_doctrine`, `dim_judging_body`, `dim_movement`, `dim_subject`, `dim_theme` |
-| Pontes | `bridge_case_subject`, `bridge_subject_doctrine`, `bridge_theme_subject` |
+| Dimensões | `dim_case`, `dim_case_class`, `dim_court`, `dim_date`, `dim_decision_outcome`, `dim_doctrine`, `dim_judging_body`, `dim_movement`, `dim_precedent`, `dim_subject`, `dim_theme` |
+| Pontes | `bridge_case_subject`, `bridge_subject_doctrine`, `bridge_subject_precedent`, `bridge_theme_precedent`, `bridge_theme_subject` |
+| Dados do caso vindos do site do tribunal | `case_site_detail` (uma linha por processo coletado) e `case_site_movement` (as movimentações públicas dele) |
 | Tabelas de apoio | `search_synonym`, `strength_config`, `theme_narrative` |
 | Views materializadas | `case_current_result`, `data_provenance`, `theme_outcome_distribution`, `theme_strength`, `theme_summary` |
 | View | `theme_provenance` |
 
-Schemas de trabalho no banco de carga: `raw` (payloads originais, mantidos para que recarregar nunca exija voltar às fontes), `staging` (registros achatados) e `etl` (o registro de temas). Só o `dw` vai para o destino.
+Schemas de trabalho no banco de carga: `raw` (payloads originais, inclusive `stj_precedent` e `court_site_case`, mantidos para que recarregar nunca exija voltar às fontes), `staging` (registros achatados) e `etl` (o registro de temas). Só o `dw` vai para o destino.
 
 ### Dois passos: montar e exportar
 
@@ -276,6 +322,8 @@ A carga é manual por decisão (D-17): não há agendador, nem contêiner de ETL
 | Comando | O que faz |
 | --- | --- |
 | `python -m pipeline.harvest_doaj`, `harvest_scielo`, `harvest_oai` | Coletam doutrina em `raw.doctrine_article`. Opcionais e seguros de repetir |
+| `python -m pipeline.harvest_precedents` | Coleta os temas repetitivos do STJ em `raw.stj_precedent`. Seguro de repetir |
+| `python -m pipeline.harvest_court_sites` | Coleta do e-SAJ os processos da amostra do TJSP em `raw.court_site_case`. Precisa da amostra no `dw`; seguro de repetir, e continua de onde parou |
 | `python -m pipeline` | Coleta do DataJud, transforma, carrega, checa a integridade e escreve o arquivo de carga e o manifesto |
 | `python -m pipeline --skip-harvest` | Refaz tudo a partir do que já está no `raw`, sem chamar o DataJud |
 | `python -m pipeline --top-up` | Como acima, mais uma segunda coleta para temas com menos de 5 julgados |
@@ -289,9 +337,12 @@ Erros (variável ausente, schema `dw` ausente, verificação de integridade falh
 
 1. Suba a API contra o banco de carga, para que ela crie o `dw` e o histórico de migrations.
 2. Opcionalmente, rode os coletores de doutrina.
-3. Rode `python -m pipeline`, com `--top-up` quando os temas com poucos julgados importarem.
-4. Rode `python -m pipeline.propose` e registre os novos grupos em `theme_merge_groups.json`; depois rode `python -m pipeline --skip-harvest` de novo.
-5. Rode `python -m pipeline.publish` e aplique o arquivo no destino.
+3. Rode `python -m pipeline.harvest_precedents`.
+4. Rode `python -m pipeline`, com `--top-up` quando os temas com poucos julgados importarem.
+5. Rode `python -m pipeline.harvest_court_sites`. Ele lê a amostra montada no passo 4, então não pode rodar antes; com uma amostra grande leva horas, por causa da espera de 2 s.
+6. Rode `python -m pipeline.propose` e registre os novos grupos em `theme_merge_groups.json`.
+7. Rode `python -m pipeline --skip-harvest`, para que os processos do site e os novos grupos cheguem ao `dw`. Sem este passo as tabelas de dados do caso ficam vazias, sem erro.
+8. Rode `python -m pipeline.publish` e aplique o arquivo no destino.
 
 ### Automação que existe
 
@@ -320,3 +371,5 @@ O workflow `Pipeline CI` (`.github/workflows/ci.yml`) roda em pull requests para
 | Carregar num banco que a API não migrou corromperia ou falharia no meio | O pipeline se recusa a começar sem o `dw`, e o arquivo de carga se recusa a rodar em outra versão de schema |
 | Agendar a carga exigiria infraestrutura no servidor do cliente | A carga é manual, roda do nosso lado e segue como um arquivo validado (D-17) |
 | O STF não está no DataJud (não é subordinado ao CNJ) | A única fonte aberta encontrada é o painel de decisões do Corte Aberta, um CSV sem número CNJ do processo e sem código de assunto da TPU. O STF seria uma instância à parte, e a regra da D-41 não o alcança. O escopo inclui o STF, mas ele precisa de um coletor novo, do mapeamento do texto de andamento para resultado e do assunto para tema, e da semeadura em `dim_court` quando houver dado. Detalhes em `03-dados/07-fonte-stf.md` da wiki de docs |
+| Os precedentes qualificados do STF, do TJSP, do TJRJ e do TJMG estão reunidos no BNP/Pangea do CNJ, mas a API exige credencial da PDPJ concedida pelo CNJ aos tribunais, e o site público não autoriza acesso automatizado (spike 0.113) | Só os temas repetitivos do STJ são carregados, dos dados abertos do STJ. Os demais precedentes ficam de fora até haver fonte verificada |
+| As consultas processuais do TJRJ, do TJMG e do STJ respondem ao acesso automatizado com captcha ou bloqueio anti-robô | Só o TJSP tem dados do caso vindos do site do próprio tribunal. Os outros tribunais ficam sem dados do caso vindos do site |
