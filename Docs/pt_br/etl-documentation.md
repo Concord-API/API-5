@@ -30,9 +30,10 @@ Tribunais coletados hoje: TJSP, TJRJ, TJMG e STJ, só matéria cível. O STF est
 | SciELO | API ArticleMeta, `https://articlemeta.scielo.org/api/v1/article/`, sem autenticação | `python -m pipeline.harvest_scielo [--issn I]` | Artigos dos 6 ISSNs em `pipeline/data/scielo_issns.json` |
 | OAI-PMH | Endpoints Dublin Core (`oai_dc`), sem autenticação | `python -m pipeline.harvest_oai [--repository R]` | Artigos dos 48 endpoints de revistas em `pipeline/data/oai_sources.json` (47 habilitados; um está desabilitado porque o endpoint exige acesso) |
 | Precedentes qualificados do STJ | `temas.csv` dos dados abertos em `dadosabertos.web.stj.jus.br`, sem autenticação | `python -m pipeline.harvest_precedents [--file F]` | Os temas repetitivos do STJ: número, questão, tese, situação, data de julgamento, órgão julgador e assuntos da TPU |
+| Site do TJSP | Consulta pública do e-SAJ, `https://esaj.tjsp.jus.br` (primeiro grau `cpopg`, segundo grau `cposg`), sem autenticação | `python -m pipeline.harvest_court_sites [--limit N] [--refresh]` | Dos processos do TJSP que já estão na amostra de um tema: classe, assunto, órgão julgador, juiz ou relator, data de distribuição, situação, último julgamento e movimentações públicas |
 | STF | Painel de decisões do Corte Aberta (CSV), fora do DataJud | não implementado | Veja a seção 8 |
 
-O DataJud é a única fonte de decisões; as outras três alimentam a dimensão de doutrina. Os coletores de doutrina são comandos separados e não são executados por `python -m pipeline`; o comando principal apenas transforma o que já estiver em `raw.doctrine_article`.
+O DataJud é a única fonte de decisões que contam nas métricas. Os dados abertos do STJ alimentam os precedentes qualificados, o e-SAJ acrescenta os detalhes dos processos do TJSP que já estão na amostra, e as outras três alimentam a dimensão de doutrina. Os coletores de doutrina são comandos separados e não são executados por `python -m pipeline`; o comando principal apenas transforma o que já estiver em `raw.doctrine_article`.
 
 ### Como o DataJud é consultado
 
@@ -75,6 +76,18 @@ Os três coletores gravam o payload do artigo como JSONB em `raw.doctrine_articl
 `python -m pipeline.harvest_precedents` baixa o `temas.csv` do STJ e grava cada tema em `raw.stj_precedent`, com chave por tipo e número, então coletar de novo só atualiza o payload e a data de coleta. O download espera 180 s por requisição e repete até 5 vezes em erro de rede, 429 ou 5xx. Quando o portal do STJ está fora, `--file` lê um `temas.csv` baixado à mão.
 
 Só os temas repetitivos do STJ são coletados. Os precedentes qualificados do STF, do TJSP, do TJRJ e do TJMG (súmulas, IRDR, IAC e repercussão geral) não têm fonte verificada; veja a seção 8.
+
+### Coletor do site do tribunal
+
+`python -m pipeline.harvest_court_sites` lê os processos do TJSP em `dw.theme_case_sample` sem sigilo, com número de 20 dígitos e ainda sem linha em `raw.court_site_case` (`--refresh` coleta de novo, `--limit` limita a execução). Como a lista vem do `dw`, ele roda depois de `python -m pipeline` montar a amostra.
+
+- Cada processo é consultado no e-SAJ de primeiro ou de segundo grau, conforme o grau, e as movimentações são lidas página a página.
+- Espera 2 s antes de cada requisição, com timeout de 60 s, e repete até 5 vezes em erro de rede, 429 ou 5xx.
+- Processo que o site não encontra é gravado como `not_found`, e processo em sigilo como `sealed`, sem dado.
+- HTTP 403, página de desafio ou captcha param a execução. Os processos já coletados ficam, porque há commit após cada processo, e rodar de novo continua de onde parou. O Ratio não contorna essas proteções.
+- Partes, advogados, documentos e inteiro teor não são lidos (NFR-21).
+
+Só o TJSP tem fonte no site do tribunal; veja a seção 8.
 
 ### Frequência e autenticação
 
@@ -328,3 +341,4 @@ O workflow `Pipeline CI` (`.github/workflows/ci.yml`) roda em pull requests para
 | Agendar a carga exigiria infraestrutura no servidor do cliente | A carga é manual, roda do nosso lado e segue como um arquivo validado (D-17) |
 | O STF não está no DataJud (não é subordinado ao CNJ) | A única fonte aberta encontrada é o painel de decisões do Corte Aberta, um CSV sem número CNJ do processo e sem código de assunto da TPU. O STF seria uma instância à parte, e a regra da D-41 não o alcança. O escopo inclui o STF, mas ele precisa de um coletor novo, do mapeamento do texto de andamento para resultado e do assunto para tema, e da semeadura em `dim_court` quando houver dado. Detalhes em `03-dados/07-fonte-stf.md` da wiki de docs |
 | Os precedentes qualificados do STF, do TJSP, do TJRJ e do TJMG estão reunidos no BNP/Pangea do CNJ, mas a API exige credencial da PDPJ concedida pelo CNJ aos tribunais, e o site público não autoriza acesso automatizado (spike 0.113) | Só os temas repetitivos do STJ são carregados, dos dados abertos do STJ. Os demais precedentes ficam de fora até haver fonte verificada; a task 41.1 foi fechada em 22/11 sem coletar do BNP |
+| As consultas processuais do TJRJ, do TJMG e do STJ respondem ao acesso automatizado com captcha ou bloqueio anti-robô | Só o TJSP tem dados do caso vindos do site do próprio tribunal. Os outros tribunais aparecem sem esses dados, e a tela diz por quê; as tasks 39.2 a 39.4 foram fechadas em 22/11 |
