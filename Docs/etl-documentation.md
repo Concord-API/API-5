@@ -296,6 +296,8 @@ The load is manual by decision (D-17): there is no scheduler, no ETL container i
 | Command | What it does |
 | --- | --- |
 | `python -m pipeline.harvest_doaj`, `harvest_scielo`, `harvest_oai` | Collect doctrine into `raw.doctrine_article`. Optional, and safe to repeat |
+| `python -m pipeline.harvest_precedents` | Collect the STJ repetitive themes into `raw.stj_precedent`. Safe to repeat |
+| `python -m pipeline.harvest_court_sites` | Collect the TJSP sample cases from the e-SAJ into `raw.court_site_case`. Needs the sample in `dw`; safe to repeat, and it continues where it stopped |
 | `python -m pipeline` | Collect from DataJud, transform, load, check integrity and write the load file and manifest |
 | `python -m pipeline --skip-harvest` | Rebuild everything from what is already in `raw`, without calling DataJud |
 | `python -m pipeline --top-up` | As above, plus a second collection for themes with fewer than 5 judged cases |
@@ -309,9 +311,12 @@ Errors (missing variable, missing `dw` schema, failed integrity check) go to std
 
 1. Start the API against the load database, so it creates `dw` and the migration journal.
 2. Optionally run the doctrine collectors.
-3. Run `python -m pipeline`, with `--top-up` when thin themes matter.
-4. Run `python -m pipeline.propose` and record any new groups in `theme_merge_groups.json`, then run `python -m pipeline --skip-harvest` again.
-5. Run `python -m pipeline.publish` and apply the file at the destination.
+3. Run `python -m pipeline.harvest_precedents`.
+4. Run `python -m pipeline`, with `--top-up` when thin themes matter.
+5. Run `python -m pipeline.harvest_court_sites`. It reads the sample built in step 4, so it cannot run before it; with a large sample it takes hours, because of the 2 s wait.
+6. Run `python -m pipeline.propose` and record any new groups in `theme_merge_groups.json`.
+7. Run `python -m pipeline --skip-harvest`, so the court site cases and any new groups reach `dw`. Without this step the case data tables stay empty, with no error.
+8. Run `python -m pipeline.publish` and apply the file at the destination.
 
 ### Automation that does exist
 
@@ -341,4 +346,4 @@ The `Pipeline CI` workflow (`.github/workflows/ci.yml`) runs on pull requests to
 | Scheduling a load would need infrastructure on the client's server | The load is manual, runs on our side, and ships as a validated file (D-17) |
 | STF is not in DataJud (it is not subordinate to the CNJ) | The only open source found is the Corte Aberta decisions panel, as a CSV with no CNJ case number and no TPU subject code. STF would be an instance of its own, and the rule of D-41 cannot reach it. The scope includes STF, but it needs a new collector, a mapping of its movement text to outcomes and of its subjects to themes, and seeding in `dim_court` once there is data. Details are in `03-dados/07-fonte-stf.md` of the docs wiki |
 | The qualified precedents of STF, TJSP, TJRJ and TJMG are gathered in the CNJ's BNP/Pangea, but its API needs a PDPJ credential granted by the CNJ to the courts, and the public site does not authorize automated access (spike 0.113) | Only the STJ repetitive themes are loaded, from the STJ open data. The other precedents stay out until there is a verified source; task 41.1 was closed on 22/11 without collecting from the BNP |
-| The case lookups of TJRJ, TJMG and STJ answer automated access with a captcha or an anti-bot block | Only TJSP has case data from the court's own site. The other courts are shown without that data and the screen says why; tasks 39.2 to 39.4 were closed on 22/11 |
+| The case lookups of TJRJ, TJMG and STJ answer automated access with a captcha or an anti-bot block | Only TJSP has case data from the court's own site. The other courts have no case data from the site; tasks 39.2 to 39.4 were closed on 22/11 |

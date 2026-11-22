@@ -296,6 +296,8 @@ A carga é manual por decisão (D-17): não há agendador, nem contêiner de ETL
 | Comando | O que faz |
 | --- | --- |
 | `python -m pipeline.harvest_doaj`, `harvest_scielo`, `harvest_oai` | Coletam doutrina em `raw.doctrine_article`. Opcionais e seguros de repetir |
+| `python -m pipeline.harvest_precedents` | Coleta os temas repetitivos do STJ em `raw.stj_precedent`. Seguro de repetir |
+| `python -m pipeline.harvest_court_sites` | Coleta do e-SAJ os processos da amostra do TJSP em `raw.court_site_case`. Precisa da amostra no `dw`; seguro de repetir, e continua de onde parou |
 | `python -m pipeline` | Coleta do DataJud, transforma, carrega, checa a integridade e escreve o arquivo de carga e o manifesto |
 | `python -m pipeline --skip-harvest` | Refaz tudo a partir do que já está no `raw`, sem chamar o DataJud |
 | `python -m pipeline --top-up` | Como acima, mais uma segunda coleta para temas com menos de 5 julgados |
@@ -309,9 +311,12 @@ Erros (variável ausente, schema `dw` ausente, verificação de integridade falh
 
 1. Suba a API contra o banco de carga, para que ela crie o `dw` e o histórico de migrations.
 2. Opcionalmente, rode os coletores de doutrina.
-3. Rode `python -m pipeline`, com `--top-up` quando os temas com poucos julgados importarem.
-4. Rode `python -m pipeline.propose` e registre os novos grupos em `theme_merge_groups.json`; depois rode `python -m pipeline --skip-harvest` de novo.
-5. Rode `python -m pipeline.publish` e aplique o arquivo no destino.
+3. Rode `python -m pipeline.harvest_precedents`.
+4. Rode `python -m pipeline`, com `--top-up` quando os temas com poucos julgados importarem.
+5. Rode `python -m pipeline.harvest_court_sites`. Ele lê a amostra montada no passo 4, então não pode rodar antes; com uma amostra grande leva horas, por causa da espera de 2 s.
+6. Rode `python -m pipeline.propose` e registre os novos grupos em `theme_merge_groups.json`.
+7. Rode `python -m pipeline --skip-harvest`, para que os processos do site e os novos grupos cheguem ao `dw`. Sem este passo as tabelas de dados do caso ficam vazias, sem erro.
+8. Rode `python -m pipeline.publish` e aplique o arquivo no destino.
 
 ### Automação que existe
 
@@ -341,4 +346,4 @@ O workflow `Pipeline CI` (`.github/workflows/ci.yml`) roda em pull requests para
 | Agendar a carga exigiria infraestrutura no servidor do cliente | A carga é manual, roda do nosso lado e segue como um arquivo validado (D-17) |
 | O STF não está no DataJud (não é subordinado ao CNJ) | A única fonte aberta encontrada é o painel de decisões do Corte Aberta, um CSV sem número CNJ do processo e sem código de assunto da TPU. O STF seria uma instância à parte, e a regra da D-41 não o alcança. O escopo inclui o STF, mas ele precisa de um coletor novo, do mapeamento do texto de andamento para resultado e do assunto para tema, e da semeadura em `dim_court` quando houver dado. Detalhes em `03-dados/07-fonte-stf.md` da wiki de docs |
 | Os precedentes qualificados do STF, do TJSP, do TJRJ e do TJMG estão reunidos no BNP/Pangea do CNJ, mas a API exige credencial da PDPJ concedida pelo CNJ aos tribunais, e o site público não autoriza acesso automatizado (spike 0.113) | Só os temas repetitivos do STJ são carregados, dos dados abertos do STJ. Os demais precedentes ficam de fora até haver fonte verificada; a task 41.1 foi fechada em 22/11 sem coletar do BNP |
-| As consultas processuais do TJRJ, do TJMG e do STJ respondem ao acesso automatizado com captcha ou bloqueio anti-robô | Só o TJSP tem dados do caso vindos do site do próprio tribunal. Os outros tribunais aparecem sem esses dados, e a tela diz por quê; as tasks 39.2 a 39.4 foram fechadas em 22/11 |
+| As consultas processuais do TJRJ, do TJMG e do STJ respondem ao acesso automatizado com captcha ou bloqueio anti-robô | Só o TJSP tem dados do caso vindos do site do próprio tribunal. Os outros tribunais ficam sem dados do caso vindos do site; as tasks 39.2 a 39.4 foram fechadas em 22/11 |
