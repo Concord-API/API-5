@@ -225,13 +225,14 @@ O destino é o PostgreSQL 16 (locale ICU `pt-BR`, extensões `unaccent` e `pg_tr
 | Tipo | Objetos |
 | --- | --- |
 | Fato | `fact_case_event`, grão: uma movimentação de um processo |
-| Dimensões | `dim_case`, `dim_case_class`, `dim_court`, `dim_date`, `dim_decision_outcome`, `dim_doctrine`, `dim_judging_body`, `dim_movement`, `dim_subject`, `dim_theme` |
-| Pontes | `bridge_case_subject`, `bridge_subject_doctrine`, `bridge_theme_subject` |
+| Dimensões | `dim_case`, `dim_case_class`, `dim_court`, `dim_date`, `dim_decision_outcome`, `dim_doctrine`, `dim_judging_body`, `dim_movement`, `dim_precedent`, `dim_subject`, `dim_theme` |
+| Pontes | `bridge_case_subject`, `bridge_subject_doctrine`, `bridge_subject_precedent`, `bridge_theme_precedent`, `bridge_theme_subject` |
+| Dados do caso vindos do site do tribunal | `case_site_detail` (uma linha por processo coletado) e `case_site_movement` (as movimentações públicas dele) |
 | Tabelas de apoio | `search_synonym`, `strength_config`, `theme_narrative` |
 | Views materializadas | `case_current_result`, `data_provenance`, `theme_outcome_distribution`, `theme_strength`, `theme_summary` |
 | View | `theme_provenance` |
 
-Schemas de trabalho no banco de carga: `raw` (payloads originais, mantidos para que recarregar nunca exija voltar às fontes), `staging` (registros achatados) e `etl` (o registro de temas). Só o `dw` vai para o destino.
+Schemas de trabalho no banco de carga: `raw` (payloads originais, inclusive `stj_precedent` e `court_site_case`, mantidos para que recarregar nunca exija voltar às fontes), `staging` (registros achatados) e `etl` (o registro de temas). Só o `dw` vai para o destino.
 
 ### Dois passos: montar e exportar
 

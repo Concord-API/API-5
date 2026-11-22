@@ -225,13 +225,14 @@ The destination is PostgreSQL 16 (ICU locale `pt-BR`, extensions `unaccent` and 
 | Kind | Objects |
 | --- | --- |
 | Fact | `fact_case_event`, grain: one movement of one case |
-| Dimensions | `dim_case`, `dim_case_class`, `dim_court`, `dim_date`, `dim_decision_outcome`, `dim_doctrine`, `dim_judging_body`, `dim_movement`, `dim_subject`, `dim_theme` |
-| Bridges | `bridge_case_subject`, `bridge_subject_doctrine`, `bridge_theme_subject` |
+| Dimensions | `dim_case`, `dim_case_class`, `dim_court`, `dim_date`, `dim_decision_outcome`, `dim_doctrine`, `dim_judging_body`, `dim_movement`, `dim_precedent`, `dim_subject`, `dim_theme` |
+| Bridges | `bridge_case_subject`, `bridge_subject_doctrine`, `bridge_subject_precedent`, `bridge_theme_precedent`, `bridge_theme_subject` |
+| Case data from the court site | `case_site_detail` (one row per collected case) and `case_site_movement` (its public movements) |
 | Support tables | `search_synonym`, `strength_config`, `theme_narrative` |
 | Materialized views | `case_current_result`, `data_provenance`, `theme_outcome_distribution`, `theme_strength`, `theme_summary` |
 | View | `theme_provenance` |
 
-Working schemas in the load database: `raw` (original payloads, kept so a reload never needs to go back to the sources), `staging` (flattened records) and `etl` (the theme registry). Only `dw` goes to the destination.
+Working schemas in the load database: `raw` (original payloads, including `stj_precedent` and `court_site_case`, kept so a reload never needs to go back to the sources), `staging` (flattened records) and `etl` (the theme registry). Only `dw` goes to the destination.
 
 ### Two steps: build, then export
 
