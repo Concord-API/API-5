@@ -84,7 +84,7 @@ Só os temas repetitivos do STJ são coletados. Os precedentes qualificados do S
 
 - Cada conjunto tem um ZIP com o histórico (o da 3ª Turma traz 37.489 acórdãos, de 1989 a 2022), um JSON por mês com os acórdãos novos e um dicionário de dados em CSV, que não é baixado.
 - Os arquivos são lidos em ordem de data e cada acórdão é gravado em `raw.stj_ruling`, com chave pelo `id` do STJ. Um acórdão repetido em mais de um arquivo fica com uma linha, com o payload do arquivo mais recente.
-- O download espera 300 s por requisição e repete até 5 vezes em erro de rede, 429 ou 5xx.
+- Cada requisição tem tempo máximo (timeout) de 300 s. Em erro de rede, 429 ou 5xx, o download tenta até 5 vezes e espera entre as tentativas de 5 s a 30 s (5 s vezes o número da tentativa, com teto de 30 s).
 - `--dir` lê arquivos já baixados, numa pasta por conjunto com o nome do portal; a pasta de um órgão fora do escopo é ignorada.
 
 Só o STJ tem fonte de acórdãos. Os repositórios de jurisprudência dos tribunais estaduais bloqueiam o acesso automatizado com captcha ou o proíbem nos termos de uso (spike 0.112); veja a seção 8.
@@ -237,7 +237,10 @@ Depois, `pipeline/precedent_link.py` liga cada precedente aos temas, em `bridge_
 - O `source_url` aponta para a página pública do conjunto do órgão julgador, de onde o acórdão veio.
 - O acórdão que saiu da fonte é removido, então carregar duas vezes mantém uma linha por acórdão.
 
-A ligação entre acórdãos e temas (`bridge_theme_ruling`) ainda não é montada. O espelho não traz o número CNJ do processo, então a ligação tem de ser por similaridade com limiar declarado, que ainda precisa ser medido em temas reais (task 40.3).
+Os acórdãos são ligados aos temas em `bridge_theme_ruling` por `pipeline/ruling_link.py`, que roda dentro de `python -m pipeline` e reconstrói a tabela a cada execução, em dois passos:
+
+- Quando o número do acórdão tem 20 dígitos (número CNJ), o acórdão é ligado aos temas desse processo, por `dim_case`, `bridge_case_subject` e `bridge_theme_subject`, com `link_method` `cnj_exact`.
+- Os acórdãos que ficaram sem ligação são ligados por similaridade entre a ementa e o nome do tema, com o mesmo método e o mesmo limite da doutrina (`embedding_cosine+lexical`, similaridade de cosseno de no mínimo 0,55), mais a confirmação lexical das palavras distintivas do nome do tema. Só o trecho do assunto no cabeçalho da ementa é comparado, sem as partes processuais, e os temas com nome de área da TPU ficam de fora. Cada acórdão fica com no máximo 3 temas, e cada linha grava `similarity` e `similarity_threshold`.
 
 ## 4. Carga dos dados (Load)
 
@@ -399,4 +402,4 @@ O workflow `Pipeline CI` (`.github/workflows/ci.yml`) roda em pull requests para
 | Os precedentes qualificados do STF, do TJSP, do TJRJ e do TJMG estão reunidos no BNP/Pangea do CNJ, mas a API exige credencial da PDPJ concedida pelo CNJ aos tribunais, e o site público não autoriza acesso automatizado (spike 0.113) | Só os temas repetitivos do STJ são carregados, dos dados abertos do STJ. Os demais precedentes ficam de fora até haver fonte verificada |
 | As consultas processuais do TJRJ, do TJMG e do STJ respondem ao acesso automatizado com captcha ou bloqueio anti-robô | Só o TJSP tem dados do caso vindos do site do próprio tribunal. Os outros tribunais ficam sem dados do caso vindos do site |
 | Os repositórios de jurisprudência dos tribunais estaduais bloqueiam o acesso automatizado (reCAPTCHA no TJSP, captcha no TJMG, termos de uso que proíbem robôs no TJRJ), e só o STJ publica os acórdãos como dados abertos (spike 0.112, recorte validado pelo PO e pelo Scrum Master) | Só os acórdãos do STJ são coletados, dos espelhos abertos dos órgãos julgadores cíveis. Os tribunais estaduais ficam de fora até haver API oficial ou autorização por escrito |
-| O espelho de acórdão do STJ não traz o número CNJ do processo, só o número e o registro no STJ | O acórdão não pode ser ligado ao tema pelos processos; a ligação tem de ser por similaridade com limiar declarado (task 40.3). O site de processos do STJ responde ao acesso automatizado com verificação anti-robô, então o link de cada acórdão aponta para a página do conjunto de onde ele veio |
+| O espelho de acórdão do STJ normalmente não traz o número CNJ do processo, só o número e o registro no STJ | O acórdão é ligado ao tema pelos processos quando traz o número CNJ, e por similaridade com limite declarado nos demais. O site de processos do STJ responde ao acesso automatizado com verificação anti-robô, então o link de cada acórdão aponta para a página do conjunto de onde ele veio |
