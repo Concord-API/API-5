@@ -17,6 +17,7 @@ Veja a versão em inglês da documentação [aqui](../../README.md)
 - [Critérios de Aceitação](../pt_br/Scrum/acceptance-criteria.md)
 - [DoD](../pt_br/Scrum/definition-of-done.md)
 - [DoR](../pt_br/Scrum/definition-of-ready.md)
+- [Modelo de tasks](../pt_br/Scrum/task-model.md)
 - [Meta do produto](../pt_br/Scrum/product-goal.md)
 - [Requisitos Funcionais](../pt_br/functional-requirements.md)
 - [Requisitos Não Funcionais](../pt_br/non-functional-requirements.md)
@@ -160,7 +161,7 @@ Analisado e deliberadamente não construído neste ciclo.
 - **us0:** a branch base do **Technical Foundation** — as tasks `0.Y` (schema, pipeline, esqueleto do frontend), que não pertencem a nenhuma user story.
 - **id-da-task-nome-da-task-com-hifens-no-lugar-dos-espacos:** cada task tem sua própria branch, criada a partir da branch da user story a que pertence e mergeada de volta nela. O nome é o ID da task seguido do título dela no board, sem referência à user story — o ID já diz a que história ela pertence (`1.1` é da US-01, `0.12` do Technical Foundation). Sem acento, crase, aspas ou barra. Exemplo: `0.12-Create-the-dw-schema-migration-and-apply-it-on-API-startup`
 - **Proteção:** ninguém dá push direto na `main` nem numa branch `usX`. Toda mudança entra por pull request, a partir de uma branch de task.
-- **Repositório de documentação:** como as branches deste repositório não estão vinculadas a tarefas, seguem um padrão diferente. Levam o nome da aplicação, a palavra "**..**" e uma descrição do que está sendo feito — por exemplo, `RATIO-..-Definition-of-Done`, `RATIO-..-Product-Backlog`
+- **Repositório de documentação:** como as branches deste repositório não estão vinculadas a tarefas, seguem um padrão diferente. Levam o nome da aplicação, a palavra "**DOCS**" e uma descrição do que está sendo feito — por exemplo, `RATIO-DOCS-Definition-of-Done`, `RATIO-DOCS-Product-Backlog`
 ### Commits
 **Todo commit em qualquer repositório deste projeto deve ser escrito em inglês.**
 Cada commit deve ser pequeno, descritivo e direto, seguindo a convenção semântica:
@@ -168,7 +169,7 @@ Cada commit deve ser pequeno, descritivo e direto, seguindo a convenção semân
 - `feat:` descrição da nova funcionalidade
 - `fix:` correção de bug ou comportamento inesperado
 - `refactor:` melhoria de código sem mudança de comportamento
-- `..:` atualização de documentação
+- `docs:` atualização de documentação
 - `test:` adição ou alteração de testes do projeto — unidade, integração, contrato, ponta a ponta
 - `chore:` configuração, build ou manutenção
 
