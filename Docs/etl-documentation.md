@@ -84,7 +84,7 @@ Only the STJ repetitive themes are collected. The qualified precedents of STF, T
 
 - Each dataset has a ZIP with the history (the 3rd Panel's holds 37,489 rulings, from 1989 to 2022), one JSON file per month with the new rulings, and a data dictionary in CSV, which is not downloaded.
 - The files are read in date order and each ruling is written into `raw.stj_ruling`, keyed by the STJ `id`. A ruling repeated in more than one file keeps one row, with the payload of the latest file.
-- The download waits 300 s per request and retries up to 5 times on network error, 429 or 5xx.
+- Each request has a timeout of 300 s. On network error, 429 or 5xx, the download tries up to 5 times and waits between attempts from 5 s to 30 s (5 s times the attempt number, capped at 30 s).
 - `--dir` reads files already downloaded, in one folder per dataset named as on the portal; a folder of a judging body out of scope is ignored.
 
 Only the STJ has a rulings source. The state courts' case-law repositories block automated access with a captcha or forbid it in their terms of use (spike 0.112); see section 8.
@@ -237,7 +237,10 @@ This is the link the API reads, so the product says a precedent is "related to t
 - `source_url` points to the public page of the dataset of the judging body, where the ruling came from.
 - A ruling that left the source is removed, so loading twice keeps one row per ruling.
 
-The tie between rulings and themes (`bridge_theme_ruling`) is not built yet. The ruling mirror has no CNJ case number, so the tie has to be by similarity with a declared threshold, which still has to be measured on real themes (task 40.3).
+Rulings are tied to themes in `bridge_theme_ruling` by `pipeline/ruling_link.py`, which runs inside `python -m pipeline` and rebuilds the table on every run, in two steps:
+
+- When the number of a ruling has 20 digits (a CNJ number), the ruling is tied to the themes of that case, through `dim_case`, `bridge_case_subject` and `bridge_theme_subject`, with `link_method` `cnj_exact`.
+- The rulings left untied are tied by similarity between the summary and the theme name, with the same method and threshold as doctrine (`embedding_cosine+lexical`, cosine similarity of at least 0.55), plus the lexical match of the distinctive words of the theme name. Only the subject part of the summary heading is compared, without its procedural parts, and themes named after a TPU area are left out. Each ruling is tied to at most 3 themes, and each row stores `similarity` and `similarity_threshold`.
 
 ## 4. Data load (Load)
 
@@ -399,4 +402,4 @@ The `Pipeline CI` workflow (`.github/workflows/ci.yml`) runs on pull requests to
 | The qualified precedents of STF, TJSP, TJRJ and TJMG are gathered in the CNJ's BNP/Pangea, but its API needs a PDPJ credential granted by the CNJ to the courts, and the public site does not authorize automated access (spike 0.113) | Only the STJ repetitive themes are loaded, from the STJ open data. The other precedents stay out until there is a verified source |
 | The case lookups of TJRJ, TJMG and STJ answer automated access with a captcha or an anti-bot block | Only TJSP has case data from the court's own site. The other courts have no case data from the site |
 | The state courts' case-law repositories block automated access (reCAPTCHA in TJSP, captcha in TJMG, terms of use forbidding robots in TJRJ), and only the STJ publishes its rulings as open data (spike 0.112, scope validated by the PO and the Scrum Master) | Only the STJ rulings are collected, from the open ruling mirrors of its civil judging bodies. The state courts stay out until there is an official API or a written authorization |
-| The STJ ruling mirror has no CNJ case number, only the STJ number and registration | A ruling cannot be tied to a theme through its cases; the tie has to be by similarity with a declared threshold (task 40.3). The STJ case site answers automated access with an anti-bot challenge, so the link of each ruling points to the dataset page it came from |
+| The STJ ruling mirror has no CNJ case number, only the STJ number and registration | A ruling is tied to a theme through its cases when it brings a CNJ number, and by similarity with a declared threshold otherwise. The STJ case site answers automated access with an anti-bot challenge, so the link of each ruling points to the dataset page it came from |
