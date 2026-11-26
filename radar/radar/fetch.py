@@ -29,6 +29,7 @@ query($owner: String!, $number: Int!, $cursor: String) {
             ... on Issue {
               number title state createdAt closedAt
               assignees(first: 10) { nodes { login } }
+              comments(last: 20) { nodes { author { login } createdAt } }
               issueFieldValues(first: 20) {
                 nodes {
                   ... on IssueFieldSingleSelectValue { name field { ... on IssueFieldSingleSelect { name } } }
@@ -128,4 +129,30 @@ def pulls(client: GitHub, owner: str, repo: str) -> list[dict]:
             pull["commits"]["nodes"] = list(client.paginate(
                 PULL_COMMITS, ("repository", "pullRequest", "commits"), owner=owner, repo=repo, number=pull["number"]))
         result.append(pull)
+    return result
+
+
+BRANCH_COMMITS = """
+query($owner: String!, $repo: String!, $since: GitTimestamp!, $cursor: String) {
+  repository(owner: $owner, name: $repo) {
+    refs(refPrefix: "refs/heads/", first: 50, after: $cursor) {
+      pageInfo { hasNextPage endCursor }
+      nodes {
+        target {
+          ... on Commit { history(first: 50, since: $since) { nodes { authoredDate author { user { login } } } } }
+        }
+      }
+    }
+  }
+}
+"""
+
+
+def branch_commits(client: GitHub, owner: str, repo: str, since: str) -> list[dict]:
+    result = []
+    for ref in client.paginate(BRANCH_COMMITS, ("repository", "refs"), owner=owner, repo=repo, since=since):
+        for node in ((ref.get("target") or {}).get("history") or {}).get("nodes", []):
+            user = (node.get("author") or {}).get("user")
+            if user:
+                result.append({"date": node["authoredDate"], "author": user["login"]})
     return result

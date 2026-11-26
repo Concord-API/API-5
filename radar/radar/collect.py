@@ -7,6 +7,7 @@ from radar.sprints import Sprint
 METRIC = "Métrica"
 SPRINT_FIELD = "Sprint"
 SPRINT_NUMBER = re.compile(r"(\d+)")
+STORY_TITLE = re.compile(r"^(US-\d+)\b")
 
 
 def _value(node, key):
@@ -41,6 +42,26 @@ def _task(item):
         "sprint": _sprint(content),
         "days_in_status": None,
     }
+
+
+def _activity(item):
+    content = item["content"]
+    if item["type"] != "ISSUE" or not task_from_title(content["title"]):
+        return []
+    moved = _value(item["status"], "updatedAt")
+    result = [{"date": moved, "author": node["login"]} for node in content["assignees"]["nodes"]] if moved else []
+    for node in content.get("comments", {}).get("nodes", []):
+        if node.get("author"):
+            result.append({"date": node["createdAt"], "author": node["author"]["login"]})
+    return result
+
+
+def _story(item):
+    content = item["content"]
+    match = STORY_TITLE.match(content["title"])
+    if item["type"] != "ISSUE" or not match:
+        return None
+    return {"number": content["number"], "story": match.group(1), "sprint": _sprint(content), "state": content["state"]}
 
 
 def _metric(item):
@@ -93,6 +114,8 @@ def _commits(repo, pulls):
 
 def build_snapshot(today: date, sprints: list[Sprint], items: list[dict], pulls_by_repo: dict[str, list[dict]]) -> dict:
     tasks = [task for task in map(_task, items) if task]
+    stories = [story for story in map(_story, items) if story]
+    activity = sorted((entry for item in items for entry in _activity(item)), key=lambda a: (a["date"], a["author"]))
     metrics = [_metric(item) for item in items if _value(item["radar"], "name") == METRIC]
     pulls = [_pull(repo, pull) for repo, pulls in pulls_by_repo.items() for pull in pulls]
     commits = [commit for repo, pulls in pulls_by_repo.items() for commit in _commits(repo, pulls)]
@@ -100,6 +123,8 @@ def build_snapshot(today: date, sprints: list[Sprint], items: list[dict], pulls_
         "date": today.isoformat(),
         "sprints": [{"number": s.number, "start": s.start.isoformat(), "end": s.end.isoformat()} for s in sprints],
         "tasks": tasks,
+        "stories": stories,
+        "activity": activity,
         "metrics": metrics,
         "pulls": pulls,
         "commits": commits,

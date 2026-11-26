@@ -1,19 +1,47 @@
 import argparse
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import yaml
 
 from radar import fetch
+from radar.alerts import Rules, current_sprint, last_commits, marker, next_step, plan_alerts, render
 from radar.board import Board, known_options, known_weeks, plan_days, plan_metrics, plan_times, task_days
 from radar.collect import build_snapshot
 from radar.github import GitHub
+from radar.issue import Tracker
 from radar.links import story_label
 from radar.metrics import FIRST_COMMIT, created_in, person_metrics, task_times, week_metrics
 from radar.sprints import read_sprints
+
+
+def charge(client: GitHub, config: dict, snapshot: dict, sprints: list, now: datetime, dry_run: bool) -> dict:
+    settings = config.get("alerts")
+    today = now.date()
+    sprint = current_sprint(sprints, today)
+    if not settings or sprint is None or today.weekday() >= 5:
+        return {"step": "off"}
+    rules = Rules(settings["master"], settings["team"], settings.get("no_task_expected", []),
+                  settings.get("idle_days", 2), settings.get("escalate_days", 4))
+    since = datetime.combine(sprint.start - timedelta(days=14), datetime.min.time()).isoformat() + "Z"
+    commits = snapshot["commits"] + snapshot["activity"]
+    for repo in config["code_repos"] + [config["board_repo"]]:
+        commits += fetch.branch_commits(client, config["owner"], repo, since)
+    alerts = plan_alerts(snapshot, sprint, today, rules, last_commits(commits, config["timezone"]))
+    body = render(alerts, sprint, today, rules)
+    tracker = Tracker(client, config["owner"], config["board_repo"], settings["title"])
+    issue = tracker.find()
+    step = next_step(issue, marker(today))
+    if dry_run:
+        return {"step": step, "message": body}
+    if step == "create":
+        tracker.comment(tracker.create(rules.master), body)
+    elif step == "comment":
+        tracker.comment(issue["id"], body)
+    return {"step": step}
 
 
 def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> dict:
@@ -76,7 +104,10 @@ def run(client: GitHub, config: dict, root: Path, out: Path, dry_run: bool) -> d
         for item_id, metric in updates:
             board.update_metric(item_id, metric)
 
+    alerts = charge(client, config, snapshot, sprints, now, dry_run)
+
     return {
+        "alerts": alerts,
         "date": snapshot["date"],
         "tasks": len(snapshot["tasks"]),
         "pulls": len(snapshot["pulls"]),

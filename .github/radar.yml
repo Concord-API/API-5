@@ -7,3 +7,18 @@ code_repos:
   - API5-Pipeline
 timezone: America/Sao_Paulo
 sprint_backlogs: sprint*/sprint-backlog.md
+alerts:
+  title: "🚨 Travas de hoje"
+  master: joaoandrade17
+  team:
+    - IsaacOliveiraSouza
+    - joaoandrade17
+    - JoaoBaranov
+    - RichardCordeiro
+    - thiagosabreu
+    - victorgsnogueira
+    - vp-p
+  no_task_expected:
+    - vp-p
+  idle_days: 2
+  escalate_days: 4
