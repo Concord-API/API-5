@@ -29,7 +29,7 @@ INTRO = """Todo dia útil às 9h o Radar comenta aqui quem está travando a spri
 
 - quem tem task aberta no nome e está há 2 dias úteis ou mais sem commit em nenhum repositório, sem comentar nas suas tasks e sem mover os seus cards;
 - a partir de 4 dias úteis, o master é mencionado junto;
-- para o master: tasks sem responsável, US sem nenhuma task e, quando a sprint tem US, pessoas sem task.
+- para o master: sprint sem nenhuma task, tasks sem responsável, US sem nenhuma task e, quando a sprint tem US, pessoas sem task.
 
 Fechar esta issue pausa as cobranças. Reabrir volta."""
 
