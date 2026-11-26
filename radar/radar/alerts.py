@@ -60,7 +60,9 @@ def plan_alerts(snapshot: dict, sprint: Sprint, today: date, rules: Rules, commi
     stories = [
         story["story"] for story in in_sprint if story["state"] == "OPEN" and story["story"] not in with_tasks
     ]
+    planned = any(task["sprint"] == sprint.number for task in snapshot["tasks"])
     return {
+        "empty_sprint": None if planned else business_days(sprint.start, today),
         "idle": idle,
         "unassigned": sorted(task["number"] for task in tasks if not task["assignees"]),
         "without_task": without_task,
@@ -92,6 +94,10 @@ def render(alerts: dict, sprint: Sprint, today: date, rules: Rules) -> str:
             lines.append(line + (f" · @{rules.master}" if escalate else ""))
         lines.append("")
     master = []
+    empty = alerts.get("empty_sprint")
+    if empty is not None:
+        started = "hoje" if empty == 0 else f"há {empty} {'dia útil' if empty == 1 else 'dias úteis'}"
+        master.append(f"- 📭 A Sprint {sprint.number} começou {started} e não tem nenhuma task.")
     if alerts["unassigned"]:
         count = len(alerts["unassigned"])
         master.append(f"- 📌 {_plural(count, 'task')} sem ninguém: {_numbers(alerts['unassigned'])}")
