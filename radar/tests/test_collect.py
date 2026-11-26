@@ -6,7 +6,8 @@ from radar.sprints import Sprint
 SPRINTS = [Sprint(3, date(2026, 11, 2), date(2026, 11, 22))]
 
 
-def issue_item(item_id, number, title, status=None, status_since=None, closed_at=None, assignees=(), sprint=None):
+def issue_item(item_id, number, title, status=None, status_since=None, closed_at=None, assignees=(), sprint=None,
+               comments=()):
     return {
         "id": item_id,
         "type": "ISSUE",
@@ -17,6 +18,7 @@ def issue_item(item_id, number, title, status=None, status_since=None, closed_at
             "createdAt": "2026-11-03T13:00:00Z",
             "closedAt": closed_at,
             "assignees": {"nodes": [{"login": login} for login in assignees]},
+            "comments": {"nodes": [{"author": {"login": login}, "createdAt": at} for login, at in comments]},
             "issueFieldValues": {"nodes": [{"name": "Alta", "field": {"name": "Prioridade"}}]
                                  + ([{"name": sprint, "field": {"name": "Sprint"}}] if sprint else [])},
         },
@@ -149,3 +151,26 @@ def test_keeps_the_person_of_a_metric_item():
     item["content"]["assignees"]["nodes"] = [{"login": "ana"}]
 
     assert snapshot([item])["metrics"][0]["pessoa"] == "ana"
+
+
+def test_keeps_the_stories_with_their_sprint():
+    result = snapshot([
+        issue_item("I2", 327, "US-27 — As a user, I want to export to CSV", sprint="Sprint 4"),
+        issue_item("I1", 401, "27.3 Add the CSV export endpoint", sprint="Sprint 4"),
+    ])
+
+    assert result["stories"] == [{"number": 327, "story": "US-27", "sprint": 4, "state": "OPEN"}]
+
+
+def test_the_comments_on_a_task_and_the_last_move_of_its_card_are_work_of_its_people():
+    result = snapshot([
+        issue_item("I1", 401, "27.3 Add the CSV export endpoint", "In Progress", "2026-11-12T12:00:00Z",
+                   assignees=["ana", "bia"], comments=[("caio", "2026-11-13T12:00:00Z")]),
+        issue_item("I2", 327, "US-27 — As a user, I want to export to CSV", comments=[("vini", "2026-11-14T12:00:00Z")]),
+    ])
+
+    assert result["activity"] == [
+        {"date": "2026-11-12T12:00:00Z", "author": "ana"},
+        {"date": "2026-11-12T12:00:00Z", "author": "bia"},
+        {"date": "2026-11-13T12:00:00Z", "author": "caio"},
+    ]
