@@ -171,3 +171,27 @@ def test_a_comment_or_a_status_change_on_a_task_counts_as_work_like_a_commit():
     commits = [{"date": "2026-12-01T12:00:00Z", "author": "ana"}]
 
     assert last_commits(commits + activity, TZ) == {"ana": date(2026, 12, 3), "bia": date(2026, 12, 4)}
+
+
+def test_the_master_is_charged_while_the_started_sprint_has_no_task_at_all():
+    data = snapshot([task(45, sprint=3)], [story("US-30", sprint=3)])
+
+    alerts = plan_alerts(data, S4, date(2026, 12, 2), RULES, {})
+
+    assert alerts["empty_sprint"] == 2
+    assert "📭 A Sprint 4 começou há 2 dias úteis e não tem nenhuma task." in render(alerts, S4, date(2026, 12, 2), RULES)
+
+
+def test_a_sprint_whose_tasks_are_all_done_is_not_empty():
+    data = snapshot([task(45, assignees=["ana"], state="CLOSED", status="Done")])
+
+    alerts = plan_alerts(data, S4, date(2026, 12, 2), RULES, {})
+
+    assert alerts["empty_sprint"] is None
+    assert "✅ Nenhuma trava hoje" in render(alerts, S4, date(2026, 12, 2), RULES)
+
+
+def test_the_empty_sprint_says_when_it_started_today():
+    alerts = plan_alerts(snapshot(), S4, date(2026, 11, 30), RULES, {})
+
+    assert "📭 A Sprint 4 começou hoje e não tem nenhuma task." in render(alerts, S4, date(2026, 11, 30), RULES)
