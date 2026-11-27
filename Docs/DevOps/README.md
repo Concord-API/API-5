@@ -36,22 +36,27 @@ DevOps fronts come in from version control onwards, and the Docs front runs thro
 because each one needs to be recorded to keep existing without whoever built it.
 
 ```mermaid
-flowchart LR
-    client(["Client: problem"]) --> proposal
+flowchart TD
+    client(["Client: problem"]) --> req
 
     subgraph req["Requirements tracking"]
+        direction LR
         proposal["Solution proposal"] --> requirements["Solution: requirements"]
         requirements --> mvp["MVP"] --> pb["Product Backlog"]
         pb -->|DoR| sb["Sprint Backlog"] --> git["Version control"]
     end
 
-    git --> ci["CI"]
-    ci --> db["Database"]
-    ci --> tests["Tests"] --> qa["QA"]
-    ci --> deploy["Automatic deploy"]
-    monit["Monitoring"] -.-> deploy
+    req --> devops
 
-    docs["Docs"] -.- req & ci & db & tests & qa & deploy & monit
+    subgraph devops["DevOps fronts"]
+        ci["CI"] --> db["Database"]
+        ci --> tests["Tests"] --> qa["QA"]
+        ci --> deploy["Automatic deploy"]
+        monit["Monitoring"] -.-> deploy
+    end
+
+    docs["Docs"] -.- req
+    docs -.- devops
 ```
 
 | Stage | What happens in Ratio | Where it is documented |

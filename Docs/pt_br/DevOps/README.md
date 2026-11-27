@@ -37,22 +37,27 @@ frentes do DevOps entram a partir do controle de versão, e a frente Docs atrave
 porque cada uma precisa estar registrada para continuar existindo sem quem a construiu.
 
 ```mermaid
-flowchart LR
-    cliente(["Cliente: problema"]) --> proposta
+flowchart TD
+    cliente(["Cliente: problema"]) --> req
 
     subgraph req["Rastreio de requisitos"]
+        direction LR
         proposta["Proposta de solução"] --> requisitos["Solução: requisitos"]
         requisitos --> mvp["MVP"] --> pb["Product Backlog"]
         pb -->|DoR| sb["Sprint Backlog"] --> git["Controle de versão"]
     end
 
-    git --> ci["CI"]
-    ci --> bd["BD"]
-    ci --> testes["Testes"] --> qa["QA"]
-    ci --> deploy["Deploy automático"]
-    monit["Monitoramento"] -.-> deploy
+    req --> devops
 
-    docs["Docs"] -.- req & ci & bd & testes & qa & deploy & monit
+    subgraph devops["Frentes do DevOps"]
+        ci["CI"] --> bd["BD"]
+        ci --> testes["Testes"] --> qa["QA"]
+        ci --> deploy["Deploy automático"]
+        monit["Monitoramento"] -.-> deploy
+    end
+
+    docs["Docs"] -.- req
+    docs -.- devops
 ```
 
 | Etapa | O que acontece no Ratio | Onde está documentado |
