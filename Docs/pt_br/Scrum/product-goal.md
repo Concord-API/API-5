@@ -24,4 +24,4 @@ vinculante se aplica).
 |---|---|
 | **Tribunais** | TJSP · TJRJ · TJMG |
 | **Implantação** | aplicação local na intranet do usuário |
-| **Janela de entrega** | Sprint 1 a Sprint 3, 07/09 a 22/11/2026; Feira de Soluções em 03/12 |
+| **Janela de entrega** | Sprint 1 a Sprint 3, 07/09 a 22/11/2026, mais a Sprint 4 extra até 11/12/2026; Feira de Soluções em 03/12 |

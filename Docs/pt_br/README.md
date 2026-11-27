@@ -64,6 +64,8 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | [**US-39**](../pt_br/Scrum/acceptance-criteria.md#us-39--ver-os-dados-do-processo-dentro-do-ratio) | Should | Como **usuário**, quero ver os dados de cada processo da amostra dentro do Ratio, extraídos do site do próprio tribunal, para conferir o processo sem sair do produto | 5 |
 | [**US-40**](../pt_br/Scrum/acceptance-criteria.md#us-40--ver-os-julgados-por-trás-do-tema) | Should | Como **usuário**, quero ver os julgados que compõem a jurisprudência do tema, com tribunal, órgão julgador, data, ementa e link para a página do tribunal, no mesmo padrão de tabela dos processos, para ler como os tribunais decidiram e não apenas contar os casos | 8 |
 | [**US-41**](../pt_br/Scrum/acceptance-criteria.md#us-41--ver-os-precedentes-qualificados-relacionados-ao-tema) | Should | Como **usuário**, quero ver os precedentes qualificados relacionados ao tema — súmulas, temas repetitivos, IRDR, IAC e repercussão geral —, com tipo, número, tribunal, tese e situação, para saber o que vincula os tribunais neste tema e não apenas como eles têm decidido | 8 |
+| [**US-42**](../pt_br/Scrum/acceptance-criteria.md#us-42--ver-quais-temas-mudaram) | Should | Como **usuário**, quero ver quais temas mudaram nos últimos dois anos, com a taxa e a contagem de processos de cada período, para saber quais entendimentos estão virando antes de me apoiar em decisões mais antigas | 8 |
+| [**US-43**](../pt_br/Scrum/acceptance-criteria.md#us-43--ver-o-tema-antes-e-depois-da-tese-vinculante) | Should | Como **usuário**, quero ver no gráfico anual do tema a data em que o STJ julgou o tema repetitivo relacionado, e como os processos do tema foram decididos antes e depois dela, para saber se os tribunais mudaram de rumo depois da tese vinculante | 8 |
 | **US-13** | Could | Como **usuário**, quero que a aba que estou vendo seja refletida na URL, para enviar a um colega o link exato da parte que quero mostrar | 5 |
 
 ## Distribuição por sprint
@@ -73,6 +75,9 @@ O Ratio se propõe a eliminar o trabalho manual e fragmentado de análise de jur
 | **Sprint 1** | 07/09 – 27/09 | 8 | 39 |
 | **Sprint 2** | 05/10 – 25/10 | 9 | 44 |
 | **Sprint 3** | 02/11 – 22/11 | 6 | 34 |
+| **Sprint 4** (extra) | 23/11 – 11/12 | 2 | 16 |
+
+A Sprint 4 é uma sprint extra, fora da janela de entrega planejada. Ela traz duas histórias que melhoram o produto para a Feira de Soluções em 03/12 e passam o DevOps implementado nas últimas sprints por todo o processo de desenvolvimento, e termina em 11/12.
 
 ## MoSCoW
 
