@@ -1,4 +1,4 @@
-Detailed DoR and acceptance criteria for all 22 stories in the
+Detailed DoR and acceptance criteria for all 24 stories in the
 [Product Backlog](../../README.md#-product-backlog), in backlog order. Scenarios are written in BDD, as
 the [Definition of Ready](definition-of-ready.md) requires.
  
@@ -898,4 +898,109 @@ Scenario: Branch out of scope
 Given a precedent from a labour or electoral court
 When the topic's precedents are loaded
 Then it does not appear
+```
+ 
+---
+ 
+# Sprint 4
+ 
+---
+ 
+### US-42 — See which topics have shifted
+`Should` · E3 · 8 SP · Sprint 4 · ready · depends on US-11, US-25, US-26
+ 
+> As a **user**, I want to see which topics have shifted in the last two years, with the rate and
+> the case count of each period, so that I know which understandings are turning before I rely on
+> older decisions.
+ 
+**Business rules**
+ 
+- Two fixed windows by decision year: the earlier one, 2021–2024, and the recent one, 2025–2026.
+- The rate of each window is the share of *procedente* outcomes among the topic's judged cases in that window. It comes from the `dw` aggregate (a materialized view over `dw.theme_by_year`), never computed on screen.
+- A window needs at least 20 judged cases (`D-32`). Below that in either window, the topic is never shown as a shift.
+- A topic is a shift only when the two-proportion test gives p < 0.05 **and** the rates differ by at least 20 points. The view stores p and the difference.
+- Both rates always come with the `n` of their window, the direction of the change, the source and the extraction date (`US-25`).
+- The shift appears in three places: a block of shifting topics on the home page, the result item and the topic header.
+- With no topic passing the rule, the block says so (`US-26`): "Nenhum tema mudou de forma significativa entre 2021–2024 e 2025–2026."
+- Grain: one row per topic, with the rate, the `n` and the window of each period, the difference and p. The data is the same DataJud load the ETL already publishes (`NFR-12`); nothing is collected again.
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Shifting topic on the home page
+Given a topic with at least 20 judged cases in each window, p < 0.05 and a difference of at least 20 points
+When the home page renders
+Then the topic appears in the shifting topics block with both rates, the n of each window, the direction, the source and the extraction date
+ 
+Scenario: Shift in the result item and in the topic header
+Given a topic that passes the shift rule
+When it appears in the result list or its page opens
+Then the result item and the topic header show the shift with both rates and both n
+ 
+Scenario: Below the case floor
+Given a topic with 19 judged cases in one of the windows
+When the shifts are computed
+Then the topic does not appear on the home page, in the result item or in the topic header
+ 
+Scenario: Not significant
+Given a topic whose two-proportion test gives p ≥ 0.05
+When the shifts are computed
+Then the topic does not appear as a shift anywhere
+ 
+Scenario: Difference under 20 points
+Given a topic with p < 0.05 and rates less than 20 points apart
+When the shifts are computed
+Then the topic does not appear as a shift anywhere
+ 
+Scenario: No topic has shifted
+Given no topic passes the shift rule
+When the home page renders
+Then the block shows "Nenhum tema mudou de forma significativa entre 2021–2024 e 2025–2026."
+```
+ 
+---
+ 
+### US-43 — See the topic before and after the binding thesis
+`Should` · E4 · 8 SP · Sprint 4 · ready · depends on US-11, US-25, US-26, US-41
+ 
+> As a **user**, I want to see on the topic's yearly chart the date the STJ judged the related
+> repetitive theme, and how the topic's cases were decided before and after it, so that I know
+> whether the courts changed course after the binding thesis.
+ 
+**Business rules**
+ 
+- The related repetitive theme is the STJ *Tema* with the highest declared similarity to the topic in `dw.bridge_theme_precedent`, at 0.60 or above, and with a judgment date (`judged_at`). Other precedent types do not count.
+- The judgment date is marked on the topic's yearly chart (`US-11`).
+- Before and after are the share of *procedente* outcomes among the topic's cases decided before and after the judgment. The judgment year is left out of both sides, and each side needs at least 20 judged cases (`D-32`).
+- The percentage belongs to the topic's cases, never to the precedent (`US-41`).
+- The screen shows the precedent, its judgment date, both `n`, the source and the link method with its threshold, as in `US-41`.
+- The sentence below the chart states order in time, not cause: "Dos processos do tema decididos antes de {data}, {x}% foram procedentes (n={a}); depois, {y}% (n={b}). Isso mostra a ordem no tempo, não a causa."
+- With no related *Tema*, or with fewer than 20 cases on either side, there is no mark and no sentence, and the block says why (`US-26`).
+- Grain: one row per topic with its related *Tema*, the judgment date and the rate and `n` of each side. The data comes from the DataJud and STJ loads the ETL already publishes (`NFR-12`).
+**Acceptance criteria**
+ 
+```gherkin
+Scenario: Judgment date on the yearly chart
+Given a topic with a related Tema judged by the STJ and at least 20 judged cases on each side of the date
+When the yearly chart renders
+Then the chart marks the judgment date and names the precedent
+ 
+Scenario: Before and after sentence
+Given the same topic
+When the chart renders
+Then the sentence below it reads "Dos processos do tema decididos antes de {data}, {x}% foram procedentes (n={a}); depois, {y}% (n={b}). Isso mostra a ordem no tempo, não a causa."
+ 
+Scenario: Judgment year left out
+Given cases decided in the year of the judgment
+When before and after are computed
+Then those cases count on neither side
+ 
+Scenario: Not enough cases on one side
+Given a topic with fewer than 20 judged cases before or after the judgment
+When the chart renders
+Then there is no mark and no sentence, and the block says why
+ 
+Scenario: No related Tema
+Given a topic with no Tema at similarity 0.60 or above, or whose Tema has no judgment date
+When the chart renders
+Then there is no mark and no sentence, and the block says why
 ```

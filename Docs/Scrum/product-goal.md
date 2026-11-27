@@ -24,4 +24,4 @@ precedent applies).
 |---|---|
 | **Courts** | TJSP · TJRJ · TJMG |
 | **Deployment** | local application on the user's intranet |
-| **Delivery window** | Sprint 1 to Sprint 3, 07/09 to 22/11/2026; Solutions Fair on 03/12 |
+| **Delivery window** | Sprint 1 to Sprint 3, 07/09 to 22/11/2026, plus the extra Sprint 4 until 11/12/2026; Solutions Fair on 03/12 |

@@ -39,6 +39,8 @@ requirement traces back to the user story it comes from.
 | FR-18 | Show the topic's alignment per court. | US-12 |
 | FR-19 | Show a table of each court's behaviour, with decisions, alignment and the date of the latest decision. | US-14 |
 | FR-20 | Flag internal divergence between the panels of the same court. | US-17 |
+| FR-38 | Show the topics whose *procedente* rate shifted between 2021–2024 and 2025–2026, with both rates and the `n` of each window, only when the change is significant and large enough. | US-42 |
+| FR-39 | Mark on the topic's yearly chart the date the STJ judged the related repetitive theme, with the *procedente* rate and the `n` of the topic's cases before and after it, stating order in time and not cause. | US-43 |
  
 ## Traceability of decisions
  

@@ -1,4 +1,4 @@
-DoR detalhada e critérios de aceite para todas as 22 histórias do
+DoR detalhada e critérios de aceite para todas as 24 histórias do
 [Product Backlog](../../README.md#-product-backlog), na ordem do backlog. Os cenários são
 escritos em BDD, como a [Definition of Ready](definition-of-ready.md) exige.
 
@@ -901,4 +901,109 @@ Cenário: Ramo fora do escopo
 Dado um precedente de um tribunal trabalhista ou eleitoral
 Quando os precedentes do tema são carregados
 Então ele não aparece
+```
+
+---
+
+# Sprint 4
+
+---
+
+### US-42 — Ver quais temas mudaram
+`Should` · E3 · 8 SP · Sprint 4 · pronta · depende de US-11, US-25, US-26
+
+> Como **usuário**, quero ver quais temas mudaram nos últimos dois anos, com a taxa e a contagem
+> de processos de cada período, para saber quais entendimentos estão virando antes de me apoiar em
+> decisões mais antigas.
+
+**Regras de negócio**
+
+- Duas janelas fixas pelo ano da decisão: a anterior, 2021–2024, e a recente, 2025–2026.
+- A taxa de cada janela é a proporção de resultados *procedente* entre os processos julgados do tema naquela janela. Ela vem do agregado do `dw` (uma view materializada sobre `dw.theme_by_year`), nunca é calculada na tela.
+- Cada janela precisa de pelo menos 20 processos julgados (`D-32`). Abaixo disso em qualquer uma das janelas, o tema nunca aparece como mudança.
+- Um tema só é mudança quando o teste de duas proporções dá p < 0,05 **e** as taxas diferem em pelo menos 20 pontos. A view grava p e a diferença.
+- As duas taxas vêm sempre com o `n` da sua janela, a direção da mudança, a fonte e a data de extração (`US-25`).
+- A mudança aparece em três lugares: um bloco de temas que mudaram na home, o item do resultado e o cabeçalho do tema.
+- Sem nenhum tema que passe na regra, o bloco diz isso (`US-26`): "Nenhum tema mudou de forma significativa entre 2021–2024 e 2025–2026."
+- Grão: uma linha por tema, com a taxa, o `n` e a janela de cada período, a diferença e p. O dado é a mesma carga do DataJud que o ETL já publica (`NFR-12`); nada é coletado de novo.
+**Critérios de aceite**
+
+```gherkin
+Cenário: Tema que mudou na home
+Dado um tema com pelo menos 20 processos julgados em cada janela, p < 0,05 e diferença de pelo menos 20 pontos
+Quando a home é renderizada
+Então o tema aparece no bloco de temas que mudaram com as duas taxas, o n de cada janela, a direção, a fonte e a data de extração
+
+Cenário: Mudança no item do resultado e no cabeçalho do tema
+Dado um tema que passa na regra de mudança
+Quando ele aparece na lista de resultados ou a página dele é aberta
+Então o item do resultado e o cabeçalho do tema mostram a mudança com as duas taxas e os dois n
+
+Cenário: Abaixo do mínimo de processos
+Dado um tema com 19 processos julgados em uma das janelas
+Quando as mudanças são calculadas
+Então o tema não aparece na home, no item do resultado nem no cabeçalho do tema
+
+Cenário: Não significativo
+Dado um tema cujo teste de duas proporções dá p ≥ 0,05
+Quando as mudanças são calculadas
+Então o tema não aparece como mudança em lugar nenhum
+
+Cenário: Diferença menor que 20 pontos
+Dado um tema com p < 0,05 e taxas a menos de 20 pontos uma da outra
+Quando as mudanças são calculadas
+Então o tema não aparece como mudança em lugar nenhum
+
+Cenário: Nenhum tema mudou
+Dado que nenhum tema passa na regra de mudança
+Quando a home é renderizada
+Então o bloco mostra "Nenhum tema mudou de forma significativa entre 2021–2024 e 2025–2026."
+```
+
+---
+
+### US-43 — Ver o tema antes e depois da tese vinculante
+`Should` · E4 · 8 SP · Sprint 4 · pronta · depende de US-11, US-25, US-26, US-41
+
+> Como **usuário**, quero ver no gráfico anual do tema a data em que o STJ julgou o tema repetitivo
+> relacionado, e como os processos do tema foram decididos antes e depois dela, para saber se os
+> tribunais mudaram de rumo depois da tese vinculante.
+
+**Regras de negócio**
+
+- O tema repetitivo relacionado é o *Tema* do STJ com a maior similaridade declarada com o tema em `dw.bridge_theme_precedent`, de 0,60 para cima, e com data de julgamento (`judged_at`). Os outros tipos de precedente não contam.
+- A data do julgamento é marcada no gráfico anual do tema (`US-11`).
+- Antes e depois são a proporção de resultados *procedente* entre os processos do tema decididos antes e depois do julgamento. O ano do julgamento fica fora dos dois lados, e cada lado precisa de pelo menos 20 processos julgados (`D-32`).
+- O percentual é dos processos do tema, nunca do precedente (`US-41`).
+- A tela mostra o precedente, a data do julgamento, os dois `n`, a fonte e o método da ligação com o seu limite, como na `US-41`.
+- A frase abaixo do gráfico declara a ordem no tempo, não a causa: "Dos processos do tema decididos antes de {data}, {x}% foram procedentes (n={a}); depois, {y}% (n={b}). Isso mostra a ordem no tempo, não a causa."
+- Sem *Tema* relacionado, ou com menos de 20 processos em qualquer um dos lados, não há marca nem frase, e o bloco diz por quê (`US-26`).
+- Grão: uma linha por tema com o seu *Tema* relacionado, a data do julgamento e a taxa e o `n` de cada lado. O dado vem das cargas do DataJud e do STJ que o ETL já publica (`NFR-12`).
+**Critérios de aceite**
+
+```gherkin
+Cenário: Data do julgamento no gráfico anual
+Dado um tema com um Tema relacionado julgado pelo STJ e pelo menos 20 processos julgados de cada lado da data
+Quando o gráfico anual é renderizado
+Então o gráfico marca a data do julgamento e nomeia o precedente
+
+Cenário: Frase de antes e depois
+Dado o mesmo tema
+Quando o gráfico é renderizado
+Então a frase abaixo dele diz "Dos processos do tema decididos antes de {data}, {x}% foram procedentes (n={a}); depois, {y}% (n={b}). Isso mostra a ordem no tempo, não a causa."
+
+Cenário: Ano do julgamento fora
+Dado processos decididos no ano do julgamento
+Quando antes e depois são calculados
+Então esses processos não contam em nenhum dos lados
+
+Cenário: Processos insuficientes de um lado
+Dado um tema com menos de 20 processos julgados antes ou depois do julgamento
+Quando o gráfico é renderizado
+Então não há marca nem frase, e o bloco diz por quê
+
+Cenário: Sem Tema relacionado
+Dado um tema sem Tema com similaridade de 0,60 para cima, ou cujo Tema não tem data de julgamento
+Quando o gráfico é renderizado
+Então não há marca nem frase, e o bloco diz por quê
 ```

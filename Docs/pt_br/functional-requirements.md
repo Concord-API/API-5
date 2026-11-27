@@ -39,6 +39,8 @@ requisito remete à história de usuário de que se origina.
 | FR-18 | Exibir o alinhamento do tema por tribunal. | US-12 |
 | FR-19 | Exibir uma tabela do comportamento de cada tribunal, com decisões, alinhamento e a data da decisão mais recente. | US-14 |
 | FR-20 | Sinalizar divergência interna entre as câmaras de um mesmo tribunal. | US-17 |
+| FR-38 | Exibir os temas cuja taxa de *procedente* mudou entre 2021–2024 e 2025–2026, com as duas taxas e o `n` de cada janela, só quando a mudança é significativa e grande o bastante. | US-42 |
+| FR-39 | Marcar no gráfico anual do tema a data em que o STJ julgou o tema repetitivo relacionado, com a taxa de *procedente* e o `n` dos processos do tema antes e depois dela, declarando a ordem no tempo e não a causa. | US-43 |
 
 ## Rastreabilidade das decisões
 
